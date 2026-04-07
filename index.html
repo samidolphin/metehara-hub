@@ -9,10 +9,11 @@
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: #f1f5f9; margin: 0; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .sidebar { transition: transform 0.3s ease-in-out; }
+        .sidebar { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; }
         .hidden-sidebar { transform: translateX(-100%); }
         .news-modal { display: none; position: fixed; inset: 0; z-index: 10000; background: #020617; overflow-y: auto; }
         .modal-active { display: block !important; }
+        .menu-item:hover { background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; }
     </style>
 </head>
 <body class="selection:bg-amber-500/30">
@@ -20,149 +21,33 @@
     <nav class="sticky top-0 z-50 glass p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <button onclick="toggleSidebar()" class="p-2 hover:bg-slate-800 rounded-lg transition-all">
+                <button onclick="toggleSidebar()" class="p-2 hover:bg-slate-800 rounded-xl transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                 </button>
-                <div class="flex items-center gap-2">
-                    <div class="bg-amber-500 p-2 rounded-xl">
-                        <span class="text-slate-900 font-black text-xl italic">SD</span>
-                    </div>
-                    <div class="hidden sm:block">
-                        <h1 id="nav-title" class="text-lg font-bold">የመተሃራ ከተማ</h1>
-                        <p class="text-[8px] text-amber-500 font-bold uppercase tracking-widest">SAMI-TUBE MEDIA</p>
-                    </div>
+                <div class="flex flex-col">
+                    <h1 class="text-xl font-bold italic text-white leading-none">የመተሃራ ከተማ</h1>
+                    <span class="text-[9px] text-amber-500 font-black tracking-widest uppercase mt-1">SAMI-TUBE MEDIA</span>
                 </div>
             </div>
-            
             <div class="flex items-center gap-3">
-                <button class="p-2 text-slate-400 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></button>
+                <button class="bg-slate-800 p-2 rounded-full text-amber-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></button>
             </div>
         </div>
     </nav>
 
-    <div id="sidebar" class="sidebar hidden-sidebar fixed inset-0 z-[60] flex">
-        <div class="w-80 h-full bg-slate-900 shadow-2xl border-r border-slate-800 p-6 flex flex-col">
-            <div class="flex justify-between items-center mb-8">
-                <span class="text-amber-500 font-black italic text-2xl">SAMI DOLPHIN</span>
-                <button onclick="toggleSidebar()" class="text-slate-400 hover:text-white text-3xl">&times;</button>
+    <div id="sidebar" class="sidebar hidden-sidebar fixed inset-y-0 left-0 w-80 bg-slate-950 shadow-2xl border-r border-slate-800 flex flex-col">
+        <div class="p-8 border-b border-slate-800">
+            <div class="bg-amber-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-amber-500/20">
+                <span class="text-slate-900 font-black text-2xl italic">SD</span>
             </div>
-
-            <div class="space-y-1 flex-1 overflow-y-auto">
-                <a href="#" class="flex items-center gap-4 p-4 hover:bg-slate-800 rounded-xl transition-all border-b border-slate-800/50">
-                    <span class="text-amber-500 font-bold text-lg">መነሻ</span>
-                </a>
-                <a href="#" class="flex items-center gap-4 p-4 hover:bg-slate-800 rounded-xl transition-all border-b border-slate-800/50">
-                    <span class="text-slate-300 font-bold text-lg italic">የአካባቢ ዜና</span>
-                </a>
-                <a href="#" class="flex items-center gap-4 p-4 hover:bg-slate-800 rounded-xl transition-all border-b border-slate-800/50">
-                    <span class="text-slate-300 font-bold text-lg italic">ግብርና</span>
-                </a>
-                <a href="#" class="flex items-center gap-4 p-4 hover:bg-slate-800 rounded-xl transition-all border-b border-slate-800/50">
-                    <span class="text-slate-300 font-bold text-lg italic">የከተማ ልማት</span>
-                </a>
-                <a href="#" class="flex items-center gap-4 p-4 hover:bg-slate-800 rounded-xl transition-all">
-                    <span class="text-slate-300 font-bold text-lg italic">ስለ እኛ</span>
-                </a>
-            </div>
-
-            <div class="mt-auto pt-6 border-t border-slate-800">
-                <p class="text-[10px] text-slate-500 mb-4 uppercase font-bold tracking-widest text-center">ቋንቋ / LANGUAGE</p>
-                <div class="flex flex-col gap-2">
-                    <button onclick="changeLang('am')" class="w-full bg-amber-500 text-slate-900 py-3 rounded-xl font-bold flex items-center justify-center gap-2">🇪🇹 አማርኛ</button>
-                    <button onclick="changeLang('or')" class="w-full bg-slate-800 text-slate-300 py-3 rounded-xl font-bold flex items-center justify-center gap-2">🇪🇹 Afaan Oromoo</button>
-                    <button onclick="changeLang('en')" class="w-full bg-slate-800 text-slate-300 py-3 rounded-xl font-bold flex items-center justify-center gap-2">🇺🇸 English</button>
-                </div>
-            </div>
-        </div>
-        <div onclick="toggleSidebar()" class="flex-1 bg-black/60 backdrop-blur-sm"></div>
-    </div>
-
-    <main class="max-w-7xl mx-auto p-6 py-10">
-        <div class="flex items-center gap-4 mb-10">
-            <div class="h-10 w-2 bg-amber-500 rounded-full"></div>
-            <h2 id="section-title" class="text-2xl font-black italic uppercase tracking-tighter">ዋና ዋና ዜናዎች</h2>
+            <h2 class="text-xl font-black italic text-white uppercase">Sami Dolphin</h2>
+            <p class="text-[10px] text-amber-500 font-bold uppercase tracking-widest">Digital Media Expert</p>
         </div>
 
-        <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            </div>
-    </main>
-
-    <div id="newsModal" class="news-modal">
-        <div class="max-w-4xl mx-auto px-6 py-12">
-            <div class="flex justify-end mb-8">
-                <button onclick="closeNews()" class="bg-red-500/10 text-red-500 border border-red-500/20 px-8 py-3 rounded-full font-bold text-xs uppercase hover:bg-red-500 hover:text-white transition-all">ዝጋ / CLOSE</button>
-            </div>
-            <div id="newsContent" class="animate-slideUp"></div>
-        </div>
-    </div>
-
-    <script>
-        const newsData = [
-            {
-                title: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ",
-                image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800",
-                body: "ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማት ስራዎች የከተማዋን ገጽታ እየቀየሩ ነው።",
-                full: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ። ከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ።",
-                date: "ሚያዝያ 7/2018",
-                rep: "ሳምሶን ተስፋዬ"
-            },
-            {
-                title: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ",
-                image: "https://images.unsplash.com/photo-1541944743827-e04bb645d994?q=80&w=800",
-                body: "ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።",
-                full: "በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ። በአሁኑ ወቅት የፓምፕ ተከላ እና የቧንቧ ዝርጋታ ስራዎች ተጠናቀዋል።",
-                date: "መጋቢት 6/2018",
-                rep: "ሳሚ ዶልፊን"
-            }
-        ];
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('hidden-sidebar');
-        }
-
-        function displayNews() {
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = newsData.map((n, i) => `
-                <div onclick="openNews(${i})" class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden group hover:border-amber-500/50 transition-all cursor-pointer shadow-2xl">
-                    <div class="h-60 overflow-hidden relative">
-                        <img src="${n.image}" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700">
-                    </div>
-                    <div class="p-8 space-y-4">
-                        <h3 class="text-xl font-bold leading-tight group-hover:text-amber-400 transition-colors">${n.title}</h3>
-                        <p class="text-slate-400 text-sm font-light line-clamp-2">${n.body}</p>
-                        <div class="pt-4 text-amber-500 font-black text-xs tracking-widest">ሙሉውን አንብብ →</div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openNews(id) {
-            const data = newsData[id];
-            const contentHtml = `
-                <div class="space-y-8 pb-10">
-                    <h2 class="text-3xl md:text-5xl font-black italic text-white leading-tight uppercase tracking-tighter">${data.title}</h2>
-                    <div class="flex items-center gap-4 text-slate-500 text-[10px] font-bold border-y border-slate-800/60 py-6 italic uppercase tracking-widest">
-                        <span>| ዘጋቢ: ${data.rep}</span>
-                        <span>| ቀን: ${data.date}</span>
-                    </div>
-                    <div class="rounded-[2.5rem] overflow-hidden border border-slate-800"><img src="${data.image}" class="w-full h-auto"></div>
-                    <p class="text-slate-200 text-xl md:text-2xl leading-[1.9] font-light italic">${data.full}</p>
-                </div>
-            `;
-            document.getElementById('newsContent').innerHTML = contentHtml;
-            document.getElementById('newsModal').classList.add('modal-active');
-            document.body.style.overflow = 'hidden';
-            toggleSidebar(); // ዝርዝር ሲከፈት ሜኑውን ለመዝጋት
-        }
-
-        function closeNews() {
-            document.getElementById('newsModal').classList.remove('modal-active');
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onload = displayNews;
-    </script>
-</body>
-</html>
+        <div class="flex-1 overflow-y-auto py-6">
+            <div class="px-4 space-y-2">
+                <a href="#" class="menu-item flex items-center gap-4 p-4 rounded-xl transition-all text-white font-bold italic">መነሻ</a>
+                <a href="#" class="menu-item flex items-center gap-4 p-4 rounded-xl transition-all text-slate-400 font-bold italic">የአካባቢ ዜና</a>
+                <a href="#" class="menu-item flex items-center gap-4 p-4 rounded-xl transition-all

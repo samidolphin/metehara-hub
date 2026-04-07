@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE | Metehara News</title>
+    <title>SAMI-TUBE | Metehara City News</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -23,7 +23,7 @@
                 <p class="text-[9px] text-slate-500 font-bold uppercase tracking-[0.2em]">Metehara City News Portal</p>
             </div>
         </div>
-        <div class="hidden md:block text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+        <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest hidden sm:block">
             Tuesday, April 7, 2026
         </div>
     </nav>
@@ -31,21 +31,21 @@
     <main class="max-w-7xl mx-auto p-4 py-12">
         <div class="flex items-center gap-4 mb-10">
             <div class="h-10 w-2 bg-amber-500 rounded-full"></div>
-            <h2 class="text-3xl font-black italic text-white uppercase tracking-tight">Featured News / ዋና ዜናዎች</h2>
+            <h2 class="text-3xl font-black italic text-white uppercase tracking-tight">Main News / ዋና ዜናዎች</h2>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 group cursor-pointer" onclick="openNews('traffic')">
                 <div class="relative rounded-[3.5rem] overflow-hidden border-4 border-slate-800 shadow-2xl transition-all duration-500 group-hover:border-amber-500/50">
-                    <img src="1775578814527.jpg" class="w-full h-[550px] object-cover group-hover:scale-105 transition duration-700">
+                    <img src="1775578814527.jpg" class="w-full h-[500px] object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                    <div class="absolute bottom-0 p-10 space-y-5">
+                    <div class="absolute bottom-0 p-10 space-y-4">
                         <span class="bg-red-600 text-white text-[10px] font-black px-5 py-2 rounded-full uppercase shadow-xl tracking-widest animate-pulse">BREAKING NEWS</span>
-                        <h3 class="text-4xl md:text-5xl font-black text-white leading-[1.1] group-hover:text-amber-400 transition">"በእኔ ስህተት የአንድም ሰው ህይወት በትራፊክ አደጋ መጥፋት የለበትም"</h3>
-                        <p class="text-slate-300 text-lg line-clamp-2 max-w-2xl font-medium">በመታሃራ ከተማ አስተዳደር የትራፊክ ደህንነት ሳምንት ንቅናቄ በደመቀ ሁኔታ ተከበረ...</p>
-                        <div class="flex items-center gap-4 text-amber-500 font-black text-sm uppercase italic">
+                        <h3 class="text-3xl md:text-4xl font-black text-white leading-[1.1] group-hover:text-amber-400 transition">"በእኔ ስህተት የአንድም ሰው ህይወት በትራፊክ አደጋ መጥፋት የለበትም"</h3>
+                        <p class="text-slate-300 text-base line-clamp-2 max-w-xl">የመታሃራ ከተማ አስተዳደር የትራፊክ ደህንነት ሳምንት ንቅናቄ በደመቀ ሁኔታ ተከበረ...</p>
+                        <div class="flex items-center gap-2 text-amber-500 font-black text-xs uppercase italic pt-2">
                             <span>ሙሉውን አንብብ</span>
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </div>
                     </div>
                 </div>
@@ -53,65 +53,41 @@
 
             <div class="flex flex-col gap-6">
                 <div class="bg-slate-900/60 p-6 rounded-[2.5rem] border border-slate-800 hover:border-amber-500/40 transition cursor-pointer group" onclick="openNews('mayor')">
-                    <img src="1775578921364.jpg" class="w-full h-44 object-cover rounded-3xl mb-4 border border-slate-800">
+                    <img src="1775578921364.jpg" class="w-full h-40 object-cover rounded-3xl mb-4 border border-slate-800">
                     <h4 class="text-amber-500 font-black text-[10px] uppercase tracking-widest mb-2">ልማት</h4>
-                    <h3 class="text-xl font-bold text-white group-hover:text-amber-300 transition line-clamp-2 italic leading-tight">አቶ አዲሱ ዋቆ በመተሃራ ያስመዘገቧቸው የልማት ስራዎች</h3>
+                    <h3 class="text-xl font-bold text-white group-hover:text-amber-300 transition line-clamp-2 leading-tight italic">ከንቲባ አቶ አዲሱ ዋቆ ያስመዘገቧቸው የልማት ስራዎች</h3>
                 </div>
 
-                <div class="bg-slate-900/60 p-6 rounded-[2.5rem] border border-slate-800 hover:border-blue-500/40 transition cursor-pointer group" onclick="openNews('water')">
+                <div class="bg-slate-900/60 p-5 rounded-[2rem] border border-slate-800 hover:border-blue-500/40 transition cursor-pointer group" onclick="openNews('water')">
                     <div class="flex items-center gap-4">
-                        <img src="1775578834003.jpg" class="w-24 h-24 object-cover rounded-2xl flex-shrink-0">
+                        <img src="1775578834003.jpg" class="w-20 h-20 object-cover rounded-2xl flex-shrink-0">
                         <div>
-                            <h4 class="text-blue-400 font-black text-[9px] uppercase tracking-widest">መሰረተ ልማት</h4>
-                            <h3 class="text-sm font-black text-white mt-1 group-hover:text-blue-300 transition leading-tight">የመተሃራ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% ደረሰ</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900/60 p-6 rounded-[2.5rem] border border-slate-800 hover:border-orange-500/40 transition cursor-pointer group" onclick="openNews('orange')">
-                    <div class="flex items-center gap-4">
-                        <div class="w-24 h-24 bg-orange-500/10 rounded-2xl flex items-center justify-center text-4xl">🍊</div>
-                        <div>
-                            <h4 class="text-orange-400 font-black text-[9px] uppercase tracking-widest">ግብርና</h4>
-                            <h3 class="text-sm font-black text-white mt-1 group-hover:text-orange-300 transition leading-tight">የብርቱካን እርሻ ሳይንሳዊ ክብካቤ በበሰቃ ሀይቅ ዳርቻ</h3>
+                            <h4 class="text-blue-400 font-black text-[8px] uppercase tracking-widest">መሰረተ ልማት</h4>
+                            <h3 class="text-sm font-black text-white mt-1 group-hover:text-blue-300 leading-tight">የንፁህ መጠጥ ውሃ ፕሮጀክት 90% ደረሰ</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <div id="newsModal" class="news-modal p-4 md:p-10 flex justify-center items-start overflow-y-auto">
+<div id="newsModal" class="news-modal p-4 md:p-10 flex justify-center items-start overflow-y-auto">
         <div class="bg-slate-900 max-w-4xl w-full my-6 rounded-[3.5rem] border border-slate-700 shadow-2xl relative overflow-hidden">
             <div class="sticky top-0 z-20 bg-slate-900/90 backdrop-blur-md p-6 border-b border-slate-800 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="h-6 w-1.5 bg-amber-500"></div>
-                    <span id="modalCategory" class="text-amber-500 font-black text-[10px] uppercase tracking-[0.2em]">ዜና</span>
-                </div>
-                <button onclick="closeNews()" class="bg-red-500/20 text-red-500 px-5 py-2 rounded-full hover:bg-red-500 hover:text-white transition font-black text-[10px] uppercase tracking-widest shadow-lg">
-                    ዝጋ (CLOSE)
-                </button>
+                <span id="modalCategory" class="text-amber-500 font-black text-[10px] uppercase tracking-[0.2em]">ዜና</span>
+                <button onclick="closeNews()" class="bg-red-500/20 text-red-500 px-5 py-2 rounded-full hover:bg-red-500 hover:text-white transition font-black text-[10px] uppercase">ዝጋ</button>
             </div>
-            
             <div id="modalContent" class="p-8 md:p-16 space-y-10">
                 </div>
         </div>
     </div>
 
-    <footer class="mt-20 py-20 bg-slate-900 border-t border-slate-800">
-        <div class="max-w-4xl mx-auto px-4 text-center space-y-12">
-            <div class="space-y-4">
-                <h4 class="text-amber-500 font-black italic text-3xl uppercase tracking-tighter">Sami-Tube Media</h4>
-                <p class="text-slate-400 text-sm font-medium">ለከተማችን እድገትና መረጃ ተደራሽነት ሌት ተቀን እንሰራለን::</p>
-            </div>
-            <div class="flex flex-wrap justify-center gap-4 font-black text-[10px] uppercase tracking-[0.2em]">
-                <a href="https://t.me/MeteharaInfoBot" class="bg-blue-600 px-10 py-5 rounded-2xl shadow-xl hover:-translate-y-1 transition">Telegram Bot 🤖</a>
-                <a href="https://www.youtube.com/@Sami-Tube" class="bg-red-600 px-10 py-5 rounded-2xl shadow-xl hover:-translate-y-1 transition">YouTube Channel 🎥</a>
-            </div>
-            <div class="pt-10 border-t border-slate-800 text-[10px] text-slate-600 font-bold">
-                <p>CONTACT ADMIN: +251 911 926976</p>
-                <p class="mt-2">SAMI-TUBE © 2026 - ALL RIGHTS RESERVED</p>
-            </div>
+    <footer class="mt-20 py-16 bg-slate-900 border-t border-slate-800 text-center space-y-8">
+        <h4 class="text-amber-500 font-black italic text-2xl uppercase tracking-tighter">Sami-Tube Media</h4>
+        <div class="flex justify-center gap-4 text-[10px] font-black uppercase">
+            <a href="https://t.me/MeteharaInfoBot" class="bg-blue-600 px-8 py-4 rounded-2xl">Telegram 🤖</a>
+            <a href="https://www.youtube.com/@Sami-Tube" class="bg-red-600 px-8 py-4 rounded-2xl">YouTube 🎥</a>
         </div>
+        <p class="text-slate-600 text-[10px] font-bold">CONTACT: +251 911 926976 | Metehara, Ethiopia</p>
     </footer>
 
     <script>
@@ -123,29 +99,13 @@
                 fullBody: `
                     <p class="text-slate-400 font-bold mb-4 italic">[መታሃራ | መጋቢት 29/2018 ዓ.ም]</p>
                     <p class="text-slate-200 text-xl leading-relaxed mb-8">በምስራቅ ሸዋ ዞን በመታሃራ ከተማ አስተዳደር የትራፊክ ደህንነት ሳምንት ንቅናቄ በመታሃራ ከተማ ትራንስፖርት ኤጀንሲ፣ በመታሃራ ከተማ ፖሊስ ጽህፈት ቤት እንዲሁም በፈንታሌ ወረዳ መንገድና ሎጂስቲክስ እና በፈንታሌ ወረዳ ፖሊስ ጽህፈት ቤት ቅንጅት በደመቀ ሁኔታ ተከብሯል።</p>
-                    
-                    <div class="bg-slate-800/50 p-8 rounded-[2.5rem] border border-slate-700 space-y-8 my-10">
+                    <div class="bg-slate-800 p-8 rounded-[2rem] border border-slate-700 space-y-6 my-10">
                         <h4 class="text-amber-500 font-black uppercase text-xs tracking-widest border-b border-slate-700 pb-2">🎤 የባለስልጣናት መልዕክት</h4>
-                        
-                        <div class="space-y-2">
-                            <p class="text-white font-black italic">አቶ አዲሱ ዋቆ (የመታሃራ ከተማ አስተዳደር ከንቲባ):</p>
-                            <p class="text-slate-300 italic">"የማህበራዊና ኢኮኖሚያዊ ስጋት እየሆነ የመጣውን የትራፊክ አደጋ በከፍተኛ ሁኔታ ለመቀነስ፣ ለአደጋ መንስኤ የሆኑ ችግሮችን ለይቶ መስራትና አደጋን መከላከል ወሳኝ ጉዳይ ነው።" 📢</p>
-                        </div>
-
-                        <div class="space-y-2">
-                            <p class="text-white font-black italic">አቶ ሃዋስ ጨርጨር (የፈንታሌ ወረዳ አስተዳዳሪ):</p>
-                            <p class="text-slate-300 italic">"የትራፊክ ደህንነት ሳምንት ንቅናቄ ዋና ዓላማ በሰው ህይወትና በንብረት ላይ እየደረሰ ያለውን ውድመት በመቀነስ ማህበራዊ እንቅስቃሴዎችን ማሳለጥ ነው። መንገደኞችም ሆኑ አሽከርካሪዎች በጥንቃቄ በመጓዝ አደጋን ማስቀረት ይቻላቸዋል።" 🛑</p>
-                        </div>
-
-                        <div class="space-y-2">
-                            <p class="text-white font-black italic">ኢንስፔክተር ወርቅነህ ሰርቤሳ (የምስራቅ ሸዋ ዞን የትራፊክ ደህንነት ኃላፊ):</p>
-                            <p class="text-slate-300 italic">"በአሁኑ ወቅት የትራፊክ አደጋ በሰው ህይወትና በሀገር ንብረት ላይ ተደጋጋሚ ጉዳት እያደረሰ በመሆኑ፣ ጉዳዩ እያንዳንዱን ሰው የሚመለከት ነው። ህግና ደንብን በማክበር፣ መንገደኞችም ሆኑ አሽከርካሪዎች የትራፊክ ህግን በመከተል አደጋን የመቀነስ የዜግነት ድርሻቸውን ሊወጡ ይገባል፤ ይህ የህይወት ጉዳይ ነው።" ⚠️</p>
-                        </div>
+                        <p class="text-slate-300 italic"><b>አቶ አዲሱ ዋቆ (ከንቲባ):</b> "የማህበራዊና ኢኮኖሚያዊ ስጋት እየሆነ የመጣውን የትራፊክ አደጋ በከፍተኛ ሁኔታ ለመቀነስ፣ ለአደጋ መንስኤ የሆኑ ችግሮችን ለይቶ መስራትና አደጋን መከላከል ወሳኝ ጉዳይ ነው።"</p>
+                        <p class="text-slate-300 italic"><b>አቶ ሃዋስ ጨርጨር (አስተዳዳሪ):</b> "የትራፊክ ደህንነት ሳምንት ንቅናቄ ዋና ዓላማ በሰው ህይወትና በንብረት ላይ እየደረሰ ያለውን ውድመት በመቀነስ ማህበራዊ እንቅስቃሴዎችን ማሳለጥ ነው።"</p>
+                        <p class="text-slate-300 italic"><b>ኢንስፔክተር ወርቅነህ ሰርቤሳ:</b> "ህግና ደንብን በማክበር፣ መንገደኞችም ሆኑ አሽከርካሪዎች የትራፊክ ህግን በመከተል አደጋን የመቀነስ የዜግነት ድርሻቸውን ሊወጡ ይገባል፤ ይህ የህይወት ጉዳይ ነው።"</p>
                     </div>
-
-                    <h4 class="text-xl font-black text-white">🎯 የንቅናቄው ዓላማ</h4>
                     <p class="text-slate-300 text-lg leading-relaxed">ይህ የትራፊክ ደህንነት ሳምንት ንቅናቄ "በእኔ ስህተት የአንድም ሰው ህይወት በትራፊክ አደጋ መጥፋት የለበትም" በሚል መሪ ቃል ሲከበር፣ በትራፊክ ረገድ የሚያጋጥሙ ችግሮችን በመቀነስ እስከ ማጥፋት ድረስ ለመድረስ ያለመ እንደሆነ ተገልጿል።</p>
-                    <p class="text-amber-500 font-black italic text-xl mt-6">"ደህንነቱ የተጠበቀ መንገድ ለሁላችንም!" 🚲🚗🚚</p>
                 `,
                 reporter: "ዘጋቢ፡ ሳምሶን ተስፋዬ"
             },
@@ -155,7 +115,7 @@
                 image: "1775578921364.jpg",
                 fullBody: `
                     <p class="text-slate-200 text-xl leading-relaxed mb-6">የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።</p>
-                    <p class="text-slate-300 text-lg leading-relaxed text-justify">ከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። <br><br> በሌላ በኩል፣ ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል። ይህ የአረንጓዴ ልማት ተነሳሽነት ከተማዋ ያላትን የተፈጥሮ ፀጋ በአግባቡ ጥቅም ላይ ለማዋል ያለመና መተሃራን የአረንጓዴ ልማት ተምሳሌት የሚያደርግ እንደሆነ ተገልጿል።</p>
+                    <p class="text-slate-300 text-lg leading-relaxed">ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል።</p>
                 `,
                 reporter: "ዘጋቢ፡ ሳምሶን ተስፋዬ"
             },
@@ -165,27 +125,14 @@
                 image: "1775578834003.jpg",
                 fullBody: `
                     <p class="text-slate-400 font-bold mb-4 italic">መተሃራ፣ መጋቢት 6/2018</p>
-                    <p class="text-slate-200 text-xl leading-relaxed mb-8">በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።</p>
-                    <div class="bg-blue-900/20 p-8 rounded-3xl border border-blue-900/30 space-y-4">
-                        <p class="text-blue-400 font-black uppercase text-xs tracking-widest">🔹 የፕሮጀክቱ ዋና ዋና ነጥቦች፦</p>
-                        <ul class="space-y-4 text-slate-300">
-                            <li><b>ዘላቂ መፍትሄ፦</b> ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ ያደርሳል።</li>
-                            <li><b>የረጅም ጊዜ አገልግሎት፦</b> ለቀጣዮቹ 50 ዓመታት ያህል አስተማማኝ አገልግሎት ይሰጣል።</li>
-                            <li><b>ወጪ፦</b> ከ1.4 ቢሊዮን ብር በላይ በሆነ ወጪ እየተከናወነ ይገኛል።</li>
-                        </ul>
-                    </div>
+                    <p class="text-slate-200 text-xl leading-relaxed mb-8">የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።</p>
+                    <ul class="space-y-4 text-slate-300 text-lg">
+                        <li>✅ <b>ዘላቂ መፍትሄ፦</b> የከተማዋን የውሃ ሽፋን 100 በመቶ ያደርሳል።</li>
+                        <li>✅ <b>አገልግሎት፦</b> ለቀጣዮቹ 50 ዓመታት ያህል አስተማማኝ አገልግሎት ይሰጣል።</li>
+                        <li>✅ <b>ወጪ፦</b> ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ ይገኛል።</li>
+                    </ul>
                 `,
                 reporter: "Image by Sami Dolphin"
-            },
-            orange: {
-                category: "ግብርና",
-                title: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ",
-                image: "1775578829187.jpg",
-                fullBody: `
-                    <p class="text-slate-200 text-xl leading-relaxed mb-6">በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።</p>
-                    <p class="text-slate-300 text-lg leading-relaxed text-justify">በኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው። <br><br> ቅርንጫፎች በሚገረዙበት ወቅት ዛፉ ለአየር ንክኪ እና ለበሽታ አምጪ ተህዋስያን ተጋላጭ እንዳይሆን፣ በተቆረጡት ክፍሎች ላይ ልዩ የኬሚካል ቅባት የመቀባት ስራ ይከናወናል።</p>
-                `,
-                reporter: "Sami Dolphin Media"
             }
         };
 
@@ -193,16 +140,15 @@
             const data = newsData[id];
             const content = `
                 <div class="space-y-6">
-                    <h2 class="text-4xl md:text-5xl font-black text-white leading-tight">${data.title}</h2>
-                    <div class="h-2 w-24 bg-amber-500 rounded-full"></div>
+                    <h2 class="text-4xl font-black text-white leading-tight">${data.title}</h2>
+                    <div class="h-1.5 w-24 bg-amber-500 rounded-full"></div>
                 </div>
-                <img src="${data.image}" class="w-full h-[450px] object-cover rounded-[3rem] shadow-2xl border border-slate-800">
+                <img src="${data.image}" class="w-full h-[400px] object-cover rounded-[2.5rem] shadow-2xl border border-slate-800">
                 <div class="space-y-6">
                     ${data.fullBody}
                 </div>
-                <div class="pt-10 border-t border-slate-800 flex justify-between items-center text-slate-500 font-black italic text-xs">
-                    <span>${data.reporter}</span>
-                    <span class="text-amber-500/50 uppercase tracking-widest">Metehara News Hub</span>
+                <div class="pt-10 border-t border-slate-800 text-slate-500 font-black italic text-xs">
+                    ${data.reporter} | SAMI-TUBE MEDIA
                 </div>
             `;
             document.getElementById('modalCategory').innerText = data.category;

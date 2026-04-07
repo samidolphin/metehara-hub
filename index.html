@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE | Metehara City Hub</title>
+    <title>SAMI-TUBE | Metehara Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -15,6 +15,7 @@
             overflow-x: hidden;
         }
 
+        /* ዜናው ሲከፈት የሚመጣው ገጽ ስታይል */
         .news-modal {
             display: none;
             position: fixed;
@@ -58,13 +59,18 @@
                 </div>
             </div>
             
-            <div class="relative group">
-                <button class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-xs flex items-center gap-2">
+            <div class="flex items-center gap-4">
+                <button class="text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+                <div class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-xs flex items-center gap-2">
                     <span>🇪🇹 አማርኛ</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
-                </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -76,7 +82,8 @@
         </div>
 
         <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            </div>
+            <p class="text-slate-500 italic">ዜናዎች በመጫን ላይ...</p>
+        </div>
     </main>
 
     <div id="newsModal" class="news-modal">
@@ -95,7 +102,7 @@
         const newsData = [
             {
                 title: "በመተሃራ የትራፊክ ደህንነት ሳምንት ንቅናቄ በደመቀ ሁኔታ ተከበረ",
-                image: "https://via.placeholder.com/800x500/1e293b/fbbf24?text=Traffic+Safety",
+                image: "https://images.unsplash.com/photo-1545147418-409e214a7c04?q=80&w=800",
                 body: "በእኔ ስህተት የአንድም ሰው ህይወት በትራፊክ አደጋ መጥፋት የለበትም በሚል መሪ ቃል ንቅናቄው ተካሂዷል።",
                 fullBody: "በምስራቅ ሸዋ ዞን በመተሃራ ከተማ አስተዳደር የትራፊክ ደህንነት ሳምንት ንቅናቄ በደመቀ ሁኔታ ተከብሯል። ንቅናቄው 'በእኔ ስህተት የአንድም ሰው ህይወት በትራፊክ አደጋ መጥፋት የለበትም' በሚል መሪ ቃል የተከናወነ ሲሆን፣ የከተማው እና የወረዳው ከፍተኛ አመራሮች ተገኝተዋል።",
                 reporter: "ሳሚ ዶልፊን",
@@ -103,15 +110,15 @@
             },
             {
                 title: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ",
-                image: "https://via.placeholder.com/800x500/1e293b/fbbf24?text=Water+Project",
+                image: "https://images.unsplash.com/photo-1541944743827-e04bb645d994?q=80&w=800",
                 body: "ለከተማው ነዋሪዎች ትልቅ እፎይታ የሚሰጠው የንፁህ መጠጥ ውሃ ፕሮጀክት አሁን ላይ 90 በመቶ ደርሷል።",
-                fullBody: "ለከተማው ነዋሪዎች ትልቅ እፎይታ የሚሰጠው የንፁህ መጠጥ ውሃ ፕሮጀክት አሁን ላይ 90 በመቶ ደርሷል። በቀጣይ ጥቂት ወራት ውስጥ ሙሉ በሙሉ ተጠናቆ አገልግሎት መስጠት እንደሚጀምር የአስተዳደሩ መረጃ ያመለክታል።",
+                fullBody: "ለከተማው ነዋሪዎች ትልቅ እፎይታ የሚሰጠው የንፁህ መጠጥ ውሃ ፕሮጀክት አሁን ላይ 90 በመቶ መጠናቀቁ ተገልጿል። በቀጣይ ጥቂት ወራት ውስጥ ሙሉ በሙሉ ተጠናቆ አገልግሎት መስጠት እንደሚጀምር ይጠበቃል።",
                 reporter: "ሳሚ ዶልፊን",
                 date: "ሚያዝያ 6/2018 ዓ.ም"
             },
             {
                 title: "የባሳቃ ሐይቅ ዳርቻ የልማት ስራዎች ተጠናክረው ቀጥለዋል",
-                image: "https://via.placeholder.com/800x500/1e293b/fbbf24?text=Lake+Basaka",
+                image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800",
                 body: "የባሳቃ ሐይቅን ለቱሪዝም እና ለከተማ ውበት ለማዋል የሚሰሩ የልማት ስራዎች ተስፋ ሰጪ ደረጃ ላይ ናቸው።",
                 fullBody: "የባሳቃ ሐይቅን ዳርቻ በማልማት ለከተማዋ ተጨማሪ ውበት እና የቱሪስት መስህብ ለማድረግ የታለሙ ስራዎች በፍጥነት እየተከናወኑ ይገኛሉ። ይህ ፕሮጀክት የከተማዋን ገጽታ ከመቀየር ባለፈ ለወጣቶች የስራ እድል ይፈጥራል።",
                 reporter: "ሳሚ ዶልፊን",
@@ -119,7 +126,7 @@
             },
             {
                 title: "የብርቱካን ምርት በከተማዋ ዳርቻ በሚገኙ እርሻዎች እየተሰበሰበ ይገኛል",
-                image: "https://via.placeholder.com/800x500/1e293b/fbbf24?text=Orange+Farming",
+                image: "https://images.unsplash.com/photo-1611080626919-7cf5a969fc8f?q=80&w=800",
                 body: "በመተሃራ ከተማ ዙሪያ የሚገኙ የብርቱካን እርሻዎች ምርት መስጠት በመጀመራቸው ለገበያ እየቀረበ ነው።",
                 fullBody: "የመተሃራ አካባቢ ለብርቱካን እና ለሎሚ ምርት ተስማሚ በመሆኑ፣ አርሶ አደሮች እና የግል እርሻዎች ምርታቸውን ለሀገር ውስጥ ገበያ ማቅረብ ጀምረዋል። ዘንድሮ የተገኘው ምርት ካለፈው ዓመት የተሻለ መሆኑ ተገልጿል።",
                 reporter: "ሳሚ ዶልፊን",
@@ -127,8 +134,11 @@
             }
         ];
 
+        // ዜናዎችን በካርድ መልክ መደርደሪያ
         function displayNews() {
             const grid = document.getElementById('newsGrid');
+            if (!grid) return;
+
             grid.innerHTML = newsData.map((news, index) => `
                 <div onclick="openNews(${index})" class="bg-slate-900/50 rounded-[2rem] border border-slate-800 overflow-hidden group hover:border-amber-500/50 transition-all duration-500 shadow-xl cursor-pointer">
                     <div class="h-56 overflow-hidden">
@@ -136,7 +146,7 @@
                     </div>
                     <div class="p-6 space-y-4">
                         <div class="flex items-center gap-2 text-amber-500 text-[10px] font-black uppercase tracking-widest">
-                            <span class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span> ወቅታዊ ዜና
+                            <span class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span> ወቅታዊ
                         </div>
                         <h3 class="text-xl font-bold leading-tight group-hover:text-amber-400 transition-colors">${news.title}</h3>
                         <p class="text-slate-400 text-sm font-light line-clamp-2">${news.body}</p>
@@ -148,6 +158,7 @@
             `).join('');
         }
 
+        // ሙሉ ዜናውን መክፈቻ
         function openNews(id) {
             const data = newsData[id];
             const content = `
@@ -156,7 +167,7 @@
                         <div class="w-2 h-14 bg-amber-500 rounded-full shadow-[0_0_20px_rgba(245,158,11,0.5)]"></div>
                         <h2 class="text-3xl md:text-5xl font-black italic tracking-tighter text-white uppercase leading-tight">${data.title}</h2>
                     </div>
-                    <div class="flex items-center gap-4 text-slate-500 text-xs font-bold border-y border-slate-800/50 py-5 italic">
+                    <div class="flex items-center gap-4 text-slate-500 text-xs font-bold border-y border-slate-800/50 py-5 italic uppercase">
                         <span><span class="text-amber-500">|</span> [${data.reporter}]</span>
                         <span>${data.date}</span>
                     </div>
@@ -164,6 +175,7 @@
                     <div class="text-slate-200 text-xl md:text-2xl leading-[1.8] font-light">
                         ${data.fullBody}
                     </div>
+                    <div class="h-20"></div>
                 </div>
             `;
             document.getElementById('newsContent').innerHTML = content;
@@ -177,7 +189,8 @@
             document.body.style.overflow = 'auto';
         }
 
-        window.onload = displayNews;
+        // ገጹ ሲከፈት ዜናዎቹ እንዲመጡ
+        document.addEventListener('DOMContentLoaded', displayNews);
     </script>
 </body>
 </html>

@@ -7,90 +7,94 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans Ethiopic', sans-serif; }
+        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #050a18; }
         .lang-section { display: none; }
-        .active { display: block !important; animation: fadeIn 0.4s ease-in; }
+        .active { display: block !important; animation: fadeIn 0.5s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body class="bg-[#050a18] text-white min-h-screen">
+<body class="text-white min-h-screen">
 
-    <nav class="p-4 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 flex justify-center gap-3 border-b border-slate-800">
-        <button onclick="showLang('amharic')" class="px-5 py-1.5 rounded-full text-xs font-bold border border-blue-500 text-blue-400 hover:bg-blue-500/10">አማርኛ</button>
-        <button onclick="showLang('oromo')" class="px-5 py-1.5 rounded-full text-xs font-bold border border-green-500 text-green-400 hover:bg-green-500/10">Oromoo</button>
-        <button onclick="showLang('english')" class="px-5 py-1.5 rounded-full text-xs font-bold border border-red-500 text-red-400 hover:bg-red-500/10">English</button>
+    <nav class="p-4 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50 flex justify-center gap-3 border-b border-slate-800">
+        <button onclick="showLang('amharic')" class="px-6 py-2 rounded-full text-xs font-black border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition-all">አማርኛ</button>
+        <button onclick="showLang('oromo')" class="px-6 py-2 rounded-full text-xs font-black border border-green-500 text-green-400 hover:bg-green-500 hover:text-white transition-all">Oromoo</button>
+        <button onclick="showLang('english')" class="px-6 py-2 rounded-full text-xs font-black border border-red-500 text-red-400 hover:bg-red-500 hover:text-white transition-all">English</button>
     </nav>
 
-    <header class="py-12 text-center border-b border-slate-900 bg-gradient-to-b from-slate-900 to-transparent">
-        <h1 class="text-5xl font-black italic tracking-tighter text-blue-500">SAMI-TUBE</h1>
-        <p class="text-slate-500 text-[10px] mt-2 tracking-[0.3em] font-bold uppercase">Metehara City Information Center</p>
+    <header class="py-16 text-center bg-gradient-to-b from-slate-900 to-transparent">
+        <h1 class="text-6xl font-black italic tracking-tighter text-blue-500 drop-shadow-2xl">SAMI-TUBE</h1>
+        <p class="text-slate-500 text-[10px] mt-3 tracking-[0.4em] font-bold uppercase">Metehara City Information Center</p>
     </header>
 
-    <main class="max-w-3xl mx-auto p-4 py-10">
+    <main class="max-w-3xl mx-auto p-4 py-6">
 
         <div id="amharic" class="lang-section active space-y-10">
             
-            <h2 class="text-xl font-bold text-blue-400 border-l-4 border-blue-600 pl-3">ትኩስ ዜናዎች</h2>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-8 w-1 bg-blue-600 rounded-full"></div>
+                <h2 class="text-2xl font-black text-blue-100">ትኩስ ዜናዎች</h2>
+            </div>
 
-            <div class="bg-slate-900/50 rounded-[2rem] p-6 border border-slate-800 shadow-2xl space-y-6">
-                <h3 class="text-xl font-black text-slate-100 leading-tight">በመተሃራ ከተማ የትራፊክ ደህንነት ሳምንት ንቅናቄ ተካሄደ</h3>
+            <div class="bg-slate-900/60 rounded-[2.5rem] p-8 border border-slate-800 shadow-2xl space-y-6">
+                <h3 class="text-2xl font-black text-white leading-tight">በመተሃራ ከተማ የትራፊክ ደህንነት ሳምንት ንቅናቄ ተካሄደ</h3>
                 
-                <div class="grid grid-cols-2 gap-2 overflow-hidden rounded-2xl">
-                    <img src="1775578814527.jpg" class="col-span-2 w-full h-52 object-cover border border-slate-700">
-                    <img src="1775578921364.jpg" class="w-full h-36 object-cover border border-slate-700">
-                    <img src="1775578834003.jpg" class="w-full h-36 object-cover border border-slate-700">
+                <div class="grid grid-cols-2 gap-3 overflow-hidden rounded-3xl">
+                    <img src="1775578814527.jpg" class="col-span-2 w-full h-64 object-cover border border-slate-700 shadow-lg" alt="Traffic Safety Event">
+                    <img src="1775578921364.jpg" class="w-full h-44 object-cover border border-slate-700" alt="Mayor Speaking">
+                    <img src="1775578834003.jpg" class="w-full h-44 object-cover border border-slate-700" alt="Official">
                 </div>
 
-                <div class="text-slate-300 text-sm leading-relaxed space-y-4 text-justify">
+                <div class="text-slate-300 text-base leading-relaxed space-y-4 text-justify">
                     <p>በምስራቅ ሸዋ ዞን በመተሃራ ከተማ አስተዳደር "በእኔ ስህተት የአንድ ሰው ህይወት በትራፊክ አደጋ መጥፋት የለበትም" በሚል መሪ ቃል ንቅናቄ ተካሂዷል።</p>
-                    <p>የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ የትራፊክ አደጋን ለመቀነስ የእግረኞችና የአሽከርካሪዎች ጥንቃቄ ወሳኝ መሆኑን ገልጸዋል።</p>
+                    <p>የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ የትራፊክ አደጋን ለመቀነስ የእግረኞችና የአሽከርካሪዎች ጥንቃቄ ወሳኝ መሆኑን ገልጸዋል። የፈንታሌ ወረዳ አስተዳዳሪ አቶ ሀበኔ ጨርጨር በበኩላቸው ህግን ማክበር ህይወትን እንደሚያድን ተናግረዋል።</p>
                 </div>
             </div>
 
-            <hr class="border-slate-800 mx-10">
+            <div class="h-[1px] bg-gradient-to-r from-transparent via-slate-800 to-transparent my-10"></div>
 
-            <div class="bg-slate-900/50 rounded-[2rem] p-6 border border-slate-800 shadow-xl space-y-4">
-                <h3 class="text-lg font-bold text-blue-200">የመተሃራ የውሃ ፕሮጀክት 90% ደረሰ</h3>
-                <p class="text-slate-300 text-sm leading-relaxed">ከ1.4 ቢሊዮን ብር በላይ በሆነ ወጪ የሚገነባው ይህ ፕሮጀክት የከተማዋን የውሃ ሽፋን 100% ለማድረስ ታቅዶ እየተሰራ ይገኛል።</p>
+            <div class="bg-slate-900/40 rounded-[2rem] p-8 border border-slate-800 shadow-xl space-y-4">
+                <h3 class="text-xl font-bold text-blue-300">💧 የመተሃራ ግዙፍ የውሃ ፕሮጀክት 90% ደረሰ</h3>
+                <p class="text-slate-400 text-sm leading-relaxed text-justify">ከ1.4 ቢሊዮን ብር በላይ በሆነ ወጪ የሚገነባው ይህ ፕሮጀክት የከተማዋን የውሃ ሽፋን 100% ለማድረስ ታቅዶ እየተሰራ ይገኛል።</p>
             </div>
 
-            <div class="bg-slate-900/50 rounded-[2rem] p-6 border border-slate-800 shadow-xl space-y-4">
-                <h3 class="text-lg font-bold text-orange-400">🍊 የብርቱካን እርሻ ሳይንሳዊ ክትትል</h3>
-                <p class="text-slate-300 text-sm leading-relaxed text-justify">በበሰቃ ሀይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በሳይንሳዊ መንገድ የመገረዝ (Pruning) ስራ እየተከናወነለት ይገኛል። ይህም የምርት ጥራትን ከመጨመር ባለፈ ዛፎችን ከበሽታ ይከላከላል።</p>
+            <div class="bg-slate-900/40 rounded-[2rem] p-8 border border-slate-800 shadow-xl space-y-4 border-l-4 border-l-orange-500">
+                <h3 class="text-xl font-bold text-orange-400">🍊 የብርቱካን እርሻ ሳይንሳዊ ክትትል</h3>
+                <p class="text-slate-400 text-sm leading-relaxed text-justify">በበሰቃ ሀይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በሳይንሳዊ መንገድ የመገረዝ (Pruning) ስራ እየተከናወነለት ይገኛል። ይህም ምርታማነትን ለመጨመርና በሽታን ለመከላከል ይረዳል።</p>
             </div>
 
-            <p class="text-slate-500 text-[10px] italic text-right font-bold pr-4">ዘጋቢ፡ ሳምሶን ተስፋዬ</p>
+            <p class="text-slate-500 text-[10px] italic text-right font-bold pr-6">ዘጋቢ፡ ሳምሶን ተስፋዬ</p>
         </div>
 
         <div id="oromo" class="lang-section space-y-8">
-            <h2 class="text-xl font-bold text-green-400 border-l-4 border-green-600 pl-3">ODEEFFANNOO HAARAA</h2>
-            <div class="bg-slate-900/50 rounded-[2rem] p-6 border border-slate-800 space-y-6">
-                <h3 class="text-lg font-black text-slate-100">Hojiilee Misoomaa Kantiibaa Obbo Addisuu Waaqoo</h3>
-                <img src="1775578814527.jpg" class="w-full h-52 object-cover rounded-xl border border-slate-700">
-                <p class="text-slate-300 text-sm leading-relaxed">Qarqarri haroo Mataaharaa kanaan dura iddoo xuraawaa ture gara bakka bashannanaatti jijjiirameera። Akkasumas proojektiin bishaan dhugaatii xumuramaa jira።</p>
+            <h2 class="text-2xl font-black text-green-400 border-l-4 border-green-600 pl-4 uppercase">Odeeffannoo Haaraa</h2>
+            <div class="bg-slate-900/60 rounded-[2.5rem] p-8 border border-slate-800 space-y-6">
+                <h3 class="text-xl font-black text-slate-100">Sosochii Torbee Nageenya Tiraafikaa</h3>
+                <img src="1775578814527.jpg" class="w-full h-64 object-cover rounded-3xl border border-slate-700 shadow-xl">
+                <p class="text-slate-300 text-base leading-relaxed text-justify font-medium">"Dogongora kootiin lubbuun nama tokkoo balaa tiraafikaatiin darbuu hin qabu" jechuun kabajameera። Qarqarri haroo Mataaharaas gara bakka bashannanaatti jijjiiramaa jira።</p>
             </div>
         </div>
 
         <div id="english" class="lang-section space-y-8">
-            <h2 class="text-xl font-bold text-red-400 border-l-4 border-red-600 pl-3">LATEST NEWS</h2>
-            <div class="bg-slate-900/50 rounded-[2rem] p-6 border border-slate-800">
-                <h3 class="text-lg font-black text-slate-100">Metehara City Transformation</h3>
-                <p class="text-slate-300 text-sm mt-4">Under Mayor Addisu Wako, multi-billion birr projects are being finalized to ensure 100% water coverage።</p>
+            <h2 class="text-2xl font-black text-red-400 border-l-4 border-red-600 pl-4 uppercase">Latest News</h2>
+            <div class="bg-slate-900/60 rounded-[2.5rem] p-8 border border-slate-800">
+                <h3 class="text-xl font-black text-slate-100">Metehara City Development</h3>
+                <p class="text-slate-300 text-base mt-6 leading-relaxed text-justify">Major infrastructure improvements under Mayor Addisu Wako's leadership, including a $1.4B ETB water project now 90% complete።</p>
             </div>
         </div>
 
     </main>
 
-    <footer class="py-16 text-center space-y-8 border-t border-slate-900">
-        <div class="space-y-2">
-            <p class="text-xs font-semibold text-slate-400 italic">ssamitesfaye@gmail.com</p>
-            <p class="text-blue-400 font-bold">📞 +251 911 926976</p>
+    <footer class="py-20 text-center space-y-10 border-t border-slate-900 bg-slate-950">
+        <div class="space-y-3">
+            <p class="text-xs font-semibold text-slate-500 tracking-widest uppercase">Contact Information</p>
+            <p class="text-blue-400 font-black text-lg">📞 +251 911 926976</p>
+            <p class="text-slate-600 text-[10px]">ssamitesfaye@gmail.com</p>
         </div>
-        <div class="flex flex-col gap-4 max-w-xs mx-auto italic font-black text-[10px] uppercase">
-            <a href="https://t.me/MeteharaInfoBot" class="bg-blue-600 py-4 rounded-2xl shadow-lg hover:scale-105 transition">Telegram Bot 🤖</a>
-            <a href="https://www.youtube.com/@Sami-Tube" class="bg-red-600 py-4 rounded-2xl shadow-lg hover:scale-105 transition">YouTube Channel 🎥</a>
+        <div class="flex flex-col gap-4 max-w-xs mx-auto italic font-black text-[11px] uppercase">
+            <a href="https://t.me/MeteharaInfoBot" class="bg-blue-600 py-4 rounded-2xl shadow-blue-900/20 shadow-2xl hover:bg-blue-700 transition-all active:scale-95">Telegram Bot 🤖</a>
+            <a href="https://www.youtube.com/@Sami-Tube" class="bg-red-600 py-4 rounded-2xl shadow-red-900/20 shadow-2xl hover:bg-red-700 transition-all active:scale-95">YouTube Channel 🎥</a>
         </div>
-        <p class="text-[9px] text-slate-600 tracking-widest font-bold">SAMI-TUBE NEWS © 2026</p>
+        <p class="text-[9px] text-slate-700 tracking-[0.5em] font-bold">SAMI-TUBE NEWS © 2026</p>
     </footer>
 
     <script>

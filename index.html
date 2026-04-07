@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE | Metehara Hub</title>
+    <title>SAMI-TUBE | Metehara City Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -12,6 +12,7 @@
             background-color: #020617;
             color: #f1f5f9;
             margin: 0;
+            overflow-x: hidden;
         }
 
         .news-modal {
@@ -21,9 +22,19 @@
             z-index: 10000;
             background: #020617;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .modal-active { display: block !important; }
+
+        .animate-slideUp {
+            animation: slideUp 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .line-clamp-2 {
             display: -webkit-box;
@@ -31,33 +42,24 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-
-        .animate-slideUp {
-            animation: slideUp 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
-<body>
+<body class="selection:bg-amber-500/30">
 
-    <nav class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 p-4">
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="bg-amber-500 p-2 rounded-xl shadow-lg shadow-amber-500/20">
                     <span class="text-slate-900 font-black text-xl">S</span>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold tracking-tight">የመተሃራ ከተማ</h1>
+                    <h1 class="text-xl font-bold italic">የመተሃራ ከተማ</h1>
                     <p class="text-[9px] text-amber-500 font-bold uppercase tracking-widest">SAMI-TUBE NEWS</p>
                 </div>
             </div>
             
             <div class="relative group">
-                <button class="bg-slate-800/50 border border-slate-700 px-4 py-2 rounded-full text-xs flex items-center gap-2 hover:bg-slate-700 transition-all">
+                <button class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-xs flex items-center gap-2">
                     <span>🇪🇹 አማርኛ</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -89,16 +91,8 @@
     </div>
 
     <script>
-        // አራቱም ዜናዎች እዚህ አሉ
+        // አራቱ ዜናዎች በዝርዝር
         const newsData = [
-            {
-                title: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ",
-                image: "https://via.placeholder.com/800x500/1e293b/fbbf24?text=Water+Project",
-                body: "ለከተማው ነዋሪዎች ትልቅ እፎይታ የሚሰጠው የንፁህ መጠጥ ውሃ ፕሮጀክት አሁን ላይ 90 በመቶ ደርሷል።",
-                fullBody: "ለከተማው ነዋሪዎች ትልቅ እፎይታ የሚሰጠው የንፁህ መጠጥ ውሃ ፕሮጀክት አሁን ላይ 90 በመቶ ደርሷል። በቀጣይ ጥቂት ወራት ውስጥ ሙሉ በሙሉ ተጠናቆ አገልግሎት መስጠት እንደሚጀምር የአስተዳደሩ መረጃ ያመለክታል። ፕሮጀክቱ በከተማዋ ያለውን የውሃ እጥረት በዘላቂነት ይፈታል።",
-                reporter: "ሳሚ ዶልፊን",
-                date: "ሚያዝያ 6/2018 ዓ.ም"
-            },
             {
                 title: "በመተሃራ የትራፊክ ደህንነት ሳምንት ንቅናቄ በደመቀ ሁኔታ ተከበረ",
                 image: "https://via.placeholder.com/800x500/1e293b/fbbf24?text=Traffic+Safety",
@@ -108,10 +102,18 @@
                 date: "መጋቢት 29/2018 ዓ.ም"
             },
             {
+                title: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ",
+                image: "https://via.placeholder.com/800x500/1e293b/fbbf24?text=Water+Project",
+                body: "ለከተማው ነዋሪዎች ትልቅ እፎይታ የሚሰጠው የንፁህ መጠጥ ውሃ ፕሮጀክት አሁን ላይ 90 በመቶ ደርሷል።",
+                fullBody: "ለከተማው ነዋሪዎች ትልቅ እፎይታ የሚሰጠው የንፁህ መጠጥ ውሃ ፕሮጀክት አሁን ላይ 90 በመቶ ደርሷል። በቀጣይ ጥቂት ወራት ውስጥ ሙሉ በሙሉ ተጠናቆ አገልግሎት መስጠት እንደሚጀምር የአስተዳደሩ መረጃ ያመለክታል።",
+                reporter: "ሳሚ ዶልፊን",
+                date: "ሚያዝያ 6/2018 ዓ.ም"
+            },
+            {
                 title: "የባሳቃ ሐይቅ ዳርቻ የልማት ስራዎች ተጠናክረው ቀጥለዋል",
                 image: "https://via.placeholder.com/800x500/1e293b/fbbf24?text=Lake+Basaka",
                 body: "የባሳቃ ሐይቅን ለቱሪዝም እና ለከተማ ውበት ለማዋል የሚሰሩ የልማት ስራዎች ተስፋ ሰጪ ደረጃ ላይ ናቸው።",
-                fullBody: "የባሳቃ ሐይቅን ዳርቻ በማልማት ለከተማዋ ተጨማሪ ውበት እና የቱሪስት መስህብ ለማድረግ የታለሙ ስራዎች በፍጥነት እየተከናወኑ ይገኛሉ። ይህ ፕሮጀክት የከተማዋን ገጽታ ከመቀየር ባለፈ ለወጣቶች የስራ እድል ይፈጥራል ተብሎ ይጠበቃል።",
+                fullBody: "የባሳቃ ሐይቅን ዳርቻ በማልማት ለከተማዋ ተጨማሪ ውበት እና የቱሪስት መስህብ ለማድረግ የታለሙ ስራዎች በፍጥነት እየተከናወኑ ይገኛሉ። ይህ ፕሮጀክት የከተማዋን ገጽታ ከመቀየር ባለፈ ለወጣቶች የስራ እድል ይፈጥራል።",
                 reporter: "ሳሚ ዶልፊን",
                 date: "ሚያዝያ 7/2018 ዓ.ም"
             },
@@ -128,6 +130,54 @@
         function displayNews() {
             const grid = document.getElementById('newsGrid');
             grid.innerHTML = newsData.map((news, index) => `
-                <div class="bg-slate-900/50 rounded-[2rem] border border-slate-800 overflow-hidden group hover:border-amber-500/50 transition-all duration-500 shadow-xl cursor-pointer" onclick="openNews(${index})">
+                <div onclick="openNews(${index})" class="bg-slate-900/50 rounded-[2rem] border border-slate-800 overflow-hidden group hover:border-amber-500/50 transition-all duration-500 shadow-xl cursor-pointer">
                     <div class="h-56 overflow-hidden">
-                        <img src="${news.image}" class="w-full h-full object-cover group-hover:
+                        <img src="${news.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center gap-2 text-amber-500 text-[10px] font-black uppercase tracking-widest">
+                            <span class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span> ወቅታዊ ዜና
+                        </div>
+                        <h3 class="text-xl font-bold leading-tight group-hover:text-amber-400 transition-colors">${news.title}</h3>
+                        <p class="text-slate-400 text-sm font-light line-clamp-2">${news.body}</p>
+                        <div class="pt-2 flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-widest">
+                            ሙሉውን አንብብ <span class="text-amber-500 text-lg">→</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openNews(id) {
+            const data = newsData[id];
+            const content = `
+                <div class="space-y-8">
+                    <div class="flex gap-4">
+                        <div class="w-2 h-14 bg-amber-500 rounded-full shadow-[0_0_20px_rgba(245,158,11,0.5)]"></div>
+                        <h2 class="text-3xl md:text-5xl font-black italic tracking-tighter text-white uppercase leading-tight">${data.title}</h2>
+                    </div>
+                    <div class="flex items-center gap-4 text-slate-500 text-xs font-bold border-y border-slate-800/50 py-5 italic">
+                        <span><span class="text-amber-500">|</span> [${data.reporter}]</span>
+                        <span>${data.date}</span>
+                    </div>
+                    <img src="${data.image}" class="w-full rounded-[2rem] shadow-2xl border border-slate-800">
+                    <div class="text-slate-200 text-xl md:text-2xl leading-[1.8] font-light">
+                        ${data.fullBody}
+                    </div>
+                </div>
+            `;
+            document.getElementById('newsContent').innerHTML = content;
+            document.getElementById('newsModal').classList.add('modal-active');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('newsModal').scrollTo(0, 0);
+        }
+
+        function closeNews() {
+            document.getElementById('newsModal').classList.remove('modal-active');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onload = displayNews;
+    </script>
+</body>
+</html>

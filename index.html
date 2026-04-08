@@ -6,68 +6,72 @@
     <title>SAMI-TUBE MEDIA | Mataaharaa Digital Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; }
         
-        /* የግራ ሰማያዊ አሞሌ ማስተካከያ */
+        /* የግራ ሰማያዊ አሞሌ - ልክ እንደ ምስሉ */
         .blue-sidebar {
             background-color: #0c82cf;
-            width: 85px;
+            width: 100px;
             height: 100vh;
             position: fixed;
             left: 0;
             top: 0;
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly; /* ክፍተቱን በእኩል እንዲያከፋፍል */
-            align-items: center;
+            padding-top: 40px;
+            gap: 30px;
             z-index: 100;
-            padding: 20px 0;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
         }
 
         .side-item {
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             color: white;
             text-align: center;
             font-weight: bold;
-            transition: 0.3s;
             cursor: pointer;
-            padding: 5px;
+            transition: 0.3s;
+            padding: 0 5px;
         }
 
-        .side-item:hover { color: #f59e0b; transform: scale(1.1); }
+        .side-item:hover { color: #f59e0b; }
 
-        /* ዋናው ይዘት */
-        .content-area { margin-left: 85px; width: calc(100% - 85px); }
-        
-        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 215, 0, 0.1); }
-        
-        /* ሬስፖንሲቭ ርዕስ */
-        .hero-title { font-size: clamp(1.5rem, 6vw, 2.8rem); line-height: 1.3; font-weight: 900; }
+        /* ዋናው የይዘት ክፍል */
+        .main-content { margin-left: 100px; }
+
+        .glass-nav { 
+            background: rgba(15, 23, 42, 0.9); 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1); 
+        }
+
+        .hero-title { font-size: clamp(1.4rem, 5vw, 2.5rem); line-height: 1.3; font-weight: 800; }
     </style>
 </head>
 <body>
 
-    <div class="blue-sidebar shadow-2xl">
+    <div class="blue-sidebar">
         <div class="side-item" data-am="ቅድመ ዜና" data-om="Oduu Duraa" data-en="Pre-News">ቅድመ ዜና</div>
         <div class="side-item" data-am="ሪፖርት" data-om="Gabaasa" data-en="Report">ሪፖርት</div>
         <div class="side-item" data-am="ቱሪዝም" data-om="Tuurizimii" data-en="Tourism">ቱሪዝም</div>
         <div class="side-item" data-am="ባህል" data-om="Aadaa" data-en="Culture">ባህል</div>
         <div class="side-item" data-am="ስነ ጽሁፍ" data-om="Og-barruu" data-en="Literature">ስነ ጽሁፍ</div>
         <div class="side-item" data-am="ቴክ" data-om="Teek" data-en="Tech">ቴክ</div>
-        <div class="side-item" data-am="ኢንተርቪው" data-om="Gaaffii fi Deebii" data-en="Interview">ኢንተርቪው</div>
         <div class="side-item" data-am="ፍልስፍና" data-om="Falaasama" data-en="Philosophy">ፍልስፍና</div>
     </div>
 
-    <div class="content-area">
+    <div class="main-content">
         <nav class="sticky top-0 z-50 glass-nav p-4">
             <div class="flex justify-between items-center max-w-6xl mx-auto">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-amber-500 rounded flex items-center justify-center text-slate-950 font-black">S</div>
-                    <h1 class="text-white font-bold text-xs uppercase tracking-tight">SAMI-TUBE MEDIA</h1>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-slate-950 font-black text-xl shadow-lg">S</div>
+                    <div>
+                        <h1 class="text-white font-black italic text-sm leading-none uppercase">SAMI-TUBE MEDIA</h1>
+                        <span class="text-[8px] text-amber-500 font-bold tracking-widest uppercase">Digital Excellence</span>
+                    </div>
                 </div>
-                <select id="langSwitch" onchange="changeLanguage()" class="bg-slate-800 text-[10px] text-white p-1 rounded border border-slate-700 outline-none">
+                <select id="langSwitch" onchange="changeLanguage()" class="bg-slate-800 text-[10px] text-white p-2 rounded-lg border border-slate-700 outline-none">
                     <option value="am">🇪🇹 አማርኛ</option>
                     <option value="om">🇪🇹 Afan Oromo</option>
                     <option value="en">🇺🇸 English</option>
@@ -75,31 +79,37 @@
             </div>
         </nav>
 
-        <header class="py-12 px-6 text-center bg-gradient-to-b from-slate-900/50 to-transparent">
-            <h2 id="heroTitle" class="hero-title italic text-white uppercase mb-6">
+        <header class="py-16 px-8 text-left max-w-4xl">
+            <h2 id="heroTitle" class="hero-title italic text-white uppercase mb-4">
                 እንኳን ወደ <span class="text-amber-500">መታሃራ</span> <br> 
                 ዲጂታል ማዕከል በሰላም መጣችሁ
             </h2>
-            <p id="heroDesc" class="text-slate-400 text-xs md:text-sm max-w-lg mx-auto italic border-l-2 border-amber-500 pl-4">
-                ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል
-            </p>
+            <div class="flex gap-4 items-center">
+                <div class="w-1 h-12 bg-amber-500"></div>
+                <p id="heroDesc" class="text-slate-400 text-sm italic leading-relaxed">
+                    ወቅታዊ የከተማዋ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል
+                </p>
+            </div>
         </header>
 
-        <section class="max-w-4xl mx-auto px-4 py-8">
-            <h3 class="text-amber-500 font-bold mb-4 uppercase italic text-[10px]">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
-            <div class="aspect-video w-full rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+        <section class="px-8 py-6">
+            <h3 class="text-amber-500 font-black italic mb-6 uppercase text-lg">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
+            <div class="max-w-3xl aspect-video rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
                 <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
-        <section class="max-w-4xl mx-auto px-4 py-10 mb-20">
-            <h2 id="newsHeader" class="text-xl font-black italic text-white mb-6 border-b border-slate-800 pb-2 uppercase tracking-wide">ዜና / NEWS</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-slate-900/80 rounded-2xl overflow-hidden border border-slate-800 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" class="w-full h-40 object-cover opacity-90">
-                    <div class="p-5">
-                        <span class="text-amber-500 text-[9px] font-bold">April 8, 2026</span>
-                        <h3 class="text-md font-bold mt-2 text-white leading-snug">የመታሃራ ከተማ የልማት ስራዎች</h3>
+        <section class="px-8 py-12 mb-20">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-2 h-8 bg-amber-500"></div>
+                <h2 id="newsHeader" class="text-2xl font-black italic text-white uppercase tracking-wider">ዜና / NEWS</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+                <div class="bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-amber-500 text-[10px] font-bold">April 8, 2026</span>
+                        <h3 class="text-lg font-bold mt-2 text-white italic">የመታሃራ ከተማ አዲሱ የልማት ገጽታ</h3>
                     </div>
                 </div>
             </div>
@@ -110,9 +120,9 @@
         function changeLanguage() {
             const lang = document.getElementById('langSwitch').value;
             const t = {
-                am: { news: "ዜና / NEWS", desc: "ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል", title: "እንኳን ወደ <span class='text-amber-500'>መታሃራ</span> <br> ዲጂታል ማዕከል በሰላም መጣችሁ" },
-                om: { news: "ODUU / NEWS", desc: "Oduuwwan ammee fi giddu-gala og-barruu nagaan dhufan.", title: "Baga Nagaan Gara Giddu-gala <br> <span class='text-amber-500'>Mataaharaatti</span> Dhufan" },
-                en: { news: "LATEST NEWS", desc: "The latest news, technology results, and literature center.", title: "Welcome to <br> <span class='text-amber-500'>Mataaharaa</span> Digital Hub" }
+                am: { news: "ዜና / NEWS", desc: "ወቅታዊ የከተማዋ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል", title: "እንኳን ወደ <span class='text-amber-500'>መታሃራ</span> <br> ዲጂታል ማዕከል በሰላም መጣችሁ" },
+                om: { news: "ODUU / NEWS", desc: "Oduuwwan ammee magaalaa, bu'aalee teeknooloojii fi giddu-gala og-barruu nagaan dhufan.", title: "Baga Nagaan Gara Giddu-gala <br> <span class='text-amber-500'>Mataaharaatti</span> Dhufan" },
+                en: { news: "LATEST NEWS", desc: "Welcome to the latest city news, technology results, and literature center.", title: "Welcome to <br> <span class='text-amber-500'>Mataaharaa</span> Digital Hub" }
             };
             
             document.getElementById('newsHeader').innerText = t[lang].news;

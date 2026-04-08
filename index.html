@@ -6,31 +6,34 @@
     <title>SAMI-TUBE MEDIA | Mataaharaa Digital Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; }
         
-        /* የላይኛው ክፍል - ባር እና ምስል ብቻ */
-        .hero-container { display: flex; min-height: 70vh; background-color: #020617; }
+        /* የላይኛው ክፍል መመጠኛ - ባር እና ምስል */
+        .hero-container { display: flex; height: 65vh; background-color: #020617; }
 
-        /* የግራ ሰማያዊ ዝርዝር - እዚህ ብቻ ያበቃል */
+        /* የግራ ሰማያዊ ዝርዝር - ልክ በምስሉ መሰረት */
         .blue-sidebar {
             background-color: #0c82cf;
             width: 100px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding-top: 30px;
-            gap: 25px;
+            padding-top: 25px;
+            gap: 20px;
             flex-shrink: 0;
+            z-index: 10;
         }
 
         .side-item {
             font-size: 0.7rem;
             color: white;
             text-align: center;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
             padding: 5px;
+            text-transform: uppercase;
         }
 
         /* ተንቀሳቃሽ የጀርባ ምስል */
@@ -41,32 +44,37 @@
             background-position: center;
             transition: background-image 1.5s ease-in-out;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
-        .hero-overlay { position: absolute; inset: 0; background: rgba(2, 6, 23, 0.6); }
+        .hero-overlay { position: absolute; inset: 0; background: rgba(2, 6, 23, 0.7); }
 
+        /* የሰላምታ ጽሁፍ መመጠኛ - ልክ በምስሉ መሰረት */
         .hero-title { 
-            font-size: clamp(1.4rem, 5vw, 2.5rem); 
+            font-size: clamp(1.4rem, 4vw, 2.2rem); 
             line-height: 1.3; 
-            font-weight: 900; 
+            font-weight: 800; 
             z-index: 5; 
             text-align: center;
             text-transform: uppercase;
+            font-style: italic;
         }
 
-        /* የታችኛው ክፍል - ሙሉ ስፋት */
-        .bottom-content { width: 100%; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
-        
+        /* የታችኛው ክፍል መቆጣጠሪያ */
+        .bottom-wrapper {
+            margin-left: 100px; /* ከባሩ ስፋት ጋር እኩል ክፍተት */
+            width: calc(100% - 100px);
+            padding: 40px;
+        }
+
         .section-title {
             color: #f59e0b;
             font-weight: 900;
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-left: 4px solid #f59e0b;
             padding-left: 10px;
         }
@@ -74,4 +82,86 @@
 </head>
 <body>
 
-    <nav class="bg-slate-900/90 border-b border-white/5 p-
+    <div class="hero-container">
+        <div class="blue-sidebar shadow-2xl">
+            <div class="side-item">ባህል</div>
+            <div class="side-item">ስነ-ጽሑፍ</div>
+            <div class="side-item">ቴክ</div>
+            <div class="side-item">ፍልስፍና</div>
+        </div>
+
+        <div id="heroBG" class="hero-motion">
+            <div class="hero-overlay"></div>
+            <h2 id="heroTitle" class="hero-title text-white relative">
+                እንኳን ወደ <span class="text-amber-500">መታሃራ</span> <br> 
+                ዲጂታል ማዕከል በሰላም መጣችሁ
+            </h2>
+        </div>
+    </div>
+
+    <div class="bottom-wrapper max-w-7xl mx-auto">
+        
+        <nav class="flex justify-between items-center mb-12 bg-slate-950/50 p-4 rounded-xl border border-white/5">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-amber-500 rounded flex items-center justify-center text-slate-950 font-black text-xl shadow-lg">S</div>
+                <h1 class="text-white font-black italic text-sm tracking-tighter uppercase">SAMI-TUBE MEDIA</h1>
+            </div>
+            <select id="langSwitch" onchange="changeLanguage()" class="bg-slate-800 text-[10px] text-white p-2 rounded border border-slate-700 outline-none cursor-pointer">
+                <option value="am">🇪🇹 አማርኛ</option>
+                <option value="om">🇪🇹 Afan Oromo</option>
+                <option value="en">🇺🇸 English</option>
+            </select>
+        </nav>
+
+        <section class="mb-16">
+            <h3 class="section-title">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
+            <div class="w-full aspect-video rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 id="newsHeader" class="text-2xl font-black italic text-white mb-8 border-b border-slate-800 pb-2 uppercase tracking-widest">ዜና / NEWS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-900/60 rounded-3xl overflow-hidden border border-slate-800 group hover:border-amber-500 transition-all">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                    <div class="p-6">
+                        <span class="text-amber-500 text-[10px] font-bold italic">April 8, 2026</span>
+                        <h3 class="text-xl font-bold mt-2 text-white italic">የመታሃራ ከተማ አዲሱ የልማት ገጽታ</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // የጀርባ ምስል መቀያየሪያ
+        const images = [
+            'https://images.unsplash.com/photo-1451187530220-a093f13aeeef?q=80&w=1200',
+            'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1200',
+            'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200'
+        ];
+        let currentIndex = 0;
+        const heroBG = document.getElementById('heroBG');
+
+        function changeBG() {
+            heroBG.style.backgroundImage = `url('${images[currentIndex]}')`;
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+        setInterval(changeBG, 5000);
+        changeBG();
+
+        function changeLanguage() {
+            const lang = document.getElementById('langSwitch').value;
+            const t = {
+                am: { news: "ዜና / NEWS", title: "እንኳን ወደ <span class='text-amber-500'>መታሃራ</span> <br> ዲጂታል ማዕከል በሰላም መጣችሁ" },
+                om: { news: "ODUU / NEWS", title: "Baga Nagaan Gara Giddu-gala <br> <span class='text-amber-500'>Mataaharaatti</span> Dhufan" },
+                en: { news: "LATEST NEWS", title: "Welcome to <br> <span class='text-amber-500'>Mataaharaa</span> Digital Hub" }
+            };
+            document.getElementById('newsHeader').innerText = t[lang].news;
+            document.getElementById('heroTitle').innerHTML = t[lang].title;
+        }
+    </script>
+</body>
+</html>

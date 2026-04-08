@@ -12,51 +12,57 @@
             background-color: #020617; 
             color: white; 
             margin: 0; 
+            overflow-x: hidden;
         }
 
-        /* 1. የላይኛው ክፍል - Header እና Hero Area */
+        /* Header / Logo Section */
         header {
             background-color: #020617;
-            padding: 15px 20px;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
+        /* Hero Area: Side Menu + Banner */
         .hero-section {
             display: flex;
-            height: 60vh;
-            overflow: hidden;
+            height: 70vh;
+            min-height: 500px;
         }
 
-        /* ሰማያዊው የጎን ማውጫ - ልክ በምስሉ መሰረት */
+        /* የጎን ሰማያዊ ዝርዝር (Sidebar) */
         .side-menu {
             background-color: #0c82cf;
-            width: 120px;
+            width: 140px; /* ለፊደላቱ ምቾት ትንሽ ሰፋ ተደርጓል */
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 25px;
             padding: 20px 0;
             flex-shrink: 0;
+            z-index: 20;
         }
 
         .menu-item {
             color: white;
-            font-size: 0.75rem;
-            font-weight: bold;
+            font-size: 0.85rem; /* Proportional size */
+            font-weight: 700;
             text-align: center;
-            text-transform: uppercase;
             cursor: pointer;
+            transition: transform 0.2s;
         }
 
-        /* ተንቀሳቃሽ የጀርባ ምስል ክፍል */
+        .menu-item:hover { transform: scale(1.1); color: #f59e0b; }
+
+        /* Banner Area */
         .hero-banner {
             flex-grow: 1;
             position: relative;
+            background-image: url('https://images.unsplash.com/photo-1451187530220-a093f13aeeef?q=80&w=1200');
             background-size: cover;
             background-position: center;
-            transition: background-image 1.5s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -65,59 +71,60 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(2, 6, 23, 0.5);
+            background: rgba(2, 6, 23, 0.55);
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 20px;
+            padding: 0 20px;
         }
 
         .hero-title {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            font-weight: 900;
+            line-height: 1.2;
+            text-shadow: 2px 4px 15px rgba(0,0,0,0.6);
+        }
+
+        /* Main Content (YouTube & News) */
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section-header {
+            color: #f59e0b;
             font-weight: 900;
             font-style: italic;
-            line-height: 1.2;
-        }
-
-        /* 2. የታችኛው ክፍል - ሙሉ ስፋት (Full Width) */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .section-label {
-            color: #f59e0b;
-            font-weight: 800;
-            font-style: italic;
             text-transform: uppercase;
-            border-left: 4px solid #f59e0b;
-            padding-left: 10px;
-            margin-bottom: 25px;
-            display: inline-block;
+            border-left: 5px solid #f59e0b;
+            padding-left: 15px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
         }
 
-        .video-container {
-            border-radius: 24px;
+        .video-box {
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-amber-500 rounded flex items-center justify-center text-slate-950 font-black text-xl">S</div>
-            <div class="leading-tight">
-                <div class="text-white font-black italic text-sm tracking-tighter uppercase">SAMI-TUBE MEDIA</div>
-                <div class="text-amber-500 text-[8px] font-bold uppercase tracking-widest">Digital Excellence</div>
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-amber-500 rounded-lg flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg">S</div>
+            <div>
+                <h1 class="text-white font-black italic text-lg tracking-tighter uppercase leading-none">SAMI-TUBE MEDIA</h1>
+                <p class="text-amber-500 text-[9px] font-bold uppercase tracking-[0.2em] mt-1">Digital Excellence</p>
             </div>
         </div>
-        <select class="bg-slate-800 text-[10px] text-white p-2 rounded border border-slate-700 outline-none">
+        <select class="bg-slate-800 text-xs text-white px-3 py-2 rounded-full border border-slate-700 outline-none cursor-pointer">
             <option>🇪🇹 አማርኛ</option>
             <option>Afan Oromo</option>
             <option>English</option>
@@ -125,34 +132,54 @@
     </header>
 
     <div class="hero-section">
-        <div class="side-menu shadow-2xl">
+        <nav class="side-menu shadow-2xl">
+            <div class="menu-item">ቅድመ ዜና</div>
+            <div class="menu-item">ሪፖርት</div>
+            <div class="menu-item">ቱሪዝም</div>
             <div class="menu-item">ባህል</div>
             <div class="menu-item">ስነ-ጽሑፍ</div>
             <div class="menu-item">ቴክ</div>
+            <div class="menu-item">ኢንተርቪው</div>
             <div class="menu-item">ፍልስፍና</div>
-        </div>
-        <div id="heroBG" class="hero-banner">
+        </nav>
+
+        <div class="hero-banner">
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h2 class="hero-title">
                     እንኳን ወደ <span class="text-amber-500">መታሃራ</span> <br> 
                     ዲጂታል ማዕከል በሰላም መጣችሁ
                 </h2>
+                <p class="mt-4 text-slate-300 text-sm font-light tracking-wide italic">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል</p>
             </div>
         </div>
     </div>
 
-    <main class="main-content">
+    <main class="main-container">
         
-        <section class="mb-16">
-            <h3 class="section-label">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
-            <div class="video-container aspect-video">
+        <section class="mb-20">
+            <h3 class="section-header">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
+            <div class="video-box aspect-video">
                 <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
         <section>
-            <h3 class="section-label">ዜና / NEWS</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-slate-900/50 rounded-3xl overflow-hidden border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800" class="w-full h-5
+            <h3 class="section-header">ዜና / NEWS</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="bg-slate-900/40 rounded-[30px] overflow-hidden border border-white/5 group cursor-pointer hover:border-amber-500/50 transition-all">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800" class="w-full h-64 object-cover group-hover:scale-105 transition-duration-700">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-amber-500 text-xs font-bold italic tracking-widest">APRIL 8, 2026</span>
+                        <h4 class="text-2xl font-bold italic mt-3 leading-tight group-hover:text-amber-500 transition-colors">የመታሃራ ከተማ አዲሱ የልማት ገጽታ</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -14,10 +14,10 @@
             background-size: cover; background-position: center;
         }
         .glass-nav { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 215, 0, 0.1); }
-        .card-hover { transition: all 0.3s ease; border: 1px solid rgba(255, 215, 0, 0.05); }
-        .card-hover:hover { transform: translateY(-5px); border-color: rgba(255, 215, 0, 0.4); box-shadow: 0 10px 30px -10px rgba(255, 215, 0, 0.1); }
-        .modal-show { display: flex !important; animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card-hover:hover { transform: translateY(-10px) scale(1.02); border-color: #f59e0b; box-shadow: 0 20px 40px -20px rgba(245, 158, 11, 0.3); }
+        .modal-show { display: flex !important; animation: zoomIn 0.3s ease-out; }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body class="antialiased">
@@ -58,41 +58,52 @@
 
     <main class="max-w-7xl mx-auto px-6 py-16 space-y-24">
         
+        <section id="categories">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 card-hover text-center">
+                    <i class="fa-solid fa-pen-nib text-amber-500 text-3xl mb-4"></i>
+                    <h3 class="cat-label text-sm font-bold text-white uppercase" data-am="ሥነ-ጽሑፍ" data-om="Og-barruu" data-en="Literature">ሥነ-ጽሑፍ</h3>
+                </div>
+                <div class="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 card-hover text-center">
+                    <i class="fa-solid fa-microchip text-amber-500 text-3xl mb-4"></i>
+                    <h3 class="cat-label text-sm font-bold text-white uppercase" data-am="ቴክኖሎጂ" data-om="Teeknooloojii" data-en="Technology">ቴክኖሎጂ</h3>
+                </div>
+                <div class="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 card-hover text-center">
+                    <i class="fa-solid fa-newspaper text-amber-500 text-3xl mb-4"></i>
+                    <h3 class="cat-label text-sm font-bold text-white uppercase" data-am="ዜና" data-om="Oduu" data-en="News">ዜና</h3>
+                </div>
+                <div class="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 card-hover text-center">
+                    <i class="fa-solid fa-brain text-amber-500 text-3xl mb-4"></i>
+                    <h3 class="cat-label text-sm font-bold text-white uppercase" data-am="ፍልስፍና" data-om="Falaasama" data-en="Philosophy">ፍልስፍና</h3>
+                </div>
+            </div>
+        </section>
+
         <section id="news">
             <div class="flex items-center gap-4 mb-10">
                 <div class="w-2 h-10 bg-amber-500"></div>
-                <h2 id="newsHeader" class="text-3xl font-black italic text-white uppercase tracking-tighter">ዜና / NEWS</h2>
+                <h2 id="newsHeader" class="text-3xl font-black italic text-white uppercase">ዜና / NEWS</h2>
             </div>
-            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                </div>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
         </section>
 
-        <section id="tourism">
-            <div class="flex items-center gap-4 mb-10">
-                <div class="w-2 h-10 bg-amber-500"></div>
-                <h2 id="tourismHeader" class="text-3xl font-black italic text-white uppercase tracking-tighter">ቱሪዝም / TOURISM</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-slate-900/50 rounded-3xl p-8 card-hover">
-                    <i class="fa-solid fa-mountain-sun text-amber-500 text-4xl mb-6"></i>
-                    <h3 id="tourismTitle" class="text-2xl font-bold text-white mb-4 italic">አዋሽ ብሔራዊ ፓርክ</h3>
-                    <p id="tourismDesc" class="text-slate-400 leading-relaxed italic">በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።</p>
+        <section id="tourism" class="bg-slate-900/30 p-10 rounded-[40px] border border-slate-800">
+            <h2 id="tourismHeader" class="text-2xl font-black text-amber-500 mb-8 uppercase italic">ቱሪዝም / TOURISM</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="space-y-4">
+                    <h3 id="t1_title" class="text-2xl font-bold text-white italic">አዋሽ ብሔራዊ ፓርክ</h3>
+                    <p id="t1_desc" class="text-slate-400 leading-relaxed italic">በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።</p>
                 </div>
-                <div class="bg-slate-900/50 rounded-3xl p-8 card-hover">
-                    <i class="fa-solid fa-water text-amber-500 text-4xl mb-6"></i>
-                    <h3 id="tourismTitle2" class="text-2xl font-bold text-white mb-4 italic">በሳቃ ሐይቅ</h3>
-                    <p id="tourismDesc2" class="text-slate-400 leading-relaxed italic">ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።</p>
+                <div class="space-y-4">
+                    <h3 id="t2_title" class="text-2xl font-bold text-white italic">በሳቃ ሐይቅ</h3>
+                    <p id="t2_desc" class="text-slate-400 leading-relaxed italic">ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።</p>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <footer class="bg-slate-950 border-t border-slate-900 py-12 px-6">
-        <div class="max-w-7xl mx-auto text-center space-y-4">
-            <div class="text-amber-500 font-black italic text-xl tracking-tighter">SAMI DOLPHIN</div>
-            <p id="footerText" class="text-slate-500 text-sm">© 2026 Mataaharaa City Digital Center. All rights reserved.</p>
-        </div>
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 text-center">
+        <p class="text-slate-500 text-xs">© 2026 Mataaharaa Digital Hub | SAMI DOLPHIN</p>
     </footer>
 
     <div id="analysisModal" class="hidden fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-sm flex items-center justify-center p-4">
@@ -107,16 +118,8 @@
     <script>
         const newsItems = [
             {
-                title: {
-                    am: "የመታሃራ ከተማ አዲሱ የልማት ገጽታ",
-                    om: "Fuula Haaraya Misooma Magaalaa Mataaharaa",
-                    en: "New Development Face of Mataaharaa"
-                },
-                content: {
-                    am: "በከንቲባ አቶ አዲሱ ዋቆ የሚመሩ የልማት ስራዎች ከተማዋን እየለወጡ ይገኛሉ።",
-                    om: "Hojiwwan misoomaa kantiibaa Obbo Addisuu Waaqootiin durfaman magaalaa jijjiiraa jiru.",
-                    en: "Development projects led by Mayor Mr. Addisu Waako are transforming the city."
-                },
+                title: { am: "የመታሃራ ከተማ አዲሱ የልማት ገጽታ", om: "Fuula Haaraya Misooma Magaalaa Mataaharaa", en: "New Development Face of Mataaharaa" },
+                content: { am: "በከንቲባ አቶ አዲሱ ዋቆ የሚመሩ የልማት ስራዎች ከተማዋን እየለወጡ ይገኛሉ።", om: "Hojiwwan misoomaa kantiibaa Obbo Addisuu Waaqootiin durfaman magaalaa jijjiiraa jiru.", en: "Development projects led by Mayor Mr. Addisu Waako are transforming the city." },
                 date: "April 8, 2026",
                 img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800"
             }
@@ -127,34 +130,28 @@
                 badge: "የዲጂታል ዌብ ሳይት ማዕከል",
                 hero: "እንኳን ወደ <span class='text-amber-500'>መታሃራ</span> ከተማ ዲጂታል ማዕከል በሰላም መጣችሁ",
                 desc: "ወቅታዊ የከተማዋ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል",
-                news: "ዜና / NEWS",
+                news: "ወቅታዊ ዜናዎች / NEWS",
                 tourism: "ቱሪዝም / TOURISM",
-                t_title: "አዋሽ ብሔራዊ ፓርክ",
-                t_desc: "በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።",
-                t_title2: "በሳቃ ሐይቅ",
-                t_desc2: "ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።"
+                t1t: "አዋሽ ብሔራዊ ፓርክ", t1d: "በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።",
+                t2t: "በሳቃ ሐይቅ", t2d: "ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።"
             },
             om: {
                 badge: "GIDDU-GALA WEB SAAYITII DIIJITAALAA",
                 hero: "Baga Gara Giddu-gala Diijitaalaa Magaalaa <span class='text-amber-500'>Mataaharaatti</span> Nagaan Dhufan",
                 desc: "Oduuwwan ammee magaalaa, bu'aalee teeknooloojii fi giddu-gala og-barruu",
-                news: "ODUUWWAN / NEWS",
+                news: "ODUUWWAN AMMEE / NEWS",
                 tourism: "TUURIZIMII / TOURISM",
-                t_title: "Paarkii Biyoolessaa Awaash",
-                t_desc: "Paarkii dinqii Mataaharaa biratti argamu kun bakka miidhagina uumamaa fi bineensotaati.",
-                t_title2: "Haroo Basaqaa",
-                t_desc2: "Haroo miidhagina addaa magaalaaf kennee fi humna guddaa tuurizimiif qabu.",
+                t1t: "Paarkii Biyoolessaa Awaash", t1d: "Paarkii dinqii Mataaharaa biratti argamu kun bakka miidhagina uumamaa fi bineensotaati.",
+                t2t: "Haroo Basaqaa", t2d: "Haroo miidhagina addaa magaalaaf kennee fi humna guddaa tuurizimiif qabu."
             },
             en: {
                 badge: "DIGITAL WEBSITE HUB",
                 hero: "Welcome to <span class='text-amber-500'>Mataaharaa</span> City Digital Hub",
                 desc: "Latest city news, technology results, and literature center",
-                news: "LATEST NEWS",
+                news: "LATEST NEWS / ANALYSIS",
                 tourism: "TOURISM / CULTURE",
-                t_title: "Awash National Park",
-                t_desc: "Located near Mataaharaa, this amazing park is home to natural beauty and wildlife.",
-                t_title2: "Lake Beseka",
-                t_desc2: "A lake that has given special beauty to the city and has great potential for tourism.",
+                t1t: "Awash National Park", t1d: "Located near Mataaharaa, this amazing park is home to natural beauty and wildlife.",
+                t2t: "Lake Beseka", t2d: "A lake that has given special beauty to the city and has great potential for tourism."
             }
         };
 
@@ -167,22 +164,27 @@
             document.getElementById('heroDesc').innerText = t.desc;
             document.getElementById('newsHeader').innerText = t.news;
             document.getElementById('tourismHeader').innerText = t.tourism;
-            document.getElementById('tourismTitle').innerText = t.t_title;
-            document.getElementById('tourismDesc').innerText = t.t_desc;
-            document.getElementById('tourismTitle2').innerText = t.t_title2;
-            document.getElementById('tourismDesc2').innerText = t.t_desc2;
+            document.getElementById('t1_title').innerText = t.t1t;
+            document.getElementById('t1_desc').innerText = t.t1d;
+            document.getElementById('t2_title').innerText = t.t2t;
+            document.getElementById('t2_desc').innerText = t.t2d;
+
+            // Update category labels
+            document.querySelectorAll('.cat-label').forEach(el => {
+                el.innerText = el.getAttribute(`data-${lang}`);
+            });
 
             renderNews(lang);
         }
 
-        function renderNews(lang = 'am') {
+        function renderNews(lang) {
             const grid = document.getElementById('newsGrid');
             grid.innerHTML = newsItems.map((item, i) => `
-                <div onclick="openModal(${i}, '${lang}')" class="bg-slate-900/80 rounded-3xl overflow-hidden card-hover cursor-pointer group">
-                    <img src="${item.img}" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100">
+                <div onclick="openModal(${i}, '${lang}')" class="bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 card-hover cursor-pointer group">
+                    <img src="${item.img}" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition-all">
                     <div class="p-8">
-                        <span class="text-[10px] text-amber-500 font-black uppercase tracking-widest">${item.date}</span>
-                        <h3 class="text-xl font-black italic mt-3 text-white leading-tight uppercase group-hover:text-amber-500">${item.title[lang]}</h3>
+                        <span class="text-[10px] text-amber-500 font-bold tracking-widest">${item.date}</span>
+                        <h3 class="text-xl font-black italic mt-3 text-white group-hover:text-amber-500 uppercase">${item.title[lang]}</h3>
                     </div>
                 </div>
             `).join('');
@@ -191,7 +193,7 @@
         function openModal(i, lang) {
             const item = newsItems[i];
             document.getElementById('modalBody').innerHTML = `
-                <h2 class="text-3xl font-black italic text-white mb-6 uppercase leading-tight">${item.title[lang]}</h2>
+                <h2 class="text-3xl font-black italic text-white mb-6 uppercase">${item.title[lang]}</h2>
                 <p class="text-slate-300 leading-relaxed italic text-lg border-l-4 border-amber-500 pl-6">${item.content[lang]}</p>
             `;
             document.getElementById('analysisModal').classList.add('modal-show');
@@ -204,8 +206,8 @@
         }
 
         setInterval(() => {
-            const now = new Date();
-            document.getElementById('liveClock').innerText = now.toLocaleTimeString();
+            const clock = document.getElementById('liveClock');
+            if(clock) clock.innerText = new Date().toLocaleTimeString();
         }, 1000);
 
         window.onload = () => changeLanguage();

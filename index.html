@@ -234,6 +234,39 @@
         }
 
         function closeModal() {
+            // የሳሚ ዶልፊን የፍልስፍና መጣጥፎች ዳታ
+const articles = [
+    {
+        title: "ማንበብ ጎዶሎህን ያሳይሃል እንጂ ሙሉ ሰው አያደርግህም!",
+        content: `ብዙ ሰዎች ያነበቡትን መፅሐፍ ሲቆጥሩ አያለሁ፡፡ ከመፅሐፉ የቆነጠሩትን ቁምነገር የሚቆጥሩ ግን ጥቂቶች ናቸው... ያነበበ ሁሉ አያስተውልም፤ ያስተዋለ ሁሉ አይለወጥም፡፡ አንብበው የገባቸው ቢሆኑ እንኳን በተግባር ካልኖሩበት ያነበቡት ፍሬ አያፈራም፡፡ ፈረንሳዊው ፈላስፋ ሳርትሬ "ሰው የሚገለፀው በዕውቀቱ ሳይሆን በድርጊቱ ነው" የሚለው ለዚህ ነው፡፡`
+    },
+    {
+        title: "ርህራሄህን በሚደመስስ እንግዳ ትምህርት አትወሰድ!",
+        content: `አንዳንድ ፍልስፍና ሰው የተፈጠረበትን ስብዕና የሚቃወም፣ መንፈሳዊ ፀጋውን የሚያንኮታኩት ነው፡፡ የተሰራበትን የሰውነት መሰረት የሚያናጋ ፍልስፍና ትክክለኛ ፍልስፍና አይደለም፡፡ ስሜታዊ ሆነህ ተፈጥረህ ስሜትህን ማጥፋት አትችልም፡፡ ባይሆን ስሜትህ ለመቆጣጠር ትሞክራለህ እንጂ፡፡ በሌሎች ስቃይ መሰቃየት (feeling pain for pain) የሰውነት ውሃ ልክ ነው!`
+    },
+    {
+        title: "ክፉ ሰው ታሪኩ የሚፃፈው ለትምህርትና ለማስጠንቀቂያ ነው!",
+        content: `በዓለማችን ብዙ ጊዜ በታሪክ የሚጠቀሱትና የሚወሱት መልካም የሰሩት ብቻ ናቸው፡፡ ነገር ግን በታሪክ ውስጥ መልካሞቹ ብቻ ሳይሆኑ ክፉ አድራጊዎቹም መኖራቸው አይካድም፡፡ ክፉ ሰው ታሪኩ የሚፃፈው ለክብር አይደለም፤ ለትምህርትና ለማስጠንቀቂያ ነው፡፡ ኤድመንድ በርክ "ታሪክ የማያውቁ ሰዎች ዕጣ ፋንታቸው ያንኑ ታሪክ መድገም ነው" እንዲል ትናንታችንን ማጥናት ግድ ይለናል፡፡`
+    }
+];
+
+// መጣጥፉን በትልቅ መስኮት (Modal) ለመክፈት የሚያገለግል ፋንክሽን
+function openArticle(index) {
+    const art = articles[index];
+    const modalBody = document.getElementById('modalBody');
+    
+    if(modalBody) {
+        modalBody.innerHTML = `
+            <span class="text-amber-500 text-[10px] font-black uppercase tracking-[0.3em] italic">የሳሚ ዶልፊን መጣጥፎች</span>
+            <h2 class="text-3xl md:text-4xl font-black italic text-white my-6 leading-tight">${art.title}</h2>
+            <div class="text-slate-300 leading-relaxed text-lg font-light italic whitespace-pre-line">
+                ${art.content}
+            </div>
+        `;
+        document.getElementById('analysisModal').classList.add('modal-show');
+        document.body.style.overflow = 'hidden';
+    }
+}
             document.getElementById('analysisModal').classList.remove('modal-show');
             document.body.style.overflow = 'auto';
         }

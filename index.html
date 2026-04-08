@@ -10,7 +10,7 @@
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: #f1f5f9; scroll-behavior: smooth; overflow-x: hidden; }
         .hero-bg { 
-            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.7), #020617), url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_Sami_Dolphin_Hero.jpg');
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.8), #020617), url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_Sami_Dolphin_Hero.jpg');
             background-size: cover; background-position: center;
         }
         .glass-nav { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 215, 0, 0.1); }
@@ -52,7 +52,6 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-6 -mt-20 relative z-10 pb-20 space-y-24">
-        
         <section class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div onclick="location.href='#philosophy'" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
                 <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-pen-nib"></i></div>
@@ -77,7 +76,8 @@
                 <div class="h-8 w-2 bg-amber-500 rounded-full shadow-[0_0_15px_#f59e0b]"></div>
                 <h2 id="newsTitle" class="text-2xl font-black italic uppercase">ወቅታዊ ዜናዎች / ANALYSIS</h2>
             </div>
-            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
         </section>
 
         <section id="philosophy" class="py-10 bg-slate-900/30 rounded-[3rem] p-8">
@@ -85,7 +85,8 @@
                 <div class="h-1 w-20 bg-amber-500 rounded-full"></div>
                 <h2 id="philHeader" class="text-3xl md:text-5xl font-black italic uppercase text-white">የፍልስፍና እና የሥነ-ጽሑፍ ማዕከል</h2>
             </div>
-            <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+            <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                </div>
         </section>
 
         <section id="tech" class="py-10 bg-slate-900/10 rounded-[3rem] p-8 border border-white/5">
@@ -93,7 +94,8 @@
                 <div class="h-8 w-2 bg-cyan-500 rounded-full"></div>
                 <h2 id="techHeader" class="text-2xl font-black italic uppercase tracking-tighter">ቴክኖሎጂና ንቃተ-ህሊና</h2>
             </div>
-            <div id="techGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+            <div id="techGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                </div>
         </section>
 
         <section id="videos">
@@ -150,11 +152,12 @@
     </footer>
 
     <script>
+        // Content Data
         const newsItems = [
             {
                 title: "የመታሃራ ከተማ አዲሱ የልማት ገጽታ",
                 excerpt: "በከንቲባ አቶ አዲሱ ዋቆ የሚመሩ የልማት ስራዎች ከተማዋን እየለወጡ ይገኛሉ...",
-                fullText: "ከቅርብ ጊዜ ወዲህ በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ፕሮጀክቶች ከተማዋን ወደ ዘመናዊ የንግድና የኢንዱስትሪ ማዕከልነት እየቀየሯት ነው።",
+                fullText: "ከቅርብ ጊዜ ወዲህ በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ፕሮጀክቶች ከተማዋን ወደ ዘመናዊ የንግድና የኢንዱስትሪ ማዕከልነት እየቀየሯት ነው። የመሰረተ ልማት ዝርጋታዎችና የጽዳት ስራዎች ይበልጥ ተጠናክረው ቀጥለዋል።",
                 img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800",
                 date: "April 8, 2026"
             }
@@ -191,6 +194,7 @@
             }
         ];
 
+        // Rendering functions
         function renderAll() {
             document.getElementById('newsGrid').innerHTML = newsItems.map((item, index) => `
                 <div onclick="openModal('news', ${index})" class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden group hover:border-amber-500/30 transition-all cursor-pointer">
@@ -221,6 +225,7 @@
             `).join('');
         }
 
+        // Modal Controls
         function openModal(type, index) {
             let data;
             if(type === 'news') data = newsItems[index];
@@ -240,6 +245,7 @@
             document.body.style.overflow = 'auto';
         }
 
+        // Language Support
         function changeLanguage() {
             const lang = document.getElementById('langSwitch').value;
             const content = {
@@ -271,7 +277,7 @@
                     title: "SAMI DOLPHIN HUB", 
                     hero: "Welcome to Mataaharaa Digital Hub", 
                     badge: "DIGITAL WEBSITE CENTER",
-                    desc: "Current city information, technology results and literature center by Sami Dolphin",
+                    desc: "Latest city news, tech insights, and literature center by Sami Dolphin",
                     news: "LATEST NEWS / ANALYSIS",
                     phil: "PHILOSOPHY AND LITERATURE CENTER",
                     tech: "TECHNOLOGY AND CONSCIOUSNESS",
@@ -297,6 +303,7 @@
             document.getElementById('catPhil').innerText = c.catPhil;
         }
 
+        // Live Clock
         setInterval(() => {
             document.getElementById('liveClock').innerText = new Date().toLocaleTimeString();
         }, 1000);

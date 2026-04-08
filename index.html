@@ -56,7 +56,7 @@
 
     <main class="max-w-7xl mx-auto px-6 py-20 space-y-20">
         <section id="news">
-            <h2 id="newsHeader" class="text-2xl font-black italic text-amber-500 mb-10 border-l-4 border-amber-500 pl-4 uppercase">ዜና / News</h2>
+            <h2 id="newsHeader" class="text-2xl font-black italic text-amber-500 mb-10 border-l-4 border-amber-500 pl-4 uppercase">ዜና / NEWS</h2>
             <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
         </section>
     </main>
@@ -71,6 +71,7 @@
     </div>
 
     <script>
+        // የዜና መረጃዎች
         const newsItems = [
             {
                 title: "የመታሃራ ከተማ አዲሱ የልማት ገጽታ",
@@ -80,6 +81,7 @@
             }
         ];
 
+        // የቋንቋ ትርጉሞች
         const translations = {
             am: {
                 nav: "SAMI-TUBE MEDIA",
@@ -107,29 +109,35 @@
             }
         };
 
+        // ዜናዎችን ወደ ገጹ የሚያወጣ ተግባር
         function renderNews() {
             const grid = document.getElementById('newsGrid');
-            grid.innerHTML = newsItems.map((item, i) => `
-                <div onclick="openModal(${i})" class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all cursor-pointer group">
-                    <img src="${item.img}" class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-all">
-                    <div class="p-6">
-                        <span class="text-[10px] text-amber-500 font-bold">${item.date}</span>
-                        <h3 class="text-xl font-bold mt-2 text-white">${item.title}</h3>
+            if(grid) {
+                grid.innerHTML = newsItems.map((item, i) => `
+                    <div onclick="openModal(${i})" class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all cursor-pointer group">
+                        <img src="${item.img}" class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-all">
+                        <div class="p-6">
+                            <span class="text-[10px] text-amber-500 font-bold">${item.date}</span>
+                            <h3 class="text-xl font-bold mt-2 text-white">${item.title}</h3>
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
         }
 
+        // ቋንቋውን የሚቀይረው ዋና ተግባር
         function changeLanguage() {
             const lang = document.getElementById('langSwitch').value;
             const t = translations[lang];
             
-            document.getElementById('navTitle').innerText = t.nav;
-            document.getElementById('navSubTitle').innerText = t.sub;
-            document.getElementById('heroBadge').innerText = t.badge;
-            document.getElementById('heroTitle').innerHTML = t.hero;
-            document.getElementById('heroDesc').innerText = t.desc;
-            document.getElementById('newsHeader').innerText = t.news;
+            if(t) {
+                document.getElementById('navTitle').innerText = t.nav;
+                document.getElementById('navSubTitle').innerText = t.sub;
+                document.getElementById('heroBadge').innerText = t.badge;
+                document.getElementById('heroTitle').innerHTML = t.hero;
+                document.getElementById('heroDesc').innerText = t.desc;
+                document.getElementById('newsHeader').innerText = t.news;
+            }
         }
 
         function openModal(i) {
@@ -147,14 +155,17 @@
             document.body.style.overflow = 'auto';
         }
 
+        // ሰዓት
         setInterval(() => {
             const now = new Date();
-            document.getElementById('liveClock').innerText = now.toLocaleTimeString();
+            const clock = document.getElementById('liveClock');
+            if(clock) clock.innerText = now.toLocaleTimeString();
         }, 1000);
 
+        // ገጹ ሲጫን የሚነሱ ተግባራት
         window.onload = () => {
             renderNews();
-            changeLanguage(); // የመጀመሪያ ቋንቋ እንዲጀምር
+            changeLanguage(); // መጀመሪያ ሲከፈት በምርጫው መሰረት እንዲያሳይ
         };
     </script>
 </body>

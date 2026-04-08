@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | Cinematic Motion</title>
+    <title>SAMI-TUBE MEDIA | Final Motion & Language</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -15,35 +15,30 @@
             overflow-x: hidden;
         }
 
-        /* 1. የጽሑፍ ሞሽን (Text Entrance Animation) */
+        /* የጽሑፍ እንቅስቃሴ */
         @keyframes slideIn {
             0% { opacity: 0; transform: translateX(50px); }
             100% { opacity: 1; transform: translateX(0); }
         }
 
-        .animate-text {
-            animation: slideIn 1.2s ease-out forwards;
-        }
+        .animate-text { animation: slideIn 1.2s ease-out forwards; }
 
-        /* 2. የምስል ሞሽን (Cinematic Background Zoom) */
+        /* የጀርባ ምስል እንቅስቃሴ (Zoom) */
         @keyframes zoomEffect {
             0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
+            100% { transform: scale(1.1); }
         }
 
         .hero-section {
             display: flex;
-            height: 75vh;
+            height: 80vh;
             overflow: hidden;
             position: relative;
         }
 
         #bg-container {
             position: absolute;
-            top: 0;
-            left: 140px; /* ከSidebar በኋላ እንዲጀምር */
-            right: 0;
-            bottom: 0;
+            inset: 0 0 0 140px;
             z-index: 1;
         }
 
@@ -54,14 +49,12 @@
             background-position: center;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
-            animation: zoomEffect 10s linear infinite alternate;
+            animation: zoomEffect 8s linear infinite alternate;
         }
 
-        .bg-layer.active {
-            opacity: 1;
-        }
+        .bg-layer.active { opacity: 1; }
 
-        /* Sidebar Styling */
+        /* Sidebar */
         .side-menu {
             background-color: #0c82cf;
             width: 140px;
@@ -70,7 +63,6 @@
             justify-content: center;
             gap: 20px;
             z-index: 10;
-            position: relative;
         }
 
         .menu-item {
@@ -79,18 +71,15 @@
             font-weight: 700;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: 0.3s;
         }
 
-        .menu-item:hover {
-            color: #f59e0b;
-            transform: scale(1.1);
-        }
+        .menu-item:hover { color: #f59e0b; transform: scale(1.1); }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.4) 100%);
+            background: linear-gradient(90deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.3) 100%);
             z-index: 2;
         }
 
@@ -108,13 +97,21 @@
 </head>
 <body>
 
-    <header class="p-5 flex justify-between items-center bg-[#020617] border-b border-white/5 relative z-20">
+    <header class="p-5 flex justify-between items-center bg-[#020617] border-b border-white/5 relative z-30">
         <div class="flex items-center gap-4">
             <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg">S</div>
             <div>
                 <h1 class="text-white font-black italic text-lg tracking-tighter uppercase leading-none">SAMI-TUBE MEDIA</h1>
                 <p class="text-amber-500 text-[9px] font-bold uppercase tracking-widest mt-1">Digital Excellence</p>
             </div>
+        </div>
+
+        <div class="relative">
+            <select class="bg-slate-800/80 text-white text-xs font-bold px-4 py-2 rounded-lg border border-white/10 outline-none cursor-pointer hover:bg-slate-700 transition-all">
+                <option value="am">🇪🇹 አማርኛ</option>
+                <option value="om">Afan Oromo</option>
+                <option value="en">English</option>
+            </select>
         </div>
     </header>
 
@@ -133,35 +130,34 @@
         <div id="bg-container">
             <div class="bg-layer active" style="background-image: url('https://images.unsplash.com/photo-1451187530220-a093f13aeeef?q=80&w=1200')"></div>
             <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1200')"></div>
-            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=1200')"></div>
         </div>
 
         <div class="hero-overlay"></div>
 
         <div class="hero-content animate-text">
-            <h2 class="text-4xl md:text-6xl font-black leading-tight shadow-text">
+            <h2 class="text-4xl md:text-6xl font-black leading-tight">
                 እንኳን ወደ <span class="text-amber-500 italic">መታሃራ</span> <br> 
                 ዲጂታል ማዕከል በሰላም መጣችሁ
             </h2>
-            <div class="h-1 w-20 bg-amber-500 mt-6 rounded-full"></div>
-            <p class="mt-4 text-slate-300 italic text-sm">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል</p>
+            <div class="h-1.5 w-24 bg-amber-500 mt-6 rounded-full shadow-[0_0_15px_#f59e0b]"></div>
+            <p class="mt-6 text-slate-300 italic text-sm tracking-wide">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል</p>
         </div>
     </div>
 
-    <main class="max-w-6xl mx-auto p-8">
-        <section class="mt-12">
+    <main class="max-w-6xl mx-auto p-8 relative z-10">
+        <section class="mt-10">
             <div class="flex items-center gap-3 mb-8">
                 <div class="h-8 w-1.5 bg-amber-500 rounded-full"></div>
-                <h3 class="text-amber-500 font-black italic text-xl uppercase">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
+                <h3 class="text-amber-500 font-black italic text-xl uppercase tracking-tighter">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
             </div>
-            <div class="rounded-[32px] overflow-hidden shadow-2xl border border-white/10 aspect-video">
+            <div class="rounded-[35px] overflow-hidden shadow-2xl border border-white/5 aspect-video bg-slate-900">
                 <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
     </main>
 
     <script>
-        // የምስል መቀያየሪያ ስክሪፕት
+        // የምስል መቀያየሪያ (Motion Logic)
         const layers = document.querySelectorAll('.bg-layer');
         let current = 0;
 
@@ -171,7 +167,7 @@
             layers[current].classList.add('active');
         }
 
-        setInterval(nextImage, 6000); // በየ 6 ሰከንዱ ይቀየራል
+        setInterval(nextImage, 6000);
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | Motion Version</title>
+    <title>SAMI-TUBE MEDIA | Cinematic Motion</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -15,25 +15,53 @@
             overflow-x: hidden;
         }
 
-        /* ጽሑፎች ገጹ ሲከፈት የሚኖራቸው እንቅስቃሴ (Fade In Up) */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* 1. የጽሑፍ ሞሽን (Text Entrance Animation) */
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(50px); }
+            100% { opacity: 1; transform: translateX(0); }
         }
 
-        .animate-content {
-            animation: fadeInUp 1s ease-out forwards;
+        .animate-text {
+            animation: slideIn 1.2s ease-out forwards;
         }
 
-        /* Hero Section Styling */
+        /* 2. የምስል ሞሽን (Cinematic Background Zoom) */
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
         .hero-section {
             display: flex;
             height: 75vh;
-            min-height: 550px;
+            overflow: hidden;
             position: relative;
         }
 
-        /* የጎን ሰማያዊ ዝርዝር */
+        #bg-container {
+            position: absolute;
+            top: 0;
+            left: 140px; /* ከSidebar በኋላ እንዲጀምር */
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .bg-layer {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            animation: zoomEffect 10s linear infinite alternate;
+        }
+
+        .bg-layer.active {
+            opacity: 1;
+        }
+
+        /* Sidebar Styling */
         .side-menu {
             background-color: #0c82cf;
             width: 140px;
@@ -41,8 +69,8 @@
             flex-direction: column;
             justify-content: center;
             gap: 20px;
-            flex-shrink: 0;
-            z-index: 20;
+            z-index: 10;
+            position: relative;
         }
 
         .menu-item {
@@ -51,43 +79,36 @@
             font-weight: 700;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
         .menu-item:hover {
             color: #f59e0b;
-            transform: translateX(5px);
-        }
-
-        /* የሚንቀሳቀስ የጀርባ ምስል (Motion Background) */
-        #hero-bg {
-            flex-grow: 1;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            transition: background-image 1.5s ease-in-out; /* የምስሉ መቀያየር ለስላሳ እንዲሆን */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transform: scale(1.1);
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(2,6,23,0.8), rgba(2,6,23,0.3));
+            background: linear-gradient(90deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.4) 100%);
+            z-index: 2;
         }
 
-        .hero-title {
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <header class="p-5 flex justify-between items-center bg-[#020617] border-b border-white/5">
+    <header class="p-5 flex justify-between items-center bg-[#020617] border-b border-white/5 relative z-20">
         <div class="flex items-center gap-4">
             <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg">S</div>
             <div>
@@ -109,15 +130,21 @@
             <div class="menu-item">ፍልስፍና</div>
         </nav>
 
-        <div id="hero-bg">
-            <div class="hero-overlay"></div>
-            <div class="hero-content relative z-10 text-center px-4 animate-content">
-                <h2 class="hero-title">
-                    እንኳን ወደ <span class="text-amber-500">መታሃራ</span> <br> 
-                    ዲጂታል ማዕከል በሰላም መጣችሁ
-                </h2>
-                <div class="h-1 w-24 bg-amber-500 mx-auto mt-6 rounded-full"></div>
-            </div>
+        <div id="bg-container">
+            <div class="bg-layer active" style="background-image: url('https://images.unsplash.com/photo-1451187530220-a093f13aeeef?q=80&w=1200')"></div>
+            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1200')"></div>
+            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=1200')"></div>
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content animate-text">
+            <h2 class="text-4xl md:text-6xl font-black leading-tight shadow-text">
+                እንኳን ወደ <span class="text-amber-500 italic">መታሃራ</span> <br> 
+                ዲጂታል ማዕከል በሰላም መጣችሁ
+            </h2>
+            <div class="h-1 w-20 bg-amber-500 mt-6 rounded-full"></div>
+            <p class="mt-4 text-slate-300 italic text-sm">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል</p>
         </div>
     </div>
 
@@ -127,7 +154,6 @@
                 <div class="h-8 w-1.5 bg-amber-500 rounded-full"></div>
                 <h3 class="text-amber-500 font-black italic text-xl uppercase">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
             </div>
-            
             <div class="rounded-[32px] overflow-hidden shadow-2xl border border-white/10 aspect-video">
                 <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
             </div>
@@ -135,25 +161,17 @@
     </main>
 
     <script>
-        // 1. የጀርባ ምስሎችን በየ 5 ሰከንዱ የመቀየር ሞሽን
-        const images = [
-            'https://images.unsplash.com/photo-1451187530220-a093f13aeeef?q=80&w=1200',
-            'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1200',
-            'https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?q=80&w=1200'
-        ];
-        
-        let currentIndex = 0;
-        const heroBg = document.getElementById('hero-bg');
+        // የምስል መቀያየሪያ ስክሪፕት
+        const layers = document.querySelectorAll('.bg-layer');
+        let current = 0;
 
-        function updateBackground() {
-            heroBg.style.backgroundImage = `url('${images[currentIndex]}')`;
-            currentIndex = (currentIndex + 1) % images.length;
+        function nextImage() {
+            layers[current].classList.remove('active');
+            current = (current + 1) % layers.length;
+            layers[current].classList.add('active');
         }
 
-        // ገጹ ሲከፈት ወዲያው እንዲጀምር
-        updateBackground();
-        // በየ 5000 ሚሊ ሰከንድ (5 ሰከንድ) እንዲቀየር
-        setInterval(updateBackground, 5000);
+        setInterval(nextImage, 6000); // በየ 6 ሰከንዱ ይቀየራል
     </script>
 </body>
 </html>

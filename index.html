@@ -14,6 +14,8 @@
             background-size: cover; background-position: center;
         }
         .glass-nav { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 215, 0, 0.1); }
+        .card-hover { transition: all 0.3s ease; border: 1px solid rgba(255, 215, 0, 0.05); }
+        .card-hover:hover { transform: translateY(-5px); border-color: rgba(255, 215, 0, 0.4); box-shadow: 0 10px 30px -10px rgba(255, 215, 0, 0.1); }
         .modal-show { display: flex !important; animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -42,7 +44,7 @@
         </div>
     </nav>
 
-    <header class="hero-bg min-h-[70vh] flex flex-col items-center justify-center text-center px-6 pt-20">
+    <header class="hero-bg min-h-[60vh] flex flex-col items-center justify-center text-center px-6 pt-20">
         <div class="max-w-4xl space-y-6">
             <div id="heroBadge" class="inline-block bg-amber-500/10 border border-amber-500/30 px-4 py-1 rounded-full text-[10px] text-amber-500 font-black uppercase tracking-widest">የዲጂታል ዌብ ሳይት ማዕከል</div>
             <h2 id="heroTitle" class="text-4xl md:text-6xl font-black italic text-white leading-tight uppercase">
@@ -54,12 +56,44 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-20 space-y-20">
+    <main class="max-w-7xl mx-auto px-6 py-16 space-y-24">
+        
         <section id="news">
-            <h2 id="newsHeader" class="text-2xl font-black italic text-amber-500 mb-10 border-l-4 border-amber-500 pl-4 uppercase">ዜና / NEWS</h2>
-            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+            <div class="flex items-center gap-4 mb-10">
+                <div class="w-2 h-10 bg-amber-500"></div>
+                <h2 id="newsHeader" class="text-3xl font-black italic text-white uppercase tracking-tighter">ዜና / NEWS</h2>
+            </div>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                </div>
         </section>
+
+        <section id="tourism">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="w-2 h-10 bg-amber-500"></div>
+                <h2 id="tourismHeader" class="text-3xl font-black italic text-white uppercase tracking-tighter">ቱሪዝም / TOURISM</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-900/50 rounded-3xl p-8 card-hover">
+                    <i class="fa-solid fa-mountain-sun text-amber-500 text-4xl mb-6"></i>
+                    <h3 id="tourismTitle" class="text-2xl font-bold text-white mb-4 italic">አዋሽ ብሔራዊ ፓርክ</h3>
+                    <p id="tourismDesc" class="text-slate-400 leading-relaxed italic">በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።</p>
+                </div>
+                <div class="bg-slate-900/50 rounded-3xl p-8 card-hover">
+                    <i class="fa-solid fa-water text-amber-500 text-4xl mb-6"></i>
+                    <h3 id="tourismTitle2" class="text-2xl font-bold text-white mb-4 italic">በሳቃ ሐይቅ</h3>
+                    <p id="tourismDesc2" class="text-slate-400 leading-relaxed italic">ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።</p>
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 px-6">
+        <div class="max-w-7xl mx-auto text-center space-y-4">
+            <div class="text-amber-500 font-black italic text-xl tracking-tighter">SAMI DOLPHIN</div>
+            <p id="footerText" class="text-slate-500 text-sm">© 2026 Mataaharaa City Digital Center. All rights reserved.</p>
+        </div>
+    </footer>
 
     <div id="analysisModal" class="hidden fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
@@ -71,80 +105,94 @@
     </div>
 
     <script>
-        // የዜና መረጃዎች
         const newsItems = [
             {
-                title: "የመታሃራ ከተማ አዲሱ የልማት ገጽታ",
-                content: "በከንቲባ አቶ አዲሱ ዋቆ የሚመሩ የልማት ስራዎች ከተማዋን እየለወጡ ይገኛሉ።",
+                title: {
+                    am: "የመታሃራ ከተማ አዲሱ የልማት ገጽታ",
+                    om: "Fuula Haaraya Misooma Magaalaa Mataaharaa",
+                    en: "New Development Face of Mataaharaa"
+                },
+                content: {
+                    am: "በከንቲባ አቶ አዲሱ ዋቆ የሚመሩ የልማት ስራዎች ከተማዋን እየለወጡ ይገኛሉ።",
+                    om: "Hojiwwan misoomaa kantiibaa Obbo Addisuu Waaqootiin durfaman magaalaa jijjiiraa jiru.",
+                    en: "Development projects led by Mayor Mr. Addisu Waako are transforming the city."
+                },
                 date: "April 8, 2026",
                 img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800"
             }
         ];
 
-        // የቋንቋ ትርጉሞች
         const translations = {
             am: {
-                nav: "SAMI-TUBE MEDIA",
-                sub: "Digital Excellence",
                 badge: "የዲጂታል ዌብ ሳይት ማዕከል",
                 hero: "እንኳን ወደ <span class='text-amber-500'>መታሃራ</span> ከተማ ዲጂታል ማዕከል በሰላም መጣችሁ",
                 desc: "ወቅታዊ የከተማዋ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል",
-                news: "ዜና / NEWS"
+                news: "ዜና / NEWS",
+                tourism: "ቱሪዝም / TOURISM",
+                t_title: "አዋሽ ብሔራዊ ፓርክ",
+                t_desc: "በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።",
+                t_title2: "በሳቃ ሐይቅ",
+                t_desc2: "ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።"
             },
             om: {
-                nav: "SAMI-TUBE MEDIA",
-                sub: "Digital Excellence",
                 badge: "GIDDU-GALA WEB SAAYITII DIIJITAALAA",
                 hero: "Baga Gara Giddu-gala Diijitaalaa Magaalaa <span class='text-amber-500'>Mataaharaatti</span> Nagaan Dhufan",
                 desc: "Oduuwwan ammee magaalaa, bu'aalee teeknooloojii fi giddu-gala og-barruu",
-                news: "ODUUWWAN / NEWS"
+                news: "ODUUWWAN / NEWS",
+                tourism: "TUURIZIMII / TOURISM",
+                t_title: "Paarkii Biyoolessaa Awaash",
+                t_desc: "Paarkii dinqii Mataaharaa biratti argamu kun bakka miidhagina uumamaa fi bineensotaati.",
+                t_title2: "Haroo Basaqaa",
+                t_desc2: "Haroo miidhagina addaa magaalaaf kennee fi humna guddaa tuurizimiif qabu.",
             },
             en: {
-                nav: "SAMI-TUBE MEDIA",
-                sub: "Digital Excellence",
                 badge: "DIGITAL WEBSITE HUB",
                 hero: "Welcome to <span class='text-amber-500'>Mataaharaa</span> City Digital Hub",
                 desc: "Latest city news, technology results, and literature center",
-                news: "LATEST NEWS"
+                news: "LATEST NEWS",
+                tourism: "TOURISM / CULTURE",
+                t_title: "Awash National Park",
+                t_desc: "Located near Mataaharaa, this amazing park is home to natural beauty and wildlife.",
+                t_title2: "Lake Beseka",
+                t_desc2: "A lake that has given special beauty to the city and has great potential for tourism.",
             }
         };
 
-        // ዜናዎችን ወደ ገጹ የሚያወጣ ተግባር
-        function renderNews() {
-            const grid = document.getElementById('newsGrid');
-            if(grid) {
-                grid.innerHTML = newsItems.map((item, i) => `
-                    <div onclick="openModal(${i})" class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all cursor-pointer group">
-                        <img src="${item.img}" class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-all">
-                        <div class="p-6">
-                            <span class="text-[10px] text-amber-500 font-bold">${item.date}</span>
-                            <h3 class="text-xl font-bold mt-2 text-white">${item.title}</h3>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        // ቋንቋውን የሚቀይረው ዋና ተግባር
         function changeLanguage() {
             const lang = document.getElementById('langSwitch').value;
             const t = translations[lang];
             
-            if(t) {
-                document.getElementById('navTitle').innerText = t.nav;
-                document.getElementById('navSubTitle').innerText = t.sub;
-                document.getElementById('heroBadge').innerText = t.badge;
-                document.getElementById('heroTitle').innerHTML = t.hero;
-                document.getElementById('heroDesc').innerText = t.desc;
-                document.getElementById('newsHeader').innerText = t.news;
-            }
+            document.getElementById('heroBadge').innerText = t.badge;
+            document.getElementById('heroTitle').innerHTML = t.hero;
+            document.getElementById('heroDesc').innerText = t.desc;
+            document.getElementById('newsHeader').innerText = t.news;
+            document.getElementById('tourismHeader').innerText = t.tourism;
+            document.getElementById('tourismTitle').innerText = t.t_title;
+            document.getElementById('tourismDesc').innerText = t.t_desc;
+            document.getElementById('tourismTitle2').innerText = t.t_title2;
+            document.getElementById('tourismDesc2').innerText = t.t_desc2;
+
+            renderNews(lang);
         }
 
-        function openModal(i) {
+        function renderNews(lang = 'am') {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = newsItems.map((item, i) => `
+                <div onclick="openModal(${i}, '${lang}')" class="bg-slate-900/80 rounded-3xl overflow-hidden card-hover cursor-pointer group">
+                    <img src="${item.img}" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100">
+                    <div class="p-8">
+                        <span class="text-[10px] text-amber-500 font-black uppercase tracking-widest">${item.date}</span>
+                        <h3 class="text-xl font-black italic mt-3 text-white leading-tight uppercase group-hover:text-amber-500">${item.title[lang]}</h3>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(i, lang) {
             const item = newsItems[i];
             document.getElementById('modalBody').innerHTML = `
-                <h2 class="text-3xl font-black italic text-white mb-4">${item.title}</h2>
-                <p class="text-slate-300 leading-relaxed italic border-l-4 border-amber-500 pl-4">${item.content}</p>
+                <h2 class="text-3xl font-black italic text-white mb-6 uppercase leading-tight">${item.title[lang]}</h2>
+                <p class="text-slate-300 leading-relaxed italic text-lg border-l-4 border-amber-500 pl-6">${item.content[lang]}</p>
             `;
             document.getElementById('analysisModal').classList.add('modal-show');
             document.body.style.overflow = 'hidden';
@@ -155,18 +203,12 @@
             document.body.style.overflow = 'auto';
         }
 
-        // ሰዓት
         setInterval(() => {
             const now = new Date();
-            const clock = document.getElementById('liveClock');
-            if(clock) clock.innerText = now.toLocaleTimeString();
+            document.getElementById('liveClock').innerText = now.toLocaleTimeString();
         }, 1000);
 
-        // ገጹ ሲጫን የሚነሱ ተግባራት
-        window.onload = () => {
-            renderNews();
-            changeLanguage(); // መጀመሪያ ሲከፈት በምርጫው መሰረት እንዲያሳይ
-        };
+        window.onload = () => changeLanguage();
     </script>
 </body>
 </html>

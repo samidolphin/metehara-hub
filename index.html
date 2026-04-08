@@ -272,7 +272,34 @@ const articles = [
         content: `በዓለማችን ብዙ ጊዜ በታሪክ የሚጠቀሱትና የሚወሱት መልካም የሰሩት ብቻ ናቸው፡፡ ነገር ግን በታሪክ ውስጥ መልካሞቹ ብቻ ሳይሆኑ ክፉ አድራጊዎቹም መኖራቸው አይካድም፡፡ ክፉ ሰው ታሪኩ የሚፃፈው ለክብር አይደለም፤ ለትምህርትና ለማስጠንቀቂያ ነው፡፡ ኤድመንድ በርክ "ታሪክ የማያውቁ ሰዎች ዕጣ ፋንታቸው ያንኑ ታሪክ መድገም ነው" እንዲል ትናንታችንን ማጥናት ግድ ይለናል፡፡`
     }
 ];
+// የቴክኖሎጂ እና የ UFO መጣጥፎች ዳታ
+const techArticles = [
+    {
+        title: "ቴክኖሎጂ፡ የነፍሳችን ማጉያ መነጽር",
+        content: `ብዙዎች ቴክኖሎጂ የሰውን ልጅ 'ሮቦት' እያደረገው ነው ብለው ይሰጋሉ። እውነታው ግን ቴክኖሎጂ እኛን መቀየሩ ሳይሆን ማንነታችንን አጉልቶ ማሳየቱ ነው።`
+    },
+    {
+        title: "ከምድር ውጭ ያሉ ምስጢራት",
+        content: `🛸 ከምድር ውጭ ያሉ ምስጢራት፦ የኦባማ ምስክርነት እና የዓለም መንግስታት ስጋት 👽\n\n"ሰማይ ላይ የምናያቸውና በሳይንሳዊ መንገድ ልናብራራቸው ያልቻልናቸው ነገሮች መኖራቸው እውነት ነው!" — ባራክ ኦባማ\n\n1. የቴክኖሎጂው ድንቅ ስራ (The Advanced Technology) ⚡\nእነዚህ አካላት (UAPs) የሚጠቀሙት ቴክኖሎጂ የሰውን ልጅ የፊዚክስ ህግጋት የሚገዳደር ነው። ፈጣን ፍጥነት፣ ድምፅ አልባ ጉዞ እና ፀረ-ስበት ዋና ዋናዎቹ ናቸው።\n\n2. የ"ነፃ ሃይል" ኢኮኖሚ ስጋት 💰\nይህ መረጃ በሚስጥር የተያዘበት ትልቁ ምክንያት ኢኮኖሚያዊ ነው። እነዚህ ፍጡራን የሚጠቀሙት "Zero-point energy" ይፋ ከሆነ፣ የአለም የነዳጅ ፖለቲካ እና የካፒታሊዝም ስርአት ይፈርሳል።`
+    }
+];
 
+// የቴክኖሎጂ ጽሁፍ መክፈቻ ፈንክሽን
+function openTechArticle(index) {
+    const art = techArticles[index];
+    const modalBody = document.getElementById('analysisModalBody');
+    if(modalBody) {
+        modalBody.innerHTML = `
+            <span class="text-cyan-500 text-sm font-black uppercase tracking-widest mb-2 block">Sami Dolphin | Space & Tech</span>
+            <h2 class="text-3xl md:text-4xl font-black italic text-white mb-6 tracking-tighter">${art.title}</h2>
+            <div class="text-slate-300 leading-relaxed text-lg font-light whitespace-pre-line">
+                ${art.content}
+            </div>
+        `;
+        document.getElementById('analysisModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+}
 // መጣጥፉን በትልቅ መስኮት (Modal) ለመክፈት የሚያገለግል ፋንክሽን
 // የቴክኖሎጂ መጣጥፎች ዳታ
 const techArticles = [

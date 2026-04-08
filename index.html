@@ -95,7 +95,7 @@
                     <p id="t1_desc" class="text-slate-400 leading-relaxed italic">በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።</p>
                 </div>
                 <div class="space-y-4">
-                    <h3 id="t2_title" class="text-2xl font-bold text-white italic">በሳቃ ሐይቅ</h3>
+                    <h3 id="t2_title" class="text-2xl font-bold text-white italic">በሰቃ ሐይቅ</h3>
                     <p id="t2_desc" class="text-slate-400 leading-relaxed italic">ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።</p>
                 </div>
             </div>
@@ -127,34 +127,14 @@
 
         const translations = {
             am: {
-    badge: "የዲጂታል ዌብ ሳይት ማዕከል",
-    hero: "እንኳን ወደ <span class='text-amber-500'>መታሃራ</span> ከተማ ዲጂታል ማዕከል በሰላም መጣችሁ",
-    desc: "ወቅታዊ የከተማዋ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል",
-    news: "ወቅታዊ ዜናዎች / NEWS",
-    tourism: "ቱሪዝም / TOURISM",
-    t1t: "አዋሽ ብሔራዊ ፓርክ", t1d: "በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።",
-    // እዚህ ጋር ተስተካክሏል
-    t2t: "በሰቃ ሐይቅ", t2d: "ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።"
-
-            om: {
-                badge: "GIDDU-GALA WEB SAAYITII DIIJITAALAA",
-                hero: "Baga Gara Giddu-gala Diijitaalaa Magaalaa <span class='text-amber-500'>Mataaharaatti</span> Nagaan Dhufan",
-                desc: "Oduuwwan ammee magaalaa, bu'aalee teeknooloojii fi giddu-gala og-barruu",
-                news: "ODUUWWAN AMMEE / NEWS",
-                tourism: "TUURIZIMII / TOURISM",
-                t1t: "Paarkii Biyoolessaa Awaash", t1d: "Paarkii dinqii Mataaharaa biratti argamu kun bakka miidhagina uumamaa fi bineensotaati.",
-                t2t: "Haroo Basaqaa", t2d: "Haroo miidhagina addaa magaalaaf kennee fi humna guddaa tuurizimiif qabu."
+                badge: "የዲጂታል ዌብ ሳይት ማዕከል",
+                hero: "እንኳን ወደ <span class='text-amber-500'>መታሃራ</span> ከተማ ዲጂታል ማዕከል በሰላም መጣችሁ",
+                desc: "ወቅታዊ የከተማዋ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል",
+                news: "ወቅታዊ ዜናዎች / NEWS",
+                tourism: "ቱሪዝም / TOURISM",
+                t1t: "አዋሽ ብሔራዊ ፓርክ", t1d: "በመታሃራ አቅራቢያ የሚገኘው ይህ ድንቅ ፓርክ የተፈጥሮ ውበትና የዱር እንስሳት መገኛ ነው።",
+                t2t: "በሰቃ ሐይቅ", t2d: "ለከተማዋ ልዩ ውበት የሰጠውና ለቱሪዝም መስህብነት ትልቅ እምቅ አቅም ያለው ሐይቅ።"
             },
-            en: {
-                badge: "DIGITAL WEBSITE HUB",
-                hero: "Welcome to <span class='text-amber-500'>Mataaharaa</span> City Digital Hub",
-                desc: "Latest city news, technology results, and literature center",
-                news: "LATEST NEWS / ANALYSIS",
-                tourism: "TOURISM / CULTURE",
-                t1t: "Awash National Park", t1d: "Located near Mataaharaa, this amazing park is home to natural beauty and wildlife.",
-                t2t: "Lake Beseka", t2d: "A lake that has given special beauty to the city and has great potential for tourism."
-            }
-        };
             om: {
                 badge: "GIDDU-GALA WEB SAAYITII DIIJITAALAA",
                 hero: "Baga Gara Giddu-gala Diijitaalaa Magaalaa <span class='text-amber-500'>Mataaharaatti</span> Nagaan Dhufan",
@@ -189,7 +169,6 @@
             document.getElementById('t2_title').innerText = t.t2t;
             document.getElementById('t2_desc').innerText = t.t2d;
 
-            // Update category labels
             document.querySelectorAll('.cat-label').forEach(el => {
                 el.innerText = el.getAttribute(`data-${lang}`);
             });

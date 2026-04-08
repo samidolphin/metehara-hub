@@ -10,7 +10,7 @@
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: #f1f5f9; scroll-behavior: smooth; overflow-x: hidden; }
         .hero-bg { 
-            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.5), #020617), url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i13!2i4832!3i3124!2m3!1e0!2sm!3i420120488!3m8!2sen!3set!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!5f2');
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.7), #020617), url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_Sami_Dolphin_Hero.jpg');
             background-size: cover; background-position: center;
         }
         .glass-nav { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 215, 0, 0.1); }
@@ -26,14 +26,13 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-slate-950 font-black shadow-lg shadow-amber-500/20">S</div>
-                <h1 class="text-white font-black italic text-lg tracking-tighter uppercase">SAMI-TUBE MEDIA</h1>
+                <h1 id="navTitle" class="text-white font-black italic text-lg tracking-tighter uppercase">SAMI-TUBE MEDIA</h1>
             </div>
             <div class="bg-slate-800/50 px-4 py-1 rounded-full border border-slate-700 flex items-center gap-3">
                 <span id="liveClock" class="text-amber-500 font-mono text-xs font-bold border-r border-slate-600 pr-3"></span>
-                <select class="bg-transparent text-[10px] text-white font-bold outline-none">
-                    <option>🇪🇹 አማርኛ</option>
-                    <option>🇪🇹 Afaan Oromoo</option>
-                    <option>🇺🇸 English</option>
+                <select id="langSwitch" onchange="changeLanguage()" class="bg-transparent text-[10px] text-white font-bold outline-none cursor-pointer">
+                    <option value="am">🇪🇹 አማርኛ</option>
+                    <option value="en">🇺🇸 English</option>
                 </select>
             </div>
         </div>
@@ -41,11 +40,11 @@
 
     <header class="hero-bg min-h-[70vh] flex flex-col items-center justify-center text-center px-6 pt-20">
         <div class="max-w-4xl space-y-6">
-            <div class="inline-block bg-amber-500/10 border border-amber-500/20 px-4 py-1 rounded-full text-[10px] text-amber-500 font-black uppercase tracking-[0.3em] animate-pulse">የዲጂታል ዌብ ሳይት ማዕከል</div>
-            <h2 class="text-4xl md:text-6xl font-black italic text-white leading-tight uppercase">
+            <div id="heroBadge" class="inline-block bg-amber-500/10 border border-amber-500/20 px-4 py-1 rounded-full text-[10px] text-amber-500 font-black uppercase tracking-[0.3em] animate-pulse">የዲጂታል ዌብ ሳይት ማዕከል</div>
+            <h2 id="heroTitle" class="text-4xl md:text-6xl font-black italic text-white leading-tight uppercase">
                 እንኳን ወደ መታሃራ ከተማ ዲጂታል ማዕከል በሰላም መጣችሁ
             </h2>
-            <p class="text-slate-400 text-sm md:text-lg italic font-light max-w-2xl mx-auto">
+            <p id="heroDesc" class="text-slate-400 text-sm md:text-lg italic font-light max-w-2xl mx-auto">
                 ወቅታዊ የከተማዋ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል በሳሚ ዶልፊን
             </p>
         </div>
@@ -54,19 +53,19 @@
     <main class="max-w-7xl mx-auto px-6 -mt-20 relative z-10 pb-20 space-y-24">
         
         <section class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div onclick="showSection('literature')" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
+            <div onclick="location.href='#philosophy'" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
                 <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-pen-nib"></i></div>
                 <h3 class="text-xs font-black uppercase italic text-white tracking-widest">ሥነ-ጽሑፍ</h3>
             </div>
-            <div onclick="showSection('tech')" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
+            <div onclick="location.href='#tech'" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
                 <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-microchip"></i></div>
                 <h3 class="text-xs font-black uppercase italic text-white tracking-widest">ቴክኖሎጂ</h3>
             </div>
-            <div onclick="showSection('poetry')" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
-                <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-feather-alt"></i></div>
-                <h3 class="text-xs font-black uppercase italic text-white tracking-widest">ግጥም</h3>
+            <div onclick="location.href='#news-section'" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
+                <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-newspaper"></i></div>
+                <h3 class="text-xs font-black uppercase italic text-white tracking-widest">ዜና</h3>
             </div>
-            <div onclick="showSection('philosophy')" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
+            <div onclick="location.href='#philosophy'" class="category-card bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] text-center cursor-pointer">
                 <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-brain"></i></div>
                 <h3 class="text-xs font-black uppercase italic text-white tracking-widest">ፍልስፍና</h3>
             </div>
@@ -75,10 +74,25 @@
         <section id="news-section">
             <div class="flex items-center gap-4 mb-10">
                 <div class="h-8 w-2 bg-amber-500 rounded-full shadow-[0_0_15px_#f59e0b]"></div>
-                <h2 class="text-2xl font-black italic uppercase">ወቅታዊ ዜናዎች / ANALYSIS</h2>
+                <h2 id="newsTitle" class="text-2xl font-black italic uppercase">ወቅታዊ ዜናዎች / ANALYSIS</h2>
             </div>
-            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                </div>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <section id="philosophy" class="py-10 bg-slate-900/30 rounded-[3rem] p-8">
+            <div class="flex flex-col items-center text-center mb-16 space-y-4">
+                <div class="h-1 w-20 bg-amber-500 rounded-full"></div>
+                <h2 class="text-3xl md:text-5xl font-black italic uppercase text-white">የፍልስፍና እና የሥነ-ጽሑፍ ማዕከል</h2>
+            </div>
+            <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </section>
+
+        <section id="tech" class="py-10 bg-slate-900/10 rounded-[3rem] p-8 border border-white/5">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-8 w-2 bg-cyan-500 rounded-full"></div>
+                <h2 class="text-2xl font-black italic uppercase tracking-tighter">ቴክኖሎጂና ንቃተ-ህሊና</h2>
+            </div>
+            <div id="techGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
         </section>
 
         <section id="videos">
@@ -88,7 +102,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="aspect-video bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/R4HMU71rzwg" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="aspect-video bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl">
                     <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
@@ -100,85 +114,12 @@
     <div id="analysisModal" class="hidden fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex items-center justify-center p-6">
         <div class="max-w-3xl w-full bg-slate-900 border border-slate-800 rounded-[3rem] overflow-hidden shadow-2xl">
             <div class="p-8 md:p-12 space-y-6 overflow-y-auto max-h-[90vh]">
-                <button onclick="closeModal()" class="float-right text-slate-500 hover:text-amber-500 text-3xl font-light">&times;</button>
+                <button onclick="closeModal()" class="float-right text-slate-500 hover:text-amber-500 text-3xl font-light">×</button>
                 <div id="modalBody"></div>
             </div>
         </div>
     </div>
-<section id="videos" class="max-w-7xl mx-auto px-6 py-10">
-        <div class="flex items-center gap-4 mb-10">
-            <div class="h-8 w-2 bg-red-600 rounded-full shadow-[0_0_15px_#dc2626]"></div>
-            <h2 class="text-2xl font-black italic uppercase tracking-tighter">SAMI-TUBE አዲስ ቪዲዮ</h2>
-        </div>
-    <section id="philosophy" class="max-w-7xl mx-auto px-6 py-20 bg-slate-900/30 rounded-[3rem]">
-    <div class="flex flex-col items-center text-center mb-16 space-y-4">
-        <div class="h-1 w-20 bg-amber-500 rounded-full"></div>
-        <h2 class="text-3xl md:text-5xl font-black italic uppercase text-white">የፍልስፍና እና የሥነ-ጽሑፍ ማዕከል</h2>
-        <p class="text-slate-400 font-light italic text-sm">በሳሚ ዶልፊን (Sami Dolphin)</p>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <article class="bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] flex flex-col justify-between hover:border-amber-500/40 transition-all group">
-            <div class="space-y-6">
-                <span class="text-amber-500 text-[10px] font-black uppercase tracking-widest border border-amber-500/20 px-3 py-1 rounded-full">ንባብና ማስተዋል</span>
-                <h3 class="text-2xl font-bold italic text-white leading-tight">ማንበብ ጎዶሎህን ያሳይሃል እንጂ ሙሉ ሰው አያደርግህም!</h3>
-                <p class="text-slate-500 text-sm leading-relaxed line-clamp-4 italic">ብዙ ሰዎች ያነበቡትን መፅሐፍ ሲቆጥሩ አያለሁ፡፡ ከመፅሐፉ የቆነጠሩትን ቁምነገር የሚቆጥሩ ግን ጥቂቶች ናቸው...</p>
-            </div>
-            <button onclick="openArticle(0)" class="mt-8 text-amber-500 text-xs font-black uppercase tracking-tighter hover:tracking-widest transition-all text-left">ሙሉውን አንብብ —></button>
-        </article>
-
-        <article class="bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] flex flex-col justify-between hover:border-amber-500/40 transition-all group">
-            <div class="space-y-6">
-                <span class="text-amber-500 text-[10px] font-black uppercase tracking-widest border border-amber-500/20 px-3 py-1 rounded-full">ሰዋዊ ርህራሄ</span>
-                <h3 class="text-2xl font-bold italic text-white leading-tight">ርህራሄህን በሚደመስስ እንግዳ ትምህርት አትወሰድ!</h3>
-                <p class="text-slate-500 text-sm leading-relaxed line-clamp-4 italic">አንዳንድ ፍልስፍና ሰው የተፈጠረበትን ስብዕና የሚቃወም፣ መንፈሳዊ ፀጋውን የሚያንኮታኩት ነው...</p>
-            </div>
-            <button onclick="openArticle(1)" class="mt-8 text-amber-500 text-xs font-black uppercase tracking-tighter hover:tracking-widest transition-all text-left">ሙሉውን አንብብ —></button>
-        </article>
-
-        <article class="bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] flex flex-col justify-between hover:border-amber-500/40 transition-all group">
-            <div class="space-y-6">
-                <span class="text-amber-500 text-[10px] font-black uppercase tracking-widest border border-amber-500/20 px-3 py-1 rounded-full">ታሪክና ትምህርት</span>
-                <h3 class="text-2xl font-bold italic text-white leading-tight">ክፉ ሰው ታሪኩ የሚፃፈው ለትምህርት ነው!</h3>
-                <p class="text-slate-500 text-sm leading-relaxed line-clamp-4 italic">ታሪክ የማያውቁ ሰዎች ዕጣ ፋንታቸው ያንኑ ታሪክ መድገም ነው፡፡ ክፉ ሰው በታሪክ መዝገብ ላይ የሚቀመጠው ለትምህርት ነው...</p>
-            </div>
-            <button onclick="openArticle(2)" class="mt-8 text-amber-500 text-xs font-black uppercase tracking-tighter hover:tracking-widest transition-all text-left">ሙሉውን አንብብ —></button>
-        </article>
-    </div>
-</section>
-    <section id="tech" class="max-w-7xl mx-auto px-6 py-20 bg-slate-900/10 rounded-[3rem] mt-10">
-    <div class="flex flex-col items-start mb-16 space-y-4">
-        <div class="h-1 w-20 bg-cyan-500 rounded-full"></div>
-        <h2 class="text-3xl md:text-5xl font-black italic uppercase text-white tracking-tighter">ቴክኖሎጂና ንቃተ-ህሊና</h2>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="relative group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-[3rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_Sami_Dolphin_Tech_Image.jpg" alt="Technology" class="relative rounded-[3rem] w-full h-[450px] object-cover border border-white/10 shadow-2xl">
-        </div>
-
-        <div class="space-y-8">
-            <div class="bg-slate-900/50 border-l-4 border-cyan-500 p-8 rounded-r-[2rem] backdrop-blur-sm">
-                <h3 class="text-2xl font-extrabold italic text-white mb-4">ቴክኖሎጂ፡ የነፍሳችን ማጉያ መነጽር</h3>
-                <p class="text-slate-400 leading-relaxed text-lg italic font-light">
-                    "ብዙዎች ቴክኖሎጂ የሰውን ልጅ 'ሮቦት' እያደረገው ነው ብለው ይሰጋሉ። እውነታው ግን ቴክኖሎጂ እኛን መቀየሩ ሳይሆን፣ ማንነታችንን አጉልቶ ማሳየቱ ነው..."
-                </p>
-                <button onclick="openTechArticle(0)" class="mt-6 px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-black uppercase tracking-widest rounded-full transition-all shadow-lg shadow-cyan-900/20">ሙሉውን አንብብ</button>
-            </div>
-        </div>
-    </div>
-</section>
-        <div class="aspect-video bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl">
-            <iframe 
-                class="w-full h-full" 
-                src="https://www.youtube.com/embed/R4HMU71rzwg" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-        </div>
-    </section>
     <footer class="bg-slate-950 border-t border-slate-900 py-16 px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
             <div class="space-y-4">
@@ -190,198 +131,133 @@
             <div class="space-y-4">
                 <h4 class="text-white text-xs font-bold uppercase tracking-widest">ፈጣን ሊንኮች</h4>
                 <div class="grid grid-cols-2 gap-2 text-slate-400 text-[11px] italic">
-                    <a href="#literature" class="hover:text-amber-500">ሥነ-ጽሑፍ</a>
+                    <a href="#philosophy" class="hover:text-amber-500">ሥነ-ጽሑፍ</a>
                     <a href="#tech" class="hover:text-amber-500">ቴክኖሎጂ</a>
-                    <a href="#poetry" class="hover:text-amber-500">ግጥም</a>
-                    <a href="#philosophy" class="hover:text-amber-500">ፍልስፍና</a>
+                    <a href="#news-section" class="hover:text-amber-500">ዜና</a>
+                    <a href="#videos" class="hover:text-amber-500">ቪዲዮዎች</a>
                 </div>
             </div>
             <div class="space-y-4 md:text-right">
                 <h4 class="text-white text-xs font-bold uppercase tracking-widest">ተከታተሉን</h4>
                 <div class="flex md:justify-end gap-6 text-xl text-slate-500">
-                    <a href="#" class="hover:text-amber-500"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="hover:text-amber-500"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="#" class="hover:text-red-600"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/samidolphin" target="_blank" class="hover:text-amber-500"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://t.me/Metehara_City_Admin" target="_blank" class="hover:text-amber-500"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.youtube.com/@SamiTube" target="_blank" class="hover:text-red-600"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
     </footer>
+
     <script>
         const newsItems = [
             {
                 title: "የመታሃራ ከተማ አዲሱ የልማት ገጽታ",
                 excerpt: "በከንቲባ አቶ አዲሱ ዋቆ የሚመሩ የልማት ስራዎች ከተማዋን እየለወጡ ይገኛሉ...",
-                fullText: "ከቅርብ ጊዜ ወዲህ በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ፕሮጀክቶች ከተማዋን ወደ ዘመናዊ የንግድና የኢንዱስትሪ ማዕከልነት እየቀየሯት ነው። በተለይም የመሠረተ ልማት ግንባታዎችና የከተማ ውበት ስራዎች ከፍተኛ ትኩረት አግኝተዋል።",
+                fullText: "ከቅርብ ጊዜ ወዲህ በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ፕሮጀክቶች ከተማዋን ወደ ዘመናዊ የንግድና የኢንዱስትሪ ማዕከልነት እየቀየሯት ነው።",
                 img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800",
                 date: "April 8, 2026"
-            },
-            {
-                title: "የውሃ ፕሮጀክት ግንባታ ውጤት",
-                excerpt: "የመታሃራ የንፁህ መጠጥ ውሃ ፕሮጀክት ለነዋሪዎች ትልቅ እፎይታ ሰጥቷል...",
-                fullText: "በመንግስት ከፍተኛ በጀት የተገነባው የውሃ ፕሮጀክት ተጠናቆ አገልግሎት መስጠት በመጀመሩ፣ በከተማዋ ለዓመታት የነበረው የውሃ እጥረት በዘላቂነት ተፈትቷል። ይህ ፕሮጀክት በቴክኖሎጂ የተደገፈ ቁጥጥር ይደረግበታል።",
-                img: "https://images.unsplash.com/photo-1541944743827-e04bb645d994?q=80&w=800",
-                date: "April 7, 2026"
             }
         ];
 
-        function renderNews() {
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = newsItems.map((item, index) => `
-                <div onclick="openModal(${index})" class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden group hover:border-amber-500/30 transition-all cursor-pointer">
-                    <div class="h-60 overflow-hidden relative">
-                        <img src="${item.img}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
-                        <div class="absolute bottom-4 left-4 bg-amber-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-full uppercase italic tracking-widest">New</div>
+        const articles = [
+            {
+                tag: "ንባብና ማስተዋል",
+                title: "ማንበብ ጎዶሎህን ያሳይሃል እንጂ ሙሉ ሰው አያደርግህም!",
+                content: `ያነበበ ሁሉ አያስተውልም፤ ያስተዋለ ሁሉ አይለወጥም፡፡ አንብበው የገባቸው ቢሆኑ እንኳን በተግባር ካልኖሩበት ያነበቡት ፍሬ አያፈራም፡፡ ፈረንሳዊው ፈላስፋ ሳርትሬ "ሰው የሚገለፀው በዕውቀቱ ሳይሆን በድርጊቱ ነው" የሚለው ለዚህ ነው፡፡`
+            },
+            {
+                tag: "ሰዋዊ ርህራሄ",
+                title: "ርህራሄህን በሚደመስስ እንግዳ ትምህርት አትወሰድ!",
+                content: `አንዳንድ ፍልስፍና ሰው የተፈጠረበትን ስብዕና የሚቃወም፣ መንፈሳዊ ፀጋውን የሚያንኮታኩት ነው፡፡ የተሰራበትን የሰውነት መሰረት የሚያናጋ ፍልስፍና ትክክለኛ ፍልስፍና አይደለም፡፡`
+            },
+            {
+                tag: "ታሪክና ትምህርት",
+                title: "ክፉ ሰው ታሪኩ የሚፃፈው ለትምህርት ነው!",
+                content: `ታሪክ የማያውቁ ሰዎች ዕጣ ፋንታቸው ያንኑ ታሪክ መድገም ነው፡፡ ክፉ ሰው በታሪክ መዝገብ ላይ የሚቀመጠው ለትምህርት ነው...`
+            }
+        ];
+
+        const techArticles = [
+            {
+                title: "ቴክኖሎጂ፡ የነፍሳችን ማጉያ መነጽር",
+                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_Sami_Dolphin_Tech_Image.jpg",
+                content: `ቴክኖሎጂ እኛን መቀየሩ ሳይሆን ማንነታችንን አጉልቶ ማሳየቱ ነው። ሰው ሰራሽ አስተውሎት (AI) አእምሮአችንን ከአድካሚ ስሌቶች ነፃ ሲያወጡት፣ 'እኛ ማን ነን?' የሚለው ጥያቄ ይበልጥ ይጎላል።`
+            },
+            {
+                title: "ከምድር ውጭ ያሉ ምስጢራት (UFO)",
+                img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_Sami_Dolphin_UFO.jpg",
+                content: `🛸 ሰማይ ላይ የምናያቸውና በሳይንሳዊ መንገድ ልናብራራቸው ያልቻልናቸው ነገሮች መኖራቸው እውነት ነው! - ባራክ ኦባማ። \n\nUAPs የሚጠቀሙት ቴክኖሎጂ የሰውን ልጅ የፊዚክስ ህግጋት የሚገዳደር ነው። ፈጣን ፍጥነት፣ ድምፅ አልባ ጉዞ እና ፀረ-ስበት ዋና ዋናዎቹ ናቸው።`
+            }
+        ];
+
+        function renderAll() {
+            // Render News
+            document.getElementById('newsGrid').innerHTML = newsItems.map((item, index) => `
+                <div onclick="openModal('news', ${index})" class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden group hover:border-amber-500/30 transition-all cursor-pointer">
+                    <img src="${item.img}" class="w-full h-60 object-cover grayscale group-hover:grayscale-0 transition-all">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold italic text-white group-hover:text-amber-500">${item.title}</h3>
+                        <p class="text-slate-500 text-xs mt-2 line-clamp-2">${item.excerpt}</p>
                     </div>
-                    <div class="p-8 space-y-4">
-                        <h3 class="text-xl font-bold italic text-white leading-tight group-hover:text-amber-500 transition-colors">${item.title}</h3>
-                        <p class="text-slate-500 text-xs font-light leading-relaxed line-clamp-2">${item.excerpt}</p>
-                        <div class="text-[10px] text-amber-500 font-black uppercase tracking-widest pt-2 border-t border-slate-800">ሙሉውን አንብብ →</div>
+                </div>
+            `).join('');
+
+            // Render Philosophy
+            document.getElementById('articlesGrid').innerHTML = articles.map((art, index) => `
+                <article class="bg-slate-900 border border-slate-800 p-8 rounded-[2.5rem] hover:border-amber-500/40 transition-all">
+                    <span class="text-amber-500 text-[10px] font-black uppercase border border-amber-500/20 px-3 py-1 rounded-full">${art.tag}</span>
+                    <h3 class="text-xl font-bold italic text-white mt-4">${art.title}</h3>
+                    <button onclick="openModal('philosophy', ${index})" class="mt-6 text-amber-500 text-xs font-black uppercase tracking-tighter">አንብብ —></button>
+                </article>
+            `).join('');
+
+            // Render Tech
+            document.getElementById('techGrid').innerHTML = techArticles.map((tech, index) => `
+                <div class="bg-slate-900/50 border border-white/5 p-6 rounded-[2.5rem] flex flex-col md:flex-row gap-6 items-center group">
+                    <img src="${tech.img}" class="w-32 h-32 rounded-3xl object-cover shadow-2xl group-hover:scale-110 transition-transform">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">${tech.title}</h3>
+                        <button onclick="openModal('tech', ${index})" class="mt-3 px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white text-[10px] font-black rounded-full transition-all">ዝርዝር</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function openModal(index) {
-            const item = newsItems[index];
+        function openModal(type, index) {
+            let data;
+            if(type === 'news') data = newsItems[index];
+            else if(type === 'philosophy') data = articles[index];
+            else data = techArticles[index];
+
             document.getElementById('modalBody').innerHTML = `
-                <span class="text-amber-500 text-[10px] font-black uppercase tracking-[0.3em] italic">የዜና ትንተና</span>
-                <h2 class="text-3xl md:text-4xl font-black italic text-white my-4 leading-tight">${item.title}</h2>
-                <p class="text-slate-500 text-[10px] font-bold mb-8 uppercase tracking-widest italic border-b border-slate-800 pb-4">ታተመ: ${item.date}</p>
-                <img src="${item.img}" class="w-full h-72 object-cover rounded-[2rem] mb-8 shadow-2xl">
-                <div class="text-slate-300 leading-relaxed text-lg font-light italic">
-                    ${item.fullText}
-                </div>
+                <h2 class="text-3xl font-black italic text-white mb-6 uppercase tracking-tighter">${data.title}</h2>
+                <div class="text-slate-300 leading-relaxed text-lg italic whitespace-pre-line">${data.content || data.fullText}</div>
             `;
             document.getElementById('analysisModal').classList.add('modal-show');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            // የሳሚ ዶልፊን የፍልስፍና መጣጥፎች ዳታ
-const articles = [
-    {
-        title: "ማንበብ ጎዶሎህን ያሳይሃል እንጂ ሙሉ ሰው አያደርግህም!",
-        content: `ብዙ ሰዎች ያነበቡትን መፅሐፍ ሲቆጥሩ አያለሁ፡፡ ከመፅሐፉ የቆነጠሩትን ቁምነገር የሚቆጥሩ ግን ጥቂቶች ናቸው... ያነበበ ሁሉ አያስተውልም፤ ያስተዋለ ሁሉ አይለወጥም፡፡ አንብበው የገባቸው ቢሆኑ እንኳን በተግባር ካልኖሩበት ያነበቡት ፍሬ አያፈራም፡፡ ፈረንሳዊው ፈላስፋ ሳርትሬ "ሰው የሚገለፀው በዕውቀቱ ሳይሆን በድርጊቱ ነው" የሚለው ለዚህ ነው፡፡`
-    },
-    {
-        title: "ርህራሄህን በሚደመስስ እንግዳ ትምህርት አትወሰድ!",
-        content: `አንዳንድ ፍልስፍና ሰው የተፈጠረበትን ስብዕና የሚቃወም፣ መንፈሳዊ ፀጋውን የሚያንኮታኩት ነው፡፡ የተሰራበትን የሰውነት መሰረት የሚያናጋ ፍልስፍና ትክክለኛ ፍልስፍና አይደለም፡፡ ስሜታዊ ሆነህ ተፈጥረህ ስሜትህን ማጥፋት አትችልም፡፡ ባይሆን ስሜትህ ለመቆጣጠር ትሞክራለህ እንጂ፡፡ በሌሎች ስቃይ መሰቃየት (feeling pain for pain) የሰውነት ውሃ ልክ ነው!`
-    },
-    {
-        title: "ክፉ ሰው ታሪኩ የሚፃፈው ለትምህርትና ለማስጠንቀቂያ ነው!",
-        content: `በዓለማችን ብዙ ጊዜ በታሪክ የሚጠቀሱትና የሚወሱት መልካም የሰሩት ብቻ ናቸው፡፡ ነገር ግን በታሪክ ውስጥ መልካሞቹ ብቻ ሳይሆኑ ክፉ አድራጊዎቹም መኖራቸው አይካድም፡፡ ክፉ ሰው ታሪኩ የሚፃፈው ለክብር አይደለም፤ ለትምህርትና ለማስጠንቀቂያ ነው፡፡ ኤድመንድ በርክ "ታሪክ የማያውቁ ሰዎች ዕጣ ፋንታቸው ያንኑ ታሪክ መድገም ነው" እንዲል ትናንታችንን ማጥናት ግድ ይለናል፡፡`
-    }
-];
-// የቴክኖሎጂ እና የ UFO መጣጥፎች ዳታ
-const techArticles = [
-    {
-        title: "ቴክኖሎጂ፡ የነፍሳችን ማጉያ መነጽር",
-        content: `ብዙዎች ቴክኖሎጂ የሰውን ልጅ 'ሮቦት' እያደረገው ነው ብለው ይሰጋሉ። እውነታው ግን ቴክኖሎጂ እኛን መቀየሩ ሳይሆን ማንነታችንን አጉልቶ ማሳየቱ ነው።`
-    },
-    {
-        title: "ከምድር ውጭ ያሉ ምስጢራት",
-        content: `🛸 ከምድር ውጭ ያሉ ምስጢራት፦ የኦባማ ምስክርነት እና የዓለም መንግስታት ስጋት 👽\n\n"ሰማይ ላይ የምናያቸውና በሳይንሳዊ መንገድ ልናብራራቸው ያልቻልናቸው ነገሮች መኖራቸው እውነት ነው!" — ባራክ ኦባማ\n\n1. የቴክኖሎጂው ድንቅ ስራ (The Advanced Technology) ⚡\nእነዚህ አካላት (UAPs) የሚጠቀሙት ቴክኖሎጂ የሰውን ልጅ የፊዚክስ ህግጋት የሚገዳደር ነው። ፈጣን ፍጥነት፣ ድምፅ አልባ ጉዞ እና ፀረ-ስበት ዋና ዋናዎቹ ናቸው።\n\n2. የ"ነፃ ሃይል" ኢኮኖሚ ስጋት 💰\nይህ መረጃ በሚስጥር የተያዘበት ትልቁ ምክንያት ኢኮኖሚያዊ ነው። እነዚህ ፍጡራን የሚጠቀሙት "Zero-point energy" ይፋ ከሆነ፣ የአለም የነዳጅ ፖለቲካ እና የካፒታሊዝም ስርአት ይፈርሳል።`
-    }
-];
-
-// የቴክኖሎጂ ጽሁፍ መክፈቻ ፈንክሽን
-function openTechArticle(index) {
-    const art = techArticles[index];
-    const modalBody = document.getElementById('analysisModalBody');
-    if(modalBody) {
-        modalBody.innerHTML = `
-            <span class="text-cyan-500 text-sm font-black uppercase tracking-widest mb-2 block">Sami Dolphin | Space & Tech</span>
-            <h2 class="text-3xl md:text-4xl font-black italic text-white mb-6 tracking-tighter">${art.title}</h2>
-            <div class="text-slate-300 leading-relaxed text-lg font-light whitespace-pre-line">
-                ${art.content}
-            </div>
-        `;
-        document.getElementById('analysisModal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-}
-// መጣጥፉን በትልቅ መስኮት (Modal) ለመክፈት የሚያገለግል ፋንክሽን
-// የቴክኖሎጂ መጣጥፎች ዳታ
-const techArticles = [
-    {
-        title: "ቴክኖሎጂ፡ የነፍሳችን ማጉያ መነጽር",
-        content: `ብዙዎች ቴክኖሎጂ የሰውን ልጅ 'ሮቦት' እያደረገው ነው ብለው ይሰጋሉ። እውነታው ግን ቴክኖሎጂ እኛን መቀየሩ ሳይሆን፣ ማንነታችንን አጉልቶ ማሳየቱ ነው።\n\nሰው ሰራሽ አስተውሎት (AI) እና የላቁ መሣሪያዎች አእምሮአችንን ከአድካሚ ስሌቶች ነፃ ሲያወጡት፣ አንድ ትልቅ ጥያቄ ከፊታችን ይደቀናል፡ 'ከስራችን እና ከጥቃቅን ግዴታዎቻችን ባሻገር እኛ ማን ነን?'`
-    },
-    {
-        title: "ከምድር ውጭ ያሉ ምስጢራት",
-        content: `🛸 ከምድር ውጭ ያሉ ምስጢራት፦ የኦባማ ምስክርነት እና የዓለም መንግስታት ስጋት 👽\n\n"ሰማይ ላይ የምናያቸውና በሳይንሳዊ መንገድ ልናብራራቸው ያልቻልናቸው ነገሮች መኖራቸው እውነት ነው!" — ባራክ ኦባማ\n\nዛሬ ዓለም ከUFO ምስጢር ባለፈ፣ የዓለምን የኃይል ቁጥጥርና የኢኮኖሚ መዋቅር ሊገለብጥ ስለሚችል "ነፃ የኃይል ቴክኖሎጂ" በስጋት እያወራች ነው።\n\nለመሆኑ መንግስታት ምን ደበቁን? በሜክሲኮ የታዩትስ አስከሬኖች እውነት ፍጡራን ናቸው ወይስ ጥንታዊ አሻንጉሊቶች? ወደዚህ ምስጢራዊ ዓለም በጥልቀት እንዝለቅ...\n\n1. የቴክኖሎጂው ድንቅ ስራ (The Advanced Technology) ⚡\nእነዚህ አካላት (UAPs) የሚጠቀሙት ቴክኖሎጂ የሰውን ልጅ የፊዚክስ ህግጋት የሚገዳደር ነው።\n🚀 ፈጣን ፍጥነት እና መቆም\n🤫 ድምፅ አልባ ጉዞ\n🌊 ሁለገብ ተጓዥነት\n🌌 ፀረ-ስበት`
-    }
-];
-
-// የቴክኖሎጂ ጽሁፍ መክፈቻ ፈንክሽን
-function openTechArticle(index) {
-    const art = techArticles[index];
-    const modalBody = document.getElementById('analysisModalBody');
-    if(modalBody) {
-        modalBody.innerHTML = `
-            <span class="text-cyan-500 text-sm font-black uppercase tracking-widest mb-2 block">Technology & Disclosure</span>
-            <h2 class="text-3xl md:text-4xl font-black italic text-white mb-6 tracking-tighter">${art.title}</h2>
-            <div class="text-slate-300 leading-relaxed text-lg font-light whitespace-pre-line">
-                ${art.content}
-            </div>
-        `;
-        document.getElementById('analysisModal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-}
-            function openArticle(index) {
-    const art = articles[index];
-    const modalBody = document.getElementById('modalBody');
-    
-    if(modalBody) {
-        modalBody.innerHTML = `
-            <span class="text-amber-500 text-[10px] font-black uppercase tracking-[0.3em] italic">የሳሚ ዶልፊን መጣጥፎች</span>
-            <h2 class="text-3xl md:text-4xl font-black italic text-white my-6 leading-tight">${art.title}</h2>
-            <div class="text-slate-300 leading-relaxed text-lg font-light italic whitespace-pre-line">
-                ${art.content}
-            </div>
-        `;
-        document.getElementById('analysisModal').classList.add('modal-show');
-        document.body.style.overflow = 'hidden';
-    }
-}
             document.getElementById('analysisModal').classList.remove('modal-show');
             document.body.style.overflow = 'auto';
         }
-// የቴክኖሎጂ መጣጥፎች ዳታ
-const techArticles = [
-    {
-        title: "ቴክኖሎጂ፡ የነፍሳችን ማጉያ መነጽር",
-        content: `ብዙዎች ቴክኖሎጂ የሰውን ልጅ 'ሮቦት' እያደረገው ነው ብለው ይሰጋሉ። እውነታው ግን ቴክኖሎጂ እኛን መቀየሩ ሳይሆን፣ ማንነታችንን አጉልቶ ማሳየቱ ነው።\n\nሰው ሰራሽ አስተውሎት (AI) እና የላቁ መሣሪያዎች አእምሮአችንን ከአድካሚ ስሌቶች ነፃ ሲያወጡት፣ አንድ ትልቅ ጥያቄ ከፊታችን ይደቀናል፡ 'ከስራችን እና ከጥቃቅን ግዴታዎቻችን ባሻገር እኛ ማን ነን?' ቴክኖሎጂ ንቃተ-ህሊናችንን ሊተካው አይችልም፤ ነገር ግን ትርፍ ጊዜንና ሰፊ እውቀትን በመስጠት ወደ ውስጣዊው ዓለማችን እንድንመለከት በር ይከፍታል።\n\nእኛ የቴክኖሎጂ ውጤቶች ሳንሆን፣ ቴክኖሎጂ የእኛ ንቃተ-ህሊና ውጤት ነው። መሣሪያዎቻችን በረቀቁ ቁጥር፣ እኛም በዚያው ልክ በመንፈስ ልንረቅ ይገባል።`
-    }
-];
 
-// የቴክኖሎጂ ጽሁፍ መክፈቻ ፋንክሽን
-function openTechArticle(index) {
-    const art = techArticles[index];
-    const modalBody = document.getElementById('modalBody');
-    if(modalBody) {
-        modalBody.innerHTML = `
-            <span class="text-cyan-500 text-[10px] font-black uppercase tracking-[0.3em] italic">TECH & SOUL BY SAMI DOLPHIN</span>
-            <h2 class="text-3xl md:text-4xl font-black italic text-white my-6 leading-tight">${art.title}</h2>
-            <div class="text-slate-300 leading-relaxed text-lg font-light italic whitespace-pre-line">
-                ${art.content}
-            </div>
-        `;
-        document.getElementById('analysisModal').classList.add('modal-show');
-        document.body.style.overflow = 'hidden';
-    }
-}
-        function showSection(type) {
-            alert(type + ' ክፍል በዝርዝር መረጃ በመዘጋጀት ላይ ነው!');
+        function changeLanguage() {
+            const lang = document.getElementById('langSwitch').value;
+            const content = {
+                am: { title: "SAMI-TUBE MEDIA", hero: "እንኳን ወደ መታሃራ ከተማ ዲጂታል ማዕከል በሰላም መጣችሁ", badge: "የዲጂታል ዌብ ሳይት ማዕከል" },
+                en: { title: "SAMI DOLPHIN HUB", hero: "Welcome to Mataaharaa Digital Hub", badge: "DIGITAL WEBSITE CENTER" }
+            };
+            document.getElementById('navTitle').innerText = content[lang].title;
+            document.getElementById('heroTitle').innerText = content[lang].hero;
+            document.getElementById('heroBadge').innerText = content[lang].badge;
         }
 
         setInterval(() => {
-            const now = new Date();
-            document.getElementById('liveClock').innerText = now.toLocaleTimeString();
+            document.getElementById('liveClock').innerText = new Date().toLocaleTimeString();
         }, 1000);
 
-        window.onload = renderNews;
+        window.onload = renderAll;
     </script>
 </body>
 </html>

@@ -274,7 +274,35 @@ const articles = [
 ];
 
 // መጣጥፉን በትልቅ መስኮት (Modal) ለመክፈት የሚያገለግል ፋንክሽን
-function openArticle(index) {
+// የቴክኖሎጂ መጣጥፎች ዳታ
+const techArticles = [
+    {
+        title: "ቴክኖሎጂ፡ የነፍሳችን ማጉያ መነጽር",
+        content: `ብዙዎች ቴክኖሎጂ የሰውን ልጅ 'ሮቦት' እያደረገው ነው ብለው ይሰጋሉ። እውነታው ግን ቴክኖሎጂ እኛን መቀየሩ ሳይሆን፣ ማንነታችንን አጉልቶ ማሳየቱ ነው።\n\nሰው ሰራሽ አስተውሎት (AI) እና የላቁ መሣሪያዎች አእምሮአችንን ከአድካሚ ስሌቶች ነፃ ሲያወጡት፣ አንድ ትልቅ ጥያቄ ከፊታችን ይደቀናል፡ 'ከስራችን እና ከጥቃቅን ግዴታዎቻችን ባሻገር እኛ ማን ነን?'`
+    },
+    {
+        title: "ከምድር ውጭ ያሉ ምስጢራት",
+        content: `🛸 ከምድር ውጭ ያሉ ምስጢራት፦ የኦባማ ምስክርነት እና የዓለም መንግስታት ስጋት 👽\n\n"ሰማይ ላይ የምናያቸውና በሳይንሳዊ መንገድ ልናብራራቸው ያልቻልናቸው ነገሮች መኖራቸው እውነት ነው!" — ባራክ ኦባማ\n\nዛሬ ዓለም ከUFO ምስጢር ባለፈ፣ የዓለምን የኃይል ቁጥጥርና የኢኮኖሚ መዋቅር ሊገለብጥ ስለሚችል "ነፃ የኃይል ቴክኖሎጂ" በስጋት እያወራች ነው።\n\nለመሆኑ መንግስታት ምን ደበቁን? በሜክሲኮ የታዩትስ አስከሬኖች እውነት ፍጡራን ናቸው ወይስ ጥንታዊ አሻንጉሊቶች? ወደዚህ ምስጢራዊ ዓለም በጥልቀት እንዝለቅ...\n\n1. የቴክኖሎጂው ድንቅ ስራ (The Advanced Technology) ⚡\nእነዚህ አካላት (UAPs) የሚጠቀሙት ቴክኖሎጂ የሰውን ልጅ የፊዚክስ ህግጋት የሚገዳደር ነው።\n🚀 ፈጣን ፍጥነት እና መቆም\n🤫 ድምፅ አልባ ጉዞ\n🌊 ሁለገብ ተጓዥነት\n🌌 ፀረ-ስበት`
+    }
+];
+
+// የቴክኖሎጂ ጽሁፍ መክፈቻ ፈንክሽን
+function openTechArticle(index) {
+    const art = techArticles[index];
+    const modalBody = document.getElementById('analysisModalBody');
+    if(modalBody) {
+        modalBody.innerHTML = `
+            <span class="text-cyan-500 text-sm font-black uppercase tracking-widest mb-2 block">Technology & Disclosure</span>
+            <h2 class="text-3xl md:text-4xl font-black italic text-white mb-6 tracking-tighter">${art.title}</h2>
+            <div class="text-slate-300 leading-relaxed text-lg font-light whitespace-pre-line">
+                ${art.content}
+            </div>
+        `;
+        document.getElementById('analysisModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+}
+            function openArticle(index) {
     const art = articles[index];
     const modalBody = document.getElementById('modalBody');
     

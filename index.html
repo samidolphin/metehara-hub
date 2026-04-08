@@ -270,7 +270,30 @@ function openArticle(index) {
             document.getElementById('analysisModal').classList.remove('modal-show');
             document.body.style.overflow = 'auto';
         }
+// የቴክኖሎጂ መጣጥፎች ዳታ
+const techArticles = [
+    {
+        title: "ቴክኖሎጂ፡ የነፍሳችን ማጉያ መነጽር",
+        content: `ብዙዎች ቴክኖሎጂ የሰውን ልጅ 'ሮቦት' እያደረገው ነው ብለው ይሰጋሉ። እውነታው ግን ቴክኖሎጂ እኛን መቀየሩ ሳይሆን፣ ማንነታችንን አጉልቶ ማሳየቱ ነው።\n\nሰው ሰራሽ አስተውሎት (AI) እና የላቁ መሣሪያዎች አእምሮአችንን ከአድካሚ ስሌቶች ነፃ ሲያወጡት፣ አንድ ትልቅ ጥያቄ ከፊታችን ይደቀናል፡ 'ከስራችን እና ከጥቃቅን ግዴታዎቻችን ባሻገር እኛ ማን ነን?' ቴክኖሎጂ ንቃተ-ህሊናችንን ሊተካው አይችልም፤ ነገር ግን ትርፍ ጊዜንና ሰፊ እውቀትን በመስጠት ወደ ውስጣዊው ዓለማችን እንድንመለከት በር ይከፍታል።\n\nእኛ የቴክኖሎጂ ውጤቶች ሳንሆን፣ ቴክኖሎጂ የእኛ ንቃተ-ህሊና ውጤት ነው። መሣሪያዎቻችን በረቀቁ ቁጥር፣ እኛም በዚያው ልክ በመንፈስ ልንረቅ ይገባል።`
+    }
+];
 
+// የቴክኖሎጂ ጽሁፍ መክፈቻ ፋንክሽን
+function openTechArticle(index) {
+    const art = techArticles[index];
+    const modalBody = document.getElementById('modalBody');
+    if(modalBody) {
+        modalBody.innerHTML = `
+            <span class="text-cyan-500 text-[10px] font-black uppercase tracking-[0.3em] italic">TECH & SOUL BY SAMI DOLPHIN</span>
+            <h2 class="text-3xl md:text-4xl font-black italic text-white my-6 leading-tight">${art.title}</h2>
+            <div class="text-slate-300 leading-relaxed text-lg font-light italic whitespace-pre-line">
+                ${art.content}
+            </div>
+        `;
+        document.getElementById('analysisModal').classList.add('modal-show');
+        document.body.style.overflow = 'hidden';
+    }
+}
         function showSection(type) {
             alert(type + ' ክፍል በዝርዝር መረጃ በመዘጋጀት ላይ ነው!');
         }

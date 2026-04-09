@@ -3,141 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | News Hub</title>
+    <title>SAMI-TUBE MEDIA | Final Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; overflow-x: hidden; }
-        
-        /* Modal Animation */
-        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px); }
+        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; }
+        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(15px); }
         .modal.active { display: flex; align-items: center; justify-content: center; }
-        
-        .hero-section { display: flex; height: 60vh; overflow: hidden; position: relative; }
         .side-menu { background-color: #0c82cf; width: 120px; display: flex; flex-direction: column; justify-content: center; gap: 15px; z-index: 10; }
         .menu-item { color: white; font-size: 0.75rem; font-weight: 700; text-align: center; cursor: pointer; transition: 0.3s; }
+        .menu-item:hover { color: #f59e0b; }
         
-        #bg-container { position: absolute; inset: 0 0 0 120px; z-index: 1; }
-        .bg-layer { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s; }
-        .bg-layer.active { opacity: 1; }
-        
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.4) 100%); z-index: 2; }
-        .hero-content { position: relative; z-index: 5; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        /* Auto-sliding Gallery Styles */
+        .gallery-container { position: relative; height: 400px; border-radius: 2rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
+        .slide.active { opacity: 1; }
     </style>
 </head>
 <body>
 
-    <header class="p-4 flex justify-between items-center bg-[#020617] border-b border-white/5 relative z-30">
+    <header class="p-4 flex justify-between items-center bg-[#020617] sticky top-0 z-50 border-b border-white/5">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-slate-950 font-black text-xl">S</div>
-            <h1 class="text-white font-black italic text-md uppercase">SAMI-TUBE MEDIA</h1>
+            <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-slate-950 font-black text-xl shadow-lg">S</div>
+            <div>
+                <h1 class="text-white font-black italic text-md uppercase leading-none">SAMI-TUBE MEDIA</h1>
+                <p class="text-amber-500 text-[8px] font-bold tracking-widest mt-1 uppercase">Digital Excellence</p>
+            </div>
         </div>
-        <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg outline-none cursor-pointer border border-white/10">
-            <option value="am">🇪🇹 አማርኛ</option>
-            <option value="om">Afan Oromo</option>
-            <option value="en">English</option>
-        </select>
+        <div class="flex items-center gap-4">
+            <a href="https://t.me/MeteharaInfoBot" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold px-4 py-2 rounded-full transition-all">
+                JOIN BOT 🤖
+            </a>
+            <select id="langSelect" class="bg-slate-800 text-white text-xs px-2 py-2 rounded-lg outline-none">
+                <option value="am">🇪🇹 አማርኛ</option>
+            </select>
+        </div>
     </header>
 
-    <div class="hero-section">
+    <div class="flex h-[50vh] relative overflow-hidden">
         <nav class="side-menu shadow-2xl">
             <div class="menu-item">ቅድመ ዜና</div>
             <div class="menu-item">ሪፖርት</div>
             <div class="menu-item">ቱሪዝም</div>
             <div class="menu-item">ባህል</div>
             <div class="menu-item">ስነ-ጽሑፍ</div>
-            <div class="menu-item">ቴክ</div>
         </nav>
-        <div id="bg-container">
-            <div class="bg-layer active" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200')"></div>
-            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1523805081326-ed9662e05027?w=1200')"></div>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2 id="heroTitle" class="text-3xl md:text-5xl font-black px-4"></h2>
+        <div class="flex-grow flex flex-col justify-center items-center text-center px-6 relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 to-transparent z-0"></div>
+            <div class="relative z-10">
+                <h2 class="text-4xl md:text-6xl font-black mb-4">SAMI-TUBE <span class="text-amber-500">MEDIA</span></h2>
+                <p class="text-slate-400 italic">የመተሃራ ከተማ የመረጃ እና የቴክኖሎጂ ማዕከል</p>
+            </div>
         </div>
     </div>
 
-    <main class="max-w-6xl mx-auto p-6">
-        <h3 class="text-amber-500 font-black italic text-xl mb-8 border-l-4 border-amber-500 pl-4 uppercase">ዋና ዋና ዜናዎች / TOP NEWS</h3>
-        <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <main class="max-w-7xl mx-auto p-6 space-y-20">
+        
+        <section>
+            <h3 class="text-amber-500 font-black italic text-xl mb-6 border-l-4 border-amber-500 pl-4 uppercase">የፎቶ ጋለሪ / PHOTO GALLERY</h3>
+            <div class="gallery-container" id="mainGallery">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1451187530220-a093f13aeeef?w=1200')"></div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523805081326-ed9662e05027?w=1200')"></div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200')"></div>
             </div>
+        </section>
+
+        <section>
+            <h3 class="text-amber-500 font-black italic text-xl mb-6 border-l-4 border-amber-500 pl-4 uppercase tracking-tighter">የዩቱዩብ ቪዲዮዎች / YOUTUBE VIDEOS</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="flex flex-col justify-center space-y-4">
+                    <h4 class="text-2xl font-black italic">በሳሚ ቲዩብ ሁሌም አዳዲስ መረጃዎችን ያገኛሉ</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">ስለ ቴክኖሎጂ፣ ፍልስፍና እና የአካባቢያችን ልማት የሚዳሰሱ ጥልቅ ቪዲዮዎችን ለመመልከት ሰብስክራይብ ያድርጉ።</p>
+                    <a href="https://youtube.com/@Sami-Tube" class="text-amber-500 font-bold hover:underline">ሁሉንም ቪዲዮዎች ይመልከቱ ➔</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-amber-500 font-black italic text-xl mb-10 border-l-4 border-amber-500 pl-4 uppercase">ወቅታዊ ዜናዎች / LATEST NEWS</h3>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </section>
+
     </main>
 
     <div id="newsModal" class="modal px-4" onclick="closeModal()">
-        <div class="bg-slate-900 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="float-right text-slate-400 hover:text-white text-2xl">&times;</button>
-            <div id="modalContent">
-                </div>
+        <div class="bg-slate-900 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[2.5rem] p-8 md:p-12 border border-white/10" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="float-right text-slate-400 text-3xl">&times;</button>
+            <div id="modalContent"></div>
         </div>
     </div>
 
     <script>
+        // News Data from previous conversation
         const newsData = [
-            {
-                id: 1,
-                title: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች",
-                short: "የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው...",
-                full: `
-                    <h2 class="text-2xl font-black text-amber-500 mb-4">አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ</h2>
-                    <p class="text-slate-400 text-sm mb-6 italic">መተሃራ — ሳምሶን ተስፋዬ</p>
-                    <div class="h-64 bg-slate-800 rounded-2xl mb-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800')"></div>
-                    <div class="space-y-4 text-slate-200 leading-relaxed text-lg">
-                        <p>የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።</p>
-                        <p>ከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል።</p>
-                        <p>ከንቲባ አቶ አዲሱ ዋቆ ከመደበኛ የስራ ሰዓት ውጭም ጭምር በልማት ስራዎችና በከተማዋ የጸጥታ ጉዳዮች ላይ በቅርበት ክትትል በማድረግ ለሌሎች አመራሮች አርአያ የሚሆን ተግባር እያከናወኑ መሆኑን የዜናው ዘገባ ያመላክታል።</p>
-                    </div>
-                    <p class="mt-8 text-amber-500 font-bold italic">ዘጋቢ፡ ሳምሶን ተስፋዬ</p>
-                `
-            },
-            {
-                id: 2,
-                title: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% ደረሰ",
-                short: "የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ...",
-                full: `
-                    <h2 class="text-2xl font-black text-amber-500 mb-4">💧 የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ</h2>
-                    <p class="text-slate-400 text-sm mb-6 italic">መተሃራ፣ መጋቢት 6/2018</p>
-                    <div class="h-64 bg-slate-800 rounded-2xl mb-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541944743827-e04bb645d993?w=800')"></div>
-                    <div class="space-y-4 text-slate-200 leading-relaxed">
-                        <p>ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ እና የስራ ሃላፊዎች በስራው ሂደት ላይ የመስክ ምልከታ አድርገዋል።</p>
-                        <ul class="list-disc pl-5 space-y-2 text-amber-400 font-bold">
-                            <li>ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ ያደርሳል።</li>
-                            <li>ለቀጣዮቹ 50 ዓመታት ያህል አስተማማኝ አገልግሎት ይሰጣል።</li>
-                            <li>የፓምፕ ተከላ እና የውሃ ማጣሪያ ስራዎች ተጠናቀዋል።</li>
-                        </ul>
-                    </div>
-                    <p class="mt-8 text-slate-400">📸 የምስል በሳሚ ዶልፊን <br> #Metehara #Development #CleanWater #SamiTube</p>
-                `
-            },
-            {
-                id: 3,
-                title: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ",
-                short: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየለማ ያለው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እና ሳይንሳዊ መንገድ እየለማ ይገኛል...",
-                full: `
-                    <h2 class="text-2xl font-black text-amber-500 mb-4">የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ</h2>
-                    <div class="h-64 bg-slate-800 rounded-2xl mb-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1557800636-894a64c1696f?w=800')"></div>
-                    <div class="space-y-4 text-slate-200 leading-relaxed">
-                        <p>በኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ የዛፉን ጤና የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።</p>
-                        <p>ቅርንጫፎች በሚገረዙበት ወቅት ዛፉ ለአየር ንክኪ እንዳይጋለጥ ልዩ የኬሚካል ቅባት የመቀባት ስራ ይከናወናል። ይህ ስራ ዛፉ ከንፋስ ግፊት የሚደርስበትን ጉዳት ከመቀነሱም በላይ፣ የተቆረጠው ክፍል በፍጥነት እንዲያገግም ያደርጋል።</p>
-                    </div>
-                    <p class="mt-8 text-amber-500 font-bold italic">SAMI-TUBE MEDIA | Metehara Digital Center</p>
-                `
-            }
+            { id: 1, title: "አቶ አዲሱ ዋቆ የልማት ስራዎች", short: "የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ ስራዎች...", full: `<h2 class="text-2xl font-black text-amber-500 mb-6">የአቶ አዲሱ ዋቆ የልማት ስኬቶች</h2><p class="text-lg leading-relaxed text-slate-200">በመተሃራ ከተማ የተከናወኑ የአረንጓዴ ልማት እና የመሰረተ ልማት ስራዎች ዝርዝር መረጃ...</p><p class="mt-6 text-amber-500">ዘጋቢ፡ ሳምሶን ተስፋዬ</p>` },
+            { id: 2, title: "💧 የንፁህ መጠጥ ውሃ ፕሮጀክት (90%)", short: "የመተሃራን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ማጠናቀቂያ ላይ ደርሷል...", full: `<h2 class="text-2xl font-black text-amber-500 mb-6">የውሃ ፕሮጀክት ዝመና</h2><p class="text-lg leading-relaxed text-slate-200">ግንባታው 90% የደረሰው ይህ ፕሮጀክት ለከተማዋ የ50 ዓመት ዋስትና ይሰጣል ተብሎ ይጠበቃል...</p>` },
+            { id: 3, title: "ሳይንሳዊ የብርቱካን እርሻ ክብካቤ", short: "በበሰቃ ሃይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በሳይንሳዊ የመግረዝ ዘዴ እየለማ ይገኛል...", full: `<h2 class="text-2xl font-black text-amber-500 mb-6">የሳይንሳዊ ክብካቤ ውጤት</h2><p class="text-lg leading-relaxed text-slate-200">የPruning ስራ እና የኬሚካል ቅባት አጠቃቀም በባለሙያዎች ሲተገበር የሚያሳይ መረጃ...</p>` }
         ];
 
-        function loadNews() {
+        // Render News Cards
+        function renderNews() {
             const grid = document.getElementById('newsGrid');
             grid.innerHTML = newsData.map(n => `
-                <div class="bg-slate-900/50 rounded-[2rem] border border-white/5 p-6 hover:border-amber-500/40 transition-all group shadow-xl">
-                    <h4 class="font-black italic text-lg leading-snug mb-3 group-hover:text-amber-500 transition-colors">${n.title}</h4>
-                    <p class="text-slate-400 text-xs mb-6 leading-relaxed">${n.short}</p>
-                    <button onclick="openModal(${n.id})" class="bg-amber-500/10 text-amber-500 text-[10px] font-black uppercase tracking-widest px-6 py-2 rounded-full border border-amber-500/20 hover:bg-amber-500 hover:text-slate-950 transition-all">More +</button>
+                <div class="bg-slate-900/50 rounded-[2rem] border border-white/5 p-8 shadow-2xl">
+                    <h4 class="font-black italic text-xl mb-4">${n.title}</h4>
+                    <p class="text-slate-400 text-sm mb-6">${n.short}</p>
+                    <button onclick="openModal(${n.id})" class="text-amber-500 text-[10px] font-black uppercase tracking-widest border border-amber-500/20 px-6 py-2 rounded-full hover:bg-amber-500 hover:text-slate-950 transition-all">More +</button>
                 </div>
             `).join('');
-            
-            document.getElementById('heroTitle').innerHTML = 'SAMI-TUBE <span class="text-amber-500">MEDIA</span> <br> <span class="text-sm font-light text-slate-400 italic italic">የመተሃራ ከተማ ዲጂታል የመረጃ ማዕከል</span>';
         }
 
+        // Modal Controls
         function openModal(id) {
             const news = newsData.find(n => n.id === id);
             document.getElementById('modalContent').innerHTML = news.full;
@@ -150,15 +129,17 @@
             document.body.style.overflow = 'auto';
         }
 
-        const layers = document.querySelectorAll('.bg-layer');
-        let current = 0;
-        setInterval(() => {
-            layers[current].classList.remove('active');
-            current = (current + 1) % layers.length;
-            layers[current].classList.add('active');
-        }, 5000);
+        // Auto Gallery Logic
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
 
-        window.onload = loadNews;
+        window.onload = renderNews;
     </script>
 </body>
 </html>

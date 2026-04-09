@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | Final Edition</title>
+    <title>SAMI-TUBE MEDIA | Metehara Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; scroll-behavior: smooth; }
         .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(15px); }
         .modal.active { display: flex; align-items: center; justify-content: center; }
-        .hero-section { display: flex; height: 50vh; overflow: hidden; position: relative; }
+        .hero-section { display: flex; height: 60vh; overflow: hidden; position: relative; }
         .side-menu { background-color: #0c82cf; width: 120px; display: flex; flex-direction: column; justify-content: center; gap: 15px; z-index: 10; }
         .menu-item { color: white; font-size: 0.75rem; font-weight: 700; text-align: center; cursor: pointer; transition: 0.3s; }
         .menu-item:hover { color: #f59e0b; }
+        
+        /* Hero Sliding Background */
         #bg-container { position: absolute; inset: 0 0 0 120px; z-index: 1; }
-        .bg-layer { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s; }
+        .bg-layer { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2.5s ease-in-out; }
         .bg-layer.active { opacity: 1; }
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,1) 0%, rgba(2,6,23,0.3) 100%); z-index: 2; }
+        
         .hero-content { position: relative; z-index: 5; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 40px; }
+        
+        /* Fixed Gallery */
         .gallery-container { position: relative; height: 400px; border-radius: 2.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
@@ -32,7 +37,7 @@
                 <p class="text-amber-500 text-[8px] font-bold tracking-widest mt-1 uppercase">Digital Excellence</p>
             </div>
         </div>
-        <select id="langSelect" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg border border-white/10 outline-none cursor-pointer">
+        <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg border border-white/10 outline-none cursor-pointer">
             <option value="am">🇪🇹 አማርኛ</option>
             <option value="om">Afan Oromo</option>
             <option value="en">English</option>
@@ -47,29 +52,35 @@
             <div class="menu-item">ባህል</div>
             <div class="menu-item">ቴክ</div>
         </nav>
+        
         <div id="bg-container">
-            <div class="bg-layer active" style="background-image: url('https://images.unsplash.com/photo-1451187530220-a093f13aeeef?w=1200')"></div>
-            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1523805081326-ed9662e05027?w=1200')"></div>
+            <div class="bg-layer active" style="background-image: url('${image_12.png}')"></div>
+            <div class="bg-layer" style="background-image: url('${image_13.png}')"></div>
+            <div class="bg-layer" style="background-image: url('${image_14.png}')"></div>
+            <div class="bg-layer" style="background-image: url('${image_15.png}')"></div>
+            <div class="bg-layer" style="background-image: url('${image_16.png}')"></div>
+            <div class="bg-layer" style="background-image: url('${image_17.png}')"></div>
+            <div class="bg-layer" style="background-image: url('${image_18.png}')"></div>
+            <div class="bg-layer" style="background-image: url('${image_19.png}')"></div>
         </div>
+        
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h2 class="text-3xl md:text-5xl font-black leading-tight text-white">የመተሃራ ከተማ ዲጂታል <br> <span class="text-amber-500 italic">የመረጃ ማዕከል</span></h2>
-            <p class="mt-4 text-slate-400 italic text-sm">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል</p>
+            <h2 id="heroTitle" class="text-3xl md:text-5xl font-black leading-tight text-white"></h2>
+            <p id="heroSub" class="mt-4 text-slate-400 italic text-sm"></p>
         </div>
     </div>
 
     <main class="max-w-6xl mx-auto p-6 space-y-20 mt-10">
-        
         <section>
-            <h3 class="text-amber-500 font-black italic text-xl mb-10 border-l-4 border-amber-500 pl-4 uppercase">ዋና ዋና ዜናዎች / TOP NEWS</h3>
+            <h3 id="newsLabel" class="text-amber-500 font-black italic text-xl mb-10 border-l-4 border-amber-500 pl-4 uppercase"></h3>
             <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
         </section>
 
         <section>
-            <h3 class="text-amber-500 font-black italic text-xl mb-6 border-l-4 border-amber-500 pl-4 uppercase">ጋለሪ / GALLERY</h3>
+            <h3 id="galleryLabel" class="text-amber-500 font-black italic text-xl mb-6 border-l-4 border-amber-500 pl-4 uppercase"></h3>
             <div class="gallery-container">
-                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200')"></div>
-                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200')"></div>
+                <div class="h-full w-full" style="background-image: url('${image_2.png}'); background-size: cover; background-position: center;"></div>
             </div>
         </section>
     </main>
@@ -81,52 +92,4 @@
                 <p class="text-slate-400 text-xs mt-2">Connecting Metehara to the Digital World</p>
             </div>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://youtube.com/@samsontesfaye2670?si=5y5CecKimBKwyyM5" target="_blank" class="bg-red-600/10 hover:bg-red-600 text-red-500 hover:text-white px-6 py-2 rounded-full border border-red-600/20 transition-all font-bold text-xs uppercase">YouTube</a>
-                <a href="https://www.facebook.com/share/1CgMxSgtLu/" target="_blank" class="bg-blue-800/10 hover:bg-blue-800 text-blue-500 hover:text-white px-6 py-2 rounded-full border border-blue-800/20 transition-all font-bold text-xs uppercase">Facebook</a>
-                <a href="https://t.me/Ayyotube_bot" target="_blank" class="bg-blue-500/10 hover:bg-blue-500 text-blue-400 hover:text-white px-6 py-2 rounded-full border border-blue-500/20 transition-all font-bold text-xs uppercase">Telegram Bot</a>
-            </div>
-        </div>
-        <div class="text-center mt-10 text-slate-600 text-[10px] uppercase tracking-widest">
-            &copy; 2026 SAMI-TUBE MEDIA | Metehara, Ethiopia
-        </div>
-    </footer>
-
-    <div id="newsModal" class="modal px-4" onclick="closeModal()">
-        <div class="bg-slate-900 w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-[2.5rem] p-10 border border-white/10" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="float-right text-slate-400 hover:text-amber-500 text-3xl">&times;</button>
-            <div id="modalContent"></div>
-        </div>
-    </div>
-
-    <script>
-        const newsData = [
-            { id: 1, title: "አቶ አዲሱ ዋቆ የልማት ስራዎች", short: "የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ ያከናወኗቸው ስራዎች...", full: `<h2 class="text-2xl font-black text-amber-500 mb-6">የአቶ አዲሱ ዋቆ የልማት ስኬቶች</h2><p class="text-lg leading-relaxed text-slate-200">በመተሃራ ከተማ የተከናወኑ የአረንጓዴ ልማት እና የመሰረተ ልማት ስራዎች ዝርዝር መረጃ... <br><br> ዘጋቢ፡ ሳምሶን ተስፋዬ</p>` },
-            { id: 2, title: "💧 የውሃ ፕሮጀክት (90%)", short: "የመተሃራን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ማጠናቀቂያ ላይ ደርሷል...", full: `<h2 class="text-2xl font-black text-amber-500 mb-6">የውሃ ፕሮጀክት ዝመና</h2><p class="text-lg leading-relaxed text-slate-200">ግንባታው 90% የደረሰው ይህ ፕሮጀክት ለከተማዋ የ50 ዓመት ዋስትና ይሰጣል ተብሎ ይጠበቃል...</p>` },
-            { id: 3, title: "ሳይንሳዊ የብርቱካን እርሻ", short: "በበሰቃ ሃይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በሳይንሳዊ የመግረዝ ዘዴ እየለማ ይገኛል...", full: `<h2 class="text-2xl font-black text-amber-500 mb-4">ሳይንሳዊ ክብካቤ</h2><p class="text-slate-200 leading-relaxed text-lg">የPruning ስራ እና የኬሚካል ቅባት አጠቃቀም በባለሙያዎች ሲተገበር የሚያሳይ መረጃ...</p>` }
-        ];
-
-        function renderNews() {
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = newsData.map(n => `
-                <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 hover:border-amber-500/30 transition-all shadow-xl">
-                    <h4 class="font-black italic text-xl mb-4">${n.title}</h4>
-                    <p class="text-slate-400 text-sm mb-8">${n.short}</p>
-                    <button onclick="openModal(${n.id})" class="text-amber-500 text-[10px] font-black uppercase tracking-widest border border-amber-500/20 px-6 py-3 rounded-full hover:bg-amber-500 hover:text-slate-950 transition-all">More +</button>
-                </div>
-            `).join('');
-        }
-
-        function openModal(id) {
-            const news = newsData.find(n => n.id === id);
-            document.getElementById('modalContent').innerHTML = news.full;
-            document.getElementById('newsModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('newsModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        const layers = document.querySelectorAll('.bg-layer');
-        let currentL = 0
+                <a href="https://youtube.com/@samsontesfaye2670?si=5y5CecKimBKwyyM5" target="_blank" class="bg-red-600

@@ -3,26 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | Final Edition</title>
+    <title>SAMI-TUBE MEDIA | Metehara Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; overflow-x: hidden; }
         
-        /* Motion Animations */
+        /* Cinematic Animations */
         @keyframes slideIn { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes zoomEffect { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-        
         .animate-text { animation: slideIn 1.2s ease-out forwards; }
         
+        /* Hero & Sidebar Layout */
         .hero-section { display: flex; height: 80vh; overflow: hidden; position: relative; }
-        
-        /* Side Menu Styling */
         .side-menu { background-color: #0c82cf; width: 140px; display: flex; flex-direction: column; justify-content: center; gap: 20px; z-index: 10; position: relative; }
         .menu-item { color: white; font-size: 0.85rem; font-weight: 700; text-align: center; cursor: pointer; transition: 0.3s; }
         .menu-item:hover { color: #f59e0b; transform: scale(1.1); }
 
-        /* Background Motion Container */
         #bg-container { position: absolute; inset: 0 0 0 140px; z-index: 1; }
         .bg-layer { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; animation: zoomEffect 8s linear infinite alternate; }
         .bg-layer.active { opacity: 1; }
@@ -42,7 +39,7 @@
             </div>
         </div>
 
-        <select id="langSelect" onchange="updateLanguage()" class="bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-lg border border-white/10 outline-none cursor-pointer hover:bg-slate-700 transition-all">
+        <select id="langSelect" onchange="updateLanguage()" class="bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-lg border border-white/10 outline-none cursor-pointer">
             <option value="am">🇪🇹 አማርኛ</option>
             <option value="om">Afan Oromo</option>
             <option value="en">English</option>
@@ -51,48 +48,33 @@
 
     <div class="hero-section">
         <nav class="side-menu shadow-2xl" id="navMenu">
-            <div class="menu-item">ቅድመ ዜና</div>
-            <div class="menu-item">ሪፖርት</div>
-            <div class="menu-item">ቱሪዝም</div>
-            <div class="menu-item">ባህል</div>
-            <div class="menu-item">ስነ-ጽሑፍ</div>
-            <div class="menu-item">ቴክ</div>
-            <div class="menu-item">ኢንተርቪው</div>
-            <div class="menu-item">ፍልስፍና</div>
-        </nav>
+            </nav>
 
         <div id="bg-container">
-            <div class="bg-layer active" style="background-image: url('https://images.unsplash.com/photo-1451187530220-a093f13aeeef?q=80&w=1200')"></div>
-            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1200')"></div>
+            <div class="bg-layer active" style="background-image: url('https://images.unsplash.com/photo-1451187530220-a093f13aeeef?w=1200')"></div>
+            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200')"></div>
         </div>
 
         <div class="hero-overlay"></div>
 
         <div class="hero-content animate-text">
-            <h2 id="heroTitle" class="text-4xl md:text-6xl font-black leading-tight">እንኳን ወደ <span class="text-amber-500 italic">መታሃራ</span> <br> ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
+            <h2 id="heroTitle" class="text-4xl md:text-6xl font-black leading-tight"></h2>
             <div class="h-1.5 w-24 bg-amber-500 mt-6 rounded-full shadow-[0_0_15px_#f59e0b]"></div>
-            <p id="heroSub" class="mt-6 text-slate-300 italic text-sm tracking-wide">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል</p>
+            <p id="heroSub" class="mt-6 text-slate-300 italic text-sm tracking-wide"></p>
         </div>
     </div>
 
     <main class="max-w-6xl mx-auto p-8 relative z-10">
         <section class="mt-10">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="h-8 w-1.5 bg-amber-500 rounded-full"></div>
-                <h3 id="ytLabel" class="text-amber-500 font-black italic text-xl uppercase tracking-tighter">የዩቱዩብ ቪዲዮዎች / YOUTUBE</h3>
-            </div>
+            <h3 id="ytLabel" class="text-amber-500 font-black italic text-xl uppercase mb-8 border-l-4 border-amber-500 pl-4"></h3>
             <div class="rounded-[35px] overflow-hidden shadow-2xl border border-white/5 aspect-video bg-slate-900">
-                <iframe id="ytFrame" class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
         <section class="mt-20">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="h-8 w-1.5 bg-amber-500 rounded-full"></div>
-                <h3 id="newsLabel" class="text-amber-500 font-black italic text-xl uppercase tracking-tighter">ዜና / NEWS</h3>
-            </div>
-            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                </div>
+            <h3 id="newsLabel" class="text-amber-500 font-black italic text-xl uppercase mb-8 border-l-4 border-amber-500 pl-4"></h3>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
     </main>
 
@@ -140,20 +122,19 @@
             document.getElementById('ytLabel').innerText = data.ytLabel;
             document.getElementById('newsLabel').innerText = data.newsLabel;
 
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach((item, index) => { if(data.menu[index]) item.innerText = data.menu[index]; });
+            const navMenu = document.getElementById('navMenu');
+            navMenu.innerHTML = data.menu.map(m => `<div class="menu-item">${m}</div>`).join('');
 
             const grid = document.getElementById('newsGrid');
             grid.innerHTML = data.news.map(n => `
-                <div class="bg-slate-900/50 rounded-3xl overflow-hidden border border-white/5 p-4 hover:border-amber-500/50 transition-all cursor-pointer group">
-                    <div class="h-48 bg-slate-800 rounded-2xl mb-4 bg-cover bg-center group-hover:scale-105 transition-transform" style="background-image: url('${n.img}')"></div>
+                <div class="bg-slate-900/50 rounded-3xl overflow-hidden border border-white/5 p-4 hover:border-amber-500/50 transition-all group">
+                    <div class="h-48 bg-slate-800 rounded-2xl mb-4 bg-cover bg-center" style="background-image: url('${n.img}')"></div>
                     <p class="text-amber-500 text-[10px] font-bold mb-2 tracking-widest uppercase">${n.date}</p>
                     <h4 class="font-black italic text-xl leading-snug group-hover:text-amber-500 transition-colors">${n.title}</h4>
                 </div>
             `).join('');
         }
 
-        // Background Motion Logic
         const layers = document.querySelectorAll('.bg-layer');
         let currentLayer = 0;
         setInterval(() => {

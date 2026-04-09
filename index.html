@@ -1,79 +1,164 @@
-<script>
-    const content = {
-        am: {
-            heroTitle: 'እንኳን ወደ <span class="text-amber-500 italic">መታሃራ</span> <br> ዲጂታል ማዕከል በሰላም መጣችሁ',
-            heroSub: 'ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሑፍ ማዕከል',
-            ytLabel: 'የዩቱዩብ ቪዲዮዎች / YOUTUBE',
-            newsLabel: 'ዜና / NEWS',
-            menu: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ-ጽሑፍ", "ቴክ", "ኢንተርቪው", "ፍልስፍና"],
-            news: [
-                { 
-                    title: "የመታሃራ ከተማ የልማት እንቅስቃሴ", 
-                    date: "ሚያዝያ 1, 2018", 
-                    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400",
-                    desc: "በከተማዋ የተጀመሩ ግዙፍ የልማት ፕሮጀክቶች አፈጻጸም ላይ የተደረገ ቅኝት።"
-                },
-                { 
-                    title: "የሐይቅ በሰቃ የቱሪዝም እቅድ", 
-                    date: "መጋቢት 28, 2018", 
-                    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400",
-                    desc: "የበሰቃ ሐይቅን ለቱሪስት መስህብነት ለማዋል የታቀደው አዲስ ፕሮጀክት።"
-                },
-                { 
-                    title: "የቴክኖሎጂ እና የፈጠራ ውጤቶች", 
-                    date: "መጋቢት 25, 2018", 
-                    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400",
-                    desc: "በአካባቢያችን ያሉ ወጣቶች እያከናወኗቸው ያሉ የፈጠራ ስራዎች።"
-                }
-            ]
-        },
-        om: {
-            heroTitle: 'Baga gara giddu-gala <br> <span class="text-amber-500 italic">Mataaharaa</span> nagaan dhuftan',
-            heroSub: 'Oduuwwan yeroo, bu\'aalee teeknooloojii fi giddu-gala og-barruu',
-            ytLabel: 'Viidiyoowwan Youtube',
-            newsLabel: 'ODUU',
-            menu: ["Dur-oduu", "Gabaasa", "Turizimii", "Aadaa", "Og-barruu", "Teek", "Interviyuu", "Filoosoofii"],
-            news: [
-                { title: "Sochii misooma magaalaa Mataaharaa", date: "Eebila 1, 2026", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400", desc: "Pirojektoonni misooma magaalaa keenyaa haala gaariin itti fufanii jiru." },
-                { title: "Pirojektii Turizimii Garba Baseeqaa", date: "Bitootessa 28, 2026", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400", desc: "Garba Baseeqaa gara iddoo hawwata turizimiitti jijjiiruuf karoorfame." },
-                { title: "Bu'aalee Teeknooloojii fi Kalaqaa", date: "Bitootessa 25, 2026", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400", desc: "Kalaqa dargaggoota naannoo keenyaa teeknooloojii irratti." }
-            ]
-        },
-        en: {
-            heroTitle: 'Welcome to <span class="text-amber-500 italic">Metehara</span> <br> Digital Hub',
-            heroSub: 'Latest updates, technology results, and literary center',
-            ytLabel: 'YOUTUBE VIDEOS',
-            newsLabel: 'LATEST NEWS',
-            menu: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Interview", "Philosophy"],
-            news: [
-                { title: "Metehara's Development Progress", date: "April 9, 2026", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400", desc: "An overview of the ongoing mega development projects in the city." },
-                { title: "Lake Beseka Tourism Plan", date: "April 5, 2026", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400", desc: "New initiatives to transform Lake Beseka into a prime tourist destination." },
-                { title: "Tech and Innovation Highlights", date: "April 2, 2026", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400", desc: "Showcasing local technological innovations and creative works." }
-            ]
-        }
-    };
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMI-TUBE MEDIA | News Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; overflow-x: hidden; }
+        
+        /* Modal Animation */
+        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px); }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        
+        .hero-section { display: flex; height: 60vh; overflow: hidden; position: relative; }
+        .side-menu { background-color: #0c82cf; width: 120px; display: flex; flex-direction: column; justify-content: center; gap: 15px; z-index: 10; }
+        .menu-item { color: white; font-size: 0.75rem; font-weight: 700; text-align: center; cursor: pointer; transition: 0.3s; }
+        
+        #bg-container { position: absolute; inset: 0 0 0 120px; z-index: 1; }
+        .bg-layer { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s; }
+        .bg-layer.active { opacity: 1; }
+        
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.4) 100%); z-index: 2; }
+        .hero-content { position: relative; z-index: 5; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    </style>
+</head>
+<body>
 
-    function updateLanguage() {
-        const lang = document.getElementById('langSelect').value;
-        const data = content[lang];
+    <header class="p-4 flex justify-between items-center bg-[#020617] border-b border-white/5 relative z-30">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-slate-950 font-black text-xl">S</div>
+            <h1 class="text-white font-black italic text-md uppercase">SAMI-TUBE MEDIA</h1>
+        </div>
+        <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg outline-none cursor-pointer border border-white/10">
+            <option value="am">🇪🇹 አማርኛ</option>
+            <option value="om">Afan Oromo</option>
+            <option value="en">English</option>
+        </select>
+    </header>
 
-        document.getElementById('heroTitle').innerHTML = data.heroTitle;
-        document.getElementById('heroSub').innerText = data.heroSub;
-        document.getElementById('ytLabel').innerText = data.ytLabel;
-        document.getElementById('newsLabel').innerText = data.newsLabel;
+    <div class="hero-section">
+        <nav class="side-menu shadow-2xl">
+            <div class="menu-item">ቅድመ ዜና</div>
+            <div class="menu-item">ሪፖርት</div>
+            <div class="menu-item">ቱሪዝም</div>
+            <div class="menu-item">ባህል</div>
+            <div class="menu-item">ስነ-ጽሑፍ</div>
+            <div class="menu-item">ቴክ</div>
+        </nav>
+        <div id="bg-container">
+            <div class="bg-layer active" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200')"></div>
+            <div class="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1523805081326-ed9662e05027?w=1200')"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2 id="heroTitle" class="text-3xl md:text-5xl font-black px-4"></h2>
+        </div>
+    </div>
 
-        const navMenu = document.getElementById('navMenu');
-        navMenu.innerHTML = data.menu.map(m => `<div class="menu-item">${m}</div>`).join('');
-
-        const grid = document.getElementById('newsGrid');
-        grid.innerHTML = data.news.map(n => `
-            <div class="bg-slate-900/50 rounded-3xl overflow-hidden border border-white/5 p-4 hover:border-amber-500/50 transition-all group cursor-pointer shadow-lg hover:shadow-amber-500/10">
-                <div class="h-48 bg-slate-800 rounded-2xl mb-4 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('${n.img}')"></div>
-                <p class="text-amber-500 text-[10px] font-bold mb-2 tracking-widest uppercase">${n.date}</p>
-                <h4 class="font-black italic text-xl leading-snug group-hover:text-amber-500 transition-colors mb-2">${n.title}</h4>
-                <p class="text-slate-400 text-xs leading-relaxed">${n.desc}</p>
+    <main class="max-w-6xl mx-auto p-6">
+        <h3 class="text-amber-500 font-black italic text-xl mb-8 border-l-4 border-amber-500 pl-4 uppercase">ዋና ዋና ዜናዎች / TOP NEWS</h3>
+        <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
             </div>
-        `).join('');
-    }
-    // ... ቀሪው የBackground Motion ኮድ እዚህ ይቀጥላል
-</script>
+    </main>
+
+    <div id="newsModal" class="modal px-4" onclick="closeModal()">
+        <div class="bg-slate-900 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="float-right text-slate-400 hover:text-white text-2xl">&times;</button>
+            <div id="modalContent">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        const newsData = [
+            {
+                id: 1,
+                title: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች",
+                short: "የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው...",
+                full: `
+                    <h2 class="text-2xl font-black text-amber-500 mb-4">አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ</h2>
+                    <p class="text-slate-400 text-sm mb-6 italic">መተሃራ — ሳምሶን ተስፋዬ</p>
+                    <div class="h-64 bg-slate-800 rounded-2xl mb-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800')"></div>
+                    <div class="space-y-4 text-slate-200 leading-relaxed text-lg">
+                        <p>የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።</p>
+                        <p>ከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል።</p>
+                        <p>ከንቲባ አቶ አዲሱ ዋቆ ከመደበኛ የስራ ሰዓት ውጭም ጭምር በልማት ስራዎችና በከተማዋ የጸጥታ ጉዳዮች ላይ በቅርበት ክትትል በማድረግ ለሌሎች አመራሮች አርአያ የሚሆን ተግባር እያከናወኑ መሆኑን የዜናው ዘገባ ያመላክታል።</p>
+                    </div>
+                    <p class="mt-8 text-amber-500 font-bold italic">ዘጋቢ፡ ሳምሶን ተስፋዬ</p>
+                `
+            },
+            {
+                id: 2,
+                title: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% ደረሰ",
+                short: "የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ...",
+                full: `
+                    <h2 class="text-2xl font-black text-amber-500 mb-4">💧 የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ</h2>
+                    <p class="text-slate-400 text-sm mb-6 italic">መተሃራ፣ መጋቢት 6/2018</p>
+                    <div class="h-64 bg-slate-800 rounded-2xl mb-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541944743827-e04bb645d993?w=800')"></div>
+                    <div class="space-y-4 text-slate-200 leading-relaxed">
+                        <p>ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ እና የስራ ሃላፊዎች በስራው ሂደት ላይ የመስክ ምልከታ አድርገዋል።</p>
+                        <ul class="list-disc pl-5 space-y-2 text-amber-400 font-bold">
+                            <li>ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ ያደርሳል።</li>
+                            <li>ለቀጣዮቹ 50 ዓመታት ያህል አስተማማኝ አገልግሎት ይሰጣል።</li>
+                            <li>የፓምፕ ተከላ እና የውሃ ማጣሪያ ስራዎች ተጠናቀዋል።</li>
+                        </ul>
+                    </div>
+                    <p class="mt-8 text-slate-400">📸 የምስል በሳሚ ዶልፊን <br> #Metehara #Development #CleanWater #SamiTube</p>
+                `
+            },
+            {
+                id: 3,
+                title: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ",
+                short: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየለማ ያለው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እና ሳይንሳዊ መንገድ እየለማ ይገኛል...",
+                full: `
+                    <h2 class="text-2xl font-black text-amber-500 mb-4">የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ</h2>
+                    <div class="h-64 bg-slate-800 rounded-2xl mb-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1557800636-894a64c1696f?w=800')"></div>
+                    <div class="space-y-4 text-slate-200 leading-relaxed">
+                        <p>በኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ የዛፉን ጤና የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።</p>
+                        <p>ቅርንጫፎች በሚገረዙበት ወቅት ዛፉ ለአየር ንክኪ እንዳይጋለጥ ልዩ የኬሚካል ቅባት የመቀባት ስራ ይከናወናል። ይህ ስራ ዛፉ ከንፋስ ግፊት የሚደርስበትን ጉዳት ከመቀነሱም በላይ፣ የተቆረጠው ክፍል በፍጥነት እንዲያገግም ያደርጋል።</p>
+                    </div>
+                    <p class="mt-8 text-amber-500 font-bold italic">SAMI-TUBE MEDIA | Metehara Digital Center</p>
+                `
+            }
+        ];
+
+        function loadNews() {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = newsData.map(n => `
+                <div class="bg-slate-900/50 rounded-[2rem] border border-white/5 p-6 hover:border-amber-500/40 transition-all group shadow-xl">
+                    <h4 class="font-black italic text-lg leading-snug mb-3 group-hover:text-amber-500 transition-colors">${n.title}</h4>
+                    <p class="text-slate-400 text-xs mb-6 leading-relaxed">${n.short}</p>
+                    <button onclick="openModal(${n.id})" class="bg-amber-500/10 text-amber-500 text-[10px] font-black uppercase tracking-widest px-6 py-2 rounded-full border border-amber-500/20 hover:bg-amber-500 hover:text-slate-950 transition-all">More +</button>
+                </div>
+            `).join('');
+            
+            document.getElementById('heroTitle').innerHTML = 'SAMI-TUBE <span class="text-amber-500">MEDIA</span> <br> <span class="text-sm font-light text-slate-400 italic italic">የመተሃራ ከተማ ዲጂታል የመረጃ ማዕከል</span>';
+        }
+
+        function openModal(id) {
+            const news = newsData.find(n => n.id === id);
+            document.getElementById('modalContent').innerHTML = news.full;
+            document.getElementById('newsModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('newsModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        const layers = document.querySelectorAll('.bg-layer');
+        let current = 0;
+        setInterval(() => {
+            layers[current].classList.remove('active');
+            current = (current + 1) % layers.length;
+            layers[current].classList.add('active');
+        }, 5000);
+
+        window.onload = loadNews;
+    </script>
+</body>
+</html>

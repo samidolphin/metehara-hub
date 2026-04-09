@@ -8,18 +8,195 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; scroll-behavior: smooth; }
-        .hero-section { display: flex; height: 65vh; overflow: hidden; position: relative; }
+        
+        /* Language and Header Navigation */
+        header select { border: 1px solid rgba(255,255,255,0.1); }
         .side-menu { background-color: #0c82cf; width: 120px; display: flex; flex-direction: column; justify-content: center; gap: 20px; z-index: 20; }
         .menu-item { color: white; font-size: 0.8rem; font-weight: 700; text-align: center; cursor: pointer; transition: 0.3s; }
-        
-        /* Motion Background */
+        .menu-item:hover { color: #f59e0b; }
+
+        /* Full News Modal Styles */
+        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px); transition: display 0.5s; }
+        .modal.active { display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: #0f172a; border: 1px solid #f59e0b; border-radius: 2rem; padding: 30px; max-width: 600px; width: 100%; position: relative; max-height: 80vh; overflow-y: auto; }
+
+        /* Motion Background Slideshow */
+        .hero-section { display: flex; height: 65vh; overflow: hidden; position: relative; }
         #bg-slider { position: absolute; inset: 0 0 0 120px; z-index: 1; }
-        .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
+        .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2.5s ease-in-out; }
         .slide.active { opacity: 1; }
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.4) 100%); z-index: 5; }
-        
         .hero-content { position: relative; z-index: 10; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 40px; }
         
-        /* Video & Gallery Styles */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2rem; border: 1px solid rgba(255,255,255,0.1); }
-        .video-container iframe { position: absolute; top: 0
+        /* News Grid and More+ Button */
+        #newsGrid .more-btn:hover { background-color: #f59e0b; color: #020617; }
+        
+        /* Video Container Styling */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2.5rem; border: 1px solid rgba(255,255,255,0.1); shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        /* Auto Gallery at Bottom */
+        .gallery-container { position: relative; height: 400px; border-radius: 2.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+
+    <header class="p-4 flex justify-between items-center bg-[#020617] sticky top-0 z-50 border-b border-white/5 shadow-2xl">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-slate-950 font-black text-xl shadow-lg">S</div>
+            <div>
+                <h1 class="text-white font-black italic text-md uppercase leading-none">SAMI-TUBE MEDIA</h1>
+                <p class="text-amber-500 text-[8px] font-bold tracking-widest mt-1 uppercase">Digital Excellence</p>
+            </div>
+        </div>
+        <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg outline-none cursor-pointer">
+            <option value="am">🇪🇹 አማርኛ</option>
+            <option value="om">Afan Oromo</option>
+            <option value="en">English</option>
+        </select>
+    </header>
+
+    <div class="hero-section">
+        <nav class="side-menu shadow-2xl">
+            <div class="menu-item">ቅድመ ዜና</div>
+            <div class="menu-item">ሪፖርት</div>
+            <div class="menu-item">ቱሪዝም</div>
+            <div class="menu-item">ባህል</div>
+            <div class="menu-item">ቴክ</div>
+        </nav>
+        
+        <div id="bg-slider">
+            <div class="slide active" style="background-image: url('1775754142286.jpg')"></div>
+            <div class="slide" style="background-image: url('1775754148066.jpg')"></div>
+            <div class="slide" style="background-image: url('1775754153480.jpg')"></div>
+            <div class="slide" style="background-image: url('1775754133822.jpg')"></div>
+            <div class="slide" style="background-image: url('images (58).jpeg')"></div>
+            <div class="slide" style="background-image: url('1775754193100.jpg')"></div>
+            <div class="slide" style="background-image: url('1775754209071.jpg')"></div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2 id="heroTitle" class="text-3xl md:text-5xl font-black leading-tight text-white drop-shadow-2xl"></h2>
+            <p id="heroSub" class="mt-4 text-slate-300 italic text-sm max-w-md"></p>
+        </div>
+    </div>
+
+    <main class="max-w-6xl mx-auto p-6 space-y-20 mt-10">
+        
+        <section>
+            <h3 id="newsLabel" class="text-amber-500 font-black italic text-xl mb-10 border-l-4 border-amber-500 pl-4 uppercase"></h3>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </section>
+
+        <section>
+            <h3 class="text-amber-500 font-black italic text-xl mb-6 border-l-4 border-amber-500 pl-4 uppercase">SAMI-TUBE | ልዩ ቪዲዮ</h3>
+            <div class="video-container shadow-2xl">
+                <iframe src="https://www.youtube.com/embed/Epe9ROSZ_pc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h3 id="galleryLabel" class="text-amber-500 font-black italic text-xl mb-6 border-l-4 border-amber-500 pl-4 uppercase"></h3>
+            <div class="gallery-container shadow-2xl">
+                <div class="slide active" style="background-image: url('1775754142286.jpg')"></div>
+                <div class="slide" style="background-image: url('1775754148066.jpg')"></div>
+                <div class="slide" style="background-image: url('1775754153480.jpg')"></div>
+                <div class="slide" style="background-image: url('1775754133822.jpg')"></div>
+                <div class="slide" style="background-image: url('images (58).jpeg')"></div>
+                <div class="slide" style="background-image: url('1775754193100.jpg')"></div>
+                <div class="slide" style="background-image: url('1775754209071.jpg')"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-20 bg-slate-900/80 border-t border-white/5 p-10 text-center">
+        <h4 class="text-amber-500 font-black italic text-xl">SAMI-TUBE MEDIA</h4>
+        <p class="text-slate-400 text-xs mt-2">Connecting Metehara to the Digital World</p>
+        <div class="flex justify-center flex-wrap gap-4 mt-6">
+            <a href="https://youtube.com/@samsontesfaye2670" target="_blank" class="bg-red-600 text-white px-6 py-2 rounded-full text-xs font-bold uppercase transition-transform hover:scale-105">YouTube</a>
+            <a href="https://www.facebook.com/share/1CgMxSgtLu/" target="_blank" class="bg-blue-700 text-white px-6 py-2 rounded-full text-xs font-bold uppercase transition-transform hover:scale-105">Facebook</a>
+            <a href="https://t.me/Ayyotube_bot" target="_blank" class="bg-blue-400 text-white px-6 py-2 rounded-full text-xs font-bold uppercase transition-transform hover:scale-105">Telegram Bot</a>
+        </div>
+        <div class="mt-10 text-slate-600 text-[10px] tracking-widest uppercase">&copy; 2026 SAMI-TUBE MEDIA | Metehara, Ethiopia</div>
+    </footer>
+
+    <div id="newsModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-amber-500 text-3xl font-bold transition-colors">&times;</button>
+            <h2 id="modalTitle" class="text-2xl font-black text-amber-500 mb-6 italic"></h2>
+            <div id="modalBody" class="text-slate-200 leading-relaxed text-sm pr-2"></div>
+        </div>
+    </div>
+
+    <script>
+        const content = {
+            am: {
+                heroTitle: 'ወደ መተሃራ ዲጂታል <br> <span class="text-amber-500 italic">የመረጃ መረብ</span> በደህና መጡ',
+                heroSub: 'ወቅታዊ የከተማዋን መረጃዎች፣ የልማት ስራዎችን እና ባህላዊ እሴቶችን በአንድ ቦታ ያግኙ።',
+                newsLabel: 'ዋና ዋና ዜናዎች',
+                galleryLabel: 'የከተማዋ ገጽታ',
+                news: [
+                    { id: 0, title: "የከተማዋ የልማት ስራዎች", desc: "በአቶ አዲሱ ዋቆ የሚመራው የከተማ አስተዳደር እያከናወናቸው ያሉ የልማት እንቅስቃሴዎች።", full: "የመተሃራ ከተማ አስተዳደር በከንቲባው በአቶ አዲሱ ዋቆ መሪነት በርካታ የመሠረተ ልማት ግንባታዎችን በማከናወን ላይ ይገኛል። ከነዚህም መካከል የመንገድ ማስፋፋት፣ የአረንጓዴ ልማት እና የከተማ ውበት ስራዎች በግንባር ቀደምትነት ይጠቀሳሉ።" },
+                    { id: 1, title: "የውሃ ፕሮጀክት ዝመና", desc: "የመተሃራን የውሃ ችግር በዘላቂነት ለመፍታት የተጀመረው ፕሮጀክት አፈጻጸም።", full: "ለዓመታት በከተማዋ ሲታይ የነበረውን የንጹህ መጠጥ ውሃ እጥረት በዘላቂነት ለመፍታት የተጀመረው ትልቅ ፕሮጀክት አሁን ላይ 90% ደርሷል። ፕሮጀክቱ ሲጠናቀቅ መላው የከተማዋ ነዋሪ ተጠቃሚ ይሆናል።" },
+                    { id: 2, title: "የቱሪዝም መስህቦች", desc: "የበሰቃ ሃይቅ እና ሌሎች የመተሃራ ተፈጥሯዊ ውበቶች።", full: "መተሃራ በተፈጥሮ ሀብት የታደለች ከተማ ናት። የበሰቃ ሃይቅ አካባቢ ለቱሪዝም በሚመች መልኩ እየለማ ሲሆን፣ በቅርቡ የተገነቡት የመዝናኛ ስፍራዎች ለከተማዋ ተጨማሪ ውበት ሰጥተዋታል።" }
+                ]
+            },
+            om: { /* Afan Oromo content as needed */ },
+            en: { /* English content as needed */ }
+        };
+
+        function updateContent() {
+            const lang = document.getElementById('langSelect').value;
+            const data = content[lang] || content.am;
+            document.getElementById('heroTitle').innerHTML = data.heroTitle;
+            document.getElementById('heroSub').innerText = data.heroSub;
+            document.getElementById('newsLabel').innerText = data.newsLabel;
+            document.getElementById('galleryLabel').innerText = data.galleryLabel;
+
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = data.news.map(n => `
+                <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 hover:border-amber-500/30 transition-all shadow-xl">
+                    <h4 class="font-black italic text-lg mb-4 text-amber-500 tracking-tighter">${n.title}</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">${n.desc}</p>
+                    <button onclick="openModal(${n.id})" class="more-btn text-amber-500 text-[10px] font-black uppercase tracking-widest border border-amber-500/20 px-4 py-2 rounded-full transition-all">Read More +</button>
+                </div>
+            `).join('');
+        }
+
+        // POPUP MODAL LOGIC
+        function openModal(id) {
+            const lang = document.getElementById('langSelect').value;
+            const item = content[lang].news[id];
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalBody').innerText = item.full;
+            document.getElementById('newsModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevents scrolling behind modal
+        }
+
+        function closeModal() {
+            document.getElementById('newsModal').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enables scrolling
+        }
+
+        // AUTO SLIDESHOW LOGIC
+        function startSlideshow(selector) {
+            const slides = document.querySelectorAll(selector);
+            let current = 0;
+            if (slides.length > 0) {
+                setInterval(() => {
+                    slides[current].classList.remove('active');
+                    current = (current + 1) % slides.length;
+                    slides[current].classList.add('active');
+                }, 5000);
+            }
+        }
+
+        window.onload = function() {
+            updateContent();
+            startSlideshow('.hero-section .slide');
+            startSlideshow('.gallery-container .slide');
+        };
+    </script>
+</body>
+</html>

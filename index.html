@@ -9,43 +9,54 @@
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; overflow-x: hidden; }
         
-        .hero-section { display: flex; height: 60vh; position: relative; overflow: hidden; }
-        .side-menu { background-color: #0c82cf; width: 100px; display: flex; flex-direction: column; justify-content: center; gap: 15px; z-index: 30; }
-        .menu-item { color: white; font-size: 0.7rem; font-weight: 800; text-align: center; cursor: pointer; }
+        /* Hero Section with Motion Slides */
+        .hero-section { display: flex; height: 65vh; position: relative; overflow: hidden; }
+        .side-menu { background-color: #0c82cf; width: 110px; display: flex; flex-direction: column; justify-content: center; gap: 20px; z-index: 30; }
+        .menu-item { color: white; font-size: 0.75rem; font-weight: 800; text-align: center; cursor: pointer; transition: 0.3s; }
+        .menu-item:hover { color: #f59e0b; }
 
-        #bg-slider { position: absolute; inset: 0 0 0 100px; z-index: 1; }
-        .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; }
+        #bg-slider { position: absolute; inset: 0 0 0 110px; z-index: 1; }
+        .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease-in-out; }
         .slide.active { opacity: 1; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.3) 100%); z-index: 5; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.3) 100%); z-index: 5; }
         
-        .hero-content { position: relative; z-index: 10; padding-left: 30px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-content { position: relative; z-index: 10; padding-left: 40px; display: flex; flex-direction: column; justify-content: center; }
 
-        /* Modal Popup */
-        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+        /* News Cards - Made fully clickable */
+        .news-card { background: #0f172a; border-radius: 25px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; cursor: pointer; }
+        .news-card:hover { border-color: #f59e0b; transform: translateY(-8px); box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1); }
+        .news-img { height: 180px; width: 100%; background-size: cover; background-position: center; }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; }
         .modal.active { display: flex; }
-        .modal-content { background: #0f172a; border: 2px solid #f59e0b; border-radius: 20px; padding: 25px; max-width: 500px; width: 90%; position: relative; }
+        .modal-content { background: #0f172a; border: 1px solid #f59e0b; border-radius: 30px; padding: 30px; max-width: 600px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
 
-        /* Video Wrapper */
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        /* Language Select Styling */
+        #langSelect { appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 0.5rem center; background-size: 1rem; padding-right: 2rem; }
     </style>
 </head>
 <body>
 
-    <header class="p-4 flex justify-between items-center bg-[#020617] border-b border-white/10 sticky top-0 z-50">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-amber-500 rounded flex items-center justify-center text-black font-black">S</div>
-            <h1 class="font-black italic text-sm">SAMI-TUBE MEDIA</h1>
+    <header class="p-4 flex justify-between items-center bg-[#020617] border-b border-white/5 sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-black font-black text-xl shadow-lg">S</div>
+            <div>
+                <h1 class="text-white font-black italic text-md leading-none uppercase">SAMI-TUBE MEDIA</h1>
+                <p class="text-amber-500 text-[8px] font-bold tracking-widest mt-1">DIGITAL EXCELLENCE</p>
+            </div>
         </div>
-        <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-2 py-1 rounded border border-white/20">
-            <option value="am">አማርኛ</option>
-            <option value="om">Oromoo</option>
-            <option value="en">English</option>
-        </select>
+        <div class="relative">
+            <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg border border-white/10 outline-none cursor-pointer font-bold">
+                <option value="am">🇪🇹 አማርኛ</option>
+                <option value="om">🇪🇹 Oromoo</option>
+                <option value="en">🇺🇸 English</option>
+            </select>
+        </div>
     </header>
 
     <div class="hero-section">
-        <nav class="side-menu">
+        <nav class="side-menu shadow-2xl">
             <div class="menu-item">ዜና</div>
             <div class="menu-item">ሪፖርት</div>
             <div class="menu-item">ቱሪዝም</div>
@@ -56,74 +67,82 @@
             <div class="slide active" style="background-image: url('1775754142286.jpg')"></div>
             <div class="slide" style="background-image: url('1775754148066.jpg')"></div>
             <div class="slide" style="background-image: url('1775754153480.jpg')"></div>
-            <div class="slide" style="background-image: url('images (58).jpeg')"></div>
+            <div class="slide" style="background-image: url('1775754133822.jpg')"></div>
+            <div class="slide" style="background-image: url('1775754193100.jpg')"></div>
         </div>
         
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h2 id="heroTitle" class="text-2xl md:text-4xl font-black text-white"></h2>
-            <p id="heroSub" class="text-slate-300 text-xs mt-2 max-w-xs"></p>
+            <h2 id="heroTitle" class="text-3xl md:text-5xl font-black text-white leading-tight drop-shadow-lg"></h2>
+            <p id="heroSub" class="text-slate-300 text-sm mt-4 max-w-md italic drop-shadow-md"></p>
         </div>
     </div>
 
-    <main class="p-6 space-y-12">
+    <main class="max-w-6xl mx-auto p-6 space-y-20 mt-10">
         <section>
-            <h3 id="newsLabel" class="text-amber-500 font-black italic mb-6 border-l-4 border-amber-500 pl-3"></h3>
-            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+            <h3 id="newsLabel" class="text-amber-500 font-black italic text-xl mb-10 border-l-4 border-amber-500 pl-4 uppercase tracking-wider"></h3>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
         </section>
 
         <section>
-            <h3 class="text-amber-500 font-black italic mb-4 border-l-4 border-amber-500 pl-3 uppercase">SAMI-TUBE | YouTube</h3>
+            <h3 class="text-amber-500 font-black italic text-xl mb-8 border-l-4 border-amber-500 pl-4 uppercase tracking-wider">SAMI-TUBE | YouTube</h3>
             <div class="video-wrapper shadow-2xl">
-                <iframe src="https://www.youtube.com/embed/Epe9ROSZ_pc" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/Epe9ROSZ_pc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </section>
     </main>
 
-    <footer class="bg-slate-900 p-8 text-center border-t border-white/5">
-        <div class="flex justify-center gap-4 mb-6">
-            <a href="https://youtube.com/@samsontesfaye2670" target="_blank" class="bg-red-600 px-4 py-2 rounded-full text-[10px] font-bold">YOUTUBE</a>
-            <a href="https://www.facebook.com/share/1CgMxSgtLu/" target="_blank" class="bg-blue-700 px-4 py-2 rounded-full text-[10px] font-bold">FACEBOOK</a>
-            <a href="https://t.me/Ayyotube_bot" target="_blank" class="bg-blue-500 px-4 py-2 rounded-full text-[10px] font-bold">TELEGRAM</a>
+    <footer class="bg-slate-950 p-12 text-center border-t border-white/5 mt-10">
+        <h4 class="text-amber-500 font-black italic text-xl mb-6">SAMI-TUBE MEDIA</h4>
+        <div class="flex justify-center flex-wrap gap-4 mb-10">
+            <a href="https://youtube.com/@samsontesfaye2670" target="_blank" class="bg-red-600 px-6 py-2 rounded-full text-xs font-bold transition-transform hover:scale-110 shadow-lg">YOUTUBE</a>
+            <a href="https://www.facebook.com/share/1CgMxSgtLu/" target="_blank" class="bg-blue-700 px-6 py-2 rounded-full text-xs font-bold transition-transform hover:scale-110 shadow-lg">FACEBOOK</a>
+            <a href="https://t.me/Ayyotube_bot" target="_blank" class="bg-blue-500 px-6 py-2 rounded-full text-xs font-bold transition-transform hover:scale-110 shadow-lg">TELEGRAM</a>
         </div>
-        <p class="text-slate-500 text-[10px] tracking-widest">&copy; 2026 SAMI-TUBE MEDIA</p>
+        <p class="text-slate-600 text-[10px] tracking-widest uppercase">&copy; 2026 Digital Excellence | Metehara Hub</p>
     </footer>
 
     <div id="newsModal" class="modal" onclick="this.classList.remove('active')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <h2 id="modalTitle" class="text-xl font-black text-amber-500 mb-4 italic"></h2>
-            <p id="modalBody" class="text-slate-300 text-sm leading-relaxed"></p>
-            <button onclick="document.getElementById('newsModal').classList.remove('active')" class="mt-6 bg-amber-500 text-black px-4 py-2 rounded-lg font-bold text-xs uppercase">ዝጋ</button>
+            <button onclick="document.getElementById('newsModal').classList.remove('active')" class="absolute top-4 right-6 text-slate-500 hover:text-white text-4xl">&times;</button>
+            <h2 id="modalTitle" class="text-2xl font-black text-amber-500 mb-6 italic border-b border-amber-500/20 pb-2"></h2>
+            <p id="modalBody" class="text-slate-200 leading-relaxed text-md font-medium"></p>
+            <div class="mt-8 pt-4 border-t border-white/5">
+                <button onclick="document.getElementById('newsModal').classList.remove('active')" class="bg-amber-500 text-black px-6 py-2 rounded-full text-xs font-black uppercase shadow-lg">ዝጋ / CLOSE</button>
+            </div>
         </div>
     </div>
 
     <script>
         const content = {
             am: {
-                heroTitle: 'ወደ መተሃራ መረጃ መረብ በደህና መጡ',
-                heroSub: 'ወቅታዊ የከተማዋን መረጃዎች እና የልማት ስራዎችን በአንድ ቦታ ያግኙ።',
+                heroTitle: 'ወደ መተሃራ ዲጂታል መረጃ መረብ በደህና መጡ',
+                heroSub: 'ወቅታዊ የከተማዋን መረጃዎች፣ የልማት ስራዎችን እና ውብ ገጽታዎችን በአንድ ቦታ ያግኙ።',
                 newsLabel: 'ዋና ዋና ዜናዎች',
                 news: [
-                    { t: "የልማት ስራዎች", d: "በአቶ አዲሱ ዋቆ የሚመራው የከተማ አስተዳደር ስራዎች።", f: "በከንቲባው አቶ አዲሱ ዋቆ የሚመራው አስተዳደር በመተሃራ ከተማ በርካታ የመንገድና የውበት ስራዎችን እያከናወነ ይገኛል።" },
-                    { t: "የውሃ ፕሮጀክት", d: "የከተማዋን የውሃ ችግር ለመፍታት የተጀመረው ስራ።", f: "የመተሃራን የንጹህ መጠጥ ውሃ ችግር ለዘላቂነት ለመፍታት የተጀመረው ትልቅ ፕሮጀክት አሁን በመጠናቀቅ ላይ ነው።" }
+                    { t: "የልማት ስራዎች", i: "1775744540465.jpg", d: "በአቶ አዲሱ ዋቆ የሚመራው የከተማ አስተዳደር ስራዎች።", f: "በከንቲባው አቶ አዲሱ ዋቆ የሚመራው የከተማ አስተዳደር በመተሃራ ከተማ በርካታ የመንገድ ግንባታና የውበት ስራዎችን በከፍተኛ ፍጥነት እያከናወነ ይገኛል። የከተማዋ ገጽታ በከፍተኛ ሁኔታ እየተቀየረ ነው።" },
+                    { t: "የውሃ ፕሮጀክት", i: "1775744537702.jpg", d: "የከተማዋን የውሃ ችግር ለመፍታት የተጀመረው ትልቅ ስራ።", f: "የመተሃራን የንጹህ መጠጥ ውሃ እጥረት ለዘላቂነት ለመፍታት የተጀመረው ሜጋ ፕሮጀክት አሁን ላይ 90% በመጠናቀቅ ላይ ይገኛል። ፕሮጀክቱ ሲጠናቀቅ ለከተማዋ ትልቅ እፎይታ ይሆናል።" },
+                    { t: "የቱሪዝም መስህብ", i: "1775744531970.jpg", d: "የበሰቃ ሐይቅ እና አካባቢው እያገኘ ያለው ገጽታ።", f: "በበሰቃ ሐይቅ ዙሪያ የተሰሩ አዳዲስ የመዝናኛ ስፍራዎች እና ፓርኮች ከተማዋን ለቱሪስት መስህብነት ተመራጭ እያደረጓት ነው። አካባቢው ለኢንቨስትመንትም ክፍት ነው።" }
                 ]
             },
             om: {
-                heroTitle: 'Giddu-gala Odeeffannoo Mataaharaa',
-                heroSub: 'Odeeffannoo magaalaa yeroo fi hojiiwwan misoomaa hunda bakka tokkotti.',
+                heroTitle: 'Giddu-gala Odeeffannoo Mataaharaatti Baga Nagaan Dhuftan',
+                heroSub: 'Odeeffannoo magaalaa yeroo fi hojiiwwan misoomaa hunda bakka tokkotti argattu.',
                 newsLabel: 'ODUUWWAN IJOO',
                 news: [
-                    { t: "Hojii Misoomaa", d: "Hojiiwwan bulchiinsa magaalaa Obbo Addisuu Waaqootiin dursamu.", f: "Bulchiinsi magaalaa Mataaharaa Obbo Addisuu Waaqootiin dursamu hojiiwwan misoomaa hedduu hojjechaa jira." },
-                    { t: "Pirojektii Bishaanii", d: "Hojii rakkoo bishaanii magaalattii furuuf hojjetamaa jiru.", f: "Rakkoo bishaan dhugaatii magaalaa Mataaharaa furuuf pirojektiin jalqabame xumuraarra gahee jira." }
+                    { t: "Hojii Misoomaa", i: "1775744540465.jpg", d: "Hojiiwwan bulchiinsa magaalaa Obbo Addisuu Waaqootiin dursamu.", f: "Bulchiinsi magaalaa Mataaharaa Obbo Addisuu Waaqootiin dursamu hojiiwwan bu'uura misoomaa fi miidhagina magaalaa hedduu hojjechaa jira. Magaalaan keenya guddina irratti argama." },
+                    { t: "Pirojektii Bishaanii", i: "1775744537702.jpg", d: "Hojii rakkoo bishaanii magaalattii furuuf hojjetamaa jiru.", f: "Rakkoo bishaan dhugaatii magaalaa Mataaharaa furuuf pirojektiin jalqabame xumuraarra gahee jira. Kunis jiraattotaaf boqonnaa guddaa dha." },
+                    { t: "Hawwata Turiizimii", i: "1775744531970.jpg", d: "Haroon Basakaa fi kutaaleen biroo daawwattootaaf qophii dha.", f: "Haroon Basakaa fi bakka bashannanaa qarqara harichatti ijaaraman hawwata turiizimii magaalattii guddisuuf gahee qabu. Daawwattonni baga nagaan dhuftan." }
                 ]
             },
             en: {
-                heroTitle: 'Welcome to Metehara Hub',
-                heroSub: 'Get the latest city updates and development news in one place.',
+                heroTitle: 'Welcome to Metehara Digital Hub',
+                heroSub: 'Get the latest city updates, development news, and beautiful views in one place.',
                 newsLabel: 'TOP STORIES',
                 news: [
-                    { t: "City Development", d: "Projects led by Mayor Addisu Wako.", f: "Under Mayor Addisu Wako's leadership, the city is undergoing major infrastructure and beautification works." },
-                    { t: "Water Project", d: "Efforts to solve the city's water shortage.", f: "The mega water project aimed at ending water scarcity in Metehara is nearing its completion." }
+                    { t: "City Development", i: "1775744540465.jpg", d: "Projects led by Mayor Addisu Wako.", f: "Under Mayor Addisu Wako's leadership, the city is undergoing major infrastructure and urban beautification works. The urban transformation is moving at a fast pace." },
+                    { t: "Water Project", i: "1775744537702.jpg", d: "Efforts to solve the city's water shortage.", f: "The mega water project aimed at ending water scarcity in Metehara is nearing its 90% completion. This will permanently solve the water issues in our city." },
+                    { t: "Tourism Spot", i: "1775744531970.jpg", d: "The scenic views of Lake Beseka and surroundings.", f: "The new development around Lake Beseka is transforming Metehara into a prime tourist destination in the region. Beautiful parks and resorts are now open for all." }
                 ]
             }
         };
@@ -137,10 +156,15 @@
 
             const grid = document.getElementById('newsGrid');
             grid.innerHTML = data.news.map((n, index) => `
-                <div onclick="openModal('${lang}', ${index})" class="bg-slate-900 border border-white/10 p-5 rounded-2xl cursor-pointer hover:border-amber-500 transition-all shadow-xl">
-                    <h4 class="font-black italic text-amber-500 mb-2">${n.t}</h4>
-                    <p class="text-slate-400 text-xs">${n.d}</p>
-                    <p class="mt-4 text-[10px] font-bold text-white uppercase underline">Read More</p>
+                <div class="news-card" onclick="openModal('${lang}', ${index})">
+                    <div class="news-img" style="background-image: url('${n.i}')"></div>
+                    <div class="p-6">
+                        <h4 class="font-black italic text-amber-500 mb-3 uppercase tracking-tighter">${n.t}</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-6">${n.d}</p>
+                        <div class="flex items-center gap-2">
+                            <span class="text-white text-[10px] font-black uppercase tracking-widest border border-amber-500/40 px-4 py-2 rounded-full hover:bg-amber-500 hover:text-black transition-all">ሙሉውን አንብብ +</span>
+                        </div>
+                    </div>
                 </div>
             `).join('');
         }
@@ -150,16 +174,26 @@
             document.getElementById('modalTitle').innerText = item.t;
             document.getElementById('modalBody').innerText = item.f;
             document.getElementById('newsModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevents scrolling while reading
         }
 
-        // Slideshow
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            let modal = document.getElementById('newsModal');
+            if (event.target == modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Slideshow Logic
         let current = 0;
         const slides = document.querySelectorAll('.slide');
         setInterval(() => {
             slides[current].classList.remove('active');
             current = (current + 1) % slides.length;
             slides[current].classList.add('active');
-        }, 4000);
+        }, 5000);
 
         window.onload = updateContent;
     </script>

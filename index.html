@@ -9,74 +9,12 @@
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; overflow-x: hidden; }
         
-        /* በግራ በኩል ያለው ዝርዝር (Sidebar) */
-        .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 220px; background: #0ea5e9; z-index: 100; padding-top: 20px; }
-        .nav-link { display: block; padding: 18px 25px; color: white; font-weight: 800; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 1.1rem; transition: 0.3s; }
+        /* በስተግራ ያለው ሰማያዊ ዝርዝር */
+        .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 220px; background: #0ea5e9; z-index: 100; display: flex; flex-direction: column; }
+        .nav-link { padding: 20px; color: white; font-weight: 800; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 1.1rem; text-align: center; transition: 0.3s; }
         .nav-link:hover { background: rgba(0,0,0,0.1); }
 
-        /* ዋናው ክፍል */
-        .main-content { margin-left: 220px; min-height: 100vh; }
+        /* ዋናው የይዘት ክፍል */
+        .main-content { margin-left: 220px; }
         
-        header { background: #0f172a; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        
-        .hero-text { padding: 60px 40px; text-align: center; }
-        .hero-title { font-size: 3.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
-        .hero-title span { color: #f59e0b; }
-        .hero-sub { color: #94a3b8; font-size: 1.2rem; font-weight: 600; }
-
-        .video-section { max-width: 900px; margin: 0 auto 60px auto; padding: 0 20px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 20px; overflow: hidden; border: 3px solid #f59e0b; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        .news-grid { padding: 40px; display: grid; grid-cols: 1; gap: 40px; max-width: 1000px; margin: 0 auto; }
-        .news-card { background: #0f172a; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; padding-bottom: 20px; }
-        .news-content { padding: 30px; }
-        .news-title { color: #f59e0b; font-size: 1.8rem; font-weight: 900; margin-bottom: 15px; font-style: italic; }
-        .news-desc { color: #94a3b8; line-height: 1.8; margin-bottom: 25px; }
-        .read-more { color: white; font-weight: 800; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.05); pt-4; display: block; }
-
-        @media (max-width: 768px) {
-            .sidebar { width: 100%; height: auto; position: relative; display: flex; flex-wrap: wrap; }
-            .nav-link { padding: 10px; font-size: 0.9rem; border-bottom: none; }
-            .main-content { margin-left: 0; }
-            .hero-title { font-size: 2rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <aside class="sidebar">
-        <a href="#" class="nav-link">ቅድመ ዜና</a>
-        <a href="#" class="nav-link">ሪፖርት</a>
-        <a href="#" class="nav-link">ቱሪዝም</a>
-        <a href="#" class="nav-link">ባህል</a>
-        <a href="#" class="nav-link">ስነ ጽሁፍ</a>
-        <a href="#" class="nav-link">ቴክ</a>
-        <a href="#" class="nav-link">ፍልስፍና</a>
-    </aside>
-
-    <div class="main-content">
-        <header>
-            <div class="flex items-center gap-4">
-                <div class="bg-amber-500 w-12 h-12 rounded-lg flex items-center justify-center text-black font-black text-2xl">S</div>
-                <div>
-                    <h1 class="font-black text-xl italic uppercase tracking-tighter">SAMI-TUBE MEDIA</h1>
-                    <p class="text-amber-500 text-[10px] font-bold uppercase tracking-widest">Mataaharaa Digital Hub</p>
-                </div>
-            </div>
-            <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-4 py-2 rounded-lg border border-white/10">
-                <option value="am">አማርኛ</option>
-                <option value="om">Afaan Oromoo</option>
-                <option value="en">English</option>
-            </select>
-        </header>
-
-        <section class="hero-text">
-            <h2 id="heroTitle" class="hero-title">እንኳን ወደ <span>ማታሃራ</span> ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
-            <p id="heroSub" class="hero-sub">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሁፍ ማዕከል</p>
-        </section>
-
-        <section class="video-section">
-            <h3 id="videoLabel" class="text-white font-black italic border-l-[6px] border-amber-500 pl-4 mb-6 text-xl">የቅርብ ጊዜ የቪዲዮ ሪፖርቶች</h3>
-            <div class="video-container">
-                <iframe src="
+        header { background: #0f172a; padding: 15px 30px; display

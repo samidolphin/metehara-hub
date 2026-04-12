@@ -15,9 +15,9 @@
         .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
         .slide.active { opacity: 1; }
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.3) 100%); z-index: 5; }
-        .news-card { background: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.4s; height: 100%; }
+        .news-card { background: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.4s; height: 100%; display: flex; flex-direction: column; }
         .news-card:hover { border-color: #f59e0b; transform: translateY(-8px); }
-        .news-img { height: 220px; background-size: cover; background-position: center; }
+        .news-img { height: 220px; background-size: cover; background-position: center; width: 100%; background-color: #1e293b; }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; border: 2px solid #f59e0b; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); padding: 20px; overflow-y: auto; }
@@ -100,9 +100,9 @@
                 videoLabel: 'የቱሪስት ኢንተርቪው | ከመተሃራ እንግዶች ጋር',
                 newsLabel: 'የቅርብ ጊዜ ዜናዎች',
                 news: [
-                    { t: "አቶ አዲሱ ዋቆ በማታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች", i: "mayor-addisu-wako~2.jpg", d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", f: "ዘጋቢ፡ ሳምሶን ተስፋዬ" },
-                    { t: "የማታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ", i: "Lumii_20260412_180356344~2.jpg", d: "የከተማዋን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ ይገኛል።", f: "የንፁህ መጠጥ ውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።" },
-                    { t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ", i: "Lumii_20260412_180443961~2.jpg", d: "በኑራኤራ እርሻ ልማት ባለሙያዎች የሚከናወነው ሳይንሳዊ የመግረዝ ስራ ምርታማነትን እያረጋገጠ ነው።", f: "በማታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።" }
+                    { t: "አቶ አዲሱ ዋቆ በማታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች", i: "mayor-addisu-wako~2.jpg", d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", f: "የማታሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ወደ ስልጣን ከመጡ ጊዜ ጀምሮ በከተማዋ በርካታ የልማት ስራዎች እየተከናወኑ ይገኛሉ። በተለይም የመሰረተ ልማት ዝርጋታ፣ የከተማ ውበት እና የመልካም አስተዳደር ስራዎች ላይ ትኩረት በማድረግ የነዋሪዎችን የኑሮ ደረጃ ለማሻሻል በቁርጠኝነት እየሰሩ መሆኑን የከተማዋ ነዋሪዎች ይመሰክራሉ። ዛሬም ይህ የልማት ጉዞ ተጠናክሮ ቀጥሏል።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ" },
+                    { t: "የማታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ", i: "Lumii_20260412_180356344~2.jpg", d: "የከተማዋን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ ይገኛል።", f: "ለበርካታ አመታት የማታሃራ ከተማ ነዋሪዎች ዋነኛ ጥያቄ የነበረው የንፁህ መጠጥ ውሃ እጥረት በዘላቂነት ለመፍታት ታስቦ የተጀመረው ግዙፍ የውሃ ፕሮጀክት አሁን ላይ 90 በመቶ መጠናቀቁ ተበሰረ። በከፍተኛ በጀት (ከ1.4 ቢሊዮን ብር በላይ) እየተገነባ ያለው ይህ ፕሮጀክት ሲጠናቀቅ ከተማዋን እና አካባቢውን ለቀጣይ 20 አመታት ያለምንም የውሃ እጥረት ማገልገል የሚችል አቅም አለው ተብሏል።" },
+                    { t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ", i: "Lumii_20260412_180443961~2.jpg", d: "በኑራኤራ እርሻ ልማት ባለሙያዎች የሚከናወነው ሳይንሳዊ የመግረዝ ስራ ምርታማነትን እያረጋገጠ ነው።", f: "በማታሃራ ከተማ አዋሳኝ በሚገኘው የበሰቃ ሃይቅ ዳርቻ ላይ የሚገኙ የብርቱካን እርሻዎች በከፍተኛ የግብርና ጥበብ እየለሙ ይገኛሉ። የኑራኤራ እርሻ ልማት ባለሙያዎች እንደሚገልጹት፣ ሳይንሳዊ የመግረዝ (Pruning) ዘዴዎችን በመጠቀም የዛፎቹን ምርታማነት ማሳደግ ተችሏል። ይህ ልምድ ለሌሎች አርሶ አደሮችም እንደ አርአያነት የሚጠቀስ ሲሆን፣ የአካባቢውን የኢኮኖሚ እንቅስቃሴ እያነቃቃ ይገኛል።" }
                 ]
             },
             om: {
@@ -111,9 +111,9 @@
                 videoLabel: 'Gaaffii fi Deebii Turistootaa | Mataaharaatti',
                 newsLabel: 'Oduuwwan dhihoo',
                 news: [
-                    { t: "Hojiiwwan Misoomaa Obbo Addisuu Waaqoo", i: "mayor-addisu-wako~2.jpg", d: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa fi bulchiinsa gaarii hojjachaa jiran.", f: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga gara aangoo dhufanii as hojiiwwan misoomaa hedduu hojjachaa jiru." },
-                    { t: "Pirojektii Bishaan Dhugaatii Magaalaa Mataaharaa", i: "Lumii_20260412_180356344~2.jpg", d: "Pirojektiin bishaan dhugaatii birrii biliyoona 1.4 oliin hojjetamaa jiru kun xumuramaa jira.", f: "Mataaharaa — Pirojektiin bishaan dhugaatii magaalaa Mataaharaa baasii guddaadhaan hojjetamaa jiru kun dhibbeentaa 90 oliin xumurameera." },
-                    { t: "Misooma Oomisha Birtukaanaa Qarqara Garba Basakaatti", i: "Lumii_20260412_180443961~2.jpg", d: "Hojjettoota ogummaa qabaniin hojiin mirmirsuu (Pruning) oomishitummaa guddisee jira.", f: "Mataaharaatti qarqara garba Basakaatti misoomni birtukaanaa haala saayinsaawaa ta'een hojjetamaa jira." }
+                    { t: "Hojiiwwan Misoomaa Obbo Addisuu Waaqoo", i: "mayor-addisu-wako~2.jpg", d: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa fi bulchiinsa gaarii hojjachaa jiran.", f: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga gara aangoo dhufanii as hojiiwwan misoomaa hedduu hojjachaa jiru. Keessattuu hojiiwwan bu'uraalee misoomaa irratti xiyyeeffachuun jireenya hawaasaa fooyyessaa jiru." },
+                    { t: "Pirojektii Bishaan Dhugaatii Magaalaa Mataaharaa", i: "Lumii_20260412_180356344~2.jpg", d: "Pirojektiin bishaan dhugaatii birrii biliyoona 1.4 oliin hojjetamaa jiru kun xumuramaa jira.", f: "Pirojektiin bishaan dhugaatii magaalaa Mataaharaa baasii guddaadhaan hojjetamaa jiru kun dhibbeentaa 90 oliin xumurameera. Pirojektiin kun yeroo xumuramu rakkoo bishaan dhugaatii magaalaa keenyaa bu'uraan fura jedhamee eegama." },
+                    { t: "Misooma Oomisha Birtukaanaa Qarqara Garba Basakaatti", i: "Lumii_20260412_180443961~2.jpg", d: "Hojjettoota ogummaa qabaniin hojiin mirmirsuu (Pruning) oomishitummaa guddisee jira.", f: "Mataaharaatti qarqara garba Basakaatti misoomni birtukaanaa haala saayinsaawaa ta'een hojjetamaa jira. Ogummaa mirmirsuu (Pruning) fayyadamuun oomisha fooyya'aa argachuun danda'ameera." }
                 ]
             },
             en: {
@@ -122,9 +122,9 @@
                 videoLabel: 'Tourist Interview | Guests in Mataaharaa',
                 newsLabel: 'Latest News',
                 news: [
-                    { t: "Mayor Addisu Wako's Development Projects", i: "mayor-addisu-wako~2.jpg", d: "The leadership and development initiatives of Mayor Addisu Wako are creating a better environment.", f: "Mataaharaa — Mayor Addisu Wako has been leading significant urban development projects." },
-                    { t: "Mataaharaa Water Project Reaches 90% Completion", i: "Lumii_20260412_180356344~2.jpg", d: "The 1.4 billion birr water project is nearing its final stage.", f: "Mataaharaa — The massive water project in Mataaharaa, costing over 1.4 billion Birr, is now 90% complete." },
-                    { t: "Scientific Citrus Farming at Lake Beseka Shore", i: "Lumii_20260412_180443961~2.jpg", d: "Professional pruning techniques by experts are ensuring high agricultural productivity.", f: "At the shores of Lake Beseka, scientific citrus farming is thriving." }
+                    { t: "Mayor Addisu Wako's Development Projects", i: "mayor-addisu-wako~2.jpg", d: "The leadership and development initiatives of Mayor Addisu Wako are creating a better environment.", f: "Mataaharaa — Mayor Addisu Wako has been leading significant urban development projects since taking office. His focus on infrastructure and good governance has been highly praised by the local community." },
+                    { t: "Mataaharaa Water Project Reaches 90% Completion", i: "Lumii_20260412_180356344~2.jpg", d: "The 1.4 billion birr water project is nearing its final stage.", f: "The massive water project in Mataaharaa, costing over 1.4 billion Birr, is now 90% complete. This project is expected to solve the clean water shortage in the city for the next two decades." },
+                    { t: "Scientific Citrus Farming at Lake Beseka Shore", i: "Lumii_20260412_180443961~2.jpg", d: "Professional pruning techniques by experts are ensuring high agricultural productivity.", f: "Professional citrus farming at the shores of Lake Beseka is showing great results. Using scientific pruning methods, local experts have managed to significantly increase the yield of orange plantations." }
                 ]
             }
         };

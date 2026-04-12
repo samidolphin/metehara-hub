@@ -60,9 +60,9 @@
     </div>
 
     <main class="max-w-7xl mx-auto p-6 space-y-16">
-        <section id="videoSection" class="bg-slate-900/50 p-8 rounded-3xl border border-white/5 shadow-2xl">
+        <section id="videoSection" class="bg-slate-900/50 p-8 rounded-3xl border border-white/5">
             <h3 id="videoLabel" class="text-white font-black italic text-xl mb-6 border-l-8 border-amber-500 pl-4 uppercase"></h3>
-            <div class="video-container">
+            <div class="video-container shadow-2xl">
                 <iframe src="https://www.youtube.com/embed/Epe9ROSZ_pc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </section>
@@ -100,24 +100,9 @@
                 videoLabel: 'የቱሪስት ኢንተርቪው | ከመተሃራ እንግዶች ጋር',
                 newsLabel: 'የቅርብ ጊዜ ዜናዎች',
                 news: [
-                    { 
-                        t: "አቶ አዲሱ ዋቆ በማታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው", 
-                        i: "mayor-addisu-wako~2.jpg", 
-                        d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", 
-                        f: "ማታሃራ — የማታሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የማታሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ" 
-                    },
-                    { 
-                        t: "የማታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
-                        i: "Lumii_20260412_180443961~2.jpg", 
-                        d: "የከተማዋን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ ይገኛል።", 
-                        f: "ማታሃራ — በማታሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ ግንባታው በጥራት እና በተቀመጠለት የጊዜ ገደብ እየተከናወነ መሆኑን አረጋግጠዋል። ሲጠናቀቅ ለቀጣዮቹ 50 ዓመታት አስተማማኝ የውሃ አቅርቦት ይሰጣል።" 
-                    },
-                    { 
-                        t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", 
-                        i: "Lumii_20260412_180356344~2.jpg", 
-                        d: "በኑራኤራ እርሻ ልማት ባለሙያዎች የሚከናወነው ሳይንሳዊ የመግረዝ ስራ ምርታማነትን እያረጋገጠ ነው።", 
-                        f: "በማታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።\n\nበኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።" 
-                    }
+                    { t: "አቶ አዲሱ ዋቆ በማታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች", i: "mayor-addisu-wako~2.jpg", d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", f: "ማታሃራ — የማታሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የማታሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ" },
+                    { t: "የማታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ", i: "Lumii_20260412_180443961~2.jpg", d: "የከተማዋን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ ይገኛል።", f: "ማታሃራ — በማታሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል።" },
+                    { t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ", i: "Lumii_20260412_180356344~2.jpg", d: "በኑራኤራ እርሻ ልማት ባለሙያዎች የሚከናወነው ሳይንሳዊ የመግረዝ ስራ ምርታማነትን እያረጋገጠ ነው።", f: "በማታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።" }
                 ]
             },
             om: {
@@ -126,24 +111,9 @@
                 videoLabel: 'Gaaffii fi Deebii Turistootaa | Mataaharaatti',
                 newsLabel: 'Oduuwwan dhihoo',
                 news: [
-                    { 
-                        t: "Hojiiwwan Misoomaa Obbo Addisuu Waaqoo Magaalaa Mataaharaaf bifa haaraa kennaa jiru", 
-                        i: "mayor-addisu-wako~2.jpg", 
-                        d: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa fi bulchiinsa gaarii hojjachaa jiran madda gammachuu jiraattotaa ta'ee jira.", 
-                        f: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga gara aangoo dhufanii as hojiiwwan misoomaa hedduu hojjachaa jiru. Keessattuu qulqullina magaalaa fi dacha bishaan Mataaharaa gara bakka bashannanaa madda galii ta'etti jijjiiruun isaanii akka fakkeenyaatti eerama." 
-                    },
-                    { 
-                        t: "Pirojektii Bishaan Dhugaatii Magaalaa Mataaharaa dhibbeentaa 90 irra gahe", 
-                        i: "Lumii_20260412_180443961~2.jpg", 
-                        d: "Pirojektiin bishaan dhugaatii birrii biliyoona 1.4 oliin hojjetamaa jiru kun xumuramaa jira.", 
-                        f: "Mataaharaa — Pirojektiin bishaan dhugaatii magaalaa Mataaharaa baasii guddaadhaan hojjetamaa jiru kun dhibbeentaa 90 oliin xumurameera. Pirojektiin kun waggoota 50 dhufaniif rakkoo bishaan magaalaa kan furuudha." 
-                    },
-                    { 
-                        t: "Misooma Oomisha Birtukaanaa Qarqara Garba Basakaatti", 
-                        i: "Lumii_20260412_180356344~2.jpg", 
-                        d: "Hojjettoota ogummaa qabaniin hojiin mirmirsuu (Pruning) oomishitummaa guddisee jira.", 
-                        f: "Mataaharaatti qarqara garba Basakaatti misoomni birtukaanaa haala saayinsaawaa ta'een hojjetamaa jira. Ogummaan mirmirsuu kun oomishni akka dabaluufi mukni akka hin madaanoof gargaara." 
-                    }
+                    { t: "Hojiiwwan Misoomaa Obbo Addisuu Waaqoo", i: "mayor-addisu-wako~2.jpg", d: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa fi bulchiinsa gaarii hojjachaa jiran.", f: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga gara aangoo dhufanii as hojiiwwan misoomaa hedduu hojjachaa jiru." },
+                    { t: "Pirojektii Bishaan Dhugaatii Magaalaa Mataaharaa", i: "Lumii_20260412_180443961~2.jpg", d: "Pirojektiin bishaan dhugaatii birrii biliyoona 1.4 oliin hojjetamaa jiru kun xumuramaa jira.", f: "Mataaharaa — Pirojektiin bishaan dhugaatii magaalaa Mataaharaa baasii guddaadhaan hojjetamaa jiru kun dhibbeentaa 90 oliin xumurameera." },
+                    { t: "Misooma Oomisha Birtukaanaa Qarqara Garba Basakaatti", i: "Lumii_20260412_180356344~2.jpg", d: "Hojjettoota ogummaa qabaniin hojiin mirmirsuu (Pruning) oomishitummaa guddisee jira.", f: "Mataaharaatti qarqara garba Basakaatti misoomni birtukaanaa haala saayinsaawaa ta'een hojjetamaa jira." }
                 ]
             },
             en: {
@@ -152,24 +122,9 @@
                 videoLabel: 'Tourist Interview | Guests in Mataaharaa',
                 newsLabel: 'Latest News',
                 news: [
-                    { 
-                        t: "Mayor Addisu Wako's Development Projects Transforming Mataaharaa", 
-                        i: "mayor-addisu-wako~2.jpg", 
-                        d: "The leadership and development initiatives of Mayor Addisu Wako are creating a better environment for residents.", 
-                        f: "Mataaharaa — Mayor Addisu Wako has been leading significant urban development projects since taking office. His focus on environmental protection and urban beauty, including transforming the Lake Mataaharaa shores into a recreational park, is highly commended." 
-                    },
-                    { 
-                        t: "Mataaharaa Water Project Reaches 90% Completion", 
-                        i: "Lumii_20260412_180443961~2.jpg", 
-                        d: "The 1.4 billion birr water project is nearing its final stage to solve the city's water issues.", 
-                        f: "Mataaharaa — The massive water project in Mataaharaa, costing over 1.4 billion Birr, is now 90% complete. Mayor Addisu Wako confirmed that the project is expected to serve the community for the next 50 years." 
-                    },
-                    { 
-                        t: "Scientific Citrus Farming at Lake Beseka Shore", 
-                        i: "Lumii_20260412_180356344~2.jpg", 
-                        d: "Professional pruning techniques by experts are ensuring high agricultural productivity.", 
-                        f: "At the shores of Lake Beseka, scientific citrus farming is thriving. Experts from Nura Era are using professional pruning techniques to ensure tree health and maximize production." 
-                    }
+                    { t: "Mayor Addisu Wako's Development Projects", i: "mayor-addisu-wako~2.jpg", d: "The leadership and development initiatives of Mayor Addisu Wako are creating a better environment.", f: "Mataaharaa — Mayor Addisu Wako has been leading significant urban development projects since taking office." },
+                    { t: "Mataaharaa Water Project Reaches 90% Completion", i: "Lumii_20260412_180443961~2.jpg", d: "The 1.4 billion birr water project is nearing its final stage.", f: "Mataaharaa — The massive water project in Mataaharaa, costing over 1.4 billion Birr, is now 90% complete." },
+                    { t: "Scientific Citrus Farming at Lake Beseka Shore", i: "Lumii_20260412_180356344~2.jpg", d: "Professional pruning techniques by experts are ensuring high agricultural productivity.", f: "At the shores of Lake Beseka, scientific citrus farming is thriving." }
                 ]
             }
         };

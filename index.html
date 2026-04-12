@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; }
+        .hero-gradient { background: linear-gradient(to bottom, rgba(2,6,23,0.7), #020617); }
         .news-card { background: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.4s; }
         .news-card:hover { border-color: #f59e0b; transform: translateY(-5px); }
         .news-img { height: 200px; background-size: cover; background-position: center; width: 100%; }
@@ -21,87 +22,100 @@
     <header class="p-4 flex justify-between items-center bg-[#020617] border-b border-white/5 sticky top-0 z-50">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-black font-black">S</div>
-            <h1 class="text-white font-black italic text-sm">SAMI-TUBE MEDIA</h1>
+            <div>
+                <h1 class="text-white font-black italic text-sm tracking-tighter">SAMI-TUBE MEDIA</h1>
+                <p class="text-amber-500 text-[10px] font-bold uppercase tracking-widest">Mataaharaa Digital Hub</p>
+            </div>
         </div>
-        <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg outline-none">
+        <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg outline-none border border-white/10">
             <option value="am">አማርኛ</option>
             <option value="om">Afaan Oromoo</option>
             <option value="en">English</option>
         </select>
     </header>
 
-    <main class="max-w-7xl mx-auto p-6 space-y-10">
-        <section id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></section>
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-30"></div>
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="relative text-center px-6 max-w-3xl">
+            <h2 id="heroTitle" class="text-4xl md:text-6xl font-black italic mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-200 to-amber-500"></h2>
+            <p id="heroSub" class="text-slate-400 text-sm md:text-base leading-relaxed"></p>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto p-6 space-y-16">
+        
+        <section class="space-y-6">
+            <h3 id="videoLabel" class="text-amber-500 font-black italic tracking-widest uppercase text-sm border-l-4 border-amber-500 pl-4"></h3>
+            <div class="aspect-video rounded-3xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="space-y-8">
+            <h3 id="newsLabel" class="text-amber-500 font-black italic tracking-widest uppercase text-sm border-l-4 border-amber-500 pl-4"></h3>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </section>
+
     </main>
 
     <div id="newsModal" class="modal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="text-amber-500 font-bold cursor-pointer float-right" onclick="closeModal()">ዝጋ X</span>
-            <div id="modalImg" class="w-full h-64 bg-cover bg-center rounded-xl mb-6"></div>
-            <h2 id="modalTitle" class="text-2xl font-black text-amber-500 mb-4 italic"></h2>
-            <div id="modalBody" class="text-slate-200 leading-relaxed text-base whitespace-pre-wrap"></div>
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-amber-500 text-[10px] font-black uppercase tracking-widest">Sami-Tube Media Exclusive</span>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white font-bold">ዝጋ X</button>
+            </div>
+            <div id="modalImg" class="w-full h-72 bg-cover bg-center rounded-2xl mb-8 border border-white/10"></div>
+            <h2 id="modalTitle" class="text-3xl font-black text-amber-500 mb-6 italic leading-tight"></h2>
+            <div id="modalBody" class="text-slate-200 leading-relaxed text-lg whitespace-pre-wrap"></div>
         </div>
     </div>
 
     <script>
         const content = {
             am: {
+                heroTitle: 'ወደ ማታሃራ ዲጂታል መረጃ መረብ በደህና መጡ',
+                heroSub: 'ወቅታዊ የከተማዋን መረጃዎች እና የልማት ስራዎችን በአንድ ቦታ ያግኙ።',
+                videoLabel: 'የቱሪስት ኢንተርቪው | ከመተሃራ እንግዶች ጋር',
+                newsLabel: 'የቅርብ ጊዜ ዜናዎች',
                 news: [
                     { 
-                        t: "አቶ አዲሱ ዋቆ በመታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች", 
+                        t: "አቶ አዲሱ ዋቆ በማታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች", 
                         i: "mayor-addisu-wako~2.jpg", 
-                        d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", 
-                        f: "የመታሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ወደ ስልጣን ከመጡ ጊዜ ጀምሮ በከተማዋ በርካታ የልማት ስራዎች እየተከናወኑ ይገኛሉ። በተለይም የመሰረተ ልማት ዝርጋታ፣ የከተማ ውበት እና የመልካም አስተዳደር ስራዎች ላይ ትኩረት በማድረግ የነዋሪዎችን የኑሮ ደረጃ ለማሻሻል በቁርጠኝነት እየሰሩ መሆኑን የከተማዋ ነዋሪዎች ይመሰክራሉ።" 
+                        d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ ነው።", 
+                        f: "የማታሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ወደ ስልጣን ከመጡ ጊዜ ጀምሮ በከተማዋ በርካታ የልማት ስራዎች እየተከናወኑ ይገኛሉ። በተለይም የመሰረተ ልማት ዝርጋታ፣ የከተማ ውበት እና የመልካም አስተዳደር ስራዎች ላይ ትኩረት በማድረግ የነዋሪዎችን የኑሮ ደረጃ ለማሻሻል በቁርጠኝነት እየሰሩ ይገኛሉ።" 
                     },
                     { 
-                        t: "የመታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ", 
-                        i: "unnamed (55)~2.jpg", 
+                        t: "የማታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ", 
+                        i: "Lumii_20260412_180356344~2.jpg", 
                         d: "የከተማዋን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ ይገኛል።", 
-                        f: "ለበርካታ አመታት የመታሃራ ከተማ ነዋሪዎች ዋነኛ ጥያቄ የነበረው የንፁህ መጠጥ ውሃ እጥረት በዘላቂነት ለመፍታት ታስቦ የተጀመረው ግዙፍ የውሃ ፕሮጀክት አሁን ላይ 90 በመቶ መጠናቀቁ ተበሰረ። ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ አቅርቦት በከፍተኛ ደረጃ ያሻሽላል።" 
+                        f: "የንፁህ መጠጥ ውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ። \n\nለበርካታ አመታት የማታሃራ ከተማ ነዋሪዎች ዋነኛ ጥያቄ የነበረው የንፁህ መጠጥ ውሃ እጥረት በዘላቂነት ለመፍታት ታስቦ የተጀመረው ግዙፍ የውሃ ፕሮጀክት ሲጠናቀቅ ከተማዋን እና አካባቢውን ለረጅም ጊዜ ያገለግላል።" 
                     },
                     { 
                         t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ", 
-                        i: "IMG_20260314_112746_839~4.jpg", 
+                        i: "Lumii_20260412_180443961~2.jpg", 
                         d: "በኑራኤራ እርሻ ልማት ባለሙያዎች የሚከናወነው ሳይንሳዊ የመግረዝ ስራ ምርታማነትን እያረጋገጠ ነው።", 
-                        f: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል። የኑራኤራ እርሻ ልማት ባለሙያዎች ሳይንሳዊ የመግረዝ (Pruning) ዘዴዎችን በመጠቀም የምርት ጥራትና መጠንን ለመጨመር እየሰሩ ነው።" 
+                        f: "በማታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል። \n\nባለሙያዎች ሳይንሳዊ የመግረዝ (Pruning) ዘዴዎችን በመጠቀም የምርት ጥራትና መጠንን ለመጨመር በቁርጠኝነት እየሰሩ ነው።" 
                     }
                 ]
-            }
-            // om እና en እዚህ ጋር መቀጠል ይችላሉ...
-        };
-
-        function updateContent() {
-            const lang = document.getElementById('langSelect').value;
-            const data = content[lang] || content['am'];
-            const grid = document.getElementById('newsGrid');
-            
-            grid.innerHTML = data.news.map((n, index) => `
-                <div class="news-card" onclick="openModal('${lang}', ${index})">
-                    <div class="news-img" style="background-image: url('${n.i}')"></div>
-                    <div class="p-5">
-                        <h4 class="font-black italic text-amber-500 mb-2">${n.t}</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed">${n.d}</p>
-                        <span class="text-white text-[10px] font-bold mt-4 block uppercase border-t border-white/10 pt-2">ሙሉውን አንብብ / READ MORE</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openModal(lang, index) {
-            const item = content[lang].news[index];
-            document.getElementById('modalImg').style.backgroundImage = `url('${item.i}')`;
-            document.getElementById('modalTitle').innerText = item.t;
-            document.getElementById('modalBody').innerText = item.f;
-            document.getElementById('newsModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('newsModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onload = updateContent;
-    </script>
-</body>
-</html>
+            },
+            om: {
+                heroTitle: 'Marsariitii Odeeffannoo Magaalaa Mataaharaatti Baga Nagaan Dhuftan',
+                heroSub: 'Odeeffannoo magaalaa yeroo ammaa fi hojiiwwan misoomaa bakka tokkotti argadhu.',
+                videoLabel: 'Interviyuu Turistootaa | Keessummoota Mataaharaa waliin',
+                newsLabel: 'Oduuwwan dhihoo',
+                news: [
+                    { t: "Hojiiwwan Misoomaa Obbo Addisuu Waaqoo", i: "mayor-addisu-wako~2.jpg", d: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa magaalaa keenya jijjiiraa jiru.", f: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga gara aangoo dhufanii as hojiiwwan misoomaa hedduu hojjachaa jiru." },
+                    { t: "Pirojektii Bishaan Dhugaatii Magaalaa Mataaharaa", i: "Lumii_20260412_180356344~2.jpg", d: "Pirojektiin bishaan dhugaatii rakkoo bishaan magaalaa keenyaa fura jedhame %90 xumurameera.", f: "Pirojektiin bishaan dhugaatii magaalaa Mataaharaa dhibbeentaa 90 oliin xumurameera." },
+                    { t: "Misooma Birtukaanaa Qarqara Garba Basakaatti", i: "Lumii_20260412_180443961~2.jpg", d: "Hojiiwwan mirmirsuu saayinsaawaa ta'een oomishitummaan guddachaa jira.", f: "Mataaharaatti qarqara garba Basakaatti misoomni birtukaanaa haala saayinsaawaa ta'een hojjetamaa jira." }
+                ]
+            },
+            en: {
+                heroTitle: 'Welcome to Mataaharaa Digital Information Hub',
+                heroSub: 'Get the latest city news and development updates in one place.',
+                videoLabel: 'Tourist Interview | With Mataaharaa Guests',
+                newsLabel: 'Latest News',
+                news: [
+                    { t: "Mayor Addisu Wako's Development Projects", i: "mayor-addisu-wako~2.jpg", d: "The leadership of Mayor Addisu Wako is significantly improving the city's image.", f: "Mayor Addisu Wako has been leading various development projects in Mataaharaa since taking office." },
+                    { t: "Mataaharaa Water Project Reaches 90% Completion", i: "Lumii_20260412_180356344~2.jpg", d: "The 1.4 billion birr water project is nearing its final stage.", f: "The massive water project in Mataaharaa is now 90% complete." },
+                    { t: "Scientific Citrus Farming

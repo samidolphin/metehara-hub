@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA</title>
+    <title>SAMI-TUBE MEDIA | Metehara Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -14,11 +14,10 @@
         #bg-slider { position: absolute; inset: 0 0 0 80px; z-index: 1; }
         .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
         .slide.active { opacity: 1; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.3) 100%); z-index: 5; }
-        .hero-content { position: relative; z-index: 10; padding-left: 30px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.2) 100%); z-index: 5; }
         .news-card { background: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.4s; }
         .news-card:hover { border-color: #f59e0b; transform: translateY(-8px); }
-        .news-img { height: 200px; background-size: cover; background-position: center; }
+        .news-img { height: 220px; background-size: cover; background-position: center; }
         .modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); padding: 20px; overflow-y: auto; }
         .modal.active { display: flex; align-items: flex-start; justify-content: center; }
         .modal-content { background: #0f172a; border-radius: 30px; padding: 35px; max-width: 850px; width: 100%; margin: 30px auto; position: relative; border: 1px solid #f59e0b; }
@@ -55,7 +54,7 @@
             <div class="slide" style="background-image: url('IMG_20260314_112746_839~4.jpg')"></div>
         </div>
         <div class="hero-overlay"></div>
-        <div class="hero-content">
+        <div class="hero-content relative z-10 px-10 flex flex-col justify-center">
             <h2 id="heroTitle" class="text-3xl md:text-5xl font-black text-white leading-tight"></h2>
             <p id="heroSub" class="text-amber-500 text-sm mt-4 max-w-sm italic font-bold"></p>
         </div>
@@ -98,7 +97,7 @@
                         t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው", 
                         i: "mayor-addisu-wako~2.jpg", 
                         d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", 
-                        f: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።\n\nበተጨማሪም ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል። ይህ የአረንጓዴ ልማት ተነሳሽነት ከተማዋ ያላትን የተፈጥሮ ፀጋ በአግባቡ ጥቅም ላይ ለማዋል ያለመና መተሃራን የአረንጓዴ ልማት ተምሳሌት የሚያደርግ እንደሆነ ተገልጿል።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ" 
+                        f: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።\n\nበተጨማሪም ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል። ይህ የአረንጓዴ ልማት ተነሳሽነት ከተማዋ ያላትን የተፈጥሮ ፀጋ በአግባቡ ጥቅም ላይ ለማዋል ያለመና መተሃራን የአረንጓዴ ልማት ተምሳሌት የሚያደርግ እንደሆነ ተገልጿል።" 
                     },
                     { 
                         t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 

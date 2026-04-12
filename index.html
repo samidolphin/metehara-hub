@@ -3,63 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | Mataaharaa</title>
+    <title>SAMI-TUBE MEDIA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; padding: 0; display: flex; }
+        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; display: flex; }
         
-        /* የሜኑ ስፋት ተስተካክሏል */
+        /* ቅልብጭ ያለ የግራ ሜኑ */
         .sidebar { 
-            width: 85px; 
+            width: 80px; 
             background: #0ea5e9; 
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            left: 0;
-            top: 0;
-            z-index: 1000;
+            height: 100vh; 
+            position: fixed; 
+            left: 0; 
+            top: 0; 
+            display: flex; 
+            flex-direction: column; 
+            z-index: 100;
         }
         .nav-link { 
             color: white; 
             text-decoration: none; 
+            font-size: 0.7rem; 
             font-weight: 800; 
-            font-size: 0.65rem; 
             padding: 15px 5px; 
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            line-height: 1.2;
+            text-align: center; 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
 
-        .main-content { 
-            margin-left: 85px; 
-            width: calc(100% - 85px);
-            min-height: 100vh;
-        }
-
-        header { 
-            background: #0f172a; 
-            padding: 12px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
+        .main-content { margin-left: 80px; width: 100%; }
         
-        .hero-section { padding: 30px 20px; }
-        .hero-title { font-size: 1.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 15px; }
-        .hero-title span { color: #f59e0b; }
-        .hero-sub { color: #94a3b8; font-size: 0.85rem; border-left: 3px solid #f59e0b; padding-left: 12px; }
+        header { background: #0f172a; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .hero { padding: 40px 20px; }
+        .hero h2 { font-size: 2rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; }
+        .hero h2 span { color: #f59e0b; }
+        .hero p { color: #94a3b8; font-size: 0.9rem; border-left: 3px solid #f59e0b; padding-left: 10px; }
 
-        .video-box { margin: 20px; border-radius: 12px; overflow: hidden; border: 2px solid #f59e0b; position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .video-container { margin: 20px; border-radius: 15px; overflow: hidden; border: 2px solid #f59e0b; position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .news-card { background: #1e293b; border-radius: 15px; padding: 15px; margin: 15px; border-left: 3px solid #f59e0b; }
-        .news-card h4 { color: #f59e0b; font-weight: 900; font-size: 1rem; margin-bottom: 5px; }
-        .news-card p { color: #cbd5e1; font-size: 0.8rem; }
+        .news-card { background: #1e293b; border-radius: 12px; padding: 15px; margin: 20px; border-left: 4px solid #f59e0b; }
+        .news-card h4 { color: #f59e0b; font-weight: 900; margin-bottom: 5px; }
 
-        footer { background: #0f172a; padding: 25px 15px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
-        .contact-info { color: #cbd5e1; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px; }
+        footer { background: #0f172a; padding: 30px 10px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -77,34 +64,30 @@
     <div class="main-content">
         <header>
             <div class="flex items-center gap-2">
-                <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black text-lg">S</div>
-                <h1 class="font-black italic text-[10px] uppercase">SAMI-TUBE MEDIA</h1>
+                <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
+                <h1 class="font-black italic text-xs uppercase">SAMI-TUBE MEDIA</h1>
             </div>
-            <div class="bg-slate-800 text-[10px] px-3 py-1 rounded border border-white/10">አማርኛ</div>
         </header>
 
-        <section class="hero-section">
-            <h2 class="hero-title">እንኳን ወደ <span>ማታሃራ</span> ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
-            <div class="hero-sub">
-                ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሁፍ ማዕከል
-            </div>
+        <section class="hero">
+            <h2>እንኳን ወደ <span>ማታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
+            <p>ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሁፍ ማዕከል</p>
         </section>
 
-        <h3 class="text-[0.9rem] font-black italic border-l-3 border-amber-500 pl-3 m-5">የቅርብ ጊዜ የቪዲዮ ሪፖርቶች</h3>
-        <div class="video-box">
+        <div class="video-container">
             <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <div class="news-card">
-            <h4>የልማት ስራዎች</h4>
-            <p>የከተማው የልማት ስራዎች ከተማዋን እየቀየሩ ይገኛሉ።</p>
+            <h4>የቅርብ ጊዜ ዜናዎች</h4>
+            <p class="text-xs text-slate-300">የማታሃራ ከተማ የልማት ስራዎች በተሳካ ሁኔታ እየተከናወኑ ይገኛሉ።</p>
         </div>
 
         <footer>
-            <div class="contact-info">
-                <p>ስልክ፦ +251911926976 | ኢሜይል፦ sami2all@gmail.com</p>
+            <div class="text-[10px] text-slate-400 font-bold mb-2">
+                ስልክ፦ +251911926976 | ኢሜይል፦ sami2all@gmail.com
             </div>
-            <p class="text-slate-600 text-[7px] font-bold">© 2026 ሳምሶን ተስፋዬ</p>
+            <p class="text-[8px] text-slate-600 font-bold">© 2026 ሳምሶን ተስፋዬ | SAMI-TUBE MEDIA</p>
         </footer>
     </div>
 

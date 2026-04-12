@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | Metehara Hub</title>
+    <title>SAMI-TUBE MEDIA | Mataaharaa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -14,14 +14,16 @@
         #bg-slider { position: absolute; inset: 0 0 0 80px; z-index: 1; }
         .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
         .slide.active { opacity: 1; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.2) 100%); z-index: 5; }
-        .news-card { background: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.4s; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.3) 100%); z-index: 5; }
+        .news-card { background: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.4s; height: 100%; }
         .news-card:hover { border-color: #f59e0b; transform: translateY(-8px); }
         .news-img { height: 220px; background-size: cover; background-position: center; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; border: 2px solid #f59e0b; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); padding: 20px; overflow-y: auto; }
         .modal.active { display: flex; align-items: flex-start; justify-content: center; }
         .modal-content { background: #0f172a; border-radius: 30px; padding: 35px; max-width: 850px; width: 100%; margin: 30px auto; position: relative; border: 1px solid #f59e0b; }
-        .close-btn { background: #f59e0b; color: black; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; float: right; margin-bottom: 10px; }
+        .close-btn { background: #f59e0b; color: black; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; float: right; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -31,7 +33,7 @@
             <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-black font-black text-xl">S</div>
             <div>
                 <h1 class="text-white font-black italic text-sm">SAMI-TUBE MEDIA</h1>
-                <p class="text-amber-500 text-[8px] uppercase font-bold tracking-widest mt-1">Metehara Digital Hub</p>
+                <p class="text-amber-500 text-[8px] uppercase font-bold tracking-widest mt-1">Mataaharaa Digital Hub</p>
             </div>
         </div>
         <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-3 py-2 rounded-lg border border-white/10 outline-none">
@@ -43,15 +45,12 @@
 
     <div class="hero-section">
         <nav class="side-menu">
-            <div class="menu-item">ዜና</div>
-            <div class="menu-item">ሪፖርት</div>
-            <div class="menu-item">ቱሪዝም</div>
-            <div class="menu-item">ባህል</div>
+            <div class="menu-item">ዜና</div><div class="menu-item">ሪፖርት</div><div class="menu-item">ቱሪዝም</div><div class="menu-item">ባህል</div>
         </nav>
         <div id="bg-slider">
             <div class="slide active" style="background-image: url('mayor-addisu-wako~2.jpg')"></div>
-            <div class="slide" style="background-image: url('unnamed (55)~2.jpg')"></div>
-            <div class="slide" style="background-image: url('IMG_20260314_112746_839~4.jpg')"></div>
+            <div class="slide" style="background-image: url('Lumii_20260412_180443961~2.jpg')"></div>
+            <div class="slide" style="background-image: url('Lumii_20260412_180356344~2.jpg')"></div>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content relative z-10 px-10 flex flex-col justify-center">
@@ -61,6 +60,13 @@
     </div>
 
     <main class="max-w-7xl mx-auto p-6 space-y-16">
+        <section id="videoSection" class="bg-slate-900/50 p-8 rounded-3xl border border-white/5">
+            <h3 id="videoLabel" class="text-white font-black italic text-xl mb-6 border-l-8 border-amber-500 pl-4 uppercase"></h3>
+            <div class="video-container shadow-2xl">
+                <iframe src="https://www.youtube.com/embed/S2Y8I_p_L90" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
         <section>
             <h3 id="newsLabel" class="text-white font-black italic text-xl mb-10 border-l-8 border-amber-500 pl-4 uppercase"></h3>
             <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-10"></div>
@@ -81,41 +87,43 @@
         <div class="modal-content shadow-2xl" onclick="event.stopPropagation()">
             <div class="close-btn" onclick="closeModal()">X</div>
             <div id="modalImg" class="w-full h-64 bg-cover bg-center rounded-2xl mb-6 border border-white/10"></div>
-            <h2 id="modalTitle" class="text-2xl font-black text-amber-500 mb-6 italic"></h2>
-            <div id="modalBody" class="text-slate-200 leading-relaxed text-base whitespace-pre-wrap text-justify"></div>
+            <h2 id="modalTitle" class="text-2xl font-black text-amber-500 mb-6 italic leading-tight"></h2>
+            <div id="modalBody" class="text-slate-200 leading-relaxed text-base whitespace-pre-wrap text-justify border-t border-white/10 pt-6"></div>
         </div>
     </div>
 
     <script>
         const content = {
             am: {
-                heroTitle: 'ወደ መተሃራ ዲጂታል መረጃ መረብ በደህና መጡ',
+                heroTitle: 'ወደ ማታሃራ ዲጂታል መረጃ መረብ በደህና መጡ',
                 heroSub: 'ወቅታዊ የከተማዋን መረጃዎች እና የልማት ስራዎችን በአንድ ቦታ ያግኙ።',
+                videoLabel: 'የቱሪስት ኢንተርቪው | ከመተሃራ እንግዶች ጋር',
                 newsLabel: 'የቅርብ ጊዜ ዜናዎች',
                 news: [
                     { 
-                        t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው", 
+                        t: "አቶ አዲሱ ዋቆ በማታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው", 
                         i: "mayor-addisu-wako~2.jpg", 
                         d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", 
-                        f: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።\n\nበተጨማሪም ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል። ይህ የአረንጓዴ ልማት ተነሳሽነት ከተማዋ ያላትን የተፈጥሮ ፀጋ በአግባቡ ጥቅም ላይ ለማዋል ያለመና መተሃራን የአረንጓዴ ልማት ተምሳሌት የሚያደርግ እንደሆነ ተገልጿል።" 
+                        f: "ማታሃራ — የማታሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የማታሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።\n\nበተጨማሪም ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል። ይህ የአረንጓዴ ልማት ተነሳሽነት ከተማዋ ያላትን የተፈጥሮ ፀጋ በአግባቡ ጥቅም ላይ ለማዋል ያለመና ማታሃራን የአረንጓዴ ልማት ተምሳሌት የሚያደርግ እንደሆነ ተገልጿል።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ" 
                     },
                     { 
-                        t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
-                        i: "unnamed (55)~2.jpg", 
+                        t: "የማታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
+                        i: "Lumii_20260412_180443961~2.jpg", 
                         d: "የከተማዋን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ ይገኛል።", 
-                        f: "መተሃራ — በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ ግንባታው በጥራት እና በተቀመጠለት የጊዜ ገደብ እየተከናወነ መሆኑን አረጋግጠዋል። ይህ ፕሮጀቅት ሲጠናቀቅ ለቀጣዮቹ 50 ዓመታት ያህል ለከተማዋ ነዋሪዎች አስተማማኝ የንጹህ ውሃ አገልግሎት መስጠት የሚያስችል አቅም አለው።" 
+                        f: "ማታሃራ — በማታሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ ግንባታው በጥራት እና በተቀመጠለት የጊዜ ገደብ እየተከናወነ መሆኑን አረጋግጠዋል።\n\nይህ ፕሮጀክት ሲጠናቀቅ ለቀጣዮቹ 50 ዓመታት ያህል ለከተማዋ ነዋሪዎች አስተማማኝ የንጹህ ውሃ አገልግሎት መስጠት የሚያስችል አቅም አለው። ግንባታው ሙሉ በሙሉ ሲጠናቀቅ የከተማዋን የውሃ ፍላጎት በዘላቂነት እንደሚፈታ ተስፋ ተጥሎበታል።" 
                     },
                     { 
                         t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", 
-                        i: "IMG_20260314_112746_839~4.jpg", 
+                        i: "Lumii_20260412_180356344~2.jpg", 
                         d: "በኑራኤራ እርሻ ልማት ባለሙያዎች የሚከናወነው ሳይንሳዊ የመግረዝ ስራ ምርታማነትን እያረጋገጠ ነው።", 
-                        f: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።\n\nበኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው። ይህ ስራ ዛፉ ከንፋስ ግፊት የሚደርስበትን ጉዳት ከመቀነሱም በላይ፣ የተቆረጠው ክፍል በፍጥነት እንዲያገግም እና በፈንገስ እንዳይጠቃ ያደርጋል።" 
+                        f: "በማታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።\n\nበኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው። ይህ ስራ ዛፉ ከንፋስ ግፊት የሚደርስበትን ጉዳት ከመቀነሱም በላይ፣ የተቆረጠው ክፍል በፍጥነት እንዲያገግም እና በፈንገስ እንዳይጠቃ ያደርጋል።" 
                     }
                 ]
             },
             om: {
                 heroTitle: 'Marsariitii Odeeffannoo Magaalaa Mataaharaatti Baga Nagaan Dhuftan',
                 heroSub: 'Odeeffannoowwan yeroo fi misooma magaalaa bakka tokkotti argattu.',
+                videoLabel: 'Gaaffii fi Deebii Turistootaa | Mataaharaatti',
                 newsLabel: 'Oduuwwan dhihoo',
                 news: [
                     { 
@@ -126,38 +134,39 @@
                     },
                     { 
                         t: "Pirojektii Bishaan Dhugaatii Magaalaa Mataaharaa dhibbeentaa 90 irra gahe", 
-                        i: "unnamed (55)~2.jpg", 
+                        i: "Lumii_20260412_180443961~2.jpg", 
                         d: "Pirojektiin bishaan dhugaatii birrii biliyoona 1.4 oliin hojjetamaa jiru kun xumuramaa jira.", 
-                        f: "Mataaharaa — Pirojektiin bishaan dhugaatii magaalaa Mataaharaa baasii guddaadhaan hojjetamaa jiru kun dhibbeentaa 90 oliin xumurameera. Kantiibaan magaalaa Obbo Addisuu Waaqoo pirojektichi qulqullinaan xumuramaa jiraachuu mirkaneessaniiru." 
+                        f: "Mataaharaa — Pirojektiin bishaan dhugaatii magaalaa Mataaharaa baasii guddaadhaan hojjetamaa jiru kun dhibbeentaa 90 oliin xumurameera. Pirojektiin kun waggoota 50 dhufaniif rakkoo bishaan magaalaa kan furuudha." 
                     },
                     { 
                         t: "Misooma Oomisha Birtukaanaa Qarqara Garba Basakaatti", 
-                        i: "IMG_20260314_112746_839~4.jpg", 
+                        i: "Lumii_20260412_180356344~2.jpg", 
                         d: "Hojjettoota ogummaa qabaniin hojiin mirmirsuu (Pruning) oomishitummaa guddisee jira.", 
                         f: "Mataaharaatti qarqara garba Basakaatti misoomni birtukaanaa haala saayinsaawaa ta'een hojjetamaa jira. Ogummaan mirmirsuu kun oomishni akka dabaluufi mukni akka hin madaanoof gargaara." 
                     }
                 ]
             },
             en: {
-                heroTitle: 'Welcome to Metehara Digital Information Hub',
+                heroTitle: 'Welcome to Mataaharaa Digital Information Hub',
                 heroSub: 'Get the latest city news and development updates in one place.',
+                videoLabel: 'Tourist Interview | Guests in Mataaharaa',
                 newsLabel: 'Latest News',
                 news: [
                     { 
-                        t: "Mayor Addisu Wako's Development Projects Transforming Metehara", 
+                        t: "Mayor Addisu Wako's Development Projects Transforming Mataaharaa", 
                         i: "mayor-addisu-wako~2.jpg", 
                         d: "The leadership and development initiatives of Mayor Addisu Wako are creating a better environment for residents.", 
-                        f: "Metehara — Mayor Addisu Wako has been leading significant urban development projects since taking office. His focus on environmental protection and urban beauty, including transforming the Lake Metehara shores into a recreational park, is highly commended." 
+                        f: "Mataaharaa — Mayor Addisu Wako has been leading significant urban development projects since taking office. His focus on environmental protection and urban beauty, including transforming the Lake Mataaharaa shores into a recreational park, is highly commended." 
                     },
                     { 
-                        t: "Metehara Water Project Reaches 90% Completion", 
-                        i: "unnamed (55)~2.jpg", 
+                        t: "Mataaharaa Water Project Reaches 90% Completion", 
+                        i: "Lumii_20260412_180443961~2.jpg", 
                         d: "The 1.4 billion birr water project is nearing its final stage to solve the city's water issues.", 
-                        f: "Metehara — The massive water project in Metehara, costing over 1.4 billion Birr, is now 90% complete. Mayor Addisu Wako confirmed that the project is proceeding with high quality and is expected to serve the community for the next 50 years." 
+                        f: "Mataaharaa — The massive water project in Mataaharaa, costing over 1.4 billion Birr, is now 90% complete. Mayor Addisu Wako confirmed that the project is proceeding with high quality and is expected to serve the community for the next 50 years." 
                     },
                     { 
                         t: "Scientific Citrus Farming at Lake Beseka Shore", 
-                        i: "IMG_20260314_112746_839~4.jpg", 
+                        i: "Lumii_20260412_180356344~2.jpg", 
                         d: "Professional pruning techniques by experts are ensuring high agricultural productivity.", 
                         f: "At the shores of Lake Beseka, scientific citrus farming is thriving. Experts from Nura Era are using professional pruning techniques to ensure tree health and maximize production, making it a model for local agriculture." 
                     }
@@ -170,6 +179,7 @@
             const data = content[lang];
             document.getElementById('heroTitle').innerText = data.heroTitle;
             document.getElementById('heroSub').innerText = data.heroSub;
+            document.getElementById('videoLabel').innerText = data.videoLabel;
             document.getElementById('newsLabel').innerText = data.newsLabel;
 
             const grid = document.getElementById('newsGrid');
@@ -179,7 +189,7 @@
                     <div class="p-6">
                         <h4 class="font-black italic text-amber-500 mb-3 text-base leading-tight">${n.t}</h4>
                         <p class="text-slate-400 text-[11px] leading-relaxed mb-6">${n.d}</p>
-                        <span class="text-white text-[10px] font-black uppercase tracking-widest border-t border-white/5 pt-3 block">ሙሉውን አንብብ / Read More</span>
+                        <span class="text-white text-[10px] font-black uppercase tracking-widest border-t border-white/5 pt-3 block group-hover:text-amber-500 transition-colors">ሙሉውን አንብብ / READ FULL REPORT</span>
                     </div>
                 </div>
             `).join('');

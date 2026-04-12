@@ -18,13 +18,14 @@
         .hero-content { position: relative; z-index: 10; padding-left: 40px; display: flex; flex-direction: column; justify-content: center; animation: fadeInUp 1.5s ease-out; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .news-card { background: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.4s; }
-        .news-img { height: 180px; background-size: cover; background-position: center; }
+        .news-img { height: 180px; background-size: cover; background-position: center; transition: 0.5s; }
+        .news-card:hover .news-img { transform: scale(1.1); }
         .ad-banner { background: linear-gradient(45deg, #1e293b, #0f172a); border: 2px dashed #f59e0b; border-radius: 20px; min-height: 120px; display: flex; align-items: center; justify-content: center; text-align: center; margin: 20px 0; padding: 15px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); padding: 15px; }
+        .modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); padding: 15px; overflow-y: auto; }
         .modal.active { display: flex; align-items: flex-start; justify-content: center; }
-        .modal-content { background: #0f172a; border: 1px solid #f59e0b; border-radius: 25px; padding: 30px; max-width: 700px; width: 100%; margin: 40px auto; }
+        .modal-content { background: #0f172a; border: 1px solid #f59e0b; border-radius: 25px; padding: 30px; max-width: 700px; width: 100%; margin: 40px auto; position: relative; }
         .close-btn { background: #f59e0b; color: black; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; cursor: pointer; float: right; }
     </style>
 </head>
@@ -46,7 +47,7 @@
     </header>
 
     <div class="hero-section">
-        <nav class="side-menu">
+        <nav class="side-menu shadow-2xl">
             <div class="menu-item" id="navNews">ዜና</div>
             <div class="menu-item" id="navReport">ሪፖርት</div>
             <div class="menu-item" id="navTour">ቱሪዝም</div>
@@ -75,7 +76,7 @@
         </section>
 
         <section class="py-12 border-t border-white/5">
-            <h3 class="text-white font-black italic text-xl mb-8 uppercase tracking-widest text-center">SAMI-TUBE | LIVE STREAM</h3>
+            <h3 class="text-white font-black italic text-xl mb-8 uppercase text-center">SAMI-TUBE | LIVE STREAM</h3>
             <div class="video-container shadow-2xl">
                 <iframe src="https://www.youtube.com/embed/Epe9ROSZ_pc" frameborder="0" allowfullscreen></iframe>
             </div>
@@ -99,7 +100,7 @@
         <div class="modal-content shadow-2xl" onclick="event.stopPropagation()">
             <div class="close-btn" onclick="closeModal()">&times;</div>
             <h2 id="modalTitle" class="text-2xl font-black text-amber-500 mb-6 italic border-b-2 border-white/5 pb-4"></h2>
-            <div id="modalBody" class="text-slate-200 leading-relaxed text-sm whitespace-pre-wrap text-justify font-medium"></div>
+            <div id="modalBody" class="text-slate-200 leading-relaxed text-sm whitespace-pre-wrap text-justify"></div>
         </div>
     </div>
 
@@ -111,16 +112,31 @@
                 newsLabel: 'የቅርብ ጊዜ ዜናዎች',
                 nav: ["ዜና", "ሪፖርት", "ቱሪዝም", "ባህል"],
                 news: [
-                    { t: "የመተሃራ ከተማ ልማት", i: "IMG_20260314_112746_839~4.jpg", d: "የከተማዋ ገጽታ በከፍተኛ ፍጥነት እየተቀየረ ይገኛል።", f: "በመተሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ ነው።" },
-                    { t: "የውሃ ፕሮጀክት", i: "unnamed (55)~2.jpg", d: "የንጹህ መጠጥ ውሃ ፕሮጀክት ማጠቃለያ ላይ ደርሷል።", f: "ከ1.4 ቢሊዮን ብር በላይ ወጪ የተደረገበት የውሃ ፕሮጀክት ለከተማዋ ትልቅ ተስፋ ሆኗል።" },
-                    { t: "አመራርና ስኬት", i: "mayor-addisu-wako~2.jpg", d: "የከንቲባው የልማት ስራዎች ተጠናክረው ቀጥለዋል።", f: "የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ከተማዋን ወደ ተሻለ ደረጃ ለማድረስ እየሰሩ ይገኛሉ።" }
+                    { 
+                        t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ", 
+                        i: "mayor-addisu-wako~2.jpg", 
+                        d: "ከንቲባ አቶ አዲሱ ዋቆ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", 
+                        f: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ" 
+                    },
+                    { 
+                        t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
+                        i: "unnamed (55)~2.jpg", 
+                        d: "የከተማዋን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ ይገኛል።", 
+                        f: "መተሃራ — በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። ይህ ፕሮጀክት ሲጠናቀቅ ለቀጣዮቹ 50 ዓመታት ያህል ለከተማዋ ነዋሪዎች አስተማማኝ የንጹህ ውሃ አገልግሎት መስጠት የሚያስችል አቅም አለው።" 
+                    },
+                    { 
+                        t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", 
+                        i: "IMG_20260314_112746_839~4.jpg", 
+                        d: "በኑራኤራ እርሻ ልማት ባለሙያዎች የሚከናወነው ሳይንሳዊ የመግረዝ ስራ ምርታማነትን እያረጋገጠ ነው።", 
+                        f: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።\n\nበኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።" 
+                    }
                 ]
             }
-            // Other languages omitted for brevity but can be added back
         };
 
         function updateContent() {
-            const data = content.am;
+            const lang = document.getElementById('langSelect').value;
+            const data = content[lang] || content.am;
             document.getElementById('heroTitle').innerText = data.heroTitle;
             document.getElementById('heroSub').innerText = data.heroSub;
             document.getElementById('newsLabel').innerText = data.newsLabel;
@@ -131,7 +147,7 @@
 
             const grid = document.getElementById('newsGrid');
             grid.innerHTML = data.news.map((n, index) => `
-                <div class="news-card group" onclick="openModal('am', ${index})">
+                <div class="news-card group" onclick="openModal('${lang}', ${index})">
                     <div class="news-img" style="background-image: url('${n.i}')"></div>
                     <div class="p-6">
                         <h4 class="font-black italic text-amber-500 mb-3 text-base">${n.t}</h4>

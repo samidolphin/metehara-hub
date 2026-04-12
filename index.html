@@ -3,18 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | Mataaharaa</title>
+    <title>SAMI-TUBE MEDIA | Mataaharaa Digital Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; overflow-x: hidden; }
+        body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; }
         
-        /* በስተግራ ያለው ሰማያዊ ዝርዝር */
-        .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 220px; background: #0ea5e9; z-index: 100; display: flex; flex-direction: column; }
-        .nav-link { padding: 20px; color: white; font-weight: 800; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 1.1rem; text-align: center; transition: 0.3s; }
-        .nav-link:hover { background: rgba(0,0,0,0.1); }
+        /* በስተግራ ያለው ፕሮፌሽናል ዝርዝር (Sidebar) */
+        .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 240px; background: #0ea5e9; z-index: 100; padding-top: 20px; box-shadow: 4px 0 15px rgba(0,0,0,0.3); }
+        .nav-link { display: block; padding: 18px 25px; color: white; font-weight: 800; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15); font-size: 1.1rem; transition: all 0.3s; }
+        .nav-link:hover { background: rgba(0,0,0,0.1); padding-left: 35px; }
 
-        /* ዋናው የይዘት ክፍል */
-        .main-content { margin-left: 220px; }
+        .main-content { margin-left: 240px; }
         
-        header { background: #0f172a; padding: 15px 30px; display
+        /* Header */
+        header { background: #0f172a; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Hero Section */
+        .hero-section { padding: 80px 50px; text-align: left; background: linear-gradient(to right, #020617, #0f172a); }
+        .hero-title { font-size: 3.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 25px; }
+        .hero-title span { color: #f59e0b; }
+        .hero-sub { color: #94a3b8; font-size: 1.3rem; font-weight: 600; border-left: 4px solid #f59e0b; padding-left: 20px; }
+
+        /* Video Section */
+        .video-box { max-width: 900px; margin: 40px auto; border-radius: 30px; overflow: hidden; border: 4px solid #f59e0b; box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.25); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* News Cards */
+        .news-grid { padding: 50px; display: grid; gap: 40px; max-width: 1100px; margin: 0 auto; }
+        .news-card { background: #0f172a; border-radius: 35px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; transition: 0.4s; }
+        .news-card:hover { transform: translateY(-10px); border-color: #f59e0b; }
+        .news-img { height: 400px; background-size: cover; background-position: center; }
+        .news-body { padding: 40px; }
+        .news-title { color: #f59e0b; font-size: 2rem; font-weight: 900; margin-bottom: 20px; font-style: italic; }
+        .news-text { color: #cbd5e1; line-height: 1.8; font-size: 1.15rem; }
+
+        /* Footer */
+        footer { background: #0f172a; padding: 60px; text-align: center; margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .contact-info { margin-bottom: 30px; color: #94a3b8; font-weight: bold; font-size: 1.1rem; }
+        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 40px; }
+        .social-btn { padding: 15px; border-radius: 20px; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .social-btn:hover { transform: scale(1.1); }
+
+        @media (max-width: 1024px) {
+            .sidebar { width: 100%; height: auto; position: relative; display: flex; flex-wrap: wrap; }
+            .nav-link { border-bottom: none; border-right: 1px solid rgba(255,255,255,0.1); padding: 12px 15px; font-size: 0.9rem; }
+            .main-content { margin-left: 0; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <a href="#" class="nav-link">ቅድመ ዜና</a>
+        <a href="#" class="nav-link">ሪፖርት</a>
+        <a href="#" class="nav-link">ቱሪዝም</a>
+        <a href="#" class="nav-link">ባህል</a>
+        <a href="#" class="nav-link">ስነ ጽሁፍ</a>
+        <a href="#" class="nav-link">ቴክ</a>
+        <a href="#" class="nav-link">ፍልስፍና</a>
+    </aside>
+
+    <div class="main-content">
+        <header>
+            <div class="flex items-center gap-4">
+                <div class="bg-amber-500 w-12 h-12 rounded-2xl flex items-center justify-center text-black font-black text-2xl shadow-lg">S</div>
+                <div>
+                    <h1 class="font-black text-xl italic uppercase tracking-tighter">SAMI-TUBE MEDIA</h1>
+                    <p class="text-amber-500 text-[10px] font-bold uppercase tracking-[0.3em]">Mataaharaa Digital Information Center</p>
+                </div>
+            </div>
+            <select id="langSelect" onchange="updateContent()" class="bg-slate-800 text-white text-xs px-5 py-2.5 rounded-xl border border-white/10 outline-none">
+                <option value="am">አማርኛ</option>
+                <option value="om">Afaan Oromoo</option>
+                <option value="en">English</option>
+            </select>
+        </header>
+
+        <section class="hero-section">
+            <h2 id="heroTitle" class="hero-title">እንኳን ወደ <span>ማታሃራ</span><br>ዲጂታል ማዕከል<br>በሰላም መጣችሁ</h2>
+            <p id="heroSub" class="hero-sub">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና<br>የሥነ-ጽሁፍ ማዕከል</p>
+        </section>
+
+        <div class="px-6">
+            <h3 id="videoLabel" class="text-white font-black italic border-l-[6px] border-amber-500 pl-4 mb-8 text-2xl uppercase tracking-wider">የቅርብ ጊዜ የቪዲዮ ሪፖርቶች</h3>
+            <div class="video-box">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <main id="newsGrid" class="news-grid">
+            </main>
+
+        <footer>
+            <div class="contact-info">
+                <p class="mb-2">ማታሃራ፣ ኢትዮጵያ | Mataaharaa, Ethiopia</p>
+                <p>ስልክ: +251 922 243 013 | ኢሜይል: samtesfaye@gmail.com</p>
+            </div>
+            <div class="social-links">
+                <a href="https://t.me/Meteharainfobot" target="_blank" class="social-btn bg-sky-500">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="30" alt="Telegram">
+                </a>
+                <a href="https://youtube.com/@samsontesfaye2670" target="_blank" class="social-btn bg-red-600">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="30" alt="YouTube">
+                </a>
+                <a href="#" class="social-btn bg-blue-700">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="30" alt="Facebook">
+                </a>
+            </div>
+            <p id="copy" class="text-slate-600 font-bold uppercase tracking-[0.5em] text-[10px]">© 2026 ሳምሶን ተስፋዬ | በሳሚ ዶልፊን የቀረበ</p>
+        </footer>
+    </div>
+
+    <script>
+        const translations = {
+            am: {
+                hT: "እንኳን ወደ <span>ማታሃራ</span><br>ዲጂታል ማዕከል<br>በሰላም መጣችሁ",
+                hS: "ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና<br>የሥነ-ጽሁፍ ማዕከል",
+                vL: "የቅርብ ጊዜ የቪዲዮ ሪፖርቶች",
+                news: [
+                    { t: "የማታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ", d: "የከተማዋን የውሃ ችግር በዘላቂነት የሚፈታው ግዙፍ ፕሮጀክት ከ1.4 ቢሊዮን ብር በላይ በሆነ ወጪ እየተከናወነ ይገኛል።", i: "https://images.unsplash.com/photo-1541913057-07490214371b?auto=format&fit=crop&q=80&w=800" },
+                    { t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ", d: "በበሰቃ ሃይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በሳይንሳዊ ዘዴ ምርታማነቱ እየጨመረ ይገኛል።", i: "https://images.unsplash.com/photo-1557800636-894a64c1696f?auto=format&fit=crop&q=80&w=800" }
+                ]
+            },
+            om: {
+                hT: "Baga Gara Giddu-gala Diijitaalaa <span>Mataaharaatti</span> Nagaan Dhuftan",
+                hS: "Odeeffannoowwan yeroo, bu'aalee teeknoolojii fi<br>giddu-gala barreeffamaa",
+                vL: "Gabaasa Viidiyoo dhihoo",
+                news: [
+                    { t: "Pirojektii Bishaan Dhugaatii Mataaharaa", d: "Pirojektiin bishaan dhugaatii birrii biliyoona 1.4 oliin xumuramaa jira.", i: "https://images.unsplash.com/photo-1541913057-07490214371b?auto=format&fit=crop&q=80&w=800" },
+                    { t: "Misooma Birtukaanaa Garba Basakaatti", d: "Misooma birtukaanaa haala saayinsaawaan hojjetamaa jira.", i: "https://images.unsplash.com/photo-1557800636-894a64c1696f?auto=format&fit=crop&q=80&w=800" }
+                ]
+            }
+        };
+
+        function updateContent() {
+            const lang = document.getElementById('langSelect').value;
+            const l = translations[lang] || translations.am;
+            document.getElementById('heroTitle').innerHTML = l.hT;
+            document.getElementById('heroSub').innerHTML = l.hS;
+            document.getElementById('videoLabel').innerText = l.vL;
+
+            document.getElementById('newsGrid').innerHTML = l.news.map(n => `
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('${n.i}')"></div>
+                    <div class="news-body">
+                        <h4 class="news-title">${n.t}</h4>
+                        <p class="news-text">${n.d}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.onload = updateContent;
+    </script>
+</body>
+</html>

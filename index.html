@@ -12,7 +12,6 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         body { 
             font-family: 'Noto Sans Ethiopic', sans-serif; 
             background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #020617);
@@ -20,69 +19,38 @@
             animation: gradientBG 15s ease infinite;
             color: white; margin: 0; overflow-x: hidden; 
         }
-        
         .header-container { display: flex; width: 100%; border-bottom: 2px solid #f59e0b; }
         .sidebar { width: 85px; background: #0ea5e9; display: flex; flex-direction: column; flex-shrink: 0; }
-        .nav-link { color: white; text-decoration: none; font-size: 0.65rem; font-weight: 800; padding: 15px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-
+        .nav-link { color: white; text-decoration: none; font-size: 0.6rem; font-weight: 800; padding: 15px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .hero-box { flex-grow: 1; padding: 10px 20px; display: flex; flex-direction: column; }
-        .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
         .lang-select { background: #1e293b; border: 1px solid rgba(255,255,255,0.2); font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; color: white; cursor: pointer; }
-
-        .card { 
-            background: rgba(30, 41, 59, 0.7); 
-            padding: 18px; border-radius: 12px; 
-            border: 1px solid #0ea5e9; 
-            margin: 12px 15px; 
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .card:hover { transform: translateY(-3px); border-color: #f59e0b; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
-
-        /* "ተጨማሪ ያንብቡ" ስታይል */
-        .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: 900; margin-top: 10px; display: flex; align-items: center; gap: 5px; }
-
-        .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
-            justify-content: center; align-items: center; padding: 15px;
-        }
-        .modal-content {
-            background: #0f172a; border: 1px solid #f59e0b;
-            padding: 0; border-radius: 15px; max-width: 600px; width: 100%;
-            max-height: 90vh; overflow-y: auto; position: relative;
-        }
-        .modal-body-padding { padding: 20px; }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 30px; cursor: pointer; color: white; z-index: 10; text-shadow: 0 0 10px black; }
-
-        /* የምስል ቦታ */
-        .news-image-placeholder {
-            width: 100%; height: 200px; background: #1e293b;
-            display: flex; align-items: center; justify-content: center;
-            border-bottom: 3px solid #f59e0b; color: #475569;
-        }
-
-        .reporter-tag { font-size: 0.7rem; color: #f59e0b; font-weight: 800; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .hero-title { font-size: 1.6rem; font-weight: 900; line-height: 1.2; margin-top: 10px; }
+        .hero-title span { color: #f59e0b; }
+        .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 10px 20px; }
+        .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-decoration: underline; margin-top: 8px; display: inline-block; }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: #0f172a; border: 2px solid #f59e0b; padding: 30px; border-radius: 15px; max-width: 600px; width: 100%; position: relative; max-height: 80vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #f59e0b; }
+        .section-label { color: #f59e0b; font-weight: 900; font-size: 1.1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin: 20px; }
     </style>
 </head>
 <body>
-
     <div class="header-container">
         <aside class="sidebar">
-            <a href="#" class="nav-link">ቅድመ ዜና</a>
-            <a href="#" class="nav-link">ሪፖርት</a>
-            <a href="#" class="nav-link">ቱሪዝም</a>
-            <a href="#" class="nav-link">ባህል</a>
-            <a href="#" class="nav-link">ስነ ጽሁፍ</a>
-            <a href="#" class="nav-link">ቴክ</a>
-            <a href="#" class="nav-link">ፍልስፍና</a>
+            <a href="#" class="nav-link" id="nav1">ቅድመ ዜና</a>
+            <a href="#" class="nav-link" id="nav2">ሪፖርት</a>
+            <a href="#" class="nav-link" id="nav3">ቱሪዝም</a>
+            <a href="#" class="nav-link" id="nav4">ባህል</a>
+            <a href="#" class="nav-link" id="nav5">ስነ ጽሁፍ</a>
+            <a href="#" class="nav-link" id="nav6">ቴክ</a>
+            <a href="#" class="nav-link" id="nav7">ፍልስፍና</a>
         </aside>
-
         <section class="hero-box">
             <div class="top-row">
                 <div class="flex items-center gap-2">
                     <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
-                    <h1 class="font-black italic text-[10px] uppercase">SAMI-TUBE MEDIA</h1>
+                    <h1 class="font-black italic text-[11px] uppercase tracking-tighter">SAMI-TUBE MEDIA</h1>
                 </div>
                 <select id="languageSelector" class="lang-select" onchange="updateLanguage()">
                     <option value="am">🇪🇹 አማርኛ</option>
@@ -93,103 +61,88 @@
             <h2 class="hero-title" id="welcomeText">እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
         </section>
     </div>
-
     <div class="full-content">
-        <div class="card" onclick="openModal(1)">
-            <h5 class="text-amber-500 font-black mb-2" id="newsTitle1">የከንቲባው የልማት ስራዎች</h5>
-            <p class="text-[0.7rem] text-slate-300 leading-relaxed" id="newsShort1">አቶ አዲሱ ዋቆ በመታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው...</p>
-            <div class="read-more" id="readMore1">ተጨማሪ ያንብቡ ➜</div>
+        <h3 class="section-label" id="latestNewsLabel">የቅርብ ጊዜ ዜናዎች</h3>
+        <div class="card">
+            <h5 class="text-amber-500 font-black mb-1" id="newsTitle1">የልማት እንቅስቃሴዎች</h5>
+            <p class="text-[0.7rem] text-slate-300" id="newsShort1">በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች መግለጫ...</p>
+            <span class="read-more" id="readMore1" onclick="openModal(1)">ተጨማሪ ያንብቡ...</span>
         </div>
-
-        <div class="card" onclick="openModal(2)">
-            <h5 class="text-amber-500 font-black mb-2" id="newsTitle2">የንፁህ መጠጥ ውሃ ፕሮጀክት</h5>
-            <p class="text-[0.7rem] text-slate-300 leading-relaxed" id="newsShort2">የመታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% መጠናቀቅ ደረጃ ላይ ደረሰ...</p>
-            <div class="read-more" id="readMore2">ተጨማሪ ያንብቡ ➜</div>
+        <div class="card">
+            <h5 class="text-amber-500 font-black mb-1" id="newsTitle2">ቱሪዝም በመታሃራ</h5>
+            <p class="text-[0.7rem] text-slate-300" id="newsShort2">የመታሃራ ከተማ የቱሪስት መስህቦች እና መዳረሻዎች...</p>
+            <span class="read-more" id="readMore2" onclick="openModal(2)">ተጨማሪ ያንብቡ...</span>
         </div>
-
-        <div class="card" onclick="openModal(3)">
-            <h5 class="text-amber-500 font-black mb-2" id="newsTitle3">የብርቱካን እርሻ ክብካቤ</h5>
-            <p class="text-[0.7rem] text-slate-300 leading-relaxed" id="newsShort3">በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ እና የስነ-ህይወት ጥበብ...</p>
-            <div class="read-more" id="readMore3">ተጨማሪ ያንብቡ ➜</div>
+        <div class="card">
+            <h5 class="text-amber-500 font-black mb-1" id="newsTitle3">ስነ-ጽሁፍና ፍልስፍና</h5>
+            <p class="text-[0.7rem] text-slate-300" id="newsShort3">ስለ ንቃተ ህሊና የሚያትቱ አጫጭር ጽሁፎች...</p>
+            <span class="read-more" id="readMore3" onclick="openModal(3)">ተጨማሪ ያንብቡ...</span>
         </div>
     </div>
-
     <div id="newsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="news-image-placeholder">
-                <span id="imageStatus">ምስል እዚህ ይገባል [Photo Area]</span>
-            </div>
-            <div class="modal-body-padding">
-                <h2 id="modalTitle" class="text-amber-500 font-black text-lg mb-4 leading-tight"></h2>
-                <div id="modalBody" class="text-slate-200 text-sm leading-relaxed space-y-4"></div>
-                <div id="reporterBox" class="reporter-tag"></div>
-            </div>
+            <h2 id="modalTitle" class="text-amber-500 font-black text-xl mb-4"></h2>
+            <p id="modalBody" class="text-slate-200 leading-relaxed text-sm"></p>
         </div>
     </div>
-
     <script>
         const translations = {
             am: {
                 welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ",
-                read: "ተጨማሪ ያንብቡ ➜",
-                reporter: "ዘጋቢ፡ ሳምሶን ተስፋዬ (Sami Dolphin)",
+                label: "የቅርብ ጊዜ ዜናዎች",
+                readMore: "ተጨማሪ ያንብቡ...",
+                nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ", "ቴክ", "ፍልስፍና"],
                 news: [
-                    { t: "አቶ አዲሱ ዋቆ በመታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች", s: "አቶ አዲሱ ዋቆ በመታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው...", b: "መታሃራ — የመታሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ። ከንቲባው ቀደም ሲል የቆሻሻ ክምር የነበረውን የመታሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት ቀይረዋል።" },
-                    { t: "የመታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% ደረሰ", s: "የመታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% መጠናቀቅ ደረጃ ላይ ደረሰ...", b: "ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ የሚያደርስ ሲሆን ለቀጣዮቹ 50 ዓመታት ያህል አስተማማኝ አገልግሎት መስጠት ያስችላል።" },
-                    { t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ", s: "በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ እና የስነ-ህይወት ጥበብ...", b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል። የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።" }
+                    { t: "የልማት እንቅስቃሴዎች", s: "በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች...", b: "የመታሃራ ከተማ አስተዳደር የህዝቡን የንጹህ መጠጥ ውሃ ጥያቄ ለመመለስ እና የመሰረተ ልማት ስራዎችን ለማጠናከር በከፍተኛ ትጋት እየሰራ ይገኛል። በቅርቡ የተጀመሩ የሪቨርሳይድ ፓርክ ስራዎችም ለከተማዋ አዲስ ገጽታ እየሰጡ ነው።" },
+                    { t: "ቱሪዝም በመታሃራ", s: "የመታሃራ ከተማ የቱሪስት መስህቦች...", b: "መታሃራ በተፈጥሮ ሀብቷ እና በቱሪስት መዳረሻዎቿ የምትታወቅ ከተማ ናት። የከተማው አስተዳደር ቱሪዝምን ለማሳደግ እና አለም አቀፍ ጎብኚዎችን ለመሳብ የተለያዩ የፕሮሞሽን ስራዎችን እየሰራ ነው።" },
+                    { t: "ስነ-ጽሁፍና ፍልስፍና", s: "ስለ ንቃተ ህሊና የሚያትቱ ጽሁፎች...", b: "የሰው ልጅ ንቃተ ህሊና እና የአስተሳሰብ ለውጥ ለስኬት ያለው ሚና ከፍተኛ ነው። በዚህ ክፍል ጥልቅ ፍልስፍናዊ ጽሁፎችን፣ ስለ ስቶይሲዝም እና ስለ አእምሮ ፕሮግራም ዝርዝር ትንታኔዎችን እናቀርባለን።" }
                 ]
             },
             om: {
                 welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
-                read: "Dabalata dubbisuuf ➜",
-                reporter: "Gabaasaan: Samson Tesfaye (Sami Dolphin)",
+                label: "Oduuwwan dhihoo",
+                readMore: "Dabalata dubbisuuf...",
+                nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
                 news: [
-                    { t: "Hojiiwwan misoomaa Obbo Addisuu Waaqoo Magaalaa Mataaharaatti", s: "Hojiiwwan misoomaa kantiibaan magaalaa Mataaharaa raawwachaa jiran bifa haaraa kennaa jiru...", b: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga muudamaniitti hojiiwwan misoomaa fi bulchiinsa gaarii hojjechaa jiran bifa magaalattii jijjiiraa jiru." },
-                    { t: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa 90% ga'e", s: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa xumuraaf ga'eera...", b: "Pirojektiin baasii biliyoona 1.4 olitti hojjetamaa jiru kun ammatti dhibbeentaa 90 ol xumurameera. Pirojektiin kun yoo xumuramu tajaajila bishaanii magaalattii dhibbeentaa 100 ni taasisa." },
-                    { t: "Aartii Baayoloojii qarqara Haroo Basakaatti", s: "Kunnuunsa saayinsaawaa qarqara haroo Basakaatti ashaakiltii burtukaanaa irratti taasifamu...", b: "Magaalaa Mataaharaa keessatti qarqara haroo Basakaatti ashaakiltiin burtukaanaa ogummaa olaanaan kofaltamaa jira. Hojii damee mureessuu (Pruning) saayinsaawaa ta'e hojjechuun fayyummaa mirkaneessaa jiru." }
+                    { t: "Misooma Magaalaa", s: "Hojiiwwan misoomaa magaalaa Mataaharaa...", b: "Bulchiinsi magaalaa Mataaharaa gaaffii bishaan dhugaatii qulqulluu deebisuufi hojiiwwan bu'uraalee misoomaa cimsuuf hojjechaa jira. Hojiin paarkii qarqara bishaanis magaalattiif bifa haaraa kennaa jira." },
+                    { t: "Turiizimii Mataaharaa", s: "Bakkeewwan turiizimii Mataaharaa...", b: "Mataaharaan qabeenya uumamaa fi bakkeewwan turiizimiin beekamti. Bulchiinsi magaalaa turiizimii guddisuuf hojjechaa jira." },
+                    { t: "Og-barruu fi Falaasama", s: "Barreeffamoota waa'ee sammuu...", b: "Jiddu-galli kun barreeffamoota falaasama gadi fagoo fi jijjiirama sammuu irratti xiyyeeffatan dhiyeessa." }
                 ]
             },
             en: {
                 welcome: "Welcome to <span>Metehara</span> Digital Hub",
-                read: "Read More ➜",
-                reporter: "Reporter: Samson Tesfaye (Sami Dolphin)",
+                label: "Latest News",
+                readMore: "Read More...",
+                nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
                 news: [
-                    { t: "Development works of Ato Addisu Wakko in Metehara", s: "The development works initiated by the mayor are giving a new look to Metehara...", b: "Metehara — Since being appointed, Mayor Addisu Wakko's development and good governance works have significantly improved the city's image, transforming the shores of Lake Metehara." },
-                    { t: "Metehara Clean Water Project reaches 90% completion", s: "The massive clean water project in Metehara is nearing completion...", b: "Costing over 1.4 billion Birr, this project is in its final phase. Once completed, it will provide 100% water coverage for the city and serve residents for the next 50 years." },
-                    { t: "Biological Artistry at Lake Beseka Shore", s: "Scientific care and biological protection of orange farms at Lake Beseka...", b: "The orange farms at Lake Beseka are thriving through professional care. Pruning is done scientifically to ensure tree health and productivity." }
+                    { t: "Development Projects", s: "Development works in Metehara city...", b: "The Metehara city administration is working diligently to address the demand for clean drinking water and strengthen infrastructure. Recent riverside park developments are giving the city a new look." },
+                    { t: "Tourism in Metehara", s: "Tourist attractions in Metehara...", b: "Metehara is known for its natural resources and tourist destinations. The administration is working to promote local tourism and attract international visitors." },
+                    { t: "Literature & Philosophy", s: "Articles on consciousness...", b: "This section explores deep philosophical thoughts on human consciousness, mindset, Stoicism, and personal growth." }
                 ]
             }
         };
-
         function updateLanguage() {
             const lang = document.getElementById('languageSelector').value;
-            document.getElementById('welcomeText').innerHTML = translations[lang].welcome;
+            const data = translations[lang];
+            document.getElementById('welcomeText').innerHTML = data.welcome;
+            document.getElementById('latestNewsLabel').innerText = data.label;
+            data.nav.forEach((text, i) => document.getElementById(`nav${i+1}`).innerText = text);
             for(let i=0; i<3; i++) {
-                document.getElementById(`newsTitle${i+1}`).innerText = translations[lang].news[i].t;
-                document.getElementById(`newsShort${i+1}`).innerText = translations[lang].news[i].s;
-                document.getElementById(`readMore${i+1}`).innerText = translations[lang].read;
+                document.getElementById(`newsTitle${i+1}`).innerText = data.news[i].t;
+                document.getElementById(`newsShort${i+1}`).innerText = data.news[i].s;
+                document.getElementById(`readMore${i+1}`).innerText = data.readMore;
             }
         }
-
         function openModal(id) {
             const lang = document.getElementById('languageSelector').value;
             const data = translations[lang].news[id-1];
             document.getElementById('modalTitle').innerText = data.t;
             document.getElementById('modalBody').innerText = data.b;
-            document.getElementById('reporterBox').innerText = translations[lang].reporter;
             document.getElementById('newsModal').style.display = 'flex';
         }
-
-        function closeModal() {
-            document.getElementById('newsModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('newsModal')) {
-                closeModal();
-            }
-        }
+        function closeModal() { document.getElementById('newsModal').style.display = 'none'; }
+        window.onclick = function(event) { if (event.target == document.getElementById('newsModal')) closeModal(); }
     </script>
 </body>
 </html>

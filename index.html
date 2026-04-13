@@ -30,7 +30,7 @@
         .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 10px 20px; }
         .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-decoration: underline; margin-top: 8px; display: inline-block; }
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: #0f172a; border: 2px solid #f59e0b; padding: 30px; border-radius: 15px; max-width: 600px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
+        .modal-content { background: #0f172a; border: 2px solid #f59e0b; padding: 30px; border-radius: 15px; max-width: 650px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
         .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #f59e0b; }
         .section-label { color: #f59e0b; font-weight: 900; font-size: 1.1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin: 20px; }
     </style>
@@ -61,31 +61,38 @@
             <h2 class="hero-title" id="welcomeText">እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
         </section>
     </div>
+
     <div class="full-content">
         <h3 class="section-label" id="latestNewsLabel">የቅርብ ጊዜ ዜናዎች</h3>
+        
         <div class="card">
-            <h5 class="text-amber-500 font-black mb-1" id="newsTitle1">የልማት እንቅስቃሴዎች</h5>
-            <p class="text-[0.7rem] text-slate-300" id="newsShort1">በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች መግለጫ...</p>
+            <h5 class="text-amber-500 font-black mb-1" id="newsTitle1">የከንቲባ አቶ አዲሱ ዋቆ የልማት ስራዎች</h5>
+            <p class="text-[0.7rem] text-slate-300" id="newsShort1">የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው...</p>
             <span class="read-more" id="readMore1" onclick="openModal(1)">ተጨማሪ ያንብቡ...</span>
         </div>
+
         <div class="card">
-            <h5 class="text-amber-500 font-black mb-1" id="newsTitle2">ቱሪዝም በመታሃራ</h5>
-            <p class="text-[0.7rem] text-slate-300" id="newsShort2">የመታሃራ ከተማ የቱሪስት መስህቦች እና መዳረሻዎች...</p>
+            <h5 class="text-amber-500 font-black mb-1" id="newsTitle2">የንፁህ መጠጥ ውሃ ፕሮጀክት</h5>
+            <p class="text-[0.7rem] text-slate-300" id="newsShort2">የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ...</p>
             <span class="read-more" id="readMore2" onclick="openModal(2)">ተጨማሪ ያንብቡ...</span>
         </div>
+
         <div class="card">
-            <h5 class="text-amber-500 font-black mb-1" id="newsTitle3">ስነ-ጽሁፍና ፍልስፍና</h5>
-            <p class="text-[0.7rem] text-slate-300" id="newsShort3">ስለ ንቃተ ህሊና የሚያትቱ አጫጭር ጽሁፎች...</p>
+            <h5 class="text-amber-500 font-black mb-1" id="newsTitle3">የብርቱካን እርሻ ሳይንሳዊ ክብካቤ</h5>
+            <p class="text-[0.7rem] text-slate-300" id="newsShort3">በበሰቃ ሃይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በከፍተኛ ባለሙያ ጥበብ እየለማ ይገኛል...</p>
             <span class="read-more" id="readMore3" onclick="openModal(3)">ተጨማሪ ያንብቡ...</span>
         </div>
     </div>
+
     <div id="newsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" class="text-amber-500 font-black text-xl mb-4"></h2>
-            <div id="modalBody" class="text-slate-200 leading-relaxed text-sm space-y-4"></div>
+            <h2 id="modalTitle" class="text-amber-500 font-black text-lg mb-4"></h2>
+            <div id="modalBody" class="text-slate-200 leading-relaxed text-sm whitespace-pre-line"></div>
+            <div id="modalReporter" class="mt-6 pt-4 border-t border-slate-700 text-xs text-amber-500 font-bold"></div>
         </div>
     </div>
+
     <script>
         const translations = {
             am: {
@@ -94,9 +101,24 @@
                 readMore: "ተጨማሪ ያንብቡ...",
                 nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ", "ቴክ", "ፍልስፍና"],
                 news: [
-                    { t: "የመታሃራ ከተማ የልማት እንቅስቃሴዎች", s: "በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች ዝርዝር መግለጫ...", b: "የመታሃራ ከተማ አስተዳደር የህዝቡን የልማት ጥያቄዎች ለመመለስ ሰፋፊ ስራዎችን እያከናወነ ይገኛል። ከእነዚህም መካከል ዋነኛው የንጹህ መጠጥ ውሃ አቅርቦትን ለማሳደግ የሚደረገው ጥረት ነው። በአሁኑ ወቅት አዳዲስ የውሃ ጉድጓዶች ተቆፍረው ለአገልግሎት ዝግጁ ሆነዋል። በተጨማሪም የከተማዋን ውበት ለመጠበቅና ለነዋሪዎች ምቹ የመዝናኛ ስፍራዎችን ለመፍጠር የሪቨርሳይድ ፓርክ ግንባታ በከፍተኛ ፍጥነት እየተከናወነ ይገኛል። የከተማው የውስጥ ለውስጥ መንገዶችም ደረጃቸውን የጠበቁ እንዲሆኑ ጥረት እየተደረገ ሲሆን፣ ይህም የከተማዋን የንግድና ማህበራዊ እንቅስቃሴ ያሳልጣል ተብሎ ይጠበቃል።" },
-                    { t: "ቱሪዝም በመታሃራ እና አካባቢዋ", s: "የመታሃራ ከተማ የቱሪስት መስህቦች እና መዳረሻዎች ዝርዝር...", b: "መታሃራ በተፈጥሮ ሀብቷ እና በቱሪስት መዳረሻዎቿ የምትታወቅ የኢትዮጵያ አንዷ ከተማ ናት። በተለይም በአዋሽ ብሔራዊ ፓርክ አቅራቢያ መገኘቷ ለቱሪዝም ዘርፉ ትልቅ ዕድል ፈጥሮላታል። የከተማው አስተዳደር ይህንን የተፈጥሮ ስጦታ በመጠቀም ቱሪዝምን ለማሳደግና አለም አቀፍ ጎብኚዎችን ለመሳብ የተለያዩ የፕሮሞሽን ስራዎችን እያከናወነ ይገኛል። የአካባቢው ማህበረሰብም ለቱሪስቶች በሚያሳየው ደግነት እና የእንግዳ ተቀባይነት ባህል ይታወቃል። ጎብኚዎች በመታሃራ በሚቆዩበት ወቅት የተለያዩ ባህላዊ ምግቦችንና መጠጦችን እየተመገቡ የተፈጥሮ ውበትን እንዲያደንቁ ምቹ ሁኔታዎች ተፈጥረዋል።" },
-                    { t: "ስነ-ጽሁፍ፣ ፍልስፍና እና ንቃተ ህሊና", s: "ስለ ንቃተ ህሊና እና ስነ-ልቦና የሚያትቱ ጥልቅ ትንታኔዎች...", b: "የሰው ልጅ ንቃተ ህሊና እና የአስተሳሰብ ለውጥ ለስኬት ያለው ሚና በዝርዝር የሚዳሰስበት ክፍል ነው። እዚህ ጋር ስለ ስቶይሲዝም (Stoicism) አስተምህሮ፣ ስለ አእምሮ ፕሮግራም (Subconscious programming) እና ስለ ሰው ልጅ የውስጥ ጥንካሬ ጥልቅ ትንታኔዎችን እናቀርባለን። የሰው ልጅ በህይወት ውስጥ የሚያጋጥሙትን ፈተናዎች እንዴት በአሸናፊነት መወጣት እንደሚችል፣ አእምሮውን እንዴት ለስኬት ማዘጋጀት እንደሚገባው እና የነገሮችን ትርጉም እንዴት መረዳት እንዳለበት በተለያዩ የስነ-ጽሁፍ ስራዎች እንቃኛለን። ይህ ክፍል ለውስጥ ሰላም እና ለግል እድገት ትልቅ አስተዋጽኦ ያበረክታል።" }
+                    { 
+                        t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ", 
+                        s: "ከንቲባው በከተማዋ በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ...", 
+                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በሌላ በኩል፣ ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል።\n\nከንቲባ አቶ አዲሱ ዋቆ ከመደበኛ የስራ ሰዓት ውጭም ጭምር በልማት ስራዎችና በከተማዋ የጸጥታ ጉዳዮች ላይ በቅርበት ክትትል በማድረግ ለሌሎች አመራሮች አርአያ የሚሆን ተግባር እያከናወኑ መሆኑን የዜናው ዘገባ ያመላክታል።",
+                        r: "ዘጋቢ፡ ሳምሶን ተስፋዬ"
+                    },
+                    { 
+                        t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
+                        s: "ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ግዙፍ የውሃ ፕሮጀክት ግንባታ ማጠቃለያ ምዕራፍ ላይ ይገኛል...", 
+                        b: "መተሃራ — በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከንቲባ አቶ አዲሱ ዋቆ እና አቶ ሙሉቀን ስንታየሁ በስራው ሂደት ላይ ባደረጉት ምልከታ፣ ግንባታው በጥራት እየተከናወነ መሆኑን አረጋግጠዋል። ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ የሚያደርስ ሲሆን ለቀጣዮቹ 50 ዓመታት አስተማማኝ አገልግሎት ይሰጣል።",
+                        r: "📸 የምስል በሳሚ ዶልፊን"
+                    },
+                    { 
+                        t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", 
+                        s: "በበሰቃ ሃይቅ ዳርቻ እየለማ ካለው የመዝናኛ ማዕከል ባሻገር፣ የብርቱካን እርሻ በሳይንሳዊ ክብካቤ እየለማ ይገኛል...", 
+                        b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።\n\nበኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው ይህ ስራ፣ ዛፉ ከንፋስ ግፊት የሚደርስበትን ጉዳት ከመቀነሱም በላይ፣ የተቆረጠው ክፍል በፍጥነት እንዲያገግም እና በፈንገስ እንዳይጠቃ ያደርጋል።",
+                        r: "Sami Dolphin Media"
+                    }
                 ]
             },
             om: {
@@ -105,9 +127,24 @@
                 readMore: "Dabalata dubbisuuf...",
                 nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
                 news: [
-                    { t: "Hojiiwwan Misooma Magaalaa Mataaharaa", s: "Ibsa gabaabaa hojiiwwan misoomaa magaalaa Mataaharaa...", b: "Bulchiinsi magaalaa Mataaharaa gaaffii misoomaa uummataa deebisuuf hojiiwwan bal'aa hojjechaa jira. Isaan keessaa inni ijoon tattaaffii dhiyeessii bishaan dhugaatii qulqulluu guddisuuf taasifamudha. Yeroo ammaa kanatti boolli bishaan haaraan qotamee tajaajilaaf qophii ta'ee jira. Dabalataan miidhagina magaalaa eeguufi jiraattotaaf bakkeewwan boqonnaa mijataa uumuuf ijaarsi paarkii qarqara bishaanis saffisaan hojjetamaa jira." },
-                    { t: "Turiizimii Mataaharaa fi Naannoo Ishee", s: "Bakkeewwan turiizimii Mataaharaa fi ibsa isaa...", b: "Mataaharaan qabeenya uumamaa fi bakkeewwan turiizimiin beekamti. Keessattuu Paarkii Biyyoolessaa Awaashitti dhihoo ta'uun ishee damee turiizimiitiif carraa guddaa uumeera. Bulchiinsi magaalaa turiizimii guddisuufi daawwattoota addunyaa hawwachuuf hojiiwwan beeksisuu adda addaa hojjechaa jira. Hawaasni naannichas turiistotaaf gaarummaa fi aadaa keessummaa simachuu qabuun beekama." },
-                    { t: "Og-barruu, Falaasama fi Dammaqinsa", s: "Xiinxala gadi fagoo waa'ee dammaqinsa sammuu...", b: "Kutaan kun dammaqinsa sammuu fi jijjiirama ilaalchaa irratti xiyyeeffata. Barnoota Stooyisizimii, pirograamii sammuu fi jabinna keessoo namaa irratti xiinxala dhiyeessina. Namni tokko qorumsa jireenya keessatti isa mudatan akkamitti mo'achuu akka danda'u, sammuu isaa akkamitti milkaa'inaaf qopheessuu akka qabu kutaa kanatti dhiyeessina." }
+                    { 
+                        t: "Hojiin Misoomaa Obbo Addisuu Waaqoo Magaalaa Mataaharaaf bifa haaraa kennaa jira", 
+                        s: "Kantiibaan magaalaa hojiiwwan uumama eeguu fi miidhagina magaalaa irratti xiyyeeffatan hojjechaa jiru...", 
+                        b: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga muudamaniinii jalqabee hojiiwwan misoomaa fi bulchiinsa gaarii hojjechaa jiran jijjiirama guddaa fidaa jiru. Bakka kutaatti dhoqqee ture gara iddoo boqonnaa miidhagaatti jijjiiruun isaanii akka fakkeenyaatti kaafama.",
+                        r: "Gabaasaan: Samson Tesfaye"
+                    },
+                    { 
+                        t: "Pirojektiin Bishaan Dhugaatii Magaalaa Mataaharaa 90% irra gaheera", 
+                        s: "Pirojektiin qarshii biiliyoona 1.4 olitti hojjetamaa jiru xumura irra gaheera...", 
+                        b: "Pirojektiin bishaan dhugaatii rakkoo magaalaa Mataaharaa barootaaf ture furuuf ijaaramaa jiru dhibbeentaa 90 ol xumurameera. Pirojektiin kun waggoota 50 dhufaniif tajaajila amansiisaa kenna.",
+                        r: "Fakkii: Sami Dolphin"
+                    },
+                    { 
+                        t: "Kunnuunsa Saayinsaawaa Misooma Birtukaanaa Haroo Basakaa", 
+                        s: "Misoomni birtukaanaa qarqara haroo Basakaa ogummaa saayinsaawaan kunnuunfamaa jira...", 
+                        b: "Hojiin mirmirsuu (Pruning) mukneen birtukaanaa ogummaa addaan hojjetamaa jira. Kunis mukkichi dhibee irraa akka bilisa ta'uu fi firii gaarii akka kennu gargaara.",
+                        r: "Sami Dolphin Media"
+                    }
                 ]
             },
             en: {
@@ -116,12 +153,28 @@
                 readMore: "Read More...",
                 nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
                 news: [
-                    { t: "Development Projects in Metehara City", s: "Detailed overview of development activities in Metehara...", b: "The Metehara city administration is executing extensive projects to address public demands. A key focus is enhancing clean water supply, with new boreholes recently completed for service. To improve urban beauty and provide residents with quality recreational spaces, the riverside park project is progressing rapidly. Upgrading internal roads is also a priority, expected to boost both commercial and social activities within the city." },
-                    { t: "Tourism in Metehara and Surroundings", s: "List of tourist destinations and attractions in Metehara...", b: "Metehara is a prominent Ethiopian city known for its natural resources and tourist sites. Its proximity to Awash National Park provides a significant boost to the local tourism sector. The administration is actively engaged in promotional work to attract international visitors. The local community is celebrated for its hospitality and warm reception of guests, offering a unique blend of natural beauty and traditional experiences for every visitor." },
-                    { t: "Literature, Philosophy, and Consciousness", s: "Deep analysis on human consciousness and psychology...", b: "This section explores the vital role of consciousness and mindset in achieving success. We offer in-depth reflections on Stoic teachings, subconscious programming, and inner strength. Through various literary works, we examine how individuals can overcome life's challenges, prime their minds for success, and find deeper meaning in their experiences. This content aims to support inner peace and personal development." }
+                    { 
+                        t: "Mayor Addisu Waako's Development Projects Giving Metehara a New Look", 
+                        s: "The Mayor is implementing creative works focused on environmental protection and urban beauty...", 
+                        b: "Metehara — Since his appointment, Mayor Addisu Waako has been spearheading development and good governance works that are transforming the city's image. Notably, converting former waste sites into beautiful recreational spots along Lake Metehara is a major achievement.",
+                        r: "Reporter: Samson Tesfaye"
+                    },
+                    { 
+                        t: "Metehara Clean Drinking Water Project Reaches 90% Completion", 
+                        s: "The massive water project, costing over 1.4 billion Birr, is in its final stages...", 
+                        b: "The drinking water project designed to permanently solve Metehara's water shortage is over 90% complete. It aims to provide 100% water coverage and serve the city for the next 50 years.",
+                        r: "Photo: Sami Dolphin"
+                    },
+                    { 
+                        t: "Scientific Care of Orange Farms at Lake Basaka", 
+                        s: "Beyond the recreational center, the orange farm at Lake Basaka is being developed with expert care...", 
+                        b: "The pruning of orange trees at Lake Basaka is a scientific process ensuring tree health and productivity. Expert techniques help trees recover quickly and resist diseases.",
+                        r: "Sami Dolphin Media"
+                    }
                 ]
             }
         };
+
         function updateLanguage() {
             const lang = document.getElementById('languageSelector').value;
             const data = translations[lang];
@@ -137,14 +190,16 @@
                 document.getElementById(`readMore${i+1}`).innerText = data.readMore;
             }
         }
+
         function openModal(id) {
             const lang = document.getElementById('languageSelector').value;
             const data = translations[lang].news[id-1];
             document.getElementById('modalTitle').innerText = data.t;
-            // ረጅሙን ዝርዝር ጽሁፍ እዚህ ጋር እናስገባዋለን
             document.getElementById('modalBody').innerText = data.b;
+            document.getElementById('modalReporter').innerText = data.r;
             document.getElementById('newsModal').style.display = 'flex';
         }
+
         function closeModal() { document.getElementById('newsModal').style.display = 'none'; }
         window.onclick = function(event) { if (event.target == document.getElementById('newsModal')) closeModal(); }
     </script>

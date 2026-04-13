@@ -30,7 +30,7 @@
         .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 10px 20px; }
         .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-decoration: underline; margin-top: 8px; display: inline-block; }
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: #0f172a; border: 2px solid #f59e0b; padding: 30px; border-radius: 15px; max-width: 600px; width: 100%; position: relative; max-height: 80vh; overflow-y: auto; }
+        .modal-content { background: #0f172a; border: 2px solid #f59e0b; padding: 30px; border-radius: 15px; max-width: 600px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
         .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #f59e0b; }
         .section-label { color: #f59e0b; font-weight: 900; font-size: 1.1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin: 20px; }
     </style>
@@ -83,7 +83,7 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <h2 id="modalTitle" class="text-amber-500 font-black text-xl mb-4"></h2>
-            <p id="modalBody" class="text-slate-200 leading-relaxed text-sm"></p>
+            <div id="modalBody" class="text-slate-200 leading-relaxed text-sm space-y-4"></div>
         </div>
     </div>
     <script>
@@ -94,9 +94,9 @@
                 readMore: "ተጨማሪ ያንብቡ...",
                 nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ", "ቴክ", "ፍልስፍና"],
                 news: [
-                    { t: "የልማት እንቅስቃሴዎች", s: "በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች...", b: "የመታሃራ ከተማ አስተዳደር የህዝቡን የንጹህ መጠጥ ውሃ ጥያቄ ለመመለስ እና የመሰረተ ልማት ስራዎችን ለማጠናከር በከፍተኛ ትጋት እየሰራ ይገኛል። በቅርቡ የተጀመሩ የሪቨርሳይድ ፓርክ ስራዎችም ለከተማዋ አዲስ ገጽታ እየሰጡ ነው።" },
-                    { t: "ቱሪዝም በመታሃራ", s: "የመታሃራ ከተማ የቱሪስት መስህቦች...", b: "መታሃራ በተፈጥሮ ሀብቷ እና በቱሪስት መዳረሻዎቿ የምትታወቅ ከተማ ናት። የከተማው አስተዳደር ቱሪዝምን ለማሳደግ እና አለም አቀፍ ጎብኚዎችን ለመሳብ የተለያዩ የፕሮሞሽን ስራዎችን እየሰራ ነው።" },
-                    { t: "ስነ-ጽሁፍና ፍልስፍና", s: "ስለ ንቃተ ህሊና የሚያትቱ ጽሁፎች...", b: "የሰው ልጅ ንቃተ ህሊና እና የአስተሳሰብ ለውጥ ለስኬት ያለው ሚና ከፍተኛ ነው። በዚህ ክፍል ጥልቅ ፍልስፍናዊ ጽሁፎችን፣ ስለ ስቶይሲዝም እና ስለ አእምሮ ፕሮግራም ዝርዝር ትንታኔዎችን እናቀርባለን።" }
+                    { t: "የመታሃራ ከተማ የልማት እንቅስቃሴዎች", s: "በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች ዝርዝር መግለጫ...", b: "የመታሃራ ከተማ አስተዳደር የህዝቡን የልማት ጥያቄዎች ለመመለስ ሰፋፊ ስራዎችን እያከናወነ ይገኛል። ከእነዚህም መካከል ዋነኛው የንጹህ መጠጥ ውሃ አቅርቦትን ለማሳደግ የሚደረገው ጥረት ነው። በአሁኑ ወቅት አዳዲስ የውሃ ጉድጓዶች ተቆፍረው ለአገልግሎት ዝግጁ ሆነዋል። በተጨማሪም የከተማዋን ውበት ለመጠበቅና ለነዋሪዎች ምቹ የመዝናኛ ስፍራዎችን ለመፍጠር የሪቨርሳይድ ፓርክ ግንባታ በከፍተኛ ፍጥነት እየተከናወነ ይገኛል። የከተማው የውስጥ ለውስጥ መንገዶችም ደረጃቸውን የጠበቁ እንዲሆኑ ጥረት እየተደረገ ሲሆን፣ ይህም የከተማዋን የንግድና ማህበራዊ እንቅስቃሴ ያሳልጣል ተብሎ ይጠበቃል።" },
+                    { t: "ቱሪዝም በመታሃራ እና አካባቢዋ", s: "የመታሃራ ከተማ የቱሪስት መስህቦች እና መዳረሻዎች ዝርዝር...", b: "መታሃራ በተፈጥሮ ሀብቷ እና በቱሪስት መዳረሻዎቿ የምትታወቅ የኢትዮጵያ አንዷ ከተማ ናት። በተለይም በአዋሽ ብሔራዊ ፓርክ አቅራቢያ መገኘቷ ለቱሪዝም ዘርፉ ትልቅ ዕድል ፈጥሮላታል። የከተማው አስተዳደር ይህንን የተፈጥሮ ስጦታ በመጠቀም ቱሪዝምን ለማሳደግና አለም አቀፍ ጎብኚዎችን ለመሳብ የተለያዩ የፕሮሞሽን ስራዎችን እያከናወነ ይገኛል። የአካባቢው ማህበረሰብም ለቱሪስቶች በሚያሳየው ደግነት እና የእንግዳ ተቀባይነት ባህል ይታወቃል። ጎብኚዎች በመታሃራ በሚቆዩበት ወቅት የተለያዩ ባህላዊ ምግቦችንና መጠጦችን እየተመገቡ የተፈጥሮ ውበትን እንዲያደንቁ ምቹ ሁኔታዎች ተፈጥረዋል።" },
+                    { t: "ስነ-ጽሁፍ፣ ፍልስፍና እና ንቃተ ህሊና", s: "ስለ ንቃተ ህሊና እና ስነ-ልቦና የሚያትቱ ጥልቅ ትንታኔዎች...", b: "የሰው ልጅ ንቃተ ህሊና እና የአስተሳሰብ ለውጥ ለስኬት ያለው ሚና በዝርዝር የሚዳሰስበት ክፍል ነው። እዚህ ጋር ስለ ስቶይሲዝም (Stoicism) አስተምህሮ፣ ስለ አእምሮ ፕሮግራም (Subconscious programming) እና ስለ ሰው ልጅ የውስጥ ጥንካሬ ጥልቅ ትንታኔዎችን እናቀርባለን። የሰው ልጅ በህይወት ውስጥ የሚያጋጥሙትን ፈተናዎች እንዴት በአሸናፊነት መወጣት እንደሚችል፣ አእምሮውን እንዴት ለስኬት ማዘጋጀት እንደሚገባው እና የነገሮችን ትርጉም እንዴት መረዳት እንዳለበት በተለያዩ የስነ-ጽሁፍ ስራዎች እንቃኛለን። ይህ ክፍል ለውስጥ ሰላም እና ለግል እድገት ትልቅ አስተዋጽኦ ያበረክታል።" }
                 ]
             },
             om: {
@@ -105,9 +105,9 @@
                 readMore: "Dabalata dubbisuuf...",
                 nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
                 news: [
-                    { t: "Misooma Magaalaa", s: "Hojiiwwan misoomaa magaalaa Mataaharaa...", b: "Bulchiinsi magaalaa Mataaharaa gaaffii bishaan dhugaatii qulqulluu deebisuufi hojiiwwan bu'uraalee misoomaa cimsuuf hojjechaa jira. Hojiin paarkii qarqara bishaanis magaalattiif bifa haaraa kennaa jira." },
-                    { t: "Turiizimii Mataaharaa", s: "Bakkeewwan turiizimii Mataaharaa...", b: "Mataaharaan qabeenya uumamaa fi bakkeewwan turiizimiin beekamti. Bulchiinsi magaalaa turiizimii guddisuuf hojjechaa jira." },
-                    { t: "Og-barruu fi Falaasama", s: "Barreeffamoota waa'ee sammuu...", b: "Jiddu-galli kun barreeffamoota falaasama gadi fagoo fi jijjiirama sammuu irratti xiyyeeffatan dhiyeessa." }
+                    { t: "Hojiiwwan Misooma Magaalaa Mataaharaa", s: "Ibsa gabaabaa hojiiwwan misoomaa magaalaa Mataaharaa...", b: "Bulchiinsi magaalaa Mataaharaa gaaffii misoomaa uummataa deebisuuf hojiiwwan bal'aa hojjechaa jira. Isaan keessaa inni ijoon tattaaffii dhiyeessii bishaan dhugaatii qulqulluu guddisuuf taasifamudha. Yeroo ammaa kanatti boolli bishaan haaraan qotamee tajaajilaaf qophii ta'ee jira. Dabalataan miidhagina magaalaa eeguufi jiraattotaaf bakkeewwan boqonnaa mijataa uumuuf ijaarsi paarkii qarqara bishaanis saffisaan hojjetamaa jira." },
+                    { t: "Turiizimii Mataaharaa fi Naannoo Ishee", s: "Bakkeewwan turiizimii Mataaharaa fi ibsa isaa...", b: "Mataaharaan qabeenya uumamaa fi bakkeewwan turiizimiin beekamti. Keessattuu Paarkii Biyyoolessaa Awaashitti dhihoo ta'uun ishee damee turiizimiitiif carraa guddaa uumeera. Bulchiinsi magaalaa turiizimii guddisuufi daawwattoota addunyaa hawwachuuf hojiiwwan beeksisuu adda addaa hojjechaa jira. Hawaasni naannichas turiistotaaf gaarummaa fi aadaa keessummaa simachuu qabuun beekama." },
+                    { t: "Og-barruu, Falaasama fi Dammaqinsa", s: "Xiinxala gadi fagoo waa'ee dammaqinsa sammuu...", b: "Kutaan kun dammaqinsa sammuu fi jijjiirama ilaalchaa irratti xiyyeeffata. Barnoota Stooyisizimii, pirograamii sammuu fi jabinna keessoo namaa irratti xiinxala dhiyeessina. Namni tokko qorumsa jireenya keessatti isa mudatan akkamitti mo'achuu akka danda'u, sammuu isaa akkamitti milkaa'inaaf qopheessuu akka qabu kutaa kanatti dhiyeessina." }
                 ]
             },
             en: {
@@ -116,9 +116,9 @@
                 readMore: "Read More...",
                 nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
                 news: [
-                    { t: "Development Projects", s: "Development works in Metehara city...", b: "The Metehara city administration is working diligently to address the demand for clean drinking water and strengthen infrastructure. Recent riverside park developments are giving the city a new look." },
-                    { t: "Tourism in Metehara", s: "Tourist attractions in Metehara...", b: "Metehara is known for its natural resources and tourist destinations. The administration is working to promote local tourism and attract international visitors." },
-                    { t: "Literature & Philosophy", s: "Articles on consciousness...", b: "This section explores deep philosophical thoughts on human consciousness, mindset, Stoicism, and personal growth." }
+                    { t: "Development Projects in Metehara City", s: "Detailed overview of development activities in Metehara...", b: "The Metehara city administration is executing extensive projects to address public demands. A key focus is enhancing clean water supply, with new boreholes recently completed for service. To improve urban beauty and provide residents with quality recreational spaces, the riverside park project is progressing rapidly. Upgrading internal roads is also a priority, expected to boost both commercial and social activities within the city." },
+                    { t: "Tourism in Metehara and Surroundings", s: "List of tourist destinations and attractions in Metehara...", b: "Metehara is a prominent Ethiopian city known for its natural resources and tourist sites. Its proximity to Awash National Park provides a significant boost to the local tourism sector. The administration is actively engaged in promotional work to attract international visitors. The local community is celebrated for its hospitality and warm reception of guests, offering a unique blend of natural beauty and traditional experiences for every visitor." },
+                    { t: "Literature, Philosophy, and Consciousness", s: "Deep analysis on human consciousness and psychology...", b: "This section explores the vital role of consciousness and mindset in achieving success. We offer in-depth reflections on Stoic teachings, subconscious programming, and inner strength. Through various literary works, we examine how individuals can overcome life's challenges, prime their minds for success, and find deeper meaning in their experiences. This content aims to support inner peace and personal development." }
                 ]
             }
         };
@@ -127,7 +127,10 @@
             const data = translations[lang];
             document.getElementById('welcomeText').innerHTML = data.welcome;
             document.getElementById('latestNewsLabel').innerText = data.label;
-            data.nav.forEach((text, i) => document.getElementById(`nav${i+1}`).innerText = text);
+            data.nav.forEach((text, i) => {
+                const navEl = document.getElementById(`nav${i+1}`);
+                if(navEl) navEl.innerText = text;
+            });
             for(let i=0; i<3; i++) {
                 document.getElementById(`newsTitle${i+1}`).innerText = data.news[i].t;
                 document.getElementById(`newsShort${i+1}`).innerText = data.news[i].s;
@@ -138,6 +141,7 @@
             const lang = document.getElementById('languageSelector').value;
             const data = translations[lang].news[id-1];
             document.getElementById('modalTitle').innerText = data.t;
+            // ረጅሙን ዝርዝር ጽሁፍ እዚህ ጋር እናስገባዋለን
             document.getElementById('modalBody').innerText = data.b;
             document.getElementById('newsModal').style.display = 'flex';
         }

@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        /* የሞሽን ባክግራውንድ */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -22,33 +21,28 @@
             color: white; margin: 0; overflow-x: hidden; 
         }
         
-        /* የላይኛው ክፍል */
         .header-container { display: flex; width: 100%; border-bottom: 2px solid #f59e0b; }
         .sidebar { width: 85px; background: #0ea5e9; display: flex; flex-direction: column; flex-shrink: 0; }
         .nav-link { color: white; text-decoration: none; font-size: 0.65rem; font-weight: 800; padding: 15px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-        /* ጽሁፉ ወደ ላይ ከፍ እንዲል */
-        .hero-box { flex-grow: 1; padding: 10px 20px 20px 20px; display: flex; flex-direction: column; }
-        .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .hero-box { flex-grow: 1; padding: 10px 20px; display: flex; flex-direction: column; }
+        .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
 
-        /* የቋንቋ ምርጫ */
         .lang-select { background: #1e293b; border: 1px solid rgba(255,255,255,0.2); font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; color: white; cursor: pointer; }
 
-        .hero-title { font-size: 1.6rem; font-weight: 900; line-height: 1.2; margin-top: 10px; }
+        .hero-title { font-size: 1.5rem; font-weight: 900; line-height: 1.2; margin-top: 5px; }
         .hero-title span { color: #f59e0b; }
 
-        /* የዜና ካርዶች */
         .card { 
             background: rgba(30, 41, 59, 0.7); 
             padding: 15px; border-radius: 10px; 
             border: 1px solid #0ea5e9; 
-            margin: 10px 20px; 
+            margin: 10px 15px; 
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
-        .card:hover { transform: scale(1.01); background: rgba(30, 41, 59, 0.9); }
+        .card:hover { transform: translateY(-3px); background: rgba(30, 41, 59, 0.9); border-color: #f59e0b; }
 
-        /* Modal */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0;
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
@@ -56,12 +50,13 @@
         }
         .modal-content {
             background: #0f172a; border: 2px solid #f59e0b;
-            padding: 30px; border-radius: 15px; max-width: 600px; width: 100%;
-            position: relative;
+            padding: 25px; border-radius: 15px; max-width: 700px; width: 100%;
+            max-height: 85vh; overflow-y: auto; position: relative;
         }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #f59e0b; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #f59e0b; }
 
-        .section-label { color: #f59e0b; font-weight: 900; font-size: 1.1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin: 20px; }
+        .section-label { color: #f59e0b; font-weight: 900; font-size: 1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin: 15px; }
+        .reporter-tag { font-size: 0.7rem; color: #94a3b8; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
     </style>
 </head>
 <body>
@@ -81,7 +76,7 @@
             <div class="top-row">
                 <div class="flex items-center gap-2">
                     <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
-                    <h1 class="font-black italic text-[11px] uppercase tracking-tighter">SAMI-TUBE MEDIA</h1>
+                    <h1 class="font-black italic text-[10px] uppercase">SAMI-TUBE MEDIA</h1>
                 </div>
                 <select id="languageSelector" class="lang-select" onchange="updateLanguage()">
                     <option value="am">🇪🇹 አማርኛ</option>
@@ -97,26 +92,27 @@
         <h3 class="section-label" id="latestNewsLabel">የቅርብ ጊዜ ዜናዎች</h3>
         
         <div class="card" onclick="openModal(1)">
-            <h5 class="text-amber-500 font-black mb-2" id="newsTitle1">የልማት እንቅስቃሴዎች</h5>
-            <p class="text-xs text-slate-300" id="newsShort1">በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች መግለጫ...</p>
+            <h5 class="text-amber-500 font-black mb-2" id="newsTitle1">የከንቲባው የልማት ስራዎች</h5>
+            <p class="text-xs text-slate-300" id="newsShort1">አቶ አዲሱ ዋቆ በመታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው...</p>
         </div>
 
         <div class="card" onclick="openModal(2)">
-            <h5 class="text-amber-500 font-black mb-2" id="newsTitle2">ቱሪዝም በመታሃራ</h5>
-            <p class="text-xs text-slate-300" id="newsShort2">የመታሃራ ከተማ የቱሪስት መስህቦች እና መዳረሻዎች...</p>
+            <h5 class="text-amber-500 font-black mb-2" id="newsTitle2">የንፁህ መጠጥ ውሃ ፕሮጀክት</h5>
+            <p class="text-xs text-slate-300" id="newsShort2">የመታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% መጠናቀቅ ደረጃ ላይ ደረሰ...</p>
         </div>
 
         <div class="card" onclick="openModal(3)">
-            <h5 class="text-amber-500 font-black mb-2" id="newsTitle3">ስነ-ጽሁፍና ፍልስፍና</h5>
-            <p class="text-xs text-slate-300" id="newsShort3">ስለ ንቃተ ህሊና እና ስነ-ልቦና የሚያትቱ አጫጭር ጽሁፎች...</p>
+            <h5 class="text-amber-500 font-black mb-2" id="newsTitle3">የብርቱካን እርሻ ክብካቤ</h5>
+            <p class="text-xs text-slate-300" id="newsShort3">በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ እና የስነ-ህይወት ጥበብ...</p>
         </div>
     </div>
 
     <div id="newsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" class="text-amber-500 font-black text-xl mb-4"></h2>
-            <p id="modalBody" class="text-slate-200 leading-relaxed"></p>
+            <h2 id="modalTitle" class="text-amber-500 font-black text-lg mb-4"></h2>
+            <div id="modalBody" class="text-slate-200 text-sm leading-relaxed space-y-3"></div>
+            <div id="reporterBox" class="reporter-tag"></div>
         </div>
     </div>
 
@@ -125,28 +121,67 @@
             am: {
                 welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ",
                 label: "የቅርብ ጊዜ ዜናዎች",
+                reporter: "ዘጋቢ፡ ሳምሶን ተስፋዬ (Sami Dolphin)",
                 news: [
-                    { t: "የልማት እንቅስቃሴዎች", s: "በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች...", b: "የመታሃራ ከተማ አስተዳደር የህዝቡን የንጹህ መጠጥ ውሃ ጥያቄ ለመመለስ እና የመሰረተ ልማት ስራዎችን ለማጠናከር በከፍተኛ ትጋት እየሰራ ይገኛል።" },
-                    { t: "ቱሪዝም በመታሃራ", s: "የመታሃራ ከተማ የቱሪስት መስህቦች...", b: "መታሃራ በተፈጥሮ ሀብቷ እና በቱሪስት መዳረሻዎቿ የምትታወቅ ከተማ ናት። የከተማው አስተዳደር ቱሪዝምን ለማሳደግ የተለያዩ ስራዎችን እየሰራ ነው።" },
-                    { t: "ስነ-ጽሁፍና ፍልስፍና", s: "ስለ ንቃተ ህሊና የሚያትቱ ጽሁፎች...", b: "የሰው ልጅ ንቃተ ህሊና እና የአስተሳሰብ ለውጥ ለስኬት ያለው ሚና ከፍተኛ ነው። በዚህ ክፍል ጥልቅ ፍልስፍናዊ ጽሁፎችን እናቀርባለን።" }
+                    { 
+                        t: "አቶ አዲሱ ዋቆ በመታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች", 
+                        s: "አቶ አዲሱ ዋቆ በመታሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች አዲስ ገጽታ እየሰጡ ነው...", 
+                        b: "መታሃራ — የመታሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ። ከንቲባው ቀደም ሲል የቆሻሻ ክምር የነበረውን የመታሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት ቀይረዋል። እንዲሁም በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል።" 
+                    },
+                    { 
+                        t: "የመታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% ደረሰ", 
+                        s: "የመታሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት 90% መጠናቀቅ ደረጃ ላይ ደረሰ...", 
+                        b: "ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ የሚያደርስ ሲሆን ለቀጣዮቹ 50 ዓመታት ያህል አስተማማኝ አገልግሎት መስጠት ያስችላል። በአሁኑ ወቅት የፓምፕ ተከላ እና የቧንቧ ዝርጋታ ስራዎች ተጠናቀዋል።" 
+                    },
+                    { 
+                        t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ", 
+                        s: "በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ እና የስነ-ህይወት ጥበብ...", 
+                        b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል። የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው። ዛፉ ለበሽታ እንዳይጋለጥ በተቆረጡት ክፍሎች ላይ ልዩ የኬሚካል ቅባት የመቀባት ስራ ይከናወናል።" 
+                    }
                 ]
             },
             om: {
                 welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
                 label: "Oduuwwan dhihoo",
+                reporter: "Gabaasaan: Samson Tesfaye (Sami Dolphin)",
                 news: [
-                    { t: "Sifaa Misoomaa", s: "Hojiiwwan misoomaa magaalaa Mataaharaa...", b: "Bulchiinsi magaalaa Mataaharaa gaaffii bishaan dhugaatii qulqulluu deebisuufi hojiiwwan bu'uraalee misoomaa cimsuuf hojjechaa jira." },
-                    { t: "Turiizimii Mataaharaa", s: "Bakkeewwan turiizimii Mataaharaa...", b: "Mataaharaan qabeenya uumamaa fi bakkeewwan turiizimiin beekamti. Bulchiinsi magaalaa turiizimii guddisuuf hojjechaa jira." },
-                    { t: "Afaan-Hoollee fi Ti फिलოსፊ", s: "Barreeffamoota waa'ee sammuu...", b: "Jiddu-galli kun barreeffamoota falaasama gadi fagoo fi jijjiirama sammuu irratti xiyyeeffatan dhiyeessa." }
+                    { 
+                        t: "Hojiiwwan misoomaa Obbo Addisuu Waaqoo Magaalaa Mataaharaatti", 
+                        s: "Hojiiwwan misoomaa kantiibaan magaalaa Mataaharaa raawwachaa jiran bifa haaraa kennaa jiru...", 
+                        b: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga muudamaniitti hojiiwwan misoomaa fi bulchiinsa gaarii hojjechaa jiran bifa magaalattii jijjiiraa jiru. Qarqara haroo Mataaharaa kanaan dura bakka darbaa ture gara bakka bashannanaa miidhagaatti jijjiiruun isaanii akka fakkeenyaatti eerama." 
+                    },
+                    { 
+                        t: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa 90% ga'e", 
+                        s: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa xumuraaf ga'eera...", 
+                        b: "Pirojektiin baasii biliyoona 1.4 olitti hojjetamaa jiru kun ammatti dhibbeentaa 90 ol xumurameera. Pirojektiin kun yoo xumuramu tajaajila bishaanii magaalattii dhibbeentaa 100 ni taasisa, waggoota 50 dhufaniifis tajaajila amansiisaa ni kenna." 
+                    },
+                    { 
+                        t: "Aartii Baayoloojii qarqara Haroo Basakaatti", 
+                        s: "Kunnuunsa saayinsaawaa qarqara haroo Basakaatti ashaakiltii burtukaanaa irratti taasifamu...", 
+                        b: "Magaalaa Mataaharaa keessatti qarqara haroo Basakaatti ashaakiltiin burtukaanaa ogummaa olaanaan kofaltamaa jira. Hojii damee mureessuu (Pruning) saayinsaawaa ta'e hojjechuun fayyummaa fi omiishitummaa ashaakiltii kanaa mirkaneessaa jiru." 
+                    }
                 ]
             },
             en: {
                 welcome: "Welcome to <span>Metehara</span> Digital Hub",
                 label: "Latest News",
+                reporter: "Reporter: Samson Tesfaye (Sami Dolphin)",
                 news: [
-                    { t: "Development Activities", s: "Development works in Metehara city...", b: "The Metehara city administration is working diligently to address the demand for clean drinking water and strengthen infrastructure." },
-                    { t: "Tourism in Metehara", s: "Tourist attractions in Metehara...", b: "Metehara is a city known for its natural resources and tourist destinations. The administration is working to promote local tourism." },
-                    { t: "Literature & Philosophy", s: "Articles on consciousness...", b: "This section explores deep philosophical thoughts on human consciousness, mindset, and personal growth." }
+                    { 
+                        t: "Development works of Ato Addisu Wakko in Metehara", 
+                        s: "The development works initiated by the mayor are giving a new look to Metehara...", 
+                        b: "Metehara — Since being appointed, Mayor Addisu Wakko's development and good governance works have significantly improved the city's image. Notably, he transformed the garbage-filled shores of Lake Metehara into a beautiful recreational spot and introduced urban orange farming." 
+                    },
+                    { 
+                        t: "Metehara Clean Water Project reaches 90% completion", 
+                        s: "The massive clean water project in Metehara is nearing completion...", 
+                        b: "Costing over 1.4 billion Birr, this project is in its final phase. Once completed, it will provide 100% water coverage for the city and serve the residents reliably for the next 50 years. Pump installations are currently underway." 
+                    },
+                    { 
+                        t: "Biological Artistry at Lake Beseka Shore", 
+                        s: "Scientific care and biological protection of orange farms at Lake Beseka...", 
+                        b: "Beyond the recreational center, the orange farms at Lake Beseka are thriving through professional care. Pruning is done scientifically to ensure tree health and productivity, including applying special chemical coatings to prevent diseases." 
+                    }
                 ]
             }
         };
@@ -166,6 +201,7 @@
             const data = translations[lang].news[id-1];
             document.getElementById('modalTitle').innerText = data.t;
             document.getElementById('modalBody').innerText = data.b;
+            document.getElementById('reporterBox').innerText = translations[lang].reporter;
             document.getElementById('newsModal').style.display = 'flex';
         }
 

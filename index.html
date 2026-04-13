@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA</title>
+    <title>SAMI-TUBE MEDIA | Mataaharaa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background-color: #020617; color: white; margin: 0; overflow-x: hidden; }
         
         /* የላይኛው የርዕስና የሜኑ ሳጥን */
-        .header-container { display: flex; width: 100%; background: #0f172a; }
+        .header-container { display: flex; width: 100%; background: #0f172a; border-bottom: 2px solid #f59e0b; }
 
-        /* ሰማያዊው ሜኑ - ቁመቱ ከርዕሱ ጋር እኩል */
         .sidebar { 
             width: 85px; 
             background: #0ea5e9; 
@@ -30,67 +29,89 @@
             border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
 
-        /* የርዕስ ክፍል */
-        .hero-box { flex-grow: 1; padding: 25px; display: flex; flex-direction: column; justify-content: center; }
-        .logo-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .hero-title { font-size: 1.8rem; font-weight: 900; line-height: 1.2; }
+        .hero-box { flex-grow: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-title { font-size: 1.6rem; font-weight: 900; line-height: 1.2; }
         .hero-title span { color: #f59e0b; }
-        .hero-sub { color: #94a3b8; font-size: 0.8rem; border-left: 3px solid #f59e0b; padding-left: 10px; margin-top: 10px; }
 
-        /* ከርዕሱ በታች ያሉ - ሙሉ ስክሪን የሚነኩ */
+        /* የዜና ክፍሎች አቀማመጥ */
         .full-content { width: 100%; }
         
-        .video-section { 
+        .section-box { padding: 25px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .section-label { color: #f59e0b; font-weight: 900; font-size: 1.1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin-bottom: 15px; }
+
+        .video-wrapper { 
             width: 100%; 
-            margin-top: 5px;
             position: relative; 
             padding-bottom: 56.25%; 
             height: 0; 
             background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
         }
-        .video-section iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .details-area { padding: 20px; width: 100%; }
-        .news-box { background: #1e293b; border-radius: 12px; padding: 15px; border-left: 4px solid #f59e0b; margin-bottom: 15px; }
-        .news-box h4 { color: #f59e0b; font-weight: 900; margin-bottom: 5px; }
+        .news-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .card { background: #1e293b; padding: 15px; border-radius: 10px; border-top: 2px solid #0ea5e9; }
+        .card h5 { color: #f59e0b; font-weight: 800; margin-bottom: 5px; }
+        .card p { font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; }
 
-        footer { background: #0f172a; padding: 30px 10px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; }
+        footer { background: #0f172a; padding: 30px 10px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
 
     <div class="header-container">
         <aside class="sidebar">
-            <a href="#" class="nav-link">ቅድመ ዜና</a>
-            <a href="#" class="nav-link">ሪፖርት</a>
-            <a href="#" class="nav-link">ቱሪዝም</a>
-            <a href="#" class="nav-link">ባህል</a>
-            <a href="#" class="nav-link">ስነ ጽሁፍ</a>
-            <a href="#" class="nav-link">ቴክ</a>
-            <a href="#" class="nav-link">ፍልስፍና</a>
+            <a href="#news" class="nav-link">ቅድመ ዜና</a>
+            <a href="#report" class="nav-link">ሪፖርት</a>
+            <a href="#tourism" class="nav-link">ቱሪዝም</a>
+            <a href="#culture" class="nav-link">ባህል</a>
+            <a href="#literature" class="nav-link">ስነ ጽሁፍ</a>
+            <a href="#tech" class="nav-link">ቴክ</a>
+            <a href="#philosophy" class="nav-link">ፍልስፍና</a>
         </aside>
 
         <section class="hero-box">
-            <div class="logo-row">
-                <div class="flex items-center gap-2">
-                    <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
-                    <h1 class="font-black italic text-[10px] uppercase">SAMI-TUBE MEDIA</h1>
-                </div>
+            <div class="flex items-center gap-2 mb-4">
+                <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
+                <h1 class="font-black italic text-[10px] uppercase">SAMI-TUBE MEDIA</h1>
             </div>
-            <h2 class="hero-title">እንኳን ወደ <span>ማታሃራ</span> ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
-            <div class="hero-sub">ወቅታዊ መረጃዎች፣ የቴክኖሎጂ ውጤቶች እና የሥነ-ጽሁፍ ማዕከል</div>
+            <h2 class="hero-title">እንኳን ወደ <span>ማታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
         </section>
     </div>
 
     <div class="full-content">
-        <div class="video-section">
-            <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen></iframe>
+        <div id="report" class="section-box">
+            <h3 class="section-label">የቅርብ ጊዜ ሪፖርቶች</h3>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="card">
+                <h5>የልማት እንቅስቃሴዎች</h5>
+                <p>በማታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች እና የከተማዋ ገጽታ ለውጥ ላይ ያተኮረ ዘገባ።</p>
+            </div>
         </div>
 
-        <div class="details-area">
-            <div class="news-box">
-                <h4>የልማት ስራዎች</h4>
-                <p class="text-sm text-slate-300">የከተማው የልማት ስራዎች በተሳካ ሁኔታ እየተከናወኑ ይገኛሉ።</p>
+        <div id="tourism" class="section-box bg-slate-900/30">
+            <h3 class="section-label">ቱሪዝም እና ባህል</h3>
+            <div class="news-grid">
+                <div class="card">
+                    <h5>የቱሪስት መዳረሻዎች</h5>
+                    <p>የማታሃራን የተፈጥሮ ውበት እና የቱሪስት መስህቦችን የሚያስተዋውቁ መረጃዎች።</p>
+                </div>
+                <div class="card">
+                    <h5>የባህል ትውፊት</h5>
+                    <p>የአካባቢው ህብረተሰብ ጥንታዊ ባህሎች፣ ቅርሶች እና አኗኗር።</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="philosophy" class="section-box">
+            <h3 class="section-label">ስነ ጽሁፍ እና ፍልስፍና</h3>
+            <div class="card">
+                <h5>የንቃተ ህሊና ጉዞ</h5>
+                <p>ስለ አእምሮ ፕሮግራም፣ ስለ ስነ-ልቦና እና ስለ ሰው ልጅ ማንነት ጥልቅ ፍልስፍናዊ ትንታኔዎች።</p>
             </div>
         </div>
     </div>
@@ -99,7 +120,7 @@
         <div class="text-[10px] text-slate-400 font-bold mb-2">
             ስልክ፦ +251 922 243 013 | ኢሜይል፦ sami2all@gmail.com
         </div>
-        <p class="text-[8px] text-slate-600 font-bold">© 2026 ሳምሶን ተስፋዬ | Mataaharaa News</p>
+        <p class="text-[8px] text-slate-600 font-bold uppercase tracking-widest">© 2026 ሳምሶን ተስፋዬ | SAMI DOLPHIN</p>
     </footer>
 
 </body>

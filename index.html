@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMI-TUBE MEDIA | Mataaharaa</title>
+    <title>SAMI-TUBE MEDIA | መታሃራ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -19,57 +19,49 @@
             background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #020617);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            color: white; 
-            margin: 0; 
-            overflow-x: hidden; 
+            color: white; margin: 0; overflow-x: hidden; 
         }
         
+        /* የላይኛው ክፍል */
         .header-container { display: flex; width: 100%; border-bottom: 2px solid #f59e0b; }
+        .sidebar { width: 85px; background: #0ea5e9; display: flex; flex-direction: column; flex-shrink: 0; }
+        .nav-link { color: white; text-decoration: none; font-size: 0.65rem; font-weight: 800; padding: 15px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-        /* የግራ ሜኑ */
-        .sidebar { 
-            width: 85px; 
-            background: #0ea5e9; 
-            display: flex; 
-            flex-direction: column; 
-            flex-shrink: 0;
-        }
-        .nav-link { 
-            color: white; 
-            text-decoration: none; 
-            font-size: 0.65rem; 
-            font-weight: 800; 
-            padding: 15px 5px; 
-            text-align: center; 
-            border-bottom: 1px solid rgba(255,255,255,0.1); 
-        }
-
-        /* ጽሁፉ ወደ ላይ ከፍ እንዲል የተስተካከለ */
+        /* ጽሁፉ ወደ ላይ ከፍ እንዲል */
         .hero-box { flex-grow: 1; padding: 10px 20px 20px 20px; display: flex; flex-direction: column; }
-        
         .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
 
         /* የቋንቋ ምርጫ */
-        .lang-select {
-            background: #1e293b;
-            border: 1px solid rgba(255,255,255,0.2);
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border-radius: 5px;
-            color: white;
-        }
+        .lang-select { background: #1e293b; border: 1px solid rgba(255,255,255,0.2); font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; color: white; cursor: pointer; }
 
         .hero-title { font-size: 1.6rem; font-weight: 900; line-height: 1.2; margin-top: 10px; }
         .hero-title span { color: #f59e0b; }
 
-        .full-content { width: 100%; }
-        .video-wrapper { width: 100%; position: relative; padding-bottom: 56.25%; height: 0; background: #000; border-y: 3px solid #f59e0b; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        /* የዜና ካርዶች */
+        .card { 
+            background: rgba(30, 41, 59, 0.7); 
+            padding: 15px; border-radius: 10px; 
+            border: 1px solid #0ea5e9; 
+            margin: 10px 20px; 
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: scale(1.01); background: rgba(30, 41, 59, 0.9); }
+
+        /* Modal */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
+            justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-content {
+            background: #0f172a; border: 2px solid #f59e0b;
+            padding: 30px; border-radius: 15px; max-width: 600px; width: 100%;
+            position: relative;
+        }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #f59e0b; }
 
         .section-label { color: #f59e0b; font-weight: 900; font-size: 1.1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin: 20px; }
-        .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 0 20px 20px 20px; }
-        
-        footer { background: #0f172a; padding: 30px 10px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -91,34 +83,101 @@
                     <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
                     <h1 class="font-black italic text-[11px] uppercase tracking-tighter">SAMI-TUBE MEDIA</h1>
                 </div>
-                <select class="lang-select">
-                    <option>🇪🇹 አማርኛ</option>
-                    <option>Afaan Oromoo</option>
-                    <option>English</option>
+                <select id="languageSelector" class="lang-select" onchange="updateLanguage()">
+                    <option value="am">🇪🇹 አማርኛ</option>
+                    <option value="om">Afaan Oromoo</option>
+                    <option value="en">English</option>
                 </select>
             </div>
-            <h2 class="hero-title">እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
+            <h2 class="hero-title" id="welcomeText">እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
         </section>
     </div>
 
     <div class="full-content">
-        <h3 class="section-label">የቅርብ ጊዜ ሪፖርቶች</h3>
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen></iframe>
+        <h3 class="section-label" id="latestNewsLabel">የቅርብ ጊዜ ዜናዎች</h3>
+        
+        <div class="card" onclick="openModal(1)">
+            <h5 class="text-amber-500 font-black mb-2" id="newsTitle1">የልማት እንቅስቃሴዎች</h5>
+            <p class="text-xs text-slate-300" id="newsShort1">በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች መግለጫ...</p>
         </div>
 
-        <div class="card">
-            <h5 class="text-amber-500 font-black mb-2">የልማት እንቅስቃሴዎች</h5>
-            <p class="text-xs text-slate-300">በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች እና የከተማዋ ገጽታ ለውጥ ላይ ያተኮረ ዘገባ።</p>
+        <div class="card" onclick="openModal(2)">
+            <h5 class="text-amber-500 font-black mb-2" id="newsTitle2">ቱሪዝም በመታሃራ</h5>
+            <p class="text-xs text-slate-300" id="newsShort2">የመታሃራ ከተማ የቱሪስት መስህቦች እና መዳረሻዎች...</p>
+        </div>
+
+        <div class="card" onclick="openModal(3)">
+            <h5 class="text-amber-500 font-black mb-2" id="newsTitle3">ስነ-ጽሁፍና ፍልስፍና</h5>
+            <p class="text-xs text-slate-300" id="newsShort3">ስለ ንቃተ ህሊና እና ስነ-ልቦና የሚያትቱ አጫጭር ጽሁፎች...</p>
         </div>
     </div>
 
-    <footer>
-        <div class="text-[10px] text-slate-400 font-bold mb-2">
-            ስልክ፦ +251 922 243 013 | ኢሜይል፦ sami2all@gmail.com
+    <div id="newsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" class="text-amber-500 font-black text-xl mb-4"></h2>
+            <p id="modalBody" class="text-slate-200 leading-relaxed"></p>
         </div>
-        <p class="text-[8px] text-slate-600 font-bold uppercase tracking-widest">© 2026 ሳምሶን ተስፋዬ | Mataaharaa News</p>
-    </footer>
+    </div>
 
+    <script>
+        const translations = {
+            am: {
+                welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ",
+                label: "የቅርብ ጊዜ ዜናዎች",
+                news: [
+                    { t: "የልማት እንቅስቃሴዎች", s: "በመታሃራ ከተማ እየተከናወኑ ያሉ የልማት ስራዎች...", b: "የመታሃራ ከተማ አስተዳደር የህዝቡን የንጹህ መጠጥ ውሃ ጥያቄ ለመመለስ እና የመሰረተ ልማት ስራዎችን ለማጠናከር በከፍተኛ ትጋት እየሰራ ይገኛል።" },
+                    { t: "ቱሪዝም በመታሃራ", s: "የመታሃራ ከተማ የቱሪስት መስህቦች...", b: "መታሃራ በተፈጥሮ ሀብቷ እና በቱሪስት መዳረሻዎቿ የምትታወቅ ከተማ ናት። የከተማው አስተዳደር ቱሪዝምን ለማሳደግ የተለያዩ ስራዎችን እየሰራ ነው።" },
+                    { t: "ስነ-ጽሁፍና ፍልስፍና", s: "ስለ ንቃተ ህሊና የሚያትቱ ጽሁፎች...", b: "የሰው ልጅ ንቃተ ህሊና እና የአስተሳሰብ ለውጥ ለስኬት ያለው ሚና ከፍተኛ ነው። በዚህ ክፍል ጥልቅ ፍልስፍናዊ ጽሁፎችን እናቀርባለን።" }
+                ]
+            },
+            om: {
+                welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
+                label: "Oduuwwan dhihoo",
+                news: [
+                    { t: "Sifaa Misoomaa", s: "Hojiiwwan misoomaa magaalaa Mataaharaa...", b: "Bulchiinsi magaalaa Mataaharaa gaaffii bishaan dhugaatii qulqulluu deebisuufi hojiiwwan bu'uraalee misoomaa cimsuuf hojjechaa jira." },
+                    { t: "Turiizimii Mataaharaa", s: "Bakkeewwan turiizimii Mataaharaa...", b: "Mataaharaan qabeenya uumamaa fi bakkeewwan turiizimiin beekamti. Bulchiinsi magaalaa turiizimii guddisuuf hojjechaa jira." },
+                    { t: "Afaan-Hoollee fi Ti फिलოსፊ", s: "Barreeffamoota waa'ee sammuu...", b: "Jiddu-galli kun barreeffamoota falaasama gadi fagoo fi jijjiirama sammuu irratti xiyyeeffatan dhiyeessa." }
+                ]
+            },
+            en: {
+                welcome: "Welcome to <span>Metehara</span> Digital Hub",
+                label: "Latest News",
+                news: [
+                    { t: "Development Activities", s: "Development works in Metehara city...", b: "The Metehara city administration is working diligently to address the demand for clean drinking water and strengthen infrastructure." },
+                    { t: "Tourism in Metehara", s: "Tourist attractions in Metehara...", b: "Metehara is a city known for its natural resources and tourist destinations. The administration is working to promote local tourism." },
+                    { t: "Literature & Philosophy", s: "Articles on consciousness...", b: "This section explores deep philosophical thoughts on human consciousness, mindset, and personal growth." }
+                ]
+            }
+        };
+
+        function updateLanguage() {
+            const lang = document.getElementById('languageSelector').value;
+            document.getElementById('welcomeText').innerHTML = translations[lang].welcome;
+            document.getElementById('latestNewsLabel').innerText = translations[lang].label;
+            for(let i=0; i<3; i++) {
+                document.getElementById(`newsTitle${i+1}`).innerText = translations[lang].news[i].t;
+                document.getElementById(`newsShort${i+1}`).innerText = translations[lang].news[i].s;
+            }
+        }
+
+        function openModal(id) {
+            const lang = document.getElementById('languageSelector').value;
+            const data = translations[lang].news[id-1];
+            document.getElementById('modalTitle').innerText = data.t;
+            document.getElementById('modalBody').innerText = data.b;
+            document.getElementById('newsModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('newsModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('newsModal')) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>

@@ -20,21 +20,36 @@
             color: white; margin: 0; overflow-x: hidden; 
         }
         .header-container { display: flex; width: 100%; border-bottom: 2px solid #f59e0b; }
+        
+        /* የግራ ሜኑ (ከimage_1.png ጋር ተመሳሳይ) */
         .sidebar { width: 85px; background: #0ea5e9; display: flex; flex-direction: column; flex-shrink: 0; position: sticky; top: 0; height: 100vh; }
         .nav-link { color: white; text-decoration: none; font-size: 0.6rem; font-weight: 800; padding: 15px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
         .hero-box { flex-grow: 1; padding: 10px 20px; display: flex; flex-direction: column; }
         .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        
+        /* የቋንቋ ምርጫ (ከimage_1.png ጋር ተመሳሳይ) */
         .lang-select { background: #1e293b; border: 1px solid rgba(255,255,255,0.2); font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; color: white; cursor: pointer; }
+        
         .hero-title { font-size: 1.6rem; font-weight: 900; line-height: 1.2; margin-top: 10px; }
         .hero-title span { color: #f59e0b; }
-        .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 10px 20px; }
+
+        /* የዜና ካርዶች (ከimage_1.png ንጹህ ዲዛይን ጋር የተስተካከለ) */
+        .card-list { display: grid; grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+        .card { 
+            background: rgba(30, 41, 59, 0.7); /* ንጹህ ዳራ */
+            padding: 20px; border-radius: 12px; 
+            border: 1px solid transparent; /* ያ አስጠሊታ ፍሬም ተወግዷል */
+            display: flex; flex-direction: column; gap: 12px; 
+        }
+        
+        /* ፎቶው ከርዕሱ በላይ እንዲታይ (ከimage_1.png ጋር ተመሳሳይ) */
+        .card-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; background-color: #334155; }
+        
         .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-decoration: underline; margin-top: 8px; display: inline-block; }
         .section-label { color: #f59e0b; font-weight: 900; font-size: 1.1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin: 20px; }
         
-        /* Video Section Styling */
-        .video-container { width: calc(100% - 40px); margin: 0 20px 30px 20px; position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 2px solid #f59e0b; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
+        /* Modal (ብቅ የሚል ሳጥን) ስታይል */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: #0f172a; border: 2px solid #f59e0b; padding: 30px; border-radius: 15px; max-width: 650px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
         .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #f59e0b; }
@@ -70,20 +85,23 @@
 
             <h3 class="section-label" id="latestNewsLabel">የቅርብ ጊዜ ዜናዎች</h3>
             
-            <div id="news-cards">
+            <div id="news-cards" class="card-list">
                 <div class="card">
+                    <div class="card-image" style="background-image: url('Screenshot_20260413_151529_Telegram.jpg')"></div>
                     <h5 class="text-amber-500 font-black mb-1" id="newsTitle1">የከንቲባ አቶ አዲሱ ዋቆ የልማት ስራዎች</h5>
                     <p class="text-[0.7rem] text-slate-300" id="newsShort1">የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ያስመዘገቧቸው የልማት ስራዎች...</p>
                     <span class="read-more" id="readMore1" onclick="openModal(1)">ተጨማሪ ያንብቡ...</span>
                 </div>
 
                 <div class="card">
+                    <div class="card-image" style="background-image: url('Screenshot_20260412_214257_Chrome.jpg')"></div>
                     <h5 class="text-amber-500 font-black mb-1" id="newsTitle2">የንፁህ መጠጥ ውሃ ፕሮጀክት</h5>
                     <p class="text-[0.7rem] text-slate-300" id="newsShort2">የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ...</p>
                     <span class="read-more" id="readMore2" onclick="openModal(2)">ተጨማሪ ያንብቡ...</span>
                 </div>
 
                 <div class="card">
+                    <div class="card-image" style="background-image: url('Lumii_20260412_212741543.jpg')"></div>
                     <h5 class="text-amber-500 font-black mb-1" id="newsTitle3">የብርቱካን እርሻ ሳይንሳዊ ክብካቤ</h5>
                     <p class="text-[0.7rem] text-slate-300" id="newsShort3">በበሰቃ ሃይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በከፍተኛ ባለሙያ ጥበብ እየለማ ይገኛል...</p>
                     <span class="read-more" id="readMore3" onclick="openModal(3)">ተጨማሪ ያንብቡ...</span>
@@ -91,8 +109,8 @@
             </div>
 
             <h3 class="section-label" id="videoLabel">የቪዲዮ ዘገባዎች</h3>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div style="width: calc(100% - 40px); margin: 0 20px 30px 20px; position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 2px solid #f59e0b;">
+                <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
             </div>
         </main>
     </div>
@@ -100,6 +118,7 @@
     <div id="newsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalImage" class="w-full h-48 bg-cover bg-center rounded-lg mb-6"></div>
             <h2 id="modalTitle" class="text-amber-500 font-black text-lg mb-4"></h2>
             <div id="modalBody" class="text-slate-200 leading-relaxed text-sm whitespace-pre-line"></div>
             <div id="modalReporter" class="mt-6 pt-4 border-t border-slate-700 text-xs text-amber-500 font-bold"></div>
@@ -117,18 +136,21 @@
                 news: [
                     { 
                         t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ", 
-                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።",
-                        r: "ዘጋቢ፡ ሳምሶን ተስፋዬ"
+                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ...",
+                        r: "ዘጋቢ፡ ሳምሶን ተስፋዬ",
+                        img: "Screenshot_20260413_151529_Telegram.jpg"
                     },
                     { 
                         t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
-                        b: "መተሃራ — በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል።",
-                        r: "📸 የምስል በሳሚ ዶልፊን"
+                        b: "መተሃራ — በመተሃራ ከተማ አስተዳደር...",
+                        r: "📸 የምስል በሳሚ ዶልፊን",
+                        img: "Screenshot_20260412_214257_Chrome.jpg"
                     },
                     { 
                         t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", 
-                        b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።",
-                        r: "Sami Dolphin Media"
+                        b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ...",
+                        r: "Sami Dolphin Media",
+                        img: "Lumii_20260412_212741543.jpg"
                     }
                 ]
             },
@@ -139,9 +161,9 @@
                 readMore: "Dabalata dubbisuuf...",
                 nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
                 news: [
-                    { t: "Hojiin Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga muudamaniinii jalqabee hojiiwwan misoomaa fi bulchiinsa gaarii hojjechaa jiran jijjiirama guddaa fidaa jiru.", r: "Gabaasaan: Samson Tesfaye" },
-                    { t: "Pirojektiin Bishaan Dhugaatii 90% irra gaheera", b: "Pirojektiin bishaan dhugaatii rakkoo magaalaa Mataaharaa barootaaf ture furuuf ijaaramaa jiru dhibbeentaa 90 ol xumurameera.", r: "Fakkii: Sami Dolphin" },
-                    { t: "Kunnuunsa Saayinsaawaa Birtukaanaa Basakaa", b: "Hojiin mirmirsuu mukneen birtukaanaa ogummaa addaan hojjetamaa jira.", r: "Sami Dolphin Media" }
+                    { t: "Hojiin Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo...", r: "Gabaasaan: Samson Tesfaye", img: "Screenshot_20260413_151529_Telegram.jpg" },
+                    { t: "Pirojektiin Bishaan Dhugaatii 90% irra gaheera", b: "Pirojektiin rakkoo magaalaa...", r: "Fakkii: Sami Dolphin", img: "Screenshot_20260412_214257_Chrome.jpg" },
+                    { t: "Kunnuunsa Saayinsaawaa Birtukaanaa Basakaa", b: "Hojiin mirmirsuu mukneen birtukaanaa...", r: "Sami Dolphin Media", img: "Lumii_20260412_212741543.jpg" }
                 ]
             },
             en: {
@@ -151,9 +173,9 @@
                 readMore: "Read More...",
                 nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
                 news: [
-                    { t: "Mayor Addisu Waako's Development Projects", b: "Metehara Mayor Addisu Waako's development and good governance works are transforming the city's image since his appointment.", r: "Reporter: Samson Tesfaye" },
-                    { t: "Water Project Reaches 90% Completion", b: "The massive project to solve Metehara's water shortage is over 90% complete.", r: "Photo: Sami Dolphin" },
-                    { t: "Scientific Care of Orange Farms", b: "Pruning orange trees at Lake Basaka is a scientific process ensuring tree health and productivity.", r: "Sami Dolphin Media" }
+                    { t: "Mayor Addisu Waako's Development Projects", b: "Metehara Mayor Addisu Waako's development...", r: "Reporter: Samson Tesfaye", img: "Screenshot_20260413_151529_Telegram.jpg" },
+                    { t: "Water Project Reaches 90% Completion", b: "The massive project...", r: "Photo: Sami Dolphin", img: "Screenshot_20260412_214257_Chrome.jpg" },
+                    { t: "Scientific Care of Orange Farms", b: "Pruning orange trees...", r: "Sami Dolphin Media", img: "Lumii_20260412_212741543.jpg" }
                 ]
             }
         };
@@ -180,6 +202,7 @@
             document.getElementById('modalTitle').innerText = data.t;
             document.getElementById('modalBody').innerText = data.b;
             document.getElementById('modalReporter').innerText = data.r;
+            document.getElementById('modalImage').style.backgroundImage = `url('${data.img}')`;
             document.getElementById('newsModal').style.display = 'flex';
         }
 

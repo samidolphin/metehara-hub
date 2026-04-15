@@ -28,7 +28,7 @@
         .hero-title { font-size: 1.6rem; font-weight: 900; line-height: 1.2; margin-top: 10px; }
         .hero-title span { color: #f59e0b; }
         .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 10px 20px; display: flex; flex-direction: column; gap: 10px; }
-        .card-image { width: 100%; height: 150px; background-size: cover; background-position: center; border-radius: 8px; }
+        .card-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; background-color: #334155; }
         .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-decoration: underline; margin-top: 8px; display: inline-block; }
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: #0f172a; border: 2px solid #f59e0b; padding: 30px; border-radius: 15px; max-width: 650px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
@@ -91,7 +91,7 @@
     <div id="newsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div id="modalImage" class="w-full h-40 bg-cover bg-center rounded-lg mb-6"></div>
+            <div id="modalImage" class="w-full h-48 bg-cover bg-center rounded-lg mb-6"></div>
             <h2 id="modalTitle" class="text-amber-500 font-black text-lg mb-4"></h2>
             <div id="modalBody" class="text-slate-200 leading-relaxed text-sm whitespace-pre-line"></div>
             <div id="modalReporter" class="mt-6 pt-4 border-t border-slate-700 text-xs text-amber-500 font-bold"></div>
@@ -108,24 +108,21 @@
                 news: [
                     { 
                         t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ", 
-                        s: "ከንቲባው በከተማዋ በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ...", 
-                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በሌላ በኩል፣ ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል።\n\nከንቲባ አቶ አዲሱ ዋቆ ከመደበኛ የስራ ሰዓት ውጭም ጭምር በልማት ስራዎችና በከተማዋ የጸጥታ ጉዳዮች ላይ በቅርበት ክትትል በማድረግ ለሌሎች አመራሮች አርአያ የሚሆን ተግባር እያከናወኑ መሆኑን የዜናው ዘገባ ያመላክታል።",
+                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በሌላ በኩል፣ ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል።",
                         r: "ዘጋቢ፡ ሳምሶን ተስፋዬ",
-                        img: "https://via.placeholder.com/600x400.png?text=Mayor+Addisu+Waako"
+                        img: "Screenshot_20260413_151529_Telegram.jpg"
                     },
                     { 
                         t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
-                        s: "ከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ግዙፍ የውሃ ፕሮጀክት ግንባታ ማጠቃለያ ምዕራፍ ላይ ይገኛል...", 
-                        b: "መተሃራ — በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከንቲባ አቶ አዲሱ ዋቆ እና አቶ ሙሉቀን ስንታየሁ በስራው ሂደት ላይ ባደረጉት ምልከታ፣ ግንባታው በጥራት እየተከናወነ መሆኑን አረጋግጠዋል። ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ የሚያደርስ ሲሆን ለቀጣዮቹ 50 ዓመታት አስተማማኝ አገልግሎት ይሰጣል።",
+                        b: "መተሃራ — በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። ግንባታው ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ የሚያደርስ ሲሆን ለቀጣዮቹ 50 ዓመታት አስተማማኝ አገልግሎት ይሰጣል።",
                         r: "📸 የምስል በሳሚ ዶልፊን",
-                        img: "https://via.placeholder.com/600x400.png?text=Water+Project"
+                        img: "Screenshot_20260412_214257_Chrome.jpg"
                     },
                     { 
                         t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", 
-                        s: "በበሰቃ ሃይቅ ዳርቻ እየለማ ካለው የመዝናኛ ማዕከል ባሻገር፣ የብርቱካን እርሻ በሳይንሳዊ ክብካቤ እየለማ ይገኛል...", 
                         b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።\n\nበኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው ይህ ስራ፣ ዛፉ ከንፋስ ግፊት የሚደርስበትን ጉዳት ከመቀነሱም በላይ፣ የተቆረጠው ክፍል በፍጥነት እንዲያገግም እና በፈንገስ እንዳይጠቃ ያደርጋል።",
                         r: "Sami Dolphin Media",
-                        img: "https://via.placeholder.com/600x400.png?text=Orange+Farm"
+                        img: "Lumii_20260412_212741543.jpg"
                     }
                 ]
             },
@@ -137,24 +134,21 @@
                 news: [
                     { 
                         t: "Hojiin Misoomaa Obbo Addisuu Waaqoo Magaalaa Mataaharaaf bifa haaraa kennaa jira", 
-                        s: "Kantiibaan magaalaa hojiiwwan uumama eeguu fi miidhagina magaalaa irratti xiyyeeffatan hojjechaa jiru...", 
-                        b: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga muudamaniinii jalqabee hojiiwwan misoomaa fi bulchiinsa gaarii hojjechaa jiran jijjiirama guddaa fidaa jiru. Bakka kutaatti dhoqqee ture gara iddoo boqonnaa miidhagaatti jijjiiruun isaanii akka fakkeenyaatti kaafama.",
+                        b: "Mataaharaa — Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo erga muudamaniinii jalqabee hojiiwwan misoomaa fi bulchiinsa gaarii hojjechaa jiran jijjiirama guddaa fidaa jiru.",
                         r: "Gabaasaan: Samson Tesfaye",
-                        img: "https://via.placeholder.com/600x400.png?text=Mayor+Addisu+Waako"
+                        img: "Screenshot_20260413_151529_Telegram.jpg"
                     },
                     { 
                         t: "Pirojektiin Bishaan Dhugaatii Magaalaa Mataaharaa 90% irra gaheera", 
-                        s: "Pirojektiin qarshii biiliyoona 1.4 olitti hojjetamaa jiru xumura irra gaheera...", 
-                        b: "Pirojektiin bishaan dhugaatii rakkoo magaalaa Mataaharaa barootaaf ture furuuf ijaaramaa jiru dhibbeentaa 90 ol xumurameera. Pirojektiin kun waggoota 50 dhufaniif tajaajila amansiisaa kenna.",
+                        b: "Pirojektiin bishaan dhugaatii rakkoo magaalaa Mataaharaa barootaaf ture furuuf ijaaramaa jiru dhibbeentaa 90 ol xumurameera.",
                         r: "Fakkii: Sami Dolphin",
-                        img: "https://via.placeholder.com/600x400.png?text=Water+Project"
+                        img: "Screenshot_20260412_214257_Chrome.jpg"
                     },
                     { 
                         t: "Kunnuunsa Saayinsaawaa Misooma Birtukaanaa Haroo Basakaa", 
-                        s: "Misoomni birtukaanaa qarqara haroo Basakaa ogummaa saayinsaawaan kunnuunfamaa jira...", 
                         b: "Hojiin mirmirsuu (Pruning) mukneen birtukaanaa ogummaa addaan hojjetamaa jira. Kunis mukkichi dhibee irraa akka bilisa ta'uu fi firii gaarii akka kennu gargaara.",
                         r: "Sami Dolphin Media",
-                        img: "https://via.placeholder.com/600x400.png?text=Orange+Farm"
+                        img: "Lumii_20260412_212741543.jpg"
                     }
                 ]
             },
@@ -166,24 +160,21 @@
                 news: [
                     { 
                         t: "Mayor Addisu Waako's Development Projects Giving Metehara a New Look", 
-                        s: "The Mayor is implementing creative works focused on environmental protection and urban beauty...", 
-                        b: "Metehara — Since his appointment, Mayor Addisu Waako has been spearheading development and good governance works that are transforming the city's image. Notably, converting former waste sites into beautiful recreational spots along Lake Metehara is a major achievement.",
+                        b: "Metehara — Mayor Addisu Waako's development and good governance works are transforming the city's image since his appointment.",
                         r: "Reporter: Samson Tesfaye",
-                        img: "https://via.placeholder.com/600x400.png?text=Mayor+Addisu+Waako"
+                        img: "Screenshot_20260413_151529_Telegram.jpg"
                     },
                     { 
                         t: "Metehara Clean Drinking Water Project Reaches 90% Completion", 
-                        s: "The massive water project, costing over 1.4 billion Birr, is in its final stages...", 
-                        b: "The drinking water project designed to permanently solve Metehara's water shortage is over 90% complete. It aims to provide 100% water coverage and serve the city for the next 50 years.",
+                        b: "The massive 1.4 billion Birr water project designed to solve Metehara's water shortage is over 90% complete.",
                         r: "Photo: Sami Dolphin",
-                        img: "https://via.placeholder.com/600x400.png?text=Water+Project"
+                        img: "Screenshot_20260412_214257_Chrome.jpg"
                     },
                     { 
                         t: "Scientific Care of Orange Farms at Lake Basaka", 
-                        s: "Beyond the recreational center, the orange farm at Lake Basaka is being developed with expert care...", 
-                        b: "The pruning of orange trees at Lake Basaka is a scientific process ensuring tree health and productivity. Expert techniques help trees recover quickly and resist diseases.",
+                        b: "Pruning orange trees at Lake Basaka is a scientific process ensuring tree health and productivity.",
                         r: "Sami Dolphin Media",
-                        img: "https://via.placeholder.com/600x400.png?text=Orange+Farm"
+                        img: "Lumii_20260412_212741543.jpg"
                     }
                 ]
             }
@@ -200,9 +191,8 @@
             });
             for(let i=0; i<3; i++) {
                 document.getElementById(`newsTitle${i+1}`).innerText = data.news[i].t;
-                document.getElementById(`newsShort${i+1}`).innerText = data.news[i].s;
                 document.getElementById(`readMore${i+1}`).innerText = data.readMore;
-                document.getElementById(`newsImage${i+1}`).style.backgroundImage = `url(${data.news[i].img})`;
+                document.getElementById(`newsImage${i+1}`).style.backgroundImage = `url('${data.news[i].img}')`;
             }
         }
 
@@ -212,14 +202,14 @@
             document.getElementById('modalTitle').innerText = data.t;
             document.getElementById('modalBody').innerText = data.b;
             document.getElementById('modalReporter').innerText = data.r;
-            document.getElementById('modalImage').style.backgroundImage = `url(${data.img})`;
+            document.getElementById('modalImage').style.backgroundImage = `url('${data.img}')`;
             document.getElementById('newsModal').style.display = 'flex';
         }
 
         function closeModal() { document.getElementById('newsModal').style.display = 'none'; }
         window.onclick = function(event) { if (event.target == document.getElementById('newsModal')) closeModal(); }
         
-        // Initial setup for images
+        // Initial setup
         updateLanguage();
     </script>
 </body>

@@ -6,16 +6,25 @@
     <title>SAMI-TUBE MEDIA | መታሃራ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background: #020617; color: white; margin: 0; overflow-x: hidden; }
-        .header-container { display: flex; width: 100%; border-bottom: 2px solid #f59e0b; }
-        .sidebar { width: 85px; background: #0ea5e9; display: flex; flex-direction: column; flex-shrink: 0; }
+        .header-container { display: flex; width: 100%; border-bottom: 2px solid #f59e0b; min-height: 250px; }
+        .sidebar { width: 85px; background: #0ea5e9; display: flex; flex-direction: column; flex-shrink: 0; z-index: 20; }
         .nav-link { color: white; text-decoration: none; font-size: 0.6rem; font-weight: 800; padding: 15px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .hero-box { flex-grow: 1; padding: 10px 20px; }
-        .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        
+        /* ስላይድ ሾው እንዲሰራ የተቀየረ */
+        .hero-box { flex-grow: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .slideshow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        .mySlides { display: none; width: 100%; height: 100%; background-size: cover; background-position: center; }
+        .fade { animation: fadeAnim 1.5s; }
+        @keyframes fadeAnim { from {opacity: .4} to {opacity: 1} }
+
+        .top-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 15px; position: relative; z-index: 10; background: rgba(2,6,23,0.4); }
         .lang-select { background: #1e293b; border: 1px solid rgba(255,255,255,0.2); font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; color: white; }
-        .hero-title { font-size: 1.5rem; font-weight: 900; line-height: 1.2; }
+        .hero-title { font-size: 1.5rem; font-weight: 900; line-height: 1.2; position: relative; z-index: 10; padding: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
         .hero-title span { color: #f59e0b; }
+        
         .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 10px 20px; }
         .card-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 10px; }
         .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-decoration: underline; }
@@ -29,6 +38,20 @@
     <div class="header-container">
         <aside class="sidebar" id="sidebarNav"></aside>
         <section class="hero-box">
+            <div class="slideshow-container">
+                <div class="mySlides fade" style="background-image: url('1776693475534.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693473066.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693470500.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693467988.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693464944.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693462335.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693459697.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693457106.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693453243.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('1776693450696.jpg');"></div>
+                <div class="mySlides fade" style="background-image: url('slider-11.jpg');"></div>
+            </div>
+
             <div class="top-row">
                 <div class="flex items-center gap-2">
                     <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
@@ -57,26 +80,21 @@
     <footer style="background: #0f172a; padding: 30px 20px; border-top: 2px solid #f59e0b; text-align: center;">
         <h4 style="color: #f59e0b; margin-bottom: 15px;">ያግኙን / Contact</h4>
         <p>📞 <a href="tel:+251911926976" style="color: white; text-decoration: none;">+251 911 92 6976</a></p>
-        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap;">
-            <a href="https://t.me/Metehara_Info_bot" target="_blank" style="background: #0ea5e9; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.7rem; font-weight: 900;">Telegram</a>
-            <a href="https://www.youtube.com/@samidolphin" target="_blank" style="background: #ef4444; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.7rem; font-weight: 900;">YouTube</a>
-            <a href="https://facebook.com/samidolphin" target="_blank" style="background: #1877f2; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.7rem; font-weight: 900;">Facebook</a>
+        
+        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+            <a href="https://t.me/Ayyotube_bot" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors border border-amber-500/30">
+                <i class="fab fa-telegram text-white"></i>
+            </a>
+            <a href="https://youtube.com/@samsontesfaye2670?si=5LVZkGgNs9q2McHa" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors border border-amber-500/30">
+                <i class="fab fa-youtube text-white"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1J14TXrrMv/" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors border border-amber-500/30">
+                <i class="fab fa-facebook text-white"></i>
+            </a>
         </div>
         <p style="color: #f59e0b; font-size: 0.7rem; margin-top: 20px;">© 2026 SAMI-TUBE MEDIA | በሳሚ ዶልፊን የቀረበ</p>
     </footer>
-<div class="slideshow-container">
-            <div class="mySlides fade" style="background-image: url('1776693475534.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693473066.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693470500.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693467988.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693464944.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693462335.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693459697.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693457106.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693453243.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('1776693450696.jpg');"></div>
-            <div class="mySlides fade" style="background-image: url('slider-11.jpg');"></div>
-        </div>
+
     <div id="newsModal" class="modal" onclick="closeModalOutside(event)">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -97,43 +115,14 @@
                 news: [
                     { 
                         t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ", 
-                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nከንቲባው በከተማዋ በተለይም በአካባቢ ጥበቃ እና በከተማ ውበት ላይ ያተኮሩ የፈጠራ ስራዎችን በመተግበር ላይ ይገኛሉ። ከእነዚህም መካከል ቀደም ሲል የቆሻሻ ክምር የነበረውን የመተሃራ ሃይቅ ዳርቻ ወደ ውብ የመዝናኛ ስፍራነት መቀየራቸው በዋናነት ይጠቀሳል። በአሁኑ ወቅት ስፍራው ለከተማዋ ነዋሪዎችና ለጎብኚዎች ምቹ መዳረሻ መሆን መቻሉ ተመልክቷል።\n\nበሌላ በኩል፣ ከንቲባው በሃይቁ ዳርቻ ላይ የብርቱካን እርሻ ልማትን በማስተዋወቅ አዲስ የከተማ ግብርና ተሞክሮን ወደ ተግባር ቀይረዋል። ይህ የአረንጓዴ ልማት ተነሳሽነት ከተማዋ ያላትን የተፈጥሮ ፀጋ በአግባቡ ጥቅም ላይ ለማዋል ያለመና መተሃራን የአረንጓዴ ልማት ተምሳሌት የሚያደርግ እንደሆነ ተገልጿል...\n\nዘጋቢ፡ ሳምሶን ተስፋዬ", 
-                        img: "mayor-addisu-wako (1).jpg" 
+                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ", 
+                        img: "1776693475534.jpg" 
                     },
                     { 
                         t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
-                        b: "መተሃራ፣ መጋቢት 6/2018\nበመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።\n\nከ1.4 ቢሊዮን ብር በላይ ወጪ እየተከናወነ የሚገኘው ይህ ፕሮጀክት፣ በአሁኑ ወቅት የማጠቃለያ ምዕራፍ ላይ ይገኛል። የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ እና የውሃና ፍሳሽ አገልግሎት ድርጅት ስራ አስኪያጅ አቶ ሙሉቀን ስንታየሁ በስራው ሂደት ላይ ባደረጉት የመስክ ምልከታ፣ ግንባታው በጥራት እና በተቀመጠለት የጊዜ ገደብ እየተከናወነ መሆኑን አረጋግጠዋል።\n\n🔹 የፕሮጀክቱ ዋና ዋና ነጥቦች፦\n• ዘላቂ መፍትሄ፦ ፕሮጀክቱ ሲጠናቀቅ የከተማዋን የውሃ ሽፋን 100 በመቶ ያደርሳል።\n• የረጅም ጊዜ አገልግሎት፦ ለቀጣዮቹ 50 ዓመታት ያህል ለከተማዋ ነዋሪዎች አስተማማኝ አገልግሎት መስጠት ይችላል።\n\n📸 የምስል በሳሚ ዶልፊን", 
-                         img: "water-project.jpg"
-                    },
-                    { 
-                        t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", 
-                        b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።\n\nበኑራኤራ እርሻ ልማት የረጅም ጊዜ ልምድ ባላቸው ባለሙያዎች የሚከናወነው የብርቱካን ዛፎች የመግረዝ (Pruning) ስራ፣ ተራ የቅርንጫፍ ቅነሳ ሳይሆን የዛፉን ጤና እና ምርታማነት የሚያረጋግጥ ሳይንሳዊ ሂደት ነው።\n\nሂደቱ፦ ቅርንጫፎች በሚገረዙበት ወቅት ዛፉ ለአየር ንክኪ እና ለበሽታ አምጪ ተህዋስያን ተጋላጭ እንዳይሆን፣ በተቆረጡት ክፍሎች ላይ ልዩ የኬሚካል ቅባት የመቀባት ስራ ይከናወናል።\n\nጠቀሜታው፦ ይህ ስራ ዛፉ ከንፋስ ግፊት የሚደርስበትን ጉዳት ከመቀነሱም በላይ፣ የተቆረጠው ክፍል በፍጥነት እንዲያገግም እና በፈንገስ እንዳይጠቃ ያደርጋል።", 
-                        img: "Screenshot_20260420_150449_Lumii - Photo Editor.jpg" 
+                        b: "መተሃራ፣ መጋቢት 6/2018\nግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።", 
+                         img: "1776693473066.jpg"
                     }
-                ]
-            },
-            om: {
-                welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
-                latest: "Oduuwwan dhihoo",
-                video: "Gabaasa Viidiyoo",
-                readMore: "Dabalata dubbisuuf...",
-                nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
-                news: [
-                    { t: "Hojii Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa magaalaa sanaaf bifa haaraa kennan galmeessaniiru...", img: "Screenshot_20260413_151529_Telegram.jpg" },
-                    { t: "Pirojektiin Bishaan Dhugaatii 90% xumurame", b: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa rakkoo bishaan dhugaatii furuuf jalqabame harka 90% xumurameera.", img: "Screenshot_20260412_214257_Chrome.jpg" },
-                    { t: "Kunnuunsa Saayinsawaa Birtukaanaa", b: "Muka birtukaanaa haroo Basakaa biratti argamu mala saayinsawaan guddisuuf hojjetamaa jira.", img: "Lumii_20260412_212741543.jpg" }
-                ]
-            },
-            en: {
-                welcome: "Welcome to <span>Metehara</span><br>Digital Hub",
-                latest: "Latest News",
-                video: "Video Reports",
-                readMore: "Read More...",
-                nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
-                news: [
-                    { t: "Mayor Addisu Waako's Development Projects", b: "Mayor Addisu Waako's initiatives in urban beautification and environmental protection are transforming Metehara into a green city model.", img: "Screenshot_20260413_151529_Telegram.jpg" },
-                    { t: "90% Completion of Clean Water Project", b: "The 1.4 billion Birr water project is nearing completion, aiming for 100% coverage and serving the city for the next 50 years.", img: "Screenshot_20260412_214257_Chrome.jpg" },
-                    { t: "Scientific Orange Farming at Lake Basaka", b: "Experts are using scientific pruning and chemical protection to ensure the health and productivity of orange farms near the lake.", img: "Lumii_20260412_212741543.jpg" }
                 ]
             }
         };
@@ -172,36 +161,31 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() <a href="https://t.me/Ayyotube_bot" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors">
-                <i class="fab fa-telegram"></i>
-            </a>
-            <a href="https://youtube.com/@samsontesfaye2670?si=5LVZkGgNs9q2McHa" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://www.facebook.com/share/1J14TXrrMv/" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors">
-                <i class="fab fa-facebook"></i>
-            </a>
+        function closeModal() {
+            document.getElementById('newsModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
         function closeModalOutside(event) {
             if (event.target.id === 'newsModal') closeModal();
         }
 
-        updateLanguage();
-   // ምስሎቹ በየ 3 ሰኮንዱ እንዲቀያየሩ የሚያደርግ ኮድ
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
+        // ምስሎቹ በየ 3 ሰኮንዱ እንዲቀያየሩ የሚያደርግ ኮድ
+        let slideIndex = 0;
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 3000); 
         }
-        slideIndex++;
-        if (slideIndex > slides.length) {slideIndex = 1}    
-        slides[slideIndex-1].style.display = "block";  
-        setTimeout(showSlides, 3000); 
-    }
+
+        updateLanguage();
+        showSlides();
     </script>
 </body>
 </html>

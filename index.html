@@ -92,4 +92,91 @@
     <script>
         const content = {
             am: {
-                welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲ
+                welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ",
+                latest: "የቅርብ ጊዜ ዜናዎች",
+                video: "የቪዲዮ ዘገባዎች",
+                readMore: "ተጨማሪ ያንብቡ...",
+                nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ"],
+                news: [
+                    { t: "የከንቲባ አዲሱ ዋቆ የልማት ስራዎች", b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።", img: "1776693475534.jpg" },
+                    { t: "የንፁህ መጠጥ ውሃ ፕሮጀክት 90% ደርሷል", b: "መተሃራ — በመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረውና የከተማዋን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ይፈታል ተብሎ የታመነበት ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።", img: "1776693473066.jpg" },
+                    { t: "የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።", img: "1776693470500.jpg" }
+                ]
+            },
+            om: {
+                welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
+                latest: "Oduuwwan dhihoo",
+                video: "Gabaasa Viidiyoo",
+                readMore: "Dabalata dubbisuuf...",
+                nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu"],
+                news: [
+                    { t: "Hojii Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa magaalaa sanaaf bifa haaraa kennan galmeessaniiru.", img: "1776693475534.jpg" },
+                    { t: "Pirojektiin Bishaan Dhugaatii 90% xumurame", b: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa harka 90% xumurameera.", img: "1776693473066.jpg" },
+                    { t: "Kunnuunsa Saayinsawaa Birtukaanaa", b: "Muka birtukaanaa haroo Basakaa biratti argamu mala saayinsawaan guddisuuf hojjetamaa jira.", img: "1776693470500.jpg" }
+                ]
+            },
+            en: {
+                welcome: "Welcome to <span>Metehara</span><br>Digital Hub",
+                latest: "Latest News",
+                video: "Video Reports",
+                readMore: "Read More...",
+                nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature"],
+                news: [
+                    { t: "Mayor Addisu Waako's Projects", b: "Mayor Addisu Waako's initiatives in urban beautification are transforming Metehara into a green city model.", img: "1776693475534.jpg" },
+                    { t: "Clean Water Project Nears 90%", b: "The 1.4 billion Birr water project is nearing completion, aiming for 100% coverage.", img: "1776693473066.jpg" },
+                    { t: "Scientific Orange Farming", b: "Experts are using scientific techniques to ensure the productivity of orange farms near Lake Basaka.", img: "1776693470500.jpg" }
+                ]
+            }
+        };
+
+        function updateLanguage() {
+            const lang = document.getElementById('languageSelector').value;
+            const data = content[lang];
+            document.getElementById('welcomeText').innerHTML = data.welcome;
+            document.getElementById('latestNewsLabel').innerText = data.latest;
+            document.getElementById('videoLabel').innerText = data.video;
+            
+            let navHtml = '';
+            data.nav.forEach(n => navHtml += `<a href="#" class="nav-link">${n}</a>`);
+            document.getElementById('sidebarNav').innerHTML = navHtml;
+
+            let newsHtml = '';
+            data.news.forEach((n, i) => {
+                newsHtml += `
+                    <div class="card">
+                        <div class="card-image" style="background-image: url('${n.img}')"></div>
+                        <h5 style="color: #f59e0b; font-weight: 900; font-size: 0.95rem;">${n.t}</h5>
+                        <p style="font-size: 0.75rem; color: #cbd5e1; margin: 8px 0;">${n.b.substring(0, 100)}...</p>
+                        <span class="read-more" onclick="openModal(${i})">${data.readMore}</span>
+                    </div>`;
+            });
+            document.getElementById('news-container').innerHTML = newsHtml;
+        }
+
+        function openModal(index) {
+            const lang = document.getElementById('languageSelector').value;
+            const item = content[lang].news[index];
+            document.getElementById('modalTitle').innerText = item.t;
+            document.getElementById('modalBody').innerText = item.b;
+            document.getElementById('modalImage').style.backgroundImage = `url('${item.img}')`;
+            document.getElementById('newsModal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('newsModal').style.display = 'none'; }
+        function closeModalOutside(event) { if (event.target.id === 'newsModal') closeModal(); }
+
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            for (let i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 3000); 
+        }
+
+        updateLanguage();
+        showSlides();
+    </script>
+</body>
+</html>

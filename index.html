@@ -27,15 +27,7 @@
 </head>
 <body>
     <div class="header-container">
-        <aside class="sidebar">
-            <a href="#" class="nav-link" id="nav1">ቅድመ ዜና</a>
-            <a href="#" class="nav-link" id="nav2">ሪፖርት</a>
-            <a href="#" class="nav-link" id="nav3">ቱሪዝም</a>
-            <a href="#" class="nav-link" id="nav4">ባህል</a>
-            <a href="#" class="nav-link" id="nav5">ስነ ጽሁፍ</a>
-            <a href="#" class="nav-link" id="nav6">ቴክ</a>
-            <a href="#" class="nav-link" id="nav7">ፍልስፍና</a>
-        </aside>
+        <aside class="sidebar" id="sidebarNav"></aside>
         <section class="hero-box">
             <div class="top-row">
                 <div class="flex items-center gap-2">
@@ -45,36 +37,102 @@
                 <select id="languageSelector" class="lang-select" onchange="updateLanguage()">
                     <option value="am">🇪🇹 አማርኛ</option>
                     <option value="om">Afaan Oromoo</option>
-                    <option value="en">English</option>
                 </select>
             </div>
-            <h2 class="hero-title" id="welcomeText">እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
+            <h2 class="hero-title" id="welcomeText"></h2>
         </section>
     </div>
 
-    <h3 class="section-label" id="latestNewsLabel">የቅርብ ጊዜ ዜናዎች</h3>
-    
-    <div id="news-container">
-        <div class="card">
-            <div class="card-image" id="newsImage1" style="background-image: url('Screenshot_20260413_151529_Telegram.jpg');"></div>
-            <h5 class="text-amber-500 font-black" id="newsTitle1"></h5>
-            <p class="text-[0.8rem] text-slate-300" id="newsShort1"></p>
-            <span class="read-more" onclick="openModal(1)">ተጨማሪ ያንብቡ...</span>
-        </div>
-        <div class="card">
-            <div class="card-image" id="newsImage2" style="background-image: url('Screenshot_20260412_214257_Chrome.jpg');"></div>
-            <h5 class="text-amber-500 font-black" id="newsTitle2"></h5>
-            <p class="text-[0.8rem] text-slate-300" id="newsShort2"></p>
-            <span class="read-more" onclick="openModal(2)">ተጨማሪ ያንብቡ...</span>
-        </div>
-        <div class="card">
-            <div class="card-image" id="newsImage3" style="background-image: url('Lumii_20260412_212741543.jpg');"></div>
-            <h5 class="text-amber-500 font-black" id="newsTitle3"></h5>
-            <p class="text-[0.8rem] text-slate-300" id="newsShort3"></p>
-            <span class="read-more" onclick="openModal(3)">ተጨማሪ ያንብቡ...</span>
-        </div>
-    </div>
+    <h3 class="section-label" id="latestNewsLabel"></h3>
+    <div id="news-container"></div>
 
     <h3 class="section-label">የቪዲዮ ዘገባዎች</h3>
     <div style="padding: 0 20px 20px 20px;">
-        <div style="position: relative; padding-bottom:
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid #f59e0b;">
+            <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+        </div>
+    </div>
+
+    <footer style="background: #0f172a; padding: 30px 20px; border-top: 2px solid #f59e0b; text-align: center;">
+        <h4 style="color: #f59e0b; margin-bottom: 15px;">ያግኙን / Contact</h4>
+        <p>📞 <a href="tel:+251911926976" style="color: white; text-decoration: none;">+251 911 92 6976</a></p>
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap;">
+            <a href="https://t.me/Metehara_Info_bot" target="_blank" style="background: #0ea5e9; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.7rem; font-weight: 900;">Telegram</a>
+            <a href="https://www.youtube.com/@samidolphin" target="_blank" style="background: #ef4444; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.7rem; font-weight: 900;">YouTube</a>
+            <a href="https://facebook.com/samidolphin" target="_blank" style="background: #1877f2; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.7rem; font-weight: 900;">Facebook</a>
+        </div>
+        <p style="color: #f59e0b; font-size: 0.7rem; margin-top: 20px;">© 2026 SAMI-TUBE MEDIA | በሳሚ ዶልፊን የቀረበ</p>
+    </footer>
+
+    <div id="newsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalImage" style="width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 15px;"></div>
+            <h2 id="modalTitle" style="color: #f59e0b; font-weight: 900; margin-bottom: 10px; font-size: 1.1rem;"></h2>
+            <p id="modalBody" style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;"></p>
+        </div>
+    </div>
+
+    <script>
+        const content = {
+            am: {
+                welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ",
+                latest: "የቅርብ ጊዜ ዜናዎች",
+                readMore: "ተጨማሪ ያንብቡ...",
+                nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ", "ቴክ", "ፍልስፍና"],
+                news: [
+                    { t: "የከንቲባ አቶ አዲሱ ዋቆ የልማት ስራዎች", b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ።", img: "Screenshot_20260413_151529_Telegram.jpg" },
+                    { t: "የንፁህ መጠጥ ውሃ ፕሮጀክት", b: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ። ይህ ለከተማዋ ነዋሪዎች ትልቅ እፎይታ ነው።", img: "Screenshot_20260412_214257_Chrome.jpg" },
+                    { t: "የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", b: "በበሰቃ ሃይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በሳይንሳዊ መንገድ እንዲለማ በማድረግ ምርታማነትን ለማሳደግ እየተሰራ ነው።", img: "Lumii_20260412_212741543.jpg" }
+                ]
+            },
+            om: {
+                welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
+                latest: "Oduuwwan dhihoo",
+                readMore: "Dabalata dubbisuuf...",
+                nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
+                news: [
+                    { t: "Hojii Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa magaalaa sanaaf bifa haaraa kennan galmeessaniiru.", img: "Screenshot_20260413_151529_Telegram.jpg" },
+                    { t: "Pirojektiin Bishaan Dhugaatii", b: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa harka 90% xumurameera.", img: "Screenshot_20260412_214257_Chrome.jpg" },
+                    { t: "Kunnuunsa Saayinsawaa Birtukaanaa", b: "Muka birtukaanaa haroo Basakaa biratti argamu mala saayinsawaan guddisuuf hojjetamaa jira.", img: "Lumii_20260412_212741543.jpg" }
+                ]
+            }
+        };
+
+        function updateLanguage() {
+            const lang = document.getElementById('languageSelector').value;
+            const data = content[lang] || content.am;
+            document.getElementById('welcomeText').innerHTML = data.welcome;
+            document.getElementById('latestNewsLabel').innerText = data.latest;
+            
+            let navHtml = '';
+            data.nav.forEach(n => navHtml += `<a href="#" class="nav-link">${n}</a>`);
+            document.getElementById('sidebarNav').innerHTML = navHtml;
+
+            let newsHtml = '';
+            data.news.forEach((n, i) => {
+                newsHtml += `
+                    <div class="card">
+                        <div class="card-image" style="background-image: url('${n.img}')"></div>
+                        <h5 style="color: #f59e0b; font-weight: 900; font-size: 1rem;">${n.t}</h5>
+                        <p style="font-size: 0.75rem; color: #cbd5e1; margin: 5px 0;">${n.b.substring(0, 70)}...</p>
+                        <span class="read-more" onclick="openModal(${i})">${data.readMore}</span>
+                    </div>`;
+            });
+            document.getElementById('news-container').innerHTML = newsHtml;
+        }
+
+        function openModal(index) {
+            const lang = document.getElementById('languageSelector').value;
+            const item = (content[lang] || content.am).news[index];
+            document.getElementById('modalTitle').innerText = item.t;
+            document.getElementById('modalBody').innerText = item.b;
+            document.getElementById('modalImage').style.backgroundImage = `url('${item.img}')`;
+            document.getElementById('newsModal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('newsModal').style.display = 'none'; }
+        updateLanguage();
+    </script>
+</body>
+</html>

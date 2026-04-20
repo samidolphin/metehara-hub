@@ -37,6 +37,7 @@
                 <select id="languageSelector" class="lang-select" onchange="updateLanguage()">
                     <option value="am">🇪🇹 አማርኛ</option>
                     <option value="om">Afaan Oromoo</option>
+                    <option value="en">English</option>
                 </select>
             </div>
             <h2 class="hero-title" id="welcomeText"></h2>
@@ -46,7 +47,7 @@
     <h3 class="section-label" id="latestNewsLabel"></h3>
     <div id="news-container"></div>
 
-    <h3 class="section-label">የቪዲዮ ዘገባዎች</h3>
+    <h3 class="section-label" id="videoLabel">የቪዲዮ ዘገባዎች</h3>
     <div style="padding: 0 20px 20px 20px;">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid #f59e0b;">
             <iframe src="https://www.youtube.com/embed/Yp9H-H6e_k8" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
@@ -68,7 +69,7 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <div id="modalImage" style="width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 15px;"></div>
-            <h2 id="modalTitle" style="color: #f59e0b; font-weight: 900; margin-bottom: 10px; font-size: 1.1rem;"></h2>
+            <h2 id="modalTitle" style="color: #f59e0b; font-weight: 900; margin-bottom: 10px;"></h2>
             <p id="modalBody" style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;"></p>
         </div>
     </div>
@@ -78,6 +79,7 @@
             am: {
                 welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ",
                 latest: "የቅርብ ጊዜ ዜናዎች",
+                video: "የቪዲዮ ዘገባዎች",
                 readMore: "ተጨማሪ ያንብቡ...",
                 nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ", "ቴክ", "ፍልስፍና"],
                 news: [
@@ -89,12 +91,25 @@
             om: {
                 welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
                 latest: "Oduuwwan dhihoo",
+                video: "Gabaasa Viidiyoo",
                 readMore: "Dabalata dubbisuuf...",
                 nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
                 news: [
                     { t: "Hojii Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa magaalaa sanaaf bifa haaraa kennan galmeessaniiru.", img: "Screenshot_20260413_151529_Telegram.jpg" },
                     { t: "Pirojektiin Bishaan Dhugaatii", b: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa harka 90% xumurameera.", img: "Screenshot_20260412_214257_Chrome.jpg" },
                     { t: "Kunnuunsa Saayinsawaa Birtukaanaa", b: "Muka birtukaanaa haroo Basakaa biratti argamu mala saayinsawaan guddisuuf hojjetamaa jira.", img: "Lumii_20260412_212741543.jpg" }
+                ]
+            },
+            en: {
+                welcome: "Welcome to <span>Metehara</span><br>Digital Hub",
+                latest: "Latest News",
+                video: "Video Reports",
+                readMore: "Read More...",
+                nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
+                news: [
+                    { t: "Mayor Addisu Waako's Projects", b: "The development projects initiated by Mayor Addisu Waako are giving Metehara a new look and improving the residents' lives.", img: "Screenshot_20260413_151529_Telegram.jpg" },
+                    { t: "Clean Water Project Update", b: "The clean water project in Metehara is 90% complete, bringing great relief to the local community.", img: "Screenshot_20260412_214257_Chrome.jpg" },
+                    { t: "Scientific Orange Farming", b: "Scientific methods are being applied to orange farming near Lake Basaka to increase productivity and quality.", img: "Lumii_20260412_212741543.jpg" }
                 ]
             }
         };
@@ -104,6 +119,7 @@
             const data = content[lang] || content.am;
             document.getElementById('welcomeText').innerHTML = data.welcome;
             document.getElementById('latestNewsLabel').innerText = data.latest;
+            document.getElementById('videoLabel').innerText = data.video;
             
             let navHtml = '';
             data.nav.forEach(n => navHtml += `<a href="#" class="nav-link">${n}</a>`);

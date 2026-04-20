@@ -38,7 +38,6 @@
                 <div class="mySlides fade" style="background-image: url('1776693475534.jpg');"></div>
                 <div class="mySlides fade" style="background-image: url('1776693473066.jpg');"></div>
                 <div class="mySlides fade" style="background-image: url('1776693470500.jpg');"></div>
-                <div class="mySlides fade" style="background-image: url('slider-11.jpg');"></div>
             </div>
             <div class="top-row">
                 <div class="flex items-center gap-2">
@@ -55,28 +54,27 @@
         </section>
     </div>
 
-    <h3 class="section-label" id="latestNewsLabel"></h3>
+    <h3 class="section-label" id="latestNewsLabel">የቅርብ ጊዜ ዜናዎች</h3>
     <div id="news-container"></div>
-
-    <h3 class="section-label" id="videoLabel">የቪዲዮ ዘገባዎች</h3>
-    <div style="padding: 0 20px 20px 20px;">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid #f59e0b;">
-            <iframe id="youtubeFrame" src="https://www.youtube.com/embed/Epe9ROSZ_pc" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-        </div>
-    </div>
 
     <footer style="background: #0f172a; padding: 30px 20px; border-top: 2px solid #f59e0b; text-align: center;">
         <h4 style="color: #f59e0b; margin-bottom: 15px;">ያግኙን / Contact</h4>
-        <p>📞 <a href="tel:+251911926976" style="color: white; text-decoration: none;">+251 911 92 6976</a></p>
         <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
-            <a href="https://t.me/Ayyotube_bot" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors border border-amber-500/30">
+            <a href="https://t.me/Ayyotube_bot" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center border border-amber-500/30">
                 <i class="fab fa-telegram text-white"></i>
             </a>
-            <a href="https://youtube.com/@samsontesfaye2670?si=5LVZkGgNs9q2McHa" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors border border-amber-500/30">
+            <a href="https://youtube.com/@samsontesfaye2670?si=5LVZkGgNs9q2McHa" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center border border-amber-500/30">
                 <i class="fab fa-youtube text-white"></i>
             </a>
-            <a href="https://www.facebook.com/share/1J14TXrrMv/" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors border border-amber-500/30">
+            <a href="https://www.facebook.com/share/1J14TXrrMv/" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center border border-amber-500/30">
                 <i class="fab fa-facebook text-white"></i>
             </a>
         </div>
-        <p style="color: #f59e0b; font-size: 0.7rem; margin-top: 20px;">© 2026 SAMI-TUBE MEDIA | በሳሚ ዶል
+        <p style="color: #f59e0b; font-size: 0.7rem; margin-top: 20px;">© 2026 SAMI-TUBE MEDIA</p>
+    </footer>
+
+    <div id="newsModal" class="modal" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalImage" style="width: 100%; height: 200px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 15px; border: 1px solid #0ea5e9;"></div>
+            <h2 id="modalTitle" style="color: #f59e0b; font-weight: 900; margin-bottom: 15px;">

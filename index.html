@@ -98,102 +98,60 @@
                     { t: "Pirojektiin Bishaan Dhugaatii", b: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa xumura irra gaheera.", img: "Screenshot_20260412_214257_Chrome.jpg" },
                     { t: "Kunnuunsa Saayinsawaa Birtukaanaa", b: "Muka birtukaanaa haroo Basakaa biratti argamu mala saayinsawaan guddisuuf hojjetamaa jira.", img: "Lumii_20260412_212741543.jpg" }
                 ]
-const content = {
+<script>
+        const translations = {
             am: {
                 welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ",
-                latest: "የቅርብ ጊዜ ዜናዎች",
+                label: "የቅርብ ጊዜ ዜናዎች",
                 readMore: "ተጨማሪ ያንብቡ...",
                 nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ", "ቴክ", "ፍልስፍና"],
                 news: [
-                    { 
-                        t: "የከንቲባ አቶ አዲሱ ዋቆ የልማት ስራዎች", 
-                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በከተማዋ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ። በተለይም የከተማዋን ውበት በመጠበቅ፣ በመናፈሻዎች እና በመሰረተ ልማት ዝርጋታ ላይ የተከናወኑት ስራዎች የነዋሪዎችን የኑሮ ዘይቤ ከመቀየር ባለፈ ለከተማዋ እድገት ትልቅ አስተዋጽኦ እያበረከቱ ይገኛሉ።", 
-                        img: "Screenshot_20260413_151529_Telegram.jpg" 
-                    },
-                    { 
-                        t: "የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ", 
-                        b: "የመተሃራ ከተማን የንፁህ መጠጥ ውሃ ችግር በዘላቂነት ለመፍታት ታስቦ የተጀመረው ፕሮጀክት አሁን ላይ የ90% መጠናቀቅ ደረጃ ላይ ደረሰ። ይህ ፕሮጀክት ሲጠናቀቅ ለከተማዋ ነዋሪዎች ንፁህ ውሃ በበቂ ሁኔታ የሚያቀርብ ሲሆን፣ አሁን የቀሩት ጥቃቅን የማጠናቀቂያ ስራዎች ብቻ እንደሆኑ ተገልጿል።", 
-                        img: "Screenshot_20260412_214257_Chrome.jpg" 
-                    },
-                    { 
-                        t: "የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", 
-                        b: "በበሰቃ ሃይቅ ዳርቻ በሚገኘው የብርቱካን እርሻ በሳይንሳዊ መንገድ እንዲለማ በማድረግ ምርታማነትን ለማሳደግ በከፍተኛ ሁኔታ እየተሰራ ነው። ዘመናዊ የመስኖ እና የክብካቤ ዘዴዎችን በመጠቀም የምርቱን ጥራት ለማሻሻልና ለገበያ በስፋት ለማቅረብ የተጀመረው ጥረት ተስፋ ሰጪ ውጤቶችን እያሳየ ይገኛል።", 
-                        img: "Lumii_20260412_212741543.jpg" 
-                    }
+                    { t: "የከንቲባ አቶ አዲሱ ዋቆ የልማት ስራዎች", b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ያስመዘገቧቸው የልማት ስራዎች...", r: "ዘጋቢ፡ ሳምሶን ተስፋዬ", img: "Screenshot_20260413_151529_Telegram.jpg" },
+                    { t: "የንፁህ መጠጥ ውሃ ፕሮጀክት", b: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ...", r: "📸 በሳሚ ዶልፊን", img: "Screenshot_20260412_214257_Chrome.jpg" },
+                    { t: "የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", b: "በበሰቃ ሃይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በሳይንሳዊ መንገድ...", r: "SAMI-TUBE MEDIA", img: "Lumii_20260412_212741543.jpg" }
                 ]
             },
             om: {
                 welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
-                latest: "Oduuwwan dhihoo",
+                label: "Oduuwwan dhihoo",
                 readMore: "Dabalata dubbisuuf...",
                 nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
                 news: [
-                    { 
-                        t: "Hojii Misoomaa Obbo Addisuu Waaqoo", 
-                        b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa magaalaa sanaaf bifa haaraa kennan galmeessaniiru. Hojiin miidhagina magaalaa fi bu'uraalee misoomaa irratti hojjetame jireenya jiraattotaa jijjiiruuf gumaacha guddaa qaba.", 
-                        img: "Screenshot_20260413_151529_Telegram.jpg" 
-                    },
-                    { 
-                        t: "Pirojektiin Bishaan Dhugaatii 90% Xumurame", 
-                        b: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa rakkoo bishaan dhugaatii furuuf jalqabame harka 90% xumurameera. Kunis jiraattota magaalaatiif boqonnaa guddaa dha.", 
-                        img: "Screenshot_20260412_214257_Chrome.jpg" 
-                    },
-                    { 
-                        t: "Kunnuunsa Saayinsawaa Birtukaanaa", 
-                        b: "Muka birtukaanaa haroo Basakaa biratti argamu mala saayinsawaan guddisuuf hojjetamaa jira. Kunis oomishtummaa dabaluuf gargaara.", 
-                        img: "Lumii_20260412_212741543.jpg" 
-                    }
-                ]
-            },
-            en: {
-                welcome: "Welcome to <span>Metehara</span> Digital Hub",
-                latest: "Latest News",
-                readMore: "Read More...",
-                nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
-                news: [
-                    { t: "Mayor Addisu Waako's Projects", b: "Mayor Addisu Waako's development projects are giving the city a new look...", img: "Screenshot_20260413_151529_Telegram.jpg" },
-                    { t: "Water Project Update", b: "The clean water project is 90% complete...", img: "Screenshot_20260412_214257_Chrome.jpg" },
-                    { t: "Orange Farming", b: "Scientific orange farming near Lake Basaka...", img: "Lumii_20260412_212741543.jpg" }
+                    { t: "Hojii Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo...", r: "Gabaasaan: Samson Tesfaye", img: "Screenshot_20260413_151529_Telegram.jpg" },
+                    { t: "Pirojektiin Bishaan Dhugaatii", b: "Pirojektiin bishaan dhugaatii magaalaa Mataaharaa 90% xumurame...", r: "Fakkii: Sami Dolphin", img: "Screenshot_20260412_214257_Chrome.jpg" },
+                    { t: "Kunnuunsa Saayinsawaa Birtukaanaa", b: "Muka birtukaanaa haroo Basakaa biratti argamu...", r: "SAMI-TUBE MEDIA", img: "Lumii_20260412_212741543.jpg" }
                 ]
             }
         };
 
         function updateLanguage() {
             const lang = document.getElementById('languageSelector').value;
-            const data = content[lang] || content.am;
+            const data = translations[lang] || translations.am;
             document.getElementById('welcomeText').innerHTML = data.welcome;
-            document.getElementById('latestNewsLabel').innerText = data.latest;
+            document.getElementById('latestNewsLabel').innerText = data.label;
             
-            // Sidebar
-            let navHtml = '';
-            data.nav.forEach(n => navHtml += `<a href="#" class="nav-link">${n}</a>`);
-            document.getElementById('sidebarNav').innerHTML = navHtml;
-
-            // News Cards
-            let newsHtml = '';
-            data.news.forEach((n, i) => {
-                newsHtml += `
-                    <div class="card">
-                        <div class="card-image" style="background-image: url('${n.img}')"></div>
-                        <h5 style="color: #f59e0b; font-weight: 900; font-size: 1rem;">${n.t}</h5>
-                        <p style="font-size: 0.75rem; color: #cbd5e1; margin: 5px 0;">${n.b.substring(0, 70)}...</p>
-                        <span class="read-more" onclick="openModal(${i})">${data.readMore}</span>
-                    </div>`;
+            for(let i=0; i<3; i++) {
+                document.getElementById(`newsTitle${i+1}`).innerText = data.news[i].t;
+                document.getElementById(`newsShort${i+1}`).innerText = data.news[i].b.substring(0, 80) + "...";
+                document.getElementById(`newsImage${i+1}`).style.backgroundImage = `url('${data.news[i].img}')`;
+            }
+            data.nav.forEach((text, i) => {
+                if(document.getElementById(`nav${i+1}`)) document.getElementById(`nav${i+1}`).innerText = text;
             });
-            document.getElementById('news-container').innerHTML = newsHtml;
         }
 
-        function openModal(index) {
+        function openModal(id) {
             const lang = document.getElementById('languageSelector').value;
-            const item = (content[lang] || content.am).news[index];
-            document.getElementById('modalTitle').innerText = item.t;
-            document.getElementById('modalBody').innerText = item.b;
-            document.getElementById('modalImage').style.backgroundImage = `url('${item.img}')`;
+            const data = (translations[lang] || translations.am).news[id-1];
+            document.getElementById('modalTitle').innerText = data.t;
+            document.getElementById('modalBody').innerText = data.b;
+            document.getElementById('modalReporter').innerText = data.r;
+            document.getElementById('modalImage').style.backgroundImage = `url('${data.img}')`;
             document.getElementById('newsModal').style.display = 'flex';
         }
 
         function closeModal() { document.getElementById('newsModal').style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == document.getElementById('newsModal')) closeModal(); }
+        
         updateLanguage();
     </script>
-</body>
-</html>

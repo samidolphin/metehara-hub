@@ -12,19 +12,15 @@
         .header-container { display: flex; width: 100%; border-bottom: 2px solid #f59e0b; min-height: 250px; }
         .sidebar { width: 85px; background: #0ea5e9; display: flex; flex-direction: column; flex-shrink: 0; z-index: 20; }
         .nav-link { color: white; text-decoration: none; font-size: 0.6rem; font-weight: 800; padding: 15px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        
-        /* ስላይድ ሾው እንዲሰራ የተቀየረ */
         .hero-box { flex-grow: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; }
         .slideshow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .mySlides { display: none; width: 100%; height: 100%; background-size: cover; background-position: center; }
         .fade { animation: fadeAnim 1.5s; }
         @keyframes fadeAnim { from {opacity: .4} to {opacity: 1} }
-
         .top-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 15px; position: relative; z-index: 10; background: rgba(2,6,23,0.4); }
         .lang-select { background: #1e293b; border: 1px solid rgba(255,255,255,0.2); font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; color: white; }
         .hero-title { font-size: 1.5rem; font-weight: 900; line-height: 1.2; position: relative; z-index: 10; padding: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
         .hero-title span { color: #f59e0b; }
-        
         .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 10px 20px; }
         .card-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 10px; }
         .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-decoration: underline; }
@@ -51,7 +47,6 @@
                 <div class="mySlides fade" style="background-image: url('1776693450696.jpg');"></div>
                 <div class="mySlides fade" style="background-image: url('slider-11.jpg');"></div>
             </div>
-
             <div class="top-row">
                 <div class="flex items-center gap-2">
                     <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
@@ -80,7 +75,6 @@
     <footer style="background: #0f172a; padding: 30px 20px; border-top: 2px solid #f59e0b; text-align: center;">
         <h4 style="color: #f59e0b; margin-bottom: 15px;">ያግኙን / Contact</h4>
         <p>📞 <a href="tel:+251911926976" style="color: white; text-decoration: none;">+251 911 92 6976</a></p>
-        
         <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
             <a href="https://t.me/Ayyotube_bot" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors border border-amber-500/30">
                 <i class="fab fa-telegram text-white"></i>
@@ -113,23 +107,40 @@
                 readMore: "ተጨማሪ ያንብቡ...",
                 nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ", "ቴክ", "ፍልስፍና"],
                 news: [
-                    { 
-                        t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች ለከተማዋ አዲስ ገጽታ እየሰጡ መሆኑ ተገለጸ", 
-                        b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ", 
-                        img: "1776693475534.jpg" 
-                    },
-                    { 
-                        t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", 
-                        b: "መተሃራ፣ መጋቢት 6/2018\nግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።", 
-                         img: "1776693473066.jpg"
-                    }
+                    { t: "አቶ አዲሱ ዋቆ በመተሃራ ከተማ ያስመዘገቧቸው የልማት ስራዎች...", b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ በኃላፊነት ከተሾሙበት ጊዜ ጀምሮ እያከናወኗቸው ያሉ የልማትና የመልካም አስተዳደር ስራዎች የከተማዋን ገጽታ ከመቀየር ባለፈ ለነዋሪዎች ምቾት ትልቅ አስተዋጽኦ እያበረከቱ መሆኑ ተነገረ።\n\nዘጋቢ፡ ሳምሶን ተስፋዬ", img: "1776693475534.jpg" },
+                    { t: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ", b: "መተሃራ፣ መጋቢት 6/2018\nበመተሃራ ከተማ አስተዳደር ለረጅም ጊዜ ሲጠበቅ የነበረው ግዙፍ የውሃ ፕሮጀክት ግንባታ ከ90 በመቶ በላይ መጠናቀቁ ተበሰረ።", img: "1776693473066.jpg" },
+                    { t: "የስነ-ህይወት ጥበብ በበሰቃ ሃይቅ ዳርቻ፤ የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", b: "በመታሃራ ከተማ በበሰቃ ሃይቅ ዳርቻ እየተገነባ ካለው ውብ የመዝናኛ ማዕከል ባሻገር፣ ሌላኛው ተፈጥሯዊ ድምቀት የሆነው የብርቱካን እርሻ በከፍተኛ የባለሙያ ጥበብ እየለማ ይገኛል።", img: "1776693470500.jpg" }
+                ]
+            },
+            om: {
+                welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
+                latest: "Oduuwwan dhihoo",
+                video: "Gabaasa Viidiyoo",
+                readMore: "Dabalata dubbisuuf...",
+                nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
+                news: [
+                    { t: "Hojii Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo hojiiwwan misoomaa magaalaa sanaaf bifa haaraa kennan galmeessaniiru.", img: "1776693475534.jpg" },
+                    { t: "Pirojektiin Bishaan Dhugaatii 90% xumurame", b: "Pirojektiin bishaan dhugaatii qulqulluu magaalaa Mataaharaa harka 90% xumurameera.", img: "1776693473066.jpg" },
+                    { t: "Kunnuunsa Saayinsawaa Birtukaanaa", b: "Muka birtukaanaa haroo Basakaa biratti argamu mala saayinsawaan guddisuuf hojjetamaa jira.", img: "1776693470500.jpg" }
+                ]
+            },
+            en: {
+                welcome: "Welcome to <span>Metehara</span><br>Digital Hub",
+                latest: "Latest News",
+                video: "Video Reports",
+                readMore: "Read More...",
+                nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
+                news: [
+                    { t: "Mayor Addisu Waako's Development Projects", b: "Mayor Addisu Waako's initiatives in urban beautification are transforming Metehara into a green city model.", img: "1776693475534.jpg" },
+                    { t: "90% Completion of Clean Water Project", b: "The 1.4 billion Birr water project is nearing completion, aiming for 100% coverage.", img: "1776693473066.jpg" },
+                    { t: "Scientific Orange Farming at Lake Basaka", b: "Experts are using scientific pruning to ensure the productivity of orange farms near the lake.", img: "1776693470500.jpg" }
                 ]
             }
         };
 
         function updateLanguage() {
             const lang = document.getElementById('languageSelector').value;
-            const data = content[lang] || content.am;
+            const data = content[lang];
             document.getElementById('welcomeText').innerHTML = data.welcome;
             document.getElementById('latestNewsLabel').innerText = data.latest;
             document.getElementById('videoLabel').innerText = data.video;
@@ -153,7 +164,7 @@
 
         function openModal(index) {
             const lang = document.getElementById('languageSelector').value;
-            const item = (content[lang] || content.am).news[index];
+            const item = content[lang].news[index];
             document.getElementById('modalTitle').innerText = item.t;
             document.getElementById('modalBody').innerText = item.b;
             document.getElementById('modalImage').style.backgroundImage = `url('${item.img}')`;
@@ -170,7 +181,6 @@
             if (event.target.id === 'newsModal') closeModal();
         }
 
-        // ምስሎቹ በየ 3 ሰኮንዱ እንዲቀያየሩ የሚያደርግ ኮድ
         let slideIndex = 0;
         function showSlides() {
             let i;

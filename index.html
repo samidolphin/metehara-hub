@@ -1,20 +1,83 @@
-<h5 class="text-amber-500 font-black mb-1" id="newsTitle1"></h5>
-            <p class="text-[0.8rem] text-slate-300" id="newsShort1"></p>
-            <span class="read-more" id="readMore1" onclick="openModal(1)">ተጨማሪ ያንብቡ...</span>
-        </div>
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMI-TUBE MEDIA | መታሃራ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Noto Sans Ethiopic', sans-serif; 
+            background: #020617;
+            color: white; margin: 0; overflow-x: hidden; 
+        }
+        .header-container { display: flex; width: 100%; border-bottom: 2px solid #f59e0b; }
+        .sidebar { width: 85px; background: #0ea5e9; display: flex; flex-direction: column; flex-shrink: 0; }
+        .nav-link { color: white; text-decoration: none; font-size: 0.6rem; font-weight: 800; padding: 15px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .hero-box { flex-grow: 1; padding: 10px 20px; display: flex; flex-direction: column; }
+        .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .lang-select { background: #1e293b; border: 1px solid rgba(255,255,255,0.2); font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; color: white; }
+        .hero-title { font-size: 1.6rem; font-weight: 900; line-height: 1.2; margin-top: 10px; }
+        .hero-title span { color: #f59e0b; }
+        .card { background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 10px; border: 1px solid #0ea5e9; margin: 10px 20px; display: flex; flex-direction: column; gap: 10px; }
+        .card-image { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 8px; }
+        .read-more { color: #f59e0b; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-decoration: underline; }
+        .section-label { color: #f59e0b; font-weight: 900; font-size: 1.1rem; border-left: 4px solid #f59e0b; padding-left: 10px; margin: 20px; }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: #0f172a; border: 2px solid #f59e0b; padding: 30px; border-radius: 15px; max-width: 650px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: #f59e0b; }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <aside class="sidebar">
+            <a href="#" class="nav-link" id="nav1">ቅድመ ዜና</a>
+            <a href="#" class="nav-link" id="nav2">ሪፖርት</a>
+            <a href="#" class="nav-link" id="nav3">ቱሪዝም</a>
+            <a href="#" class="nav-link" id="nav4">ባህል</a>
+            <a href="#" class="nav-link" id="nav5">ስነ ጽሁፍ</a>
+            <a href="#" class="nav-link" id="nav6">ቴክ</a>
+            <a href="#" class="nav-link" id="nav7">ፍልስፍና</a>
+        </aside>
+        <section class="hero-box">
+            <div class="top-row">
+                <div class="flex items-center gap-2">
+                    <div class="bg-amber-500 w-8 h-8 rounded flex items-center justify-center text-black font-black">S</div>
+                    <h1 class="font-black italic text-[11px] uppercase tracking-tighter">SAMI-TUBE MEDIA</h1>
+                </div>
+                <select id="languageSelector" class="lang-select" onchange="updateLanguage()">
+                    <option value="am">🇪🇹 አማርኛ</option>
+                    <option value="om">Afaan Oromoo</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <h2 class="hero-title" id="welcomeText">እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ</h2>
+        </section>
+    </div>
 
-        <div class="card">
-            <div class="card-image" id="newsImage2"></div>
-            <h5 class="text-amber-500 font-black mb-1" id="newsTitle2"></h5>
-            <p class="text-[0.8rem] text-slate-300" id="newsShort2"></p>
-            <span class="read-more" id="readMore2" onclick="openModal(2)">ተጨማሪ ያንብቡ...</span>
-        </div>
-
-        <div class="card">
-            <div class="card-image" id="newsImage3"></div>
-            <h5 class="text-amber-500 font-black mb-1" id="newsTitle3"></h5>
-            <p class="text-[0.8rem] text-slate-300" id="newsShort3"></p>
-            <span class="read-more" id="readMore3" onclick="openModal(3)">ተጨማሪ ያንብቡ...</span>
+    <main>
+        <h3 class="section-label" id="latestNewsLabel">የቅርብ ጊዜ ዜናዎች</h3>
+        
+        <div id="news-container">
+            <div class="card">
+                <div class="card-image" id="newsImage1" style="background-image: url('Screenshot_20260413_151529_Telegram.jpg');"></div>
+                <h5 class="text-amber-500 font-black" id="newsTitle1"></h5>
+                <p class="text-[0.8rem] text-slate-300" id="newsShort1"></p>
+                <span class="read-more" onclick="openModal(1)">ተጨማሪ ያንብቡ...</span>
+            </div>
+            <div class="card">
+                <div class="card-image" id="newsImage2" style="background-image: url('Screenshot_20260412_214257_Chrome.jpg');"></div>
+                <h5 class="text-amber-500 font-black" id="newsTitle2"></h5>
+                <p class="text-[0.8rem] text-slate-300" id="newsShort2"></p>
+                <span class="read-more" onclick="openModal(2)">ተጨማሪ ያንብቡ...</span>
+            </div>
+            <div class="card">
+                <div class="card-image" id="newsImage3" style="background-image: url('Lumii_20260412_212741543.jpg');"></div>
+                <h5 class="text-amber-500 font-black" id="newsTitle3"></h5>
+                <p class="text-[0.8rem] text-slate-300" id="newsShort3"></p>
+                <span class="read-more" onclick="openModal(3)">ተጨማሪ ያንብቡ...</span>
+            </div>
         </div>
 
         <h3 class="section-label">የቪዲዮ ዘገባዎች</h3>
@@ -29,97 +92,14 @@
                 <h4 style="color: #f59e0b; font-weight: 900; font-size: 1.2rem;">ያግኙን / Contact Us</h4>
                 <div style="display: flex; flex-direction: column; gap: 15px; color: #cbd5e1; font-size: 0.95rem;">
                     <p style="background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(14, 165, 233, 0.3);">
-                        📞 ስልክ: <a href="tel:+251911926976" style="color: white; text-decoration: none; font-weight: bold;">+251 911 92 6976</a>
+                        📞 ስልክ: <a href="tel:+251911926976" style="color: white; text-decoration: none;">+251 911 92 6976</a>
                     </p>
                     <p style="background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(14, 165, 233, 0.3);">
-                        📧 ኢሜይል: <a href="mailto:sami2all@gmail.com" style="color: white; text-decoration: none; font-weight: bold;">sami2all@gmail.com</a>
+                        📧 ኢሜይል: <a href="mailto:sami2all@gmail.com" style="color: white; text-decoration: none;">sami2all@gmail.com</a>
                     </p>
                 </div>
                 <div style="display: flex; gap: 15px; margin-top: 10px;">
                     <a href="https://t.me/Metehara_Info_bot" target="_blank" style="background: #0ea5e9; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 900;">Telegram Bot</a>
                     <a href="https://www.youtube.com/@samidolphin" target="_blank" style="background: #ef4444; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 900;">YouTube</a>
                 </div>
-                <p style="color: #f59e0b; font-size: 0.8rem; font-weight: bold; margin-top: 15px;">© 2026 SAMI-TUBE MEDIA | በሳሚ ዶልፊን የቀረበ</p>
-            </div>
-        </footer>
-    </div>
-
-    <div id="newsModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div id="modalImage" class="w-full h-48 bg-cover bg-center rounded-lg mb-6"></div>
-            <h2 id="modalTitle" class="text-amber-500 font-black text-lg mb-4"></h2>
-            <div id="modalBody" class="text-slate-200 leading-relaxed text-sm whitespace-pre-line"></div>
-            <div id="modalReporter" class="mt-6 pt-4 border-t border-slate-700 text-xs text-amber-500 font-bold"></div>
-        </div>
-    </div>
-
-    <script>
-        const translations = {
-            am: {
-                welcome: "እንኳን ወደ <span>መታሃራ</span><br>ዲጂታል ማዕከል በሰላም መጣችሁ",
-                label: "የቅርብ ጊዜ ዜናዎች",
-                readMore: "ተጨማሪ ያንብቡ...",
-                nav: ["ቅድመ ዜና", "ሪፖርት", "ቱሪዝም", "ባህል", "ስነ ጽሁፍ", "ቴክ", "ፍልስፍና"],
-                news: [
-                    { t: "የከንቲባ አቶ አዲሱ ዋቆ የልማት ስራዎች", b: "መተሃራ — የመተሃራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ ያስመዘገቧቸው የልማት ስራዎች...", r: "ዘጋቢ፡ ሳምሶን ተስፋዬ", img: "Screenshot_20260413_151529_Telegram.jpg" },
-                    { t: "የንፁህ መጠጥ ውሃ ፕሮጀክት", b: "የመተሃራ ከተማ የንፁህ መጠጥ ውሃ ፕሮጀክት የ90% መጠናቀቅ ደረጃ ላይ ደረሰ...", r: "📸 በሳሚ ዶልፊን", img: "Screenshot_20260412_214257_Chrome.jpg" },
-                    { t: "የብርቱካን እርሻ ሳይንሳዊ ክብካቤ", b: "በበሰቃ ሃይቅ ዳርቻ የሚገኘው የብርቱካን እርሻ በሳይንሳዊ መንገድ...", r: "SAMI-TUBE MEDIA", img: "Lumii_20260412_212741543.jpg" }
-                ]
-            },
-            om: {
-                welcome: "Baga gara jiddu-gala dijitaalaa <span>Mataaharaatti</span> nagaan dhuftan",
-                label: "Oduuwwan dhihoo",
-                readMore: "Dabalata dubbisuuf...",
-                nav: ["Oduu Duraa", "Gabaasa", "Turiizimii", "Aadaa", "Og-barruu", "Teek", "Falaasama"],
-                news: [
-                    { t: "Hojii Misoomaa Obbo Addisuu Waaqoo", b: "Kantiibaan magaalaa Mataaharaa Obbo Addisuu Waaqoo...", r: "Gabaasaan: Samson Tesfaye", img: "Screenshot_20260413_151529_Telegram.jpg" },
-                    { t: "Pirojektiin Bishaan Dhugaatii", b: "Pirojektiin bishaan dhugaatii magaalaa Mataaharaa 90% xumurame...", r: "Fakkii: Sami Dolphin", img: "Screenshot_20260412_214257_Chrome.jpg" },
-                    { t: "Kunnuunsa Saayinsawaa Birtukaanaa", b: "Muka birtukaanaa haroo Basakaa biratti argamu...", r: "SAMI-TUBE MEDIA", img: "Lumii_20260412_212741543.jpg" }
-                ]
-            },
-            en: {
-                welcome: "Welcome to <span>Metehara</span> Digital Hub",
-                label: "Latest News",
-                readMore: "Read More...",
-                nav: ["Pre-News", "Report", "Tourism", "Culture", "Literature", "Tech", "Philosophy"],
-                news: [
-                    { t: "Mayor Addisu Waako's Projects", b: "The mayor of Metehara city, Addisu Waako...", r: "Reporter: Samson Tesfaye", img: "Screenshot_20260413_151529_Telegram.jpg" },
-                    { t: "Clean Water Project Update", b: "The Metehara city water project has reached 90% completion...", r: "Photo: Sami Dolphin", img: "Screenshot_20260412_214257_Chrome.jpg" },
-                    { t: "Scientific Orange Farming", b: "Modern orange farming practices around Lake Basaka...", r: "SAMI-TUBE MEDIA", img: "Lumii_20260412_212741543.jpg" }
-                ]
-            }
-        };
-
-        function updateLanguage() {
-            const lang = document.getElementById('languageSelector').value;
-            const data = translations[lang];
-            document.getElementById('welcomeText').innerHTML = data.welcome;
-            document.getElementById('latestNewsLabel').innerText = data.label;
-            
-            for(let i=0; i<3; i++) {
-                document.getElementById(`newsTitle${i+1}`).innerText = data.news[i].t;
-                document.getElementById(`newsShort${i+1}`).innerText = data.news[i].b.substring(0, 80) + "...";
-                document.getElementById(`newsImage${i+1}`).style.backgroundImage = `url('${data.news[i].img}')`;
-            }
-            data.nav.forEach((text, i) => {
-                document.getElementById(`nav${i+1}`).innerText = text;
-            });
-        }
-
-        function openModal(id) {
-            const lang = document.getElementById('languageSelector').value;
-            const data = translations[lang].news[id-1];
-            document.getElementById('modalTitle').innerText = data.t;
-            document.getElementById('modalBody').innerText = data.b;
-            document.getElementById('modalReporter').innerText = data.r;
-            document.getElementById('modalImage').style.backgroundImage = `url('${data.img}')`;
-            document.getElementById('newsModal').style.display = 'flex';
-        }
-
-        function closeModal() { document.getElementById('newsModal').style.display = 'none'; }
-        window.onclick = function(e) { if (e.target == document.getElementById('newsModal')) closeModal(); }
-        updateLanguage();
-    </script>
-</body>
-</html>
+                <p style="color: #f59e0b; font-size: 0.8rem; font-weight: bold; margin-top: 15px;">© 2026 SAMI-TUBE MEDIA | በሳሚ ዶልፊን የቀረበ</p

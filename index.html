@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="am">
 <head>
@@ -93,21 +92,18 @@ HTML
 
     <!-- በሞሽን የሚቀያየሩ የቅድመ ገፅ ፎቶዎች (Slideshow Section) -->
     <div class="slideshow-container">
-        <!-- ፎቶ 1 -->
         <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('1776693450696.jpg');">
             <div class="text-center px-6 max-w-4xl">
                 <h2 id="welcomeTitle" class="text-3xl md:text-5xl font-black mb-4 text-white leading-tight">እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!</h2>
                 <p id="welcomeSubtitle" class="text-amber-400 text-lg md:text-xl font-bold">የሳሚ-ቲዩብ ሚዲያ ወቅታዊ መረጃዎች ማቅረቢያ መድረክ</p>
             </div>
         </div>
-        <!-- ፎቶ 2 -->
         <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('1776693457106.jpg');">
             <div class="text-center px-6 max-w-4xl">
                 <h2 id="slide2Title" class="text-3xl md:text-5xl font-black mb-4 text-white leading-tight">ወቅታዊ እና እውነተኛ መረጃዎች</h2>
                 <p id="slide2Subtitle" class="text-amber-400 text-lg md:text-xl font-bold">የመተሃራ እና የአካባቢዋን ልማትና ገጽታ ለዓለም የምናስተዋውቅበት</p>
             </div>
         </div>
-        <!-- ፎቶ 3 -->
         <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('IMG_20260314_112746_839~4.jpg');">
             <div class="text-center px-6 max-w-4xl">
                 <h2 id="slide3Title" class="text-3xl md:text-5xl font-black mb-4 text-white leading-tight">ዲጂታል ኮሚኒኬሽን እና ሚዲያ</h2>
@@ -116,74 +112,128 @@ HTML
         </div>
     </div>
 
-    <!-- Main Content Layout (በግራ በኩል ማውጫ፣ በቀኝ በኩል ዜናዎች ከነፎቶዎቻቸው) -->
+    <!-- Main Content Layout (በግራ በኩል ማውጫ፣ በቀኝ በኩል ሁሉም ዋና ዘገባዎች) -->
     <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        <!-- በግራ በኩል የገፅ ማውጫ (Sidebar) -->
+        <!-- በግራ በኩል የተሟላ የገፅ ማውጫ (Sidebar) -->
         <aside class="lg:col-span-1 space-y-4">
             <h3 id="menuTitle" class="text-sm font-bold tracking-wider text-amber-500 uppercase mb-4 border-b border-slate-800 pb-2"><i class="fas fa-bars mr-2"></i> የገፅ ማውጫ</h3>
             <div class="flex flex-col gap-2">
-                <a href="#" class="sidebar-link">
+                <a href="#newsSection" class="sidebar-link">
                     <i class="fas fa-newspaper text-amber-500 w-5"></i>
-                    <span id="menuNews">ቅድመ ዜና</span>
+                    <span id="menuNews">ወቅታዊ ዜናዎች</span>
                 </a>
-                <a href="#" class="sidebar-link">
+                <a href="#cultureSection" class="sidebar-link">
                     <i class="fas fa-monument text-amber-500 w-5"></i>
                     <span id="menuCulture">ባህልና ቱሪዝም</span>
                 </a>
-                <a href="#" class="sidebar-link">
+                <a href="#literatureSection" class="sidebar-link">
                     <i class="fas fa-book-open text-amber-500 w-5"></i>
-                    <span id="menuLit">ስነ-ጽሑፍ</span>
+                    <span id="menuLit">ስነ-ጽሑፍ እና ፍልስፍና</span>
                 </a>
             </div>
         </aside>
 
-        <!-- በቀኝ በኩል 3ቱ ዋና ዋና የፊት ገፅ ዜናዎች (ከነ ምስሎቻቸው) -->
-        <section class="lg:col-span-3">
-            <h3 id="newsSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
-                <span class="w-2 h-6 bg-gold rounded-full"></span> 
-                <span>ዋና ዋና ዜናዎች</span>
-            </h3>
+        <!-- በቀኝ በኩል ሁሉም መረጃዎች ከነምስሎቻቸው -->
+        <section class="lg:col-span-3 space-y-12">
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- ዜና 1 -->
-                <div class="custom-card flex flex-col justify-between">
-                    <img src="1776693450696.jpg" alt="ልማት" class="w-full h-40 object-cover border-b border-slate-800">
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-layer-group mr-1"></i> ልማት</div>
-                            <h4 id="news1Title" class="text-base font-bold text-white mb-3 leading-snug">አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች</h4>
+            <!-- 1. የወቅታዊ ዜናዎች ክፍል -->
+            <div id="newsSection" class="scroll-mt-24">
+                <h3 id="newsSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-gold rounded-full"></span> 
+                    <span>ወቅታዊ ዜናዎች</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="custom-card flex flex-col justify-between">
+                        <img src="1776693450696.jpg" alt="ልማት" class="w-full h-48 object-cover border-b border-slate-800">
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-layer-group mr-1"></i> ከተማ ልማት</div>
+                                <h4 id="news1Title" class="text-base font-bold text-white mb-3 leading-snug">አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች</h4>
+                            </div>
+                            <p id="news1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።</p>
                         </div>
-                        <p id="news1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።</p>
                     </div>
-                </div>
-
-                <!-- ዜና 2 -->
-                <div class="custom-card flex flex-col justify-between">
-                    <img src="1776693457106.jpg" alt="መሰረተ-ልማት" class="w-full h-40 object-cover border-b border-slate-800">
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-water mr-1"></i> መሰረተ-ልማት</div>
-                            <h4 id="news2Title" class="text-base font-bold text-white mb-3 leading-snug">ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት</h4>
+                    <div class="custom-card flex flex-col justify-between">
+                        <img src="1776693457106.jpg" alt="መሰረተ-ልማት" class="w-full h-48 object-cover border-b border-slate-800">
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-water mr-1"></i> መሰረተ-ልማት</div>
+                                <h4 id="news2Title" class="text-base font-bold text-white mb-3 leading-snug">ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት</h4>
+                            </div>
+                            <p id="news2Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።</p>
                         </div>
-                        <p id="news2Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።</p>
-                    </div>
-                </div>
-
-                <!-- ዜና 3 -->
-                <div class="custom-card flex flex-col justify-between">
-                    <img src="IMG_20260314_112746_839~4.jpg" alt="ግብርና" class="w-full h-40 object-cover border-b border-slate-800">
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-seedling mr-1"></i> ግብርና</div>
-                            <h4 id="news3Title" class="text-base font-bold text-white mb-3 leading-snug">በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ</h4>
-                        </div>
-                        <p id="news3Desc" class="text-slate-400 text-xs leading-relaxed mt-2">በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።</p>
                     </div>
                 </div>
             </div>
-        </section>
 
+            <!-- 2. የባህልና ቱሪዝም ክፍል -->
+            <div id="cultureSection" class="scroll-mt-24">
+                <h3 id="cultureSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-gold rounded-full"></span> 
+                    <span>ባህልና ቱሪዝም</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="custom-card flex flex-col justify-between">
+                        <img src="IMG_20260314_112746_839~4.jpg" alt="ግብርና እና ቱሪዝም" class="w-full h-48 object-cover border-b border-slate-800">
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-seedling mr-1"></i> ግብርና ልማት</div>
+                                <h4 id="news3Title" class="text-base font-bold text-white mb-3 leading-snug">በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ እና አረንጓዴ ልማት</h4>
+                            </div>
+                            <p id="news3Desc" class="text-slate-400 text-xs leading-relaxed mt-2">በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።</p>
+                        </div>
+                    </div>
+                    <div class="custom-card flex flex-col justify-between">
+                        <div class="w-full h-48 bg-slate-900 flex items-center justify-center border-b border-slate-800">
+                            <i class="fas fa-mountain text-slate-700 text-5xl"></i>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-map-marked-alt mr-1"></i> መስህብ</div>
+                                <h4 id="culture1Title" class="text-base font-bold text-white mb-3 leading-snug">የፈንታሌ እሳተ-ገሞራ እና የበሰቃ ሐይቅ የተፈጥሮ ስጦታዎች</h4>
+                            </div>
+                            <p id="culture1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የመተሃራ ከተማን የቱሪስት መስህብነት የሚያሳድጉ የተፈጥሮ ድንቆች እና ታሪካዊ ዳራዎች መግለጫ።</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. የስነ-ጽሑፍ እና ፍልስፍና ክፍል -->
+            <div id="literatureSection" class="scroll-mt-24">
+                <h3 id="litSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-gold rounded-full"></span> 
+                    <span>ስነ-ጽሑፍ እና ፍልስፍና</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="custom-card flex flex-col justify-between">
+                        <div class="w-full h-48 bg-slate-900 flex items-center justify-center border-b border-slate-800">
+                            <i class="fas fa-brain text-slate-700 text-5xl"></i>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-feather-alt mr-1"></i> እውቀትና አስተሳሰብ</div>
+                                <h4 id="lit1Title" class="text-base font-bold text-white mb-3 leading-snug">የማይፈላሰፍ ሰው የሞተ ብቻ ነው! የእውቀት መርሆዎች</h4>
+                            </div>
+                            <p id="lit1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የሰው ልጅ የማሰብ አድማስ እና ሂሳዊ አስተሳሰብ ለህብረተሰብ እድገት ስላለው ከፍተኛ ሚና የሚተነትን መጣጥፍ።</p>
+                        </div>
+                    </div>
+                    <div class="custom-card flex flex-col justify-between">
+                        <div class="w-full h-48 bg-slate-900 flex items-center justify-center border-b border-slate-800">
+                            <i class="fas fa-book text-slate-700 text-5xl"></i>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-quote-left mr-1"></i> ትንተና</div>
+                                <h4 id="lit2Title" class="text-base font-bold text-white mb-3 leading-snug">የሲቫና-1 የስነ-ልቦና እና የስኬት ህግጋት ዳሰሳ</h4>
+                            </div>
+                            <p id="lit2Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የሮቢን ሻርማን እሳቤዎች እና የግል ስብዕና ግንባታ ላይ ያተኮሩ የትርጉም ስራዎች ዝርዝር ግምገማ።</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </main>
 
     <!-- Footer Section -->
@@ -241,16 +291,24 @@ HTML
                 slide3Title: "ዲጂታል ኮሚኒኬሽን እና ሚዲያ",
                 slide3Subtitle: "ፈጣን መረጃዎች ማህበረሰቡን ተደራሽ የሚያደርጉበት መድረክ",
                 menuTitle: "<i class='fas fa-bars mr-2'></i> የገፅ ማውጫ",
-                menuNews: "ቅድመ ዜና",
+                menuNews: "ወቅታዊ ዜናዎች",
                 menuCulture: "ባህልና ቱሪዝም",
-                menuLit: "ስነ-ጽሑፍ",
-                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ዋና ዋና ዜናዎች</span>",
+                menuLit: "ስነ-ጽሑፍ እና ፍልስፍና",
+                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ወቅታዊ ዜናዎች</span>",
+                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ባህልና ቱሪዝም</span>",
+                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ስነ-ጽሑፍ እና ፍልስፍና</span>",
                 news1Title: "አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች",
                 news1Desc: "በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።",
                 news2Title: "ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት",
                 news2Desc: "የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።",
-                news3Title: "በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ",
+                news3Title: "በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ እና አረንጓዴ ልማት",
                 news3Desc: "በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።",
+                culture1Title: "የፈንታሌ እሳተ-ገሞራ እና የበሰቃ ሐይቅ የተፈጥሮ ስጦታዎች",
+                culture1Desc: "የመተሃራ ከተማን የቱሪስት መስህብነት የሚያሳድጉ የተፈጥሮ ድንቆች እና ታሪካዊ ዳራዎች መግለጫ።",
+                lit1Title: "የማይፈላሰፍ ሰው የሞተ ብቻ ነው! የእውቀት መርሆዎች",
+                lit1Desc: "የሰው ልጅ የማሰብ አድማስ እና ሂሳዊ አስተሳሰብ ለህብረተሰብ እድገት ስላለው ከፍተኛ ሚና የሚተነትን መጣጥፍ።",
+                lit2Title: "የሲቫና-1 የስነ-ልቦና እና የስኬት ህግጋት ዳሰሳ",
+                lit2Desc: "የሮቢን ሻርማን እሳቤዎች እና የግል ስብዕና ግንባታ ላይ ያተኮሩ የትርጉም ስራዎች ዝርዝር ግምገማ።",
                 contactTitle: "ያግኙን / CONTACT US",
                 tgBotLabel: "የቴሌግራም ቦት",
                 ytChannelLabel: "ዩቲዩብ ቻናል",
@@ -266,16 +324,24 @@ HTML
                 slide3Title: "Kominikeeshinii Diijitaalaa fi Miidiyaa",
                 slide3Subtitle: "Odeeffannoon dafee hawaasa qaqqabu itti hojjetamu",
                 menuTitle: "<i class='fas fa-bars mr-2'></i> Baafata",
-                menuNews: "Dursee Oduu",
+                menuNews: "Oduuwwan Waqtaawaa",
                 menuCulture: "Aadaa fi Turiizimii",
-                menuLit: "Og-barruu",
-                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Oduuwwan Gurguddoo</span>",
+                menuLit: "Og-barruu fi Fiilsoofii",
+                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Oduuwwan Waqtaawaa</span>",
+                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Aadaa fi Turiizimii</span>",
+                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Og-barruu fi Fiilsoofii</span>",
                 news1Title: "Bulchiinsa Magaalaa Mataharaa Kantiibaa obbo Addisuu Waaqoo gaggeessummaan hojiiwwan misooma qarqara haroo Basakaa",
                 news1Desc: "Hojiiwwan misooma bareedoo fi bifa magaalichaa jijjiiruuf qarqara haroo Basakaa irratti kantiibichaan durfamu.",
                 news2Title: "Biliyoona tokkoo ol kan ramadameef tajaajila bishaanii Magaalaa Mataharaa fooyyessuuf pirojekti bishaan dhugaatii hojjetamaa jiru",
                 news2Desc: "Odeeffannoo bal'aa pirojekti guddaa rakkoo bishaan dhugaatii magaalichaa yeroo dheeraaf furiinsa waaraa kennuuf ijaaramaa jiru.",
                 news3Title: "Misooma qonnaa burtukaanaa qarqara haroo Basakaa irratti hojjetamaa jiru",
                 news3Desc: "Hojii misooma burtukaanaa lafa qarqara harichaa fayyadamuun wabii nyaata uummata magaalichaaf gumaacha jiru.",
+                culture1Title: "Kennaa Uamaa Tulluu Fantaallee fi Haroo Basakaa",
+                culture1Desc: "Ibsa dinqisiiso weeywaa uumamaa fi seenaa haattuu Magaalaa Mataharaa hawata turiizimii guddisan.",
+                lit1Title: "Namni Hin Madaalle Du'aa Qofa! Qajeelfama Beekumsaa",
+                lit1Desc: "Barruu bal'ina ilaalcha namaa fi xiinsammuu sakatta'uun guddina hawaasaaf qooda inni qabu xiinxalu.",
+                lit2Title: "Xiinxala Seera Milkaa'inaa fi Xiinsammuu Sivana-1",
+                lit2Desc: "Madaallii barruulee hiikkaa fi qajeelfama ijaarsa eenyummaa irratti xiyyeeffatan kan Robin Sharma.",
                 contactTitle: "Nu Quunnamaa / CONTACT US",
                 tgBotLabel: "Bot Telegramii",
                 ytChannelLabel: "Chaanaalii YouTube",
@@ -291,16 +357,24 @@ HTML
                 slide3Title: "Digital Communication & Media",
                 slide3Subtitle: "A platform where timely information reaches the community efficiently",
                 menuTitle: "<i class='fas fa-bars mr-2'></i> Navigation Menu",
-                menuNews: "Latest News",
+                menuNews: "Current News",
                 menuCulture: "Culture & Tourism",
-                menuLit: "Literature",
-                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Top Stories</span>",
+                menuLit: "Literature & Philosophy",
+                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Current News</span>",
+                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Culture & Tourism</span>",
+                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Literature & Philosophy</span>",
                 news1Title: "Metehara Town Administration Mayor Addisu Wako's leadership in the development works on the shores of Lake Basaka",
                 news1Desc: "Summary of beautiful development activities and beautification works led by the Mayor around Lake Basaka.",
                 news2Title: "Over one billion allocated drinking water project underway to improve Metehara Town's water services",
                 news2Desc: "Detailed updates on the high-budget mega project designed to permanently solve the town's water supply shortage.",
                 news3Title: "Orange cultivation activities currently taking place on the shores of Lake Basaka",
                 news3Desc: "Agricultural highlights on the flourishing orange farming near the lake contributing to local food security.",
+                culture1Title: "Natural Wonders of Mount Fentale and Lake Basaka",
+                culture1Desc: "Description of ecological wonders and historical backgrounds that boost tourism potential in Metehara Town.",
+                lit1Title: "An Unexamined Life is Not Worth Living! Principles of Knowledge",
+                lit1Desc: "An essay analyzing human cognitive capacity and critical thinking for social development.",
+                lit2Title: "Review of Sivana-1 Psychological and Success Laws",
+                lit2Desc: "A comprehensive assessment of personal growth principles and translations inspired by Robin Sharma.",
                 contactTitle: "CONTACT US",
                 tgBotLabel: "Telegram Bot",
                 ytChannelLabel: "YouTube Channel",
@@ -327,12 +401,22 @@ HTML
             document.getElementById('menuLit').innerText = translations[selectedLang].menuLit;
             
             document.getElementById('newsSectionTitle').innerHTML = translations[selectedLang].newsSectionTitle;
+            document.getElementById('cultureSectionTitle').innerHTML = translations[selectedLang].cultureSectionTitle;
+            document.getElementById('litSectionTitle').innerHTML = translations[selectedLang].litSectionTitle;
+            
             document.getElementById('news1Title').innerText = translations[selectedLang].news1Title;
             document.getElementById('news1Desc').innerText = translations[selectedLang].news1Desc;
             document.getElementById('news2Title').innerText = translations[selectedLang].news2Title;
             document.getElementById('news2Desc').innerText = translations[selectedLang].news2Desc;
             document.getElementById('news3Title').innerText = translations[selectedLang].news3Title;
             document.getElementById('news3Desc').innerText = translations[selectedLang].news3Desc;
+            
+            document.getElementById('culture1Title').innerText = translations[selectedLang].culture1Title;
+            document.getElementById('culture1Desc').innerText = translations[selectedLang].culture1Desc;
+            document.getElementById('lit1Title').innerText = translations[selectedLang].lit1Title;
+            document.getElementById('lit1Desc').innerText = translations[selectedLang].lit1Desc;
+            document.getElementById('lit2Title').innerText = translations[selectedLang].lit2Title;
+            document.getElementById('lit2Desc').innerText = translations[selectedLang].lit2Desc;
             
             document.getElementById('contactTitle').innerText = translations[selectedLang].contactTitle;
             document.getElementById('tgBotLabel').innerText = translations[selectedLang].tgBotLabel;

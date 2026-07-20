@@ -26,7 +26,7 @@
         .border-gold {
             border-color: #f59e0b;
         }
-        /* በሞሽን የሚቀያየሩ ፎቶዎች ስላይደር ዲዛይን */
+        /* Slideshow Container */
         .slideshow-container {
             position: relative;
             width: 100%;
@@ -70,6 +70,26 @@
             border-left-color: #f59e0b;
             color: #f59e0b;
         }
+        /* Modal / Pop-up Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #0f172a;
+            border: 2px solid #f59e0b;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.25);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -90,7 +110,7 @@
         </div>
     </header>
 
-    <!-- በሞሽን የሚቀያየሩ የቅድመ ገፅ ፎቶዎች (Slideshow Section) -->
+    <!-- Slideshow Section -->
     <div class="slideshow-container">
         <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('1776693450696.jpg');">
             <div class="text-center px-6 max-w-4xl">
@@ -112,10 +132,10 @@
         </div>
     </div>
 
-    <!-- Main Content Layout -->
+    <!-- Main Layout -->
     <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        <!-- በግራ በኩል የተሟላ የገፅ ማውጫ (Sidebar) -->
+        <!-- Sidebar Navigation -->
         <aside class="lg:col-span-1 space-y-4">
             <h3 id="menuTitle" class="text-sm font-bold tracking-wider text-amber-500 uppercase mb-4 border-b border-slate-800 pb-2"><i class="fas fa-bars mr-2"></i> የገፅ ማውጫ</h3>
             <div class="flex flex-col gap-2">
@@ -134,7 +154,7 @@
             </div>
         </aside>
 
-        <!-- በቀኝ በኩል ሁሉም መረጃዎች ከነምስሎቻቸው -->
+        <!-- Content Area -->
         <section class="lg:col-span-3 space-y-12">
             
             <!-- 1. የወቅታዊ ዜናዎች ክፍል -->
@@ -144,24 +164,32 @@
                     <span>ወቅታዊ ዜናዎች</span>
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- ዜና 1 -->
                     <div class="custom-card flex flex-col justify-between">
                         <img src="1776693450696.jpg" alt="ልማት" class="w-full h-48 object-cover border-b border-slate-800">
                         <div class="p-5 flex-grow flex flex-col justify-between">
                             <div>
                                 <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-layer-group mr-1"></i> ከተማ ልማት</div>
                                 <h4 id="news1Title" class="text-base font-bold text-white mb-3 leading-snug">አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች</h4>
+                                <p id="news1Desc" class="text-slate-400 text-xs leading-relaxed mb-4">በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።</p>
                             </div>
-                            <p id="news1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።</p>
+                            <button onclick="openModal('news1')" class="read-more-btn text-amber-500 hover:text-amber-400 font-bold text-sm inline-flex items-center gap-1 transition focus:outline-none self-start">
+                                <span class="btn-text">ለማንበብ እዚህ ይጫኑ</span> <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
                         </div>
                     </div>
+                    <!-- ዜና 2 -->
                     <div class="custom-card flex flex-col justify-between">
                         <img src="1776693457106.jpg" alt="መሰረተ-ልማት" class="w-full h-48 object-cover border-b border-slate-800">
                         <div class="p-5 flex-grow flex flex-col justify-between">
                             <div>
                                 <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-water mr-1"></i> መሰረተ-ልማት</div>
                                 <h4 id="news2Title" class="text-base font-bold text-white mb-3 leading-snug">ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት</h4>
+                                <p id="news2Desc" class="text-slate-400 text-xs leading-relaxed mb-4">የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።</p>
                             </div>
-                            <p id="news2Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።</p>
+                            <button onclick="openModal('news2')" class="read-more-btn text-amber-500 hover:text-amber-400 font-bold text-sm inline-flex items-center gap-1 transition focus:outline-none self-start">
+                                <span class="btn-text">ለማንበብ እዚህ ይጫኑ</span> <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -174,16 +202,21 @@
                     <span>ባህልና ቱሪዝም</span>
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- ዜና 3 (እርሻ) -->
                     <div class="custom-card flex flex-col justify-between">
-                        <img src="IMG_20260314_112746_839~4.jpg" alt="ግብርና እና ቱሪዝም" class="w-full h-48 object-cover border-b border-slate-800">
+                        <img src="IMG_20260314_112746_839~4.jpg" alt="ግብርና" class="w-full h-48 object-cover border-b border-slate-800">
                         <div class="p-5 flex-grow flex flex-col justify-between">
                             <div>
                                 <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-seedling mr-1"></i> ግብርና ልማት</div>
                                 <h4 id="news3Title" class="text-base font-bold text-white mb-3 leading-snug">በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ እና አረንጓዴ ልማት</h4>
+                                <p id="news3Desc" class="text-slate-400 text-xs leading-relaxed mb-4">በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።</p>
                             </div>
-                            <p id="news3Desc" class="text-slate-400 text-xs leading-relaxed mt-2">በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።</p>
+                            <button onclick="openModal('news3')" class="read-more-btn text-amber-500 hover:text-amber-400 font-bold text-sm inline-flex items-center gap-1 transition focus:outline-none self-start">
+                                <span class="btn-text">ለማንበብ እዚህ ይጫኑ</span> <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
                         </div>
                     </div>
+                    <!-- መስህብ -->
                     <div class="custom-card flex flex-col justify-between">
                         <div class="w-full h-48 bg-slate-900 flex items-center justify-center border-b border-slate-800">
                             <i class="fas fa-mountain text-slate-700 text-5xl"></i>
@@ -192,8 +225,11 @@
                             <div>
                                 <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-map-marked-alt mr-1"></i> መስህብ</div>
                                 <h4 id="culture1Title" class="text-base font-bold text-white mb-3 leading-snug">የፈንታሌ እሳተ-ገሞራ እና የበሰቃ ሐይቅ የተፈጥሮ ስጦታዎች</h4>
+                                <p id="culture1Desc" class="text-slate-400 text-xs leading-relaxed mb-4">የመተሃራ ከተማን የቱሪስት መስህብነት የሚያሳድጉ የተፈጥሮ ድንቆች እና ታሪካዊ ዳራዎች መግለጫ።</p>
                             </div>
-                            <p id="culture1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የመተሃራ ከተማን የቱሪስት መስህብነት የሚያሳድጉ የተፈጥሮ ድንቆች እና ታሪካዊ ዳራዎች መግለጫ።</p>
+                            <button onclick="openModal('culture1')" class="read-more-btn text-amber-500 hover:text-amber-400 font-bold text-sm inline-flex items-center gap-1 transition focus:outline-none self-start">
+                                <span class="btn-text">ለማንበብ እዚህ ይጫኑ</span> <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -206,6 +242,7 @@
                     <span>ስነ-ጽሑፍ እና ፍልስፍና</span>
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- መጣጥፍ 1 -->
                     <div class="custom-card flex flex-col justify-between">
                         <div class="w-full h-48 bg-slate-900 flex items-center justify-center border-b border-slate-800">
                             <i class="fas fa-brain text-slate-700 text-5xl"></i>
@@ -214,10 +251,14 @@
                             <div>
                                 <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-feather-alt mr-1"></i> እውቀትና አስተሳሰብ</div>
                                 <h4 id="lit1Title" class="text-base font-bold text-white mb-3 leading-snug">የማይፈላሰፍ ሰው የሞተ ብቻ ነው! የእውቀት መርሆዎች</h4>
+                                <p id="lit1Desc" class="text-slate-400 text-xs leading-relaxed mb-4">የሰው ልጅ የማሰብ አድማስ እና ሂሳዊ አስተሳሰብ ለህብረተሰብ እድገት ስላለው ከፍተኛ ሚና የሚተነትን መጣጥፍ።</p>
                             </div>
-                            <p id="lit1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የሰው ልጅ የማሰብ አድማስ እና ሂሳዊ አስተሳሰብ ለህብረተሰብ እድገት ስላለው ከፍተኛ ሚና የሚተነትን መጣጥፍ።</p>
+                            <button onclick="openModal('lit1')" class="read-more-btn text-amber-500 hover:text-amber-400 font-bold text-sm inline-flex items-center gap-1 transition focus:outline-none self-start">
+                                <span class="btn-text">ለማንበብ እዚህ ይጫኑ</span> <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
                         </div>
                     </div>
+                    <!-- መጣጥፍ 2 -->
                     <div class="custom-card flex flex-col justify-between">
                         <div class="w-full h-48 bg-slate-900 flex items-center justify-center border-b border-slate-800">
                             <i class="fas fa-book text-slate-700 text-5xl"></i>
@@ -226,8 +267,11 @@
                             <div>
                                 <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-quote-left mr-1"></i> ትንተና</div>
                                 <h4 id="lit2Title" class="text-base font-bold text-white mb-3 leading-snug">የሲቫና-1 የስነ-ልቦና እና የስኬት ህግጋት ዳሰሳ</h4>
+                                <p id="lit2Desc" class="text-slate-400 text-xs leading-relaxed mb-4">የሮቢን ሻርማን እሳቤዎች እና የግል ስብዕና ግንባታ ላይ ያተኮሩ የትርጉም ስራዎች ዝርዝር ግምገማ።</p>
                             </div>
-                            <p id="lit2Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የሮቢን ሻርማን እሳቤዎች እና የግል ስብዕና ግንባታ ላይ ያተኮሩ የትርጉም ስራዎች ዝርዝር ግምገማ።</p>
+                            <button onclick="openModal('lit2')" class="read-more-btn text-amber-500 hover:text-amber-400 font-bold text-sm inline-flex items-center gap-1 transition focus:outline-none self-start">
+                                <span class="btn-text">ለማንበብ እዚህ ይጫኑ</span> <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -235,6 +279,18 @@
 
         </section>
     </main>
+
+    <!-- Modal / Pop-up Window -->
+    <div id="detailsModal" class="modal px-4 flex">
+        <div class="modal-content w-full max-w-2xl rounded-2xl p-6 md:p-8 relative max-h-[85vh] overflow-y-auto">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="sticky top-0 float-right text-slate-400 hover:text-amber-500 text-2xl font-bold focus:outline-none transition">&times;</button>
+            
+            <div id="modalInnerContent" class="clear-both mt-4">
+                <!-- ይዘቱ በጃቫስክሪፕት በኩል እዚህ ይገባል -->
+            </div>
+        </div>
+    </div>
 
     <!-- Footer Section -->
     <footer class="bg-slate-950 text-slate-400 pt-12 pb-6 px-6 border-t-2 border-gold mt-auto">
@@ -264,9 +320,9 @@
         </div>
     </footer>
 
-    <!-- የጃቫስክሪፕት ስራዎች -->
+    <!-- JavaScript Controls -->
     <script>
-        // 1. Image Slideshow Logic
+        // 1. Slideshow
         let slideIndex = 0;
         function showSlides() {
             let i;
@@ -281,7 +337,7 @@
         }
         document.addEventListener("DOMContentLoaded", showSlides);
 
-        // 2. Multilingual Dictionary
+        // 2. Multi-language Translation Resources (including Long Stories)
         const translations = {
             am: {
                 welcomeTitle: "እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!",
@@ -297,18 +353,25 @@
                 newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ወቅታዊ ዜናዎች</span>",
                 cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ባህልና ቱሪዝም</span>",
                 litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ስነ-ጽሑፍ እና ፍልስፍና</span>",
+                readMoreText: "ለማንበብ እዚህ ይጫኑ",
                 news1Title: "አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች",
                 news1Desc: "በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።",
+                news1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>የበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች ዝርዝር መግለጫ</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>በመተሃራ ከተማ አስተዳደር ከንቲባ በአቶ አዲሱ ዋቆ መሪነትና ቀጥተኛ ክትትል በበሰቃ ሐይቅ ዙሪያ በርካታ አስደናቂ የልማት ስራዎች እየተከናወኑ ይገኛሉ። ይህ ፕሮጀክት የአካባቢውን የተፈጥሮ ውበት ከመጠበቅ ባለፈ የከተማዋን ገጽታ በመቀየር ለቱሪዝምና ለከተማ ማራኪነት ትልቅ አስተዋፅዖ እያበረከተ ይገኛል።</p><p class='text-slate-300 leading-relaxed text-sm'>በሐይቁ ዙሪያ የሚሰሩ የመዝናኛ ስፍራዎች፣ አረንጓዴ ልማቶች እና የአካባቢ ጥበቃ ስራዎች ከተማዋን አዲስ የኢኮኖሚ እና የቱሪዝም ማዕከል ለማድረግ የታለሙ መሆናቸውን ከንቲባው ገልጸዋል።</p>",
                 news2Title: "ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት",
                 news2Desc: "የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።",
+                news2Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>የ1 ቢሊዮን ብር የመጠጥ ውሃ ፕሮጀክት ዝርዝር</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>የመተሃራ ከተማን የረጅም ጊዜ የመጠጥ ውሃ አቅርቦት እጥረት በዘላቂነት ለመፍታት ከአንድ ቢሊዮን ብር በላይ ግዙፍ በጀት ተመድቦለት ሰፊ የግንባታ ስራ እየተከናወነ ይገኛል። ይህ ፕሮጀክት በከተማዋ ታሪክ ከፍተኛ የገንዘብ ኢንቨስትመንት ከተደረገባቸው ግዙፍ የመሰረተ-ልማት ስራዎች አንዱ ነው።</p><p class='text-slate-300 leading-relaxed text-sm'>የፕሮጀክቱ ግንባታ ሲጠናቀቅ መላውን የከተማዋን ነዋሪዎች ንጹህ የመጠጥ ውሃ በበቂ ሁኔታ ተደራሽ ማድረግ የሚችል ሲሆን፣ ለወደፊቱ የህዝብ ቁጥር እድገትም ታሳቢ ተደርጎ የተዘረጋ የረጅም ጊዜ ዘላቂ መፍትሄ ነው።</p>",
                 news3Title: "በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ እና አረንጓዴ ልማት",
                 news3Desc: "በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።",
+                news3Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>የበሰቃ ሐይቅ አረንጓዴ የብርቱካን እርሻ ልማት</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>በበሰቃ ሐይቅ አቅራቢያ የሚገኙ ለም መሬቶችን በመጠቀም ዘመናዊ የብርቱካን እርሻ እና የተሟላ የአረንጓዴ ልማት ስራዎች በከፍተኛ ፍጥነት እየተተገበሩ ይገኛሉ። ይህ የልማት ስራ የአካባቢውን ስነ-ምህዳር ሚዛን ለመጠበቅ ከፍተኛ እገዛ እያደረገ ነው።</p><p class='text-slate-300 leading-relaxed text-sm'>እርሻው ለአካባቢው ወጣቶች ሰፊ የስራ እድል ከመፍጠሩም በላይ፣ ጥራታቸው ከፍተኛ የሆኑ የፍራፍሬ ምርቶችን ለከተማዋና ለአጎራባች ገበያዎች በማቅረብ የምግብ ዋስትናን የማረጋገጥ ስራ በተሳካ ሁኔታ እየመራ ይገኛል።</p>",
                 culture1Title: "የፈንታሌ እሳተ-ገሞራ እና የበሰቃ ሐይቅ የተፈጥሮ ስጦታዎች",
                 culture1Desc: "የመተሃራ ከተማን የቱሪስት መስህብነት የሚያሳድጉ የተፈጥሮ ድንቆች እና ታሪካዊ ዳራዎች መግለጫ።",
+                culture1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>የፈንታሌ እሳተ-ገሞራ እና የበሰቃ አስደናቂ ታሪክ</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>የመተሃራ ከተማ ልዩ የተፈጥሮ መልክዓ-ምድር ባለቤት እንድትሆን ካደረጓት ድንቆች መካከል ታዋቂው የፈንታሌ እሳተ-ገሞራ እና ታሪካዊው የበሰቃ ሐይቅ በዋናነት ይጠቀሳሉ። እነዚህ የተፈጥሮ ሃብቶች ለሳይንሳዊ ምርምርም ሆነ ለቱሪዝም መስህብነት እጅግ ከፍተኛ ዋጋ ያላቸው ስጦታዎች ናቸው።</p><p class='text-slate-300 leading-relaxed text-sm'>የአካባቢው ስነ-ህይወታዊ ይዘት፣ ፍልውሃዎች እና ልዩ ድንጋዮች ለመላው ዓለም ጎብኚዎች አስደናቂ እይታን የሚሰጡ በመሆናቸው በቱሪዝም ዘርፍ ሰፊ የማስተዋወቅ ስራ እየተሰራባቸው ይገኛል።</p>",
                 lit1Title: "የማይፈላሰፍ ሰው የሞተ ብቻ ነው! የእውቀት መርሆዎች",
                 lit1Desc: "የሰው ልጅ የማሰብ አድማስ እና ሂሳዊ አስተሳሰብ ለህብረተሰብ እድገት ስላለው ከፍተኛ ሚና የሚተነትን መጣጥፍ።",
+                lit1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>የማይፈላሰፍ ሰው የሞተ ብቻ ነው!</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>ሳሚ ዶልፊን በፃፈው በዚህ ጥልቅ ፍልስፍናዊ መጣጥፍ ውስጥ፣ የሰው ልጅ ትልቁ መለያውና ክብሩ የማሰብ እና የመመራመር ብቃቱ እንደሆነ ይተነትናል። ሂሳዊ አስተሳሰብ (Critical Thinking) የሌለው እና በነገሮች ዙሪያ የማይጠይቅ ማህበረሰብ እድገትን ማምጣት አይችልም።</p><p class='text-slate-300 leading-relaxed text-sm'>እውቀትን ዝም ብሎ ከመቀበል ይልቅ 'ለምን? እንዴት?' ብሎ መጠየቅና አዳዲስ እሳቤዎችን ማፍለቅ ህያው የመሆንና የመለወጥ ትልቁ ሚስጥር መሆኑን ይህ መጣጥፍ በሰፊው ያብራራል።</p>",
                 lit2Title: "የሲቫና-1 የስነ-ልቦና እና የስኬት ህግጋት ዳሰሳ",
                 lit2Desc: "የሮቢን ሻርማን እሳቤዎች እና የግል ስብዕና ግንባታ ላይ ያተኮሩ የትርጉም ስራዎች ዝርዝር ግምገማ።",
+                lit2Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>የሲቫና-1 የስብዕና ግንባታ ዳሰሳ</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>ይህ ጽሑፍ በታዋቂው ጸሐፊ ሮቢን ሻርማ መጻሕፍት ላይ የተመሠረተውን 'ሲቫና-1' የተሰኘውን የስኬት እና የግል ማንነት ግንባታ መርሆዎች በዝርዝር ይዳስሳል። የአዕምሮ ሰላምን ማግኘት፣ ራስን መግራት እና የዕለት ተዕለት ልማዶችን ማስተካከል ለስኬት መሰረት እንደሆኑ ያሳያል።</p><p class='text-slate-300 leading-relaxed text-sm'>ጽሑፉ የግል ህይወትን በመለወጥ እንዴት ውጤታማ እና ትርጉም ያለው ህይወት መምራት እንደሚቻል ማህበረሰቡን የሚያነቁ ጠቃሚ የስነ-ልቦና ምክሮችን እና ትንተናዎችን ይዟል።</p>",
                 contactTitle: "ያግኙን / CONTACT US",
                 tgBotLabel: "የቴሌግራም ቦት",
                 ytChannelLabel: "ዩቲዩብ ቻናል",
@@ -330,18 +393,25 @@
                 newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Oduuwwan Waqtaawaa</span>",
                 cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Aadaa fi Turiizimii</span>",
                 litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Og-barruu fi Fiilsoofii</span>",
+                readMoreText: "Dubbisuuf Asi Tuqi",
                 news1Title: "Bulchiinsa Magaalaa Mataharaa Kantiibaa obbo Addisuu Waaqoo gaggeessummaan hojiiwwan misooma qarqara haroo Basakaa",
                 news1Desc: "Hojiiwwan misooma bareedoo fi bifa magaalichaa jijjiiruuf qarqara haroo Basakaa irratti kantiibichaan durfamu.",
+                news1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Hojii Misooma Qarqara Haroo Basakaa</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Bulchiinsa Magaalaa Mataharaa Kantiibaa obbo Addisuu Waaqoo gaggeessummaa fi hordoffii qajeelaan hojiiwwan misooma qarqara haroo Basakaa irratti hojjetamaa jiru jajjabeessaa dha. Pirojektiin kun uumama naannoo eeguun alatti fakkii magaalichaa jijjiiruun turiizimiif qooda guddaa qaba.</p>",
                 news2Title: "Biliyoona tokkoo ol kan ramadameef tajaajila bishaanii Magaalaa Mataharaa fooyyessuuf pirojekti bishaan dhugaatii hojjetamaa jiru",
                 news2Desc: "Odeeffannoo bal'aa pirojekti guddaa rakkoo bishaan dhugaatii magaalichaa yeroo dheeraaf furiinsa waaraa kennuuf ijaaramaa jiru.",
+                news2Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Pirojekti Bishaan Dhugaatii Biliyoona 1</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Rakkoo bishaan dhugaatii Magaalaa Mataharaa yeroo dheeraaf furuuf bajata guddaa biliyoona tokkoo ol ramadamee ijaarsi bal'aan deemaa jira. Pirojektiin kun seenaa magaalichaa keessatti pirojektiwwan bu'uraalee misoomaa gurguddoo keessaa tokko dha.</p>",
                 news3Title: "Misooma qonnaa burtukaanaa qarqara haroo Basakaa irratti hojjetamaa jiru",
                 news3Desc: "Hojii misooma burtukaanaa lafa qarqara harichaa fayyadamuun wabii nyaata uummata magaalichaaf gumaacha jiru.",
+                news3Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Misooma Burtukaanaa Qarqara Haroo Basakaa</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Lafa gabbataa qarqara haroo Basakaa fayyadamuun qonna burtukaanaa ammayyaa fi misooma kijajjee saffisaan hojjetamaa jira. Kunis naannoo eeguun alatti carraa hojii uumaa jira.</p>",
                 culture1Title: "Kennaa Uamaa Tulluu Fantaallee fi Haroo Basakaa",
                 culture1Desc: "Ibsa dinqisiiso weeywaa uumamaa fi seenaa haattuu Magaalaa Mataharaa hawata turiizimii guddisan.",
+                culture1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Tulluu Fantaallee fi Haroo Basakaa</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Magaalaan Mataharaa qabeenya uumamaa dinqisiisoo kan akka Tulluu Fantaallee fi Haroo Basakaa qabdi. Kunis qorannoo saayinsii fi hawata turiizimiif qabeenya qorallaa guddaa dha.</p>",
                 lit1Title: "Namni Hin Madaalle Du'aa Qofa! Qajeelfama Beekumsaa",
                 lit1Desc: "Barruu bal'ina ilaalcha namaa fi xiinsammuu sakatta'uun guddina hawaasaaf qooda inni qabu xiinxalu.",
+                lit1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Namni Hin Madaalle Du'aa Qofa!</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Barruu kana keessatti ilaalcha bal'aa fi gaaffii dhiyeessuun guddina hawaasaaf dhimma murteessaa akka ta'e ibsa gadi fagoon kennameera. Yaaduu fi qorachuun eenyummaa namaa mirkaneessa.</p>",
                 lit2Title: "Xiinxala Seera Milkaa'inaa fi Xiinsammuu Sivana-1",
                 lit2Desc: "Madaallii barruulee hiikkaa fi qajeelfama ijaarsa eenyummaa irratti xiyyeeffatan kan Robin Sharma.",
+                lit2Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Xiinxala Barruu Sivana-1</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Yaada og-barruu Robin Sharma irratti hundaa'uun ijaarsa dhuunfaa, milkaa'ina fi nagaa sammuu argachuuf qajeelfamoota dhimma itti bahan bal'inaan kan xiinxalu dha.</p>",
                 contactTitle: "Nu Quunnamaa / CONTACT US",
                 tgBotLabel: "Bot Telegramii",
                 ytChannelLabel: "Chaanaalii YouTube",
@@ -363,18 +433,25 @@
                 newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Current News</span>",
                 cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Culture & Tourism</span>",
                 litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Literature & Philosophy</span>",
+                readMoreText: "Read More",
                 news1Title: "Metehara Town Administration Mayor Addisu Wako's leadership in the development works on the shores of Lake Basaka",
                 news1Desc: "Summary of beautiful development activities and beautification works led by the Mayor around Lake Basaka.",
+                news1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Lake Basaka Development Works</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Under the visionary leadership of Metehara Town Mayor Addisu Wako, extensive beautification and eco-tourism development projects are actively thriving around Lake Basaka. This aims to build a modern and green landscape for the city.</p>",
                 news2Title: "Over one billion allocated drinking water project underway to improve Metehara Town's water services",
                 news2Desc: "Detailed updates on the high-budget mega project designed to permanently solve the town's water supply shortage.",
+                news2Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>1 Billion Birr Clean Water Mega Project</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>A high-scale infrastructure project with over 1 Billion Birr budget is steadily rolling out to ensure consistent clean water supply across Metehara Town, guaranteeing a sustainable long-term solution.</p>",
                 news3Title: "Orange cultivation activities currently taking place on the shores of Lake Basaka",
                 news3Desc: "Agricultural highlights on the flourishing orange farming near the lake contributing to local food security.",
+                news3Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Orange Cultivation Projects</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Utilizing the fertile shores of Lake Basaka, massive citrus farming and orange groves are expanding efficiently, securing both youth employment and continuous supply to agricultural markets.</p>",
                 culture1Title: "Natural Wonders of Mount Fentale and Lake Basaka",
                 culture1Desc: "Description of ecological wonders and historical backgrounds that boost tourism potential in Metehara Town.",
+                culture1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Mount Fentale and Lake Basaka Nature Assets</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Metehara is gifted with magnificent volcanic landscapes of Mount Fentale and the wide expanse of Lake Basaka, creating ultimate historical and eco-tourism marvels in the region.</p>",
                 lit1Title: "An Unexamined Life is Not Worth Living! Principles of Knowledge",
                 lit1Desc: "An essay analyzing human cognitive capacity and critical thinking for social development.",
+                lit1Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>An Unexamined Life is Not Worth Living!</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Authored by Sami Dolphin, this philosophical commentary strongly explores the profound significance of human reasoning, intellect, and active questioning as pillars of community progression.</p>",
                 lit2Title: "Review of Sivana-1 Psychological and Success Laws",
                 lit2Desc: "A comprehensive assessment of personal growth principles and translations inspired by Robin Sharma.",
+                lit2Full: "<h3 class='text-xl font-bold text-amber-500 mb-4'>Review of Sivana-1 Principles</h3><p class='text-slate-300 leading-relaxed text-sm mb-4'>Deeply diving into structural personal mastery inspired by Robin Sharma’s literary legacy, evaluating focus habits, mental clarity, and discipline rules for individual success.</p>",
                 contactTitle: "CONTACT US",
                 tgBotLabel: "Telegram Bot",
                 ytChannelLabel: "YouTube Channel",
@@ -384,47 +461,79 @@
             }
         };
 
+        // 3. Current Language Reference (Defaults to Amharic)
+        let currentLang = 'am';
+
+        // 4. Modal Open/Close Logic
+        const modal = document.getElementById('detailsModal');
+        const modalInner = document.getElementById('modalInnerContent');
+
+        function openModal(itemKey) {
+            // Get the full story based on current language and key
+            const fullStoryHtml = translations[currentLang][itemKey + 'Full'];
+            modalInner.innerHTML = fullStoryHtml;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside content area
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // 5. Dropdown Language Selector Switch Logic
         const langSelector = document.getElementById('langSelector');
         langSelector.addEventListener('change', (event) => {
-            const selectedLang = event.target.value;
+            currentLang = event.target.value;
             
-            document.getElementById('welcomeTitle').innerText = translations[selectedLang].welcomeTitle;
-            document.getElementById('welcomeSubtitle').innerText = translations[selectedLang].welcomeSubtitle;
-            document.getElementById('slide2Title').innerText = translations[selectedLang].slide2Title;
-            document.getElementById('slide2Subtitle').innerText = translations[selectedLang].slide2Subtitle;
-            document.getElementById('slide3Title').innerText = translations[selectedLang].slide3Title;
-            document.getElementById('slide3Subtitle').innerText = translations[selectedLang].slide3Subtitle;
+            document.getElementById('welcomeTitle').innerText = translations[currentLang].welcomeTitle;
+            document.getElementById('welcomeSubtitle').innerText = translations[currentLang].welcomeSubtitle;
+            document.getElementById('slide2Title').innerText = translations[currentLang].slide2Title;
+            document.getElementById('slide2Subtitle').innerText = translations[currentLang].slide2Subtitle;
+            document.getElementById('slide3Title').innerText = translations[currentLang].slide3Title;
+            document.getElementById('slide3Subtitle').innerText = translations[currentLang].slide3Subtitle;
             
-            document.getElementById('menuTitle').innerHTML = translations[selectedLang].menuTitle;
-            document.getElementById('menuNews').innerText = translations[selectedLang].menuNews;
-            document.getElementById('menuCulture').innerText = translations[selectedLang].menuCulture;
-            document.getElementById('menuLit').innerText = translations[selectedLang].menuLit;
+            document.getElementById('menuTitle').innerHTML = translations[currentLang].menuTitle;
+            document.getElementById('menuNews').innerText = translations[currentLang].menuNews;
+            document.getElementById('menuCulture').innerText = translations[currentLang].menuCulture;
+            document.getElementById('menuLit').innerText = translations[currentLang].menuLit;
             
-            document.getElementById('newsSectionTitle').innerHTML = translations[selectedLang].newsSectionTitle;
-            document.getElementById('cultureSectionTitle').innerHTML = translations[selectedLang].cultureSectionTitle;
-            document.getElementById('litSectionTitle').innerHTML = translations[selectedLang].litSectionTitle;
+            document.getElementById('newsSectionTitle').innerHTML = translations[currentLang].newsSectionTitle;
+            document.getElementById('cultureSectionTitle').innerHTML = translations[currentLang].cultureSectionTitle;
+            document.getElementById('litSectionTitle').innerHTML = translations[currentLang].litSectionTitle;
             
-            document.getElementById('news1Title').innerText = translations[selectedLang].news1Title;
-            document.getElementById('news1Desc').innerText = translations[selectedLang].news1Desc;
-            document.getElementById('news2Title').innerText = translations[selectedLang].news2Title;
-            document.getElementById('news2Desc').innerText = translations[selectedLang].news2Desc;
-            document.getElementById('news3Title').innerText = translations[selectedLang].news3Title;
-            document.getElementById('news3Desc').innerText = translations[selectedLang].news3Desc;
+            document.getElementById('news1Title').innerText = translations[currentLang].news1Title;
+            document.getElementById('news1Desc').innerText = translations[currentLang].news1Desc;
+            document.getElementById('news2Title').innerText = translations[currentLang].news2Title;
+            document.getElementById('news2Desc').innerText = translations[currentLang].news2Desc;
+            document.getElementById('news3Title').innerText = translations[currentLang].news3Title;
+            document.getElementById('news3Desc').innerText = translations[currentLang].news3Desc;
             
-            document.getElementById('culture1Title').innerText = translations[selectedLang].culture1Title;
-            document.getElementById('culture1Desc').innerText = translations[selectedLang].culture1Desc;
-            document.getElementById('lit1Title').innerText = translations[selectedLang].lit1Title;
-            document.getElementById('lit1Desc').innerText = translations[selectedLang].lit1Desc;
-            document.getElementById('lit2Title').innerText = translations[selectedLang].lit2Title;
-            document.getElementById('lit2Desc').innerText = translations[selectedLang].lit2Desc;
+            document.getElementById('culture1Title').innerText = translations[currentLang].culture1Title;
+            document.getElementById('culture1Desc').innerText = translations[currentLang].culture1Desc;
+            document.getElementById('lit1Title').innerText = translations[currentLang].lit1Title;
+            document.getElementById('lit1Desc').innerText = translations[currentLang].lit1Desc;
+            document.getElementById('lit2Title').innerText = translations[currentLang].lit2Title;
+            document.getElementById('lit2Desc').innerText = translations[currentLang].lit2Desc;
             
-            document.getElementById('contactTitle').innerText = translations[selectedLang].contactTitle;
-            document.getElementById('tgBotLabel').innerText = translations[selectedLang].tgBotLabel;
-            document.getElementById('ytChannelLabel').innerText = translations[selectedLang].ytChannelLabel;
-            document.getElementById('fbLinkLabel').innerText = translations[selectedLang].fbLinkLabel;
+            document.getElementById('contactTitle').innerText = translations[currentLang].contactTitle;
+            document.getElementById('tgBotLabel').innerText = translations[currentLang].tgBotLabel;
+            document.getElementById('ytChannelLabel').innerText = translations[currentLang].ytChannelLabel;
+            document.getElementById('fbLinkLabel').innerText = translations[currentLang].fbLinkLabel;
             
-            document.getElementById('emailLabel').innerHTML = translations[selectedLang].emailLabel;
-            document.getElementById('phoneLabel').innerHTML = translations[selectedLang].phoneLabel;
+            document.getElementById('emailLabel').innerHTML = translations[currentLang].emailLabel;
+            document.getElementById('phoneLabel').innerHTML = translations[currentLang].phoneLabel;
+
+            // Translate all button texts dynamically
+            const buttons = document.querySelectorAll('.read-more-btn .btn-text');
+            buttons.forEach(btn => {
+                btn.innerText = translations[currentLang].readMoreText;
+            });
         });
     </script>
 </body>

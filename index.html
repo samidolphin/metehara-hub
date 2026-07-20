@@ -17,7 +17,6 @@ HTML
             color: #ffffff;
             overflow-x: hidden;
         }
-        /* የድሮው የሜሶብ ወርቃማ እና ጥቁር ዲዛይን መለያ */
         .gold-glow {
             color: #f59e0b;
             text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
@@ -28,13 +27,14 @@ HTML
         .border-gold {
             border-color: #f59e0b;
         }
-        /* በሞሽን የሚቀያየሩ ፎቶዎች ስላይደር (Slideshow) */
+        /* በሞሽን የሚቀያየሩ ፎቶዎች ስላይደር ዲዛይን */
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 450px;
+            height: 480px;
             overflow: hidden;
             border-bottom: 3px solid #f59e0b;
+            background-color: #0f172a;
         }
         .mySlides {
             display: none;
@@ -43,14 +43,6 @@ HTML
             height: 100%;
             background-size: cover;
             background-position: center;
-        }
-        .fade-anim {
-            animation: fadeAnim 2s infinite ease-in-out;
-        }
-        @keyframes fadeAnim {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
         }
         .custom-card {
             background: rgba(15, 23, 42, 0.8);
@@ -86,29 +78,29 @@ HTML
     <!-- በሞሽን የሚቀያየሩ የቅድመ ገፅ ፎቶዎች (Slideshow Section) -->
     <div class="slideshow-container">
         <!-- ፎቶ 1 -->
-        <div class="mySlides fade-anim flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('1776693450696.jpg');">
-            <div class="text-center px-4 max-w-3xl">
-                <h2 id="welcomeTitle" class="text-3xl md:text-5xl font-black mb-4 text-white">እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!</h2>
+        <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('1776693450696.jpg');">
+            <div class="text-center px-6 max-w-4xl">
+                <h2 id="welcomeTitle" class="text-3xl md:text-5xl font-black mb-4 text-white leading-tight">እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!</h2>
                 <p id="welcomeSubtitle" class="text-amber-400 text-lg md:text-xl font-bold">የሳሚ-ቲዩብ ሚዲያ ወቅታዊ መረጃዎች ማቅረቢያ መድረክ</p>
             </div>
         </div>
         <!-- ፎቶ 2 -->
-        <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('1776693457106.jpg');">
-            <div class="text-center px-4 max-w-3xl">
-                <h2 id="slide2Title" class="text-3xl md:text-5xl font-black mb-4 text-white">ወቅታዊ እና እውነተኛ መረጃዎች</h2>
+        <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('1776693457106.jpg');">
+            <div class="text-center px-6 max-w-4xl">
+                <h2 id="slide2Title" class="text-3xl md:text-5xl font-black mb-4 text-white leading-tight">ወቅታዊ እና እውነተኛ መረጃዎች</h2>
                 <p id="slide2Subtitle" class="text-amber-400 text-lg md:text-xl font-bold">የመተሃራ እና የአካባቢዋን ልማትና ገጽታ ለዓለም የምናስተዋውቅበት</p>
             </div>
         </div>
         <!-- ፎቶ 3 -->
-        <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('IMG_20260314_112746_839~4.jpg');">
-            <div class="text-center px-4 max-w-3xl">
-                <h2 id="slide3Title" class="text-3xl md:text-5xl font-black mb-4 text-white">ዲጂታል ኮሚኒኬሽን እና ሚዲያ</h2>
+        <div class="mySlides flex items-center justify-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('IMG_20260314_112746_839~4.jpg');">
+            <div class="text-center px-6 max-w-4xl">
+                <h2 id="slide3Title" class="text-3xl md:text-5xl font-black mb-4 text-white leading-tight">ዲጂታል ኮሚኒኬሽን እና ሚዲያ</h2>
                 <p id="slide3Subtitle" class="text-amber-400 text-lg md:text-xl font-bold">ፈጣን መረጃዎች ማህበረሰቡን ተደራሽ የሚያደርጉበት መድረክ</p>
             </div>
         </div>
     </div>
 
-    <!-- Main Content Grid (ሶስቱ የፊት ገፅ ዜናዎች እና ክፍሎች) -->
+    <!-- Main Content Grid -->
     <main class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- ዜና/ማውጫ 1 -->
@@ -145,7 +137,7 @@ HTML
         <div class="max-w-6xl mx-auto text-center">
             <h4 id="contactTitle" class="text-white font-bold text-sm tracking-widest uppercase mb-6 gold-glow">ያግኙን / CONTACT US</h4>
             
-            <!-- የሶሻል ሚዲያ ሊንኮች በጽሑፍ -->
+            <!-- ሊንኮች -->
             <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8 text-sm text-slate-200">
                 <a href="https://t.me/Ayyotube_bot" target="_blank" class="hover:border-amber-500 transition flex items-center gap-2 bg-slate-900 px-4 py-2 rounded-lg border border-slate-800 w-64 justify-center">
                     <i class="fab fa-telegram-plane text-blue-400"></i> <span id="tgBotLabel">የቴሌግራም ቦት</span>
@@ -158,25 +150,23 @@ HTML
                 </a>
             </div>
             
-            <!-- Contact Details -->
+            <!-- አድራሻዎች -->
             <div class="text-sm space-y-2 mb-8 text-slate-300 border-t border-slate-900 pt-6">
                 <p><span id="emailLabel"><i class="fas fa-envelope mr-2 text-amber-500"></i> ኢሜይል:</span> <a href="mailto:sami2all@gmail.com" class="hover:text-white transition">sami2all@gmail.com</a></p>
                 <p><span id="phoneLabel"><i class="fas fa-phone mr-2 text-amber-500"></i> ስልክ:</span> <a href="tel:+251911926976" class="hover:text-white transition">+251 911 92 69 76</a></p>
             </div>
             
-            <!-- Copyright -->
+            <!-- ኮፒራይት -->
             <div class="border-t border-slate-900 pt-6 text-xs text-slate-700">
                 © 2026 SAMI-TUBE MEDIA | Metehara, Ethiopia
             </div>
         </div>
     </footer>
 
-    <!-- የጃቫስክሪፕት የስላይደር እና የትርጉም ስራ -->
+    <!-- የጃቫስክሪፕት ስራዎች -->
     <script>
-        // 1. በሞሽን የሚቀያየሩ ፎቶዎች (Automatic Image Slideshow)
+        // 1. Image Slideshow Logic
         let slideIndex = 0;
-        showSlides();
-
         function showSlides() {
             let i;
             let slides = document.getElementsByClassName("mySlides");
@@ -186,10 +176,12 @@ HTML
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
             slides[slideIndex-1].style.display = "flex";  
-            setTimeout(showSlides, 4000); // በየ 4 ሰከንዱ ፎቶዎቹ በሞሽን ይቀያየራሉ
+            setTimeout(showSlides, 4000); // በየ 4 ሰከንዱ ይቀያየራል
         }
+        // ገጹ ሲከፈት በራስ-ሰር እንዲጀምር
+        document.addEventListener("DOMContentLoaded", showSlides);
 
-        // 2. የቋንቋ መቀያየሪያ (Localization Dictionary)
+        // 2. Localization Dictionary
         const translations = {
             am: {
                 welcomeTitle: "እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!",
@@ -254,7 +246,6 @@ HTML
         };
 
         const langSelector = document.getElementById('langSelector');
-
         langSelector.addEventListener('change', (event) => {
             const selectedLang = event.target.value;
             

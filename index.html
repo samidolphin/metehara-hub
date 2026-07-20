@@ -46,14 +46,29 @@ HTML
         }
         .custom-card {
             background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(245, 158, 11, 0.2);
+            border: 1px solid rgba(245, 158, 11, 0.15);
             border-radius: 12px;
             transition: all 0.3s ease;
         }
         .custom-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: #f59e0b;
-            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.15);
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(30, 41, 59, 0.5);
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+        .sidebar-link:hover {
+            background: rgba(30, 41, 59, 0.9);
+            border-left-color: #f59e0b;
+            color: #f59e0b;
         }
     </style>
 </head>
@@ -61,7 +76,7 @@ HTML
 
     <!-- Header Section -->
     <header class="bg-slate-950 text-white shadow-lg sticky top-0 z-50 border-b-2 border-gold">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="bg-gold text-slate-950 font-black text-xl w-10 h-10 flex items-center justify-center rounded-xl shadow-md">S</div>
                 <h1 class="text-xl font-black tracking-wider gold-glow">SAMI-TUBE MEDIA</h1>
@@ -100,44 +115,72 @@ HTML
         </div>
     </div>
 
-    <!-- Main Content Grid -->
-    <main class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- ዜና/ማውጫ 1 -->
-            <div class="custom-card p-6 flex flex-col justify-between">
-                <div>
-                    <div class="text-amber-500 text-3xl mb-4"><i class="fab fa-youtube"></i></div>
-                    <h3 id="card1Title" class="text-xl font-bold text-white mb-3 border-b border-slate-800 pb-2">የቅርብ ጊዜ ቪዲዮዎች</h3>
-                    <p id="card1Desc" class="text-slate-300 text-sm leading-relaxed">በሳሚ-ቲዩብ የሚለቀቁ ወቅታዊ ዜናዎችን፣ ባህላዊ ዝግጅቶችን እና ቪዲዮዎችን በቀጥታ እዚህ ያግኙ።</p>
-                </div>
+    <!-- Main Content Layout (ግራ ማውጫ እና ቀኝ ዜናዎች) -->
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- በግራ በኩል የገፅ ማውጫ (Sidebar) -->
+        <aside class="lg:col-span-1 space-y-4">
+            <h3 id="menuTitle" class="text-sm font-bold tracking-wider text-amber-500 uppercase mb-4 border-b border-slate-800 pb-2"><i class="fas fa-bars mr-2"></i> የገፅ ማውጫ</h3>
+            <div class="flex flex-col gap-2">
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-newspaper text-amber-500 w-5"></i>
+                    <span id="menuNews">ቅድመ ዜና</span>
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-monument text-amber-500 w-5"></i>
+                    <span id="menuCulture">ባህልና ቱሪዝም</span>
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-book-open text-amber-500 w-5"></i>
+                    <span id="menuLit">ስነ-ጽሑፍ</span>
+                </a>
             </div>
+        </aside>
 
-            <!-- ዜና/ማውጫ 2 -->
-            <div class="custom-card p-6 flex flex-col justify-between">
-                <div>
-                    <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-city"></i></div>
-                    <h3 id="card2Title" class="text-xl font-bold text-white mb-3 border-b border-slate-800 pb-2">የከተማዋ መረጃዎች</h3>
-                    <p id="card2Desc" class="text-slate-300 text-sm leading-relaxed">ስለ መተሃራ ከተማ ማህበራዊ፣ ኢኮኖሚያዊ እና መዋቅራዊ ልማቶች የተዘጋጁ አጫጭር ሪፖርቶችና መረጃዎች።</p>
+        <!-- በቀኝ በኩል 3ቱ ዋና ዋና የፊት ገፅ ዜናዎች (News Section) -->
+        <section class="lg:col-span-3">
+            <h3 id="newsSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
+                <span class="w-2 h-6 bg-gold rounded-full"></span> 
+                <span>ዋና ዋና ዜናዎች</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- ዜና 1 -->
+                <div class="custom-card p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-layer-group mr-1"></i> ልማት</div>
+                        <h4 id="news1Title" class="text-base font-bold text-white mb-3 leading-snug">አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች</h4>
+                        <p id="news1Desc" class="text-slate-400 text-xs leading-relaxed">በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- ዜና/ማውጫ 3 -->
-            <div class="custom-card p-6 flex flex-col justify-between">
-                <div>
-                    <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-bullhorn"></i></div>
-                    <h3 id="card3Title" class="text-xl font-bold text-white mb-3 border-b border-slate-800 pb-2">ዲጂታል ኮሚኒኬሽን</h3>
-                    <p id="card3Desc" class="text-slate-300 text-sm leading-relaxed">የማህበረሰብ ሚዲያ ግንኙነቶችን እና ቴክኖሎጂን ያማከሉ አዳዲስ ፈጣን አሰራሮች ስብስብ።</p>
+                <!-- ዜና 2 -->
+                <div class="custom-card p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-water mr-1"></i> መሰረተ-ልማት</div>
+                        <h4 id="news2Title" class="text-base font-bold text-white mb-3 leading-snug">ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት</h4>
+                        <p id="news2Desc" class="text-slate-400 text-xs leading-relaxed">የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።</p>
+                    </div>
+                </div>
+
+                <!-- ዜና 3 -->
+                <div class="custom-card p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-seedling mr-1"></i> ግብርና</div>
+                        <h4 id="news3Title" class="text-base font-bold text-white mb-3 leading-snug">በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ</h4>
+                        <p id="news3Desc" class="text-slate-400 text-xs leading-relaxed">በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-slate-950 text-slate-400 pt-12 pb-6 px-6 border-t-2 border-gold">
-        <div class="max-w-6xl mx-auto text-center">
+    <footer class="bg-slate-950 text-slate-400 pt-12 pb-6 px-6 border-t-2 border-gold mt-auto">
+        <div class="max-w-7xl mx-auto text-center">
             <h4 id="contactTitle" class="text-white font-bold text-sm tracking-widest uppercase mb-6 gold-glow">ያግኙን / CONTACT US</h4>
             
-            <!-- ሊንኮች -->
             <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8 text-sm text-slate-200">
                 <a href="https://t.me/Ayyotube_bot" target="_blank" class="hover:border-amber-500 transition flex items-center gap-2 bg-slate-900 px-4 py-2 rounded-lg border border-slate-800 w-64 justify-center">
                     <i class="fab fa-telegram-plane text-blue-400"></i> <span id="tgBotLabel">የቴሌግራም ቦት</span>
@@ -150,13 +193,11 @@ HTML
                 </a>
             </div>
             
-            <!-- አድራሻዎች -->
             <div class="text-sm space-y-2 mb-8 text-slate-300 border-t border-slate-900 pt-6">
                 <p><span id="emailLabel"><i class="fas fa-envelope mr-2 text-amber-500"></i> ኢሜይል:</span> <a href="mailto:sami2all@gmail.com" class="hover:text-white transition">sami2all@gmail.com</a></p>
                 <p><span id="phoneLabel"><i class="fas fa-phone mr-2 text-amber-500"></i> ስልክ:</span> <a href="tel:+251911926976" class="hover:text-white transition">+251 911 92 69 76</a></p>
             </div>
             
-            <!-- ኮፒራይት -->
             <div class="border-t border-slate-900 pt-6 text-xs text-slate-700">
                 © 2026 SAMI-TUBE MEDIA | Metehara, Ethiopia
             </div>
@@ -176,12 +217,11 @@ HTML
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
             slides[slideIndex-1].style.display = "flex";  
-            setTimeout(showSlides, 4000); // በየ 4 ሰከንዱ ይቀያየራል
+            setTimeout(showSlides, 4000);
         }
-        // ገጹ ሲከፈት በራስ-ሰር እንዲጀምር
         document.addEventListener("DOMContentLoaded", showSlides);
 
-        // 2. Localization Dictionary
+        // 2. Multilingual Dictionary
         const translations = {
             am: {
                 welcomeTitle: "እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!",
@@ -190,12 +230,17 @@ HTML
                 slide2Subtitle: "የመተሃራ እና የአካባቢዋን ልማትና ገጽታ ለዓለም የምናስተዋውቅበት",
                 slide3Title: "ዲጂታል ኮሚኒኬሽን እና ሚዲያ",
                 slide3Subtitle: "ፈጣን መረጃዎች ማህበረሰቡን ተደራሽ የሚያደርጉበት መድረክ",
-                card1Title: "የቅርብ ጊዜ ቪዲዮዎች",
-                card1Desc: "በሳሚ-ቲዩብ የሚለቀቁ ወቅታዊ ዜናዎችን፣ ባህላዊ ዝግጅቶችን እና ቪዲዮዎችን በቀጥታ እዚህ ያግኙ።",
-                card2Title: "የከተማዋ መረጃዎች",
-                card2Desc: "ስለ መተሃራ ከተማ ማህበራዊ፣ ኢኮኖሚያዊ እና መዋቅራዊ ልማቶች የተዘጋጁ አጫጭር ሪፖርቶችና መረጃዎች።",
-                card3Title: "ዲጂታል ኮሚኒኬሽን",
-                card3Desc: "የማህበረሰብ ሚዲያ ግንኙነቶችን እና ቴክኖሎጂን ያማከሉ አዳዲስ ፈጣን አሰራሮች ስብስብ።",
+                menuTitle: "<i class='fas fa-bars mr-2'></i> የገፅ ማውጫ",
+                menuNews: "ቅድመ ዜና",
+                menuCulture: "ባህልና ቱሪዝም",
+                menuLit: "ስነ-ጽሑፍ",
+                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ዋና ዋና ዜናዎች</span>",
+                news1Title: "አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች",
+                news1Desc: "በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።",
+                news2Title: "ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት",
+                news2Desc: "የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።",
+                news3Title: "በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ",
+                news3Desc: "በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።",
                 contactTitle: "ያግኙን / CONTACT US",
                 tgBotLabel: "የቴሌግራም ቦት",
                 ytChannelLabel: "ዩቲዩብ ቻናል",
@@ -210,12 +255,17 @@ HTML
                 slide2Subtitle: "Misooma fi fakkii Magaalaa Mataharaa addunyaatti kan itti agarsiifnu",
                 slide3Title: "Kominikeeshinii Diijitaalaa fi Miidiyaa",
                 slide3Subtitle: "Odeeffannoon dafee hawaasa qaqqabu itti hojjetamu",
-                card1Title: "Viidiyoo Adda Addaa",
-                card1Desc: "Oduuwwan yeroo, sagantaalee aadaa fi viidiyoo Sami-Tube irratti gadhiifaman asitti argadhaa.",
-                card2Title: "Odeeffannoo Magaalichaa",
-                card2Desc: "Gabaasaalee gabaabaa fi odeeffannoo misooma hawaasummaa, dinagdee fi caasaa Magaalaa Mataharaa.",
-                card3Title: "Kominikeeshinii Diijitaalaa",
-                card3Desc: "Walitti dhufeenya miidiyaa hawaasaa fi hojimaataa haaraa teknoolojii saffisaa irratti hundaa'an.",
+                menuTitle: "<i class='fas fa-bars mr-2'></i> Baafata",
+                menuNews: "Dursee Oduu",
+                menuCulture: "Aadaa fi Turiizimii",
+                menuLit: "Og-barruu",
+                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Oduuwwan Gurguddoo</span>",
+                news1Title: "Bulchiinsa Magaalaa Mataharaa Kantiibaa obbo Addisuu Waaqoo gaggeessummaan hojiiwwan misooma qarqara haroo Basakaa",
+                news1Desc: "Hojiiwwan misooma bareedoo fi bifa magaalichaa jijjiiruuf qarqara haroo Basakaa irratti kantiibichaan durfamu.",
+                news2Title: "Biliyoona tokkoo ol kan ramadameef tajaajila bishaanii Magaalaa Mataharaa fooyyessuuf pirojekti bishaan dhugaatii hojjetamaa jiru",
+                news2Desc: "Odeeffannoo bal'aa pirojekti guddaa rakkoo bishaan dhugaatii magaalichaa yeroo dheeraaf furiinsa waaraa kennuuf ijaaramaa jiru.",
+                news3Title: "Misooma qonnaa burtukaanaa qarqara haroo Basakaa irratti hojjetamaa jiru",
+                news3Desc: "Hojii misooma burtukaanaa lafa qarqara harichaa fayyadamuun wabii nyaata uummata magaalichaaf gumaacha jiru.",
                 contactTitle: "Nu Quunnamaa / CONTACT US",
                 tgBotLabel: "Bot Telegramii",
                 ytChannelLabel: "Chaanaalii YouTube",
@@ -230,12 +280,17 @@ HTML
                 slide2Subtitle: "Showcasing the development and image of Metehara Town to the world",
                 slide3Title: "Digital Communication & Media",
                 slide3Subtitle: "A platform where timely information reaches the community efficiently",
-                card1Title: "Latest Videos",
-                card1Desc: "Find up-to-date news, cultural programs, and videos released on Sami-Tube directly here.",
-                card2Title: "Town Information",
-                card2Desc: "Short reports and updates on the social, economic, and structural development of Metehara Town.",
-                card3Title: "Digital Communication",
-                card3Desc: "A collection of modern community media relations and fast technology-driven practices.",
+                menuTitle: "<i class='fas fa-bars mr-2'></i> Navigation Menu",
+                menuNews: "Latest News",
+                menuCulture: "Culture & Tourism",
+                menuLit: "Literature",
+                newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Top Stories</span>",
+                news1Title: "Metehara Town Administration Mayor Addisu Wako's leadership in the development works on the shores of Lake Basaka",
+                news1Desc: "Summary of beautiful development activities and beautification works led by the Mayor around Lake Basaka.",
+                news2Title: "Over one billion allocated drinking water project underway to improve Metehara Town's water services",
+                news2Desc: "Detailed updates on the high-budget mega project designed to permanently solve the town's water supply shortage.",
+                news3Title: "Orange cultivation activities currently taking place on the shores of Lake Basaka",
+                news3Desc: "Agricultural highlights on the flourishing orange farming near the lake contributing to local food security.",
                 contactTitle: "CONTACT US",
                 tgBotLabel: "Telegram Bot",
                 ytChannelLabel: "YouTube Channel",
@@ -256,12 +311,18 @@ HTML
             document.getElementById('slide3Title').innerText = translations[selectedLang].slide3Title;
             document.getElementById('slide3Subtitle').innerText = translations[selectedLang].slide3Subtitle;
             
-            document.getElementById('card1Title').innerText = translations[selectedLang].card1Title;
-            document.getElementById('card1Desc').innerText = translations[selectedLang].card1Desc;
-            document.getElementById('card2Title').innerText = translations[selectedLang].card2Title;
-            document.getElementById('card2Desc').innerText = translations[selectedLang].card2Desc;
-            document.getElementById('card3Title').innerText = translations[selectedLang].card3Title;
-            document.getElementById('card3Desc').innerText = translations[selectedLang].card3Desc;
+            document.getElementById('menuTitle').innerHTML = translations[selectedLang].menuTitle;
+            document.getElementById('menuNews').innerText = translations[selectedLang].menuNews;
+            document.getElementById('menuCulture').innerText = translations[selectedLang].menuCulture;
+            document.getElementById('menuLit').innerText = translations[selectedLang].menuLit;
+            
+            document.getElementById('newsSectionTitle').innerHTML = translations[selectedLang].newsSectionTitle;
+            document.getElementById('news1Title').innerText = translations[selectedLang].news1Title;
+            document.getElementById('news1Desc').innerText = translations[selectedLang].news1Desc;
+            document.getElementById('news2Title').innerText = translations[selectedLang].news2Title;
+            document.getElementById('news2Desc').innerText = translations[selectedLang].news2Desc;
+            document.getElementById('news3Title').innerText = translations[selectedLang].news3Title;
+            document.getElementById('news3Desc').innerText = translations[selectedLang].news3Desc;
             
             document.getElementById('contactTitle').innerText = translations[selectedLang].contactTitle;
             document.getElementById('tgBotLabel').innerText = translations[selectedLang].tgBotLabel;

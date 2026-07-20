@@ -47,12 +47,13 @@
             background: rgba(15, 23, 42, 0.8);
             border: 1px solid rgba(245, 158, 11, 0.15);
             border-radius: 12px;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
         .custom-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             border-color: #f59e0b;
-            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.15);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
         }
         .sidebar-link {
             display: flex;
@@ -114,7 +115,7 @@
         </div>
     </div>
 
-    <!-- Main Content Layout -->
+    <!-- Main Content Layout (በግራ በኩል ማውጫ፣ በቀኝ በኩል ዜናዎች ከነፎቶዎቻቸው) -->
     <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-4 gap-8">
         
         <!-- በግራ በኩል የገፅ ማውጫ (Sidebar) -->
@@ -136,7 +137,7 @@
             </div>
         </aside>
 
-        <!-- በቀኝ በኩል 3ቱ ዋና ዋና የፊት ገፅ ዜናዎች -->
+        <!-- በቀኝ በኩል 3ቱ ዋና ዋና የፊት ገፅ ዜናዎች (ከነ ምስሎቻቸው) -->
         <section class="lg:col-span-3">
             <h3 id="newsSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
                 <span class="w-2 h-6 bg-gold rounded-full"></span> 
@@ -145,29 +146,38 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- ዜና 1 -->
-                <div class="custom-card p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-layer-group mr-1"></i> ልማት</div>
-                        <h4 id="news1Title" class="text-base font-bold text-white mb-3 leading-snug">አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች</h4>
-                        <p id="news1Desc" class="text-slate-400 text-xs leading-relaxed">በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።</p>
+                <div class="custom-card flex flex-col justify-between">
+                    <img src="1776693450696.jpg" alt="ልማት" class="w-full h-40 object-cover border-b border-slate-800">
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-layer-group mr-1"></i> ልማት</div>
+                            <h4 id="news1Title" class="text-base font-bold text-white mb-3 leading-snug">አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች</h4>
+                        </div>
+                        <p id="news1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።</p>
                     </div>
                 </div>
 
                 <!-- ዜና 2 -->
-                <div class="custom-card p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-water mr-1"></i> መሰረተ-ልማት</div>
-                        <h4 id="news2Title" class="text-base font-bold text-white mb-3 leading-snug">ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት</h4>
-                        <p id="news2Desc" class="text-slate-400 text-xs leading-relaxed">የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።</p>
+                <div class="custom-card flex flex-col justify-between">
+                    <img src="1776693457106.jpg" alt="መሰረተ-ልማት" class="w-full h-40 object-cover border-b border-slate-800">
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-water mr-1"></i> መሰረተ-ልማት</div>
+                            <h4 id="news2Title" class="text-base font-bold text-white mb-3 leading-snug">ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት</h4>
+                        </div>
+                        <p id="news2Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።</p>
                     </div>
                 </div>
 
                 <!-- ዜና 3 -->
-                <div class="custom-card p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-seedling mr-1"></i> ግብርና</div>
-                        <h4 id="news3Title" class="text-base font-bold text-white mb-3 leading-snug">በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ</h4>
-                        <p id="news3Desc" class="text-slate-400 text-xs leading-relaxed">በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።</p>
+                <div class="custom-card flex flex-col justify-between">
+                    <img src="IMG_20260314_112746_839~4.jpg" alt="ግብርና" class="w-full h-40 object-cover border-b border-slate-800">
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-seedling mr-1"></i> ግብርና</div>
+                            <h4 id="news3Title" class="text-base font-bold text-white mb-3 leading-snug">በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ</h4>
+                        </div>
+                        <p id="news3Desc" class="text-slate-400 text-xs leading-relaxed mt-2">በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።</p>
                     </div>
                 </div>
             </div>

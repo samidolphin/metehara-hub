@@ -373,9 +373,9 @@ HTML
             <span>Matahara Digital News</span>
         </div>
         <div class="lang-switch">
-            <button class="lang-btn active" onclick="switchLanguage('om')">Afaan Oromoo</button>
-            <button class="lang-btn" onclick="switchLanguage('am')">አማርኛ</button>
-            <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+            <button class="lang-btn active" onclick="switchLanguage('om', event)">Afaan Oromoo</button>
+            <button class="lang-btn" onclick="switchLanguage('am', event)">አማርኛ</button>
+            <button class="lang-btn" onclick="switchLanguage('en', event)">English</button>
         </div>
     </header>
 
@@ -391,7 +391,7 @@ HTML
             <!-- News Card Item -->
             <article class="news-card">
                 <div class="main-image-box">
-                    <img src="112.jpg.jpg" id="cardMainImg" alt="One Stop Service Center">
+                    <img src="112.jpg" id="cardMainImg" alt="One Stop Service Center" onerror="this.src='112.jpg.jpg'">
                     <span class="badge-tag">Haaraa / አዲስ</span>
                 </div>
                 <div class="news-details">
@@ -424,13 +424,13 @@ HTML
 
                         <!-- Thumbnail Gallery -->
                         <div class="gallery-thumbs">
-                            <img src="112.jpg.jpg" onclick="changePreview('112.jpg.jpg')">
-                            <img src="111.jpg.jpg" onclick="changePreview('111.jpg.jpg')">
-                            <img src="101.jpg.jpg" onclick="changePreview('101.jpg.jpg')">
-                            <img src="102.jpg.jpg" onclick="changePreview('102.jpg.jpg')">
-                            <img src="113.jpg.jpg" onclick="changePreview('113.jpg.jpg')">
-                            <img src="114.jpg.jpg" onclick="changePreview('114.jpg.jpg')">
-                            <img src="115.jpg.jpg" onclick="changePreview('115.jpg.jpg')">
+                            <img src="112.jpg" onerror="this.src='112.jpg.jpg'" onclick="changePreview(this.src)">
+                            <img src="111.jpg" onerror="this.src='111.jpg.jpg'" onclick="changePreview(this.src)">
+                            <img src="101.jpg" onerror="this.src='101.jpg.jpg'" onclick="changePreview(this.src)">
+                            <img src="102.jpg" onerror="this.src='102.jpg.jpg'" onclick="changePreview(this.src)">
+                            <img src="113.jpg" onerror="this.src='113.jpg.jpg'" onclick="changePreview(this.src)">
+                            <img src="114.jpg" onerror="this.src='114.jpg.jpg'" onclick="changePreview(this.src)">
+                            <img src="115.jpg" onerror="this.src='115.jpg.jpg'" onclick="changePreview(this.src)">
                         </div>
                     </div>
 
@@ -516,13 +516,13 @@ The modern service center is expected to significantly enhance access to quality
                     <i class="fas fa-images"></i> Suuraa / ፎቶዎች / Photo Gallery:
                 </h4>
                 <div class="modal-gallery">
-                    <img src="112.jpg.jpg" onclick="openLightbox('112.jpg.jpg')">
-                    <img src="111.jpg.jpg" onclick="openLightbox('111.jpg.jpg')">
-                    <img src="101.jpg.jpg" onclick="openLightbox('101.jpg.jpg')">
-                    <img src="102.jpg.jpg" onclick="openLightbox('102.jpg.jpg')">
-                    <img src="113.jpg.jpg" onclick="openLightbox('113.jpg.jpg')">
-                    <img src="114.jpg.jpg" onclick="openLightbox('114.jpg.jpg')">
-                    <img src="115.jpg.jpg" onclick="openLightbox('115.jpg.jpg')">
+                    <img src="112.jpg" onerror="this.src='112.jpg.jpg'" onclick="openLightbox(this.src)">
+                    <img src="111.jpg" onerror="this.src='111.jpg.jpg'" onclick="openLightbox(this.src)">
+                    <img src="101.jpg" onerror="this.src='101.jpg.jpg'" onclick="openLightbox(this.src)">
+                    <img src="102.jpg" onerror="this.src='102.jpg.jpg'" onclick="openLightbox(this.src)">
+                    <img src="113.jpg" onerror="this.src='113.jpg.jpg'" onclick="openLightbox(this.src)">
+                    <img src="114.jpg" onerror="this.src='114.jpg.jpg'" onclick="openLightbox(this.src)">
+                    <img src="115.jpg" onerror="this.src='115.jpg.jpg'" onclick="openLightbox(this.src)">
                 </div>
 
                 <!-- Hashtags -->
@@ -551,19 +551,18 @@ The modern service center is expected to significantly enhance access to quality
 
     <!-- Interactive Script -->
     <script>
-        function switchLanguage(lang) {
-            // Toggle active button
+        function switchLanguage(lang, e) {
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if(e && e.target) {
+                e.target.classList.add('active');
+            }
 
-            // Hide all language texts
             document.querySelectorAll('.lang-text').forEach(el => {
                 el.style.display = 'none';
             });
 
-            // Show selected language texts
             document.querySelectorAll('.lang-' + lang).forEach(el => {
                 el.style.display = 'block';
             });
@@ -592,7 +591,6 @@ The modern service center is expected to significantly enhance access to quality
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // Close modal when clicking outside of content
         window.onclick = function(event) {
             const modal = document.getElementById('newsModal');
             if (event.target == modal) {

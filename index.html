@@ -1,345 +1,271 @@
-HTML
 <!DOCTYPE html>
-<html lang="om">
+<html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matahara Digital News</title>
+    <title>SAMI-TUBE MEDIA | Matahara Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #0056b3;
-            --dark-header: #003366;
-            --bg-light: #f4f7f9;
+            --bg-dark: #070d19;
             --card-bg: #ffffff;
-            --text-dark: #1f2937;
-            --text-muted: #4b5563;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            line-height: 1.6;
         }
 
-        /* Top Blue Navigation Bar */
         header {
-            background-color: var(--dark-header);
-            color: white;
-            padding: 1rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.2rem 8%;
+            background-color: #0d1527;
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .brand-title {
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: 800;
+            gap: 12px;
         }
 
-        .lang-switch-btns {
-            display: flex;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 4px;
-            border-radius: 20px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
+        .logo-icon {
+            background-color: #2563eb;
             color: white;
-            padding: 6px 16px;
-            border-radius: 16px;
+            font-weight: bold;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        .lang-select {
+            background: #111827;
+            color: #e2e8f0;
+            border: 1px solid #334155;
+            padding: 7px 18px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
+            outline: none;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
-        .lang-btn.active, .lang-btn:hover {
-            background-color: white;
-            color: var(--dark-header);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .section-header {
+        .hero {
             text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
             margin-bottom: 2rem;
         }
 
-        .section-header h2 {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            font-weight: 800;
-            position: relative;
-            display: inline-block;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        .section-header h2::after {
-            content: '';
-            display: block;
-            width: 50%;
-            height: 4px;
-            background: #22c55e;
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Main Featured Hero Card */
-        .hero-news-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        .grid-cards {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
         }
 
-        @media (max-width: 850px) {
-            .hero-news-card {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .news-image-wrapper {
-            position: relative;
-            background-color: #1e293b;
-            min-height: 320px;
-        }
-
-        .news-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .badge-new {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: #ef4444;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .news-content {
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .news-date {
-            color: #16a34a;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .news-title {
-            font-size: 1.4rem;
-            font-weight: 800;
+        .card {
+            background: var(--card-bg);
             color: var(--text-dark);
-            line-height: 1.4;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: left;
+        }
+
+        .card-icon {
+            color: #2563eb;
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .news-excerpt {
-            color: var(--text-muted);
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            color: var(--text-gray);
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.5;
+        }
+
+        .contact-section {
+            background-color: #040810;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid #1e293b;
+        }
+
+        .contact-section h2 {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
             margin-bottom: 1.5rem;
+            color: #cbd5e1;
         }
 
-        /* Gallery Thumbnails */
-        .thumbnail-gallery {
+        .social-buttons {
             display: flex;
-            gap: 8px;
-            margin-bottom: 1.8rem;
-            flex-wrap: wrap;
-        }
-
-        .thumbnail-gallery img {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid #e2e8f0;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .thumbnail-gallery img:hover {
-            transform: scale(1.1);
-        }
-
-        .btn-read-more {
-            background-color: #0056b3;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
             justify-content: center;
-            gap: 8px;
-            transition: background 0.3s ease;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn-social {
+            background-color: #0f172a;
+            color: white;
+            border: 1px solid #1e293b;
+            padding: 10px 24px;
+            border-radius: 8px;
             text-decoration: none;
-            width: 100%;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn-read-more:hover {
-            background-color: #003366;
+        .contact-info {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
         }
 
-        /* Additional News Grid (ለተጨማሪ ዜናዎች) */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .contact-info i {
+            color: #3b82f6;
+            margin-right: 6px;
         }
 
-        /* Language Visibility Switch */
-        .lang-am, .lang-en {
+        .lang-text-om, .lang-text-en {
             display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation Bar -->
     <header>
-        <div class="brand-title">
-            <i class="fas fa-city"></i> Matahara Digital News
+        <div class="logo-container">
+            <div class="logo-icon">S</div>
+            <div class="logo-text">SAMI-TUBE MEDIA</div>
         </div>
-        <div class="lang-switch-btns">
-            <button class="lang-btn active" onclick="setLang('om')">Afaan Oromoo</button>
-            <button class="lang-btn" onclick="setLang('am')">አማርኛ</button>
-            <button class="lang-btn" onclick="setLang('en')">English</button>
+        <div>
+            <select class="lang-select" onchange="changeLanguage(this.value)">
+                <option value="am">🇪🇹 አማርኛ</option>
+                <option value="om">🇪🇹 Afaan Oromoo</option>
+                <option value="en">🇬🇧 English</option>
+            </select>
         </div>
     </header>
 
-    <!-- Container -->
     <main class="container">
-        
-        <div class="section-header">
-            <h2 class="lang-om">Odeeffannoo Haaraa</h2>
-            <h2 class="lang-am">አዲስ መረጃዎች</h2>
-            <h2 class="lang-en">Latest News</h2>
-        </div>
+        <section class="hero">
+            <h1 class="lang-text-am">ወደ መተሃራ ሀብ እንኳን ደህና መጡ!</h1>
+            <h1 class="lang-text-om">Baga Gara Mataaharaa Hub Nagaan Dhufte!</h1>
+            <h1 class="lang-text-en">Welcome to Matahara Hub!</h1>
+        </section>
 
-        <!-- Featured News Card (Hero) -->
-        <article class="hero-news-card">
-            <div class="news-image-wrapper">
-                <span class="badge-new">Haaraa / አዲስ</span>
-                <img src="101_2.jpg" alt="Matahara Service Center" id="mainHeroImg" onerror="this.src='https://via.placeholder.com/600x400?text=Matahara+News'">
+        <section class="grid-cards">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-play-circle"></i></div>
+                <h3 class="lang-text-am">የቅርብ ጊዜ ቪዲዮዎች</h3>
+                <h3 class="lang-text-om">Viidiyoolee Yeroo Dhihoo</h3>
+                <h3 class="lang-text-en">Recent Videos</h3>
+
+                <p class="lang-text-am">በሳሚ-ቲዩብ የሚለቀቁ ወቅታዊ ዜናዎችን፣ ባህላዊ ዝግጅቶችን እና መረጃዎችን እዚህ ያግኙ።</p>
+                <p class="lang-text-om">Odeeffannoo, qophiilee aadaa fi oduuwwan Sami-Tube irratti gadhiifaman asitt argadhaa.</p>
+                <p class="lang-text-en">Find the latest news, cultural programs, and updates published on Sami-Tube here.</p>
             </div>
-            
-            <div class="news-content">
-                <div>
-                    <div class="news-date">
-                        <i class="far fa-calendar-alt"></i>
-                        <span>Adoolessa 2018 / ሐምሌ 2018 / July 2026</span>
-                    </div>
 
-                    <!-- Afaan Oromoo Header -->
-                    <h1 class="news-title lang-om">
-                        Mataharaan teeknoloojiin ammayyoomte! "Wiirtuu Tajaajila Iddoo Tokkoo Masoobii" tajaajila kennuu eegale! 💻🚀
-                    </h1>
-                    <!-- Amharic Header -->
-                    <h1 class="news-title lang-am">
-                        መተሐራ ወደ ዘመናዊ ቴክኖሎጂ ተሸጋገረች! "የአንድ ማዕከል አገልግሎት ማዕከል (Masoob)" በይፋ ሥራ ጀመረ! 💻🚀
-                    </h1>
-                    <!-- English Header -->
-                    <h1 class="news-title lang-en">
-                        Matahara Embraces Digital Transformation! New One-Stop Service Center Officially Opens 💻🚀
-                    </h1>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-city"></i></div>
+                <h3 class="lang-text-am">የከተማዋ መረጃዎች</h3>
+                <h3 class="lang-text-om">Odeeffannoo Magaalaa</h3>
+                <h3 class="lang-text-en">Town Information</h3>
 
-                    <!-- Excerpts -->
-                    <p class="news-excerpt lang-om">
-                        Godina Shawaa Bahaa, Magaalaa Mataaharaatti "Wiirtuun Tajaajila Iddoo Tokkoo" (One-Stop Service Center) haaraa ijaarame eebbifamee ummataaf banaa ta'eera.
-                    </p>
-                    <p class="news-excerpt lang-am">
-                        በምሥራቅ ሸዋ ዞን በመተሐራ ከተማ የተገነባው አዲሱ የአንድ ማዕከል አገልግሎት ማዕከል (One-Stop Service Center) በይፋ ተመርቆ ለሕዝብ ክፍት ሆኗል።
-                    </p>
-                    <p class="news-excerpt lang-en">
-                        The newly constructed One-Stop Service Center in Matahara City, East Shewa Zone, has been officially inaugurated and opened to the public.
-                    </p>
-
-                    <!-- Thumbnails -->
-                    <div class="thumbnail-gallery">
-                        <img src="101_2.jpg" onclick="changeHeroImg(this.src)" alt="Thumb">
-                        <img src="102_2.jpg" onclick="changeHeroImg(this.src)" alt="Thumb">
-                        <img src="103.jpg" onclick="changeHeroImg(this.src)" alt="Thumb">
-                        <img src="104.jpg" onclick="changeHeroImg(this.src)" alt="Thumb">
-                        <img src="105.jpg" onclick="changeHeroImg(this.src)" alt="Thumb">
-                        <img src="106.jpg" onclick="changeHeroImg(this.src)" alt="Thumb">
-                    </div>
-                </div>
-
-                <a href="#" class="btn-read-more">
-                    <span class="lang-om">Seenaa Guutuu Dubbisi &rarr;</span>
-                    <span class="lang-am">ሙሉውን ያንብቡ &rarr;</span>
-                    <span class="lang-en">Read Full Story &rarr;</span>
-                </a>
+                <p class="lang-text-am">ስለ መተሃራ ከተማ ማህበራዊ እና ኢኮኖሚያዊ ልማፎች የተዘጋጁ አጭር ሪፖርቶችና መረጃዎች።</p>
+                <p class="lang-text-om">Gabaasaalee gabaabaa fi odeeffannoowan guddina hawaasummaa fi diinagdee Magaalaa Mataaharaa.</p>
+                <p class="lang-text-en">Short reports and details regarding the social and economic development of Matahara town.</p>
             </div>
-        </article>
 
-        <!-- ተጨማሪ ዜናዎችን የምንጨምርበት ቦታ (Additional News Section) -->
-        <div class="news-grid" id="additionalNewsGrid">
-            <!-- ተጨማሪ ዜናዎች እዚህ ጋር ይገባሉ -->
-        </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3 class="lang-text-am">ዲጂታል ኮሙኒኬሽን</h3>
+                <h3 class="lang-text-om">Komiunikeshinii Dijiitaalaa</h3>
+                <h3 class="lang-text-en">Digital Communication</h3>
 
+                <p class="lang-text-am">የማህበረሰብ ሚዲያ ግንኙነቶችን እና ቴክኖሎጂን ያማከሉ አዳዲስ አሰራሮች ስብስብ።</p>
+                <p class="lang-text-om">Sassaba inshiyaativoota haaraa hariiroo miidiyaa hawaasaa fi teeknoloojii irratti xiyyeeffatan.</p>
+                <p class="lang-text-en">Collection of modern practices focusing on community media outreach and technology integration.</p>
+            </div>
+        </section>
     </main>
 
+    <footer class="contact-section">
+        <h2>ያግኙን / CONTACT US</h2>
+        
+        <div class="social-buttons">
+            <a href="https://t.me/" class="btn-social" target="_blank">
+                <i class="fab fa-telegram"></i> የቴሌግራም ቦት
+            </a>
+            <a href="https://youtube.com/" class="btn-social" target="_blank">
+                <i class="fab fa-youtube" style="color: #ef4444;"></i> የቲዩብ ቻናል
+            </a>
+            <a href="https://facebook.com/" class="btn-social" target="_blank">
+                <i class="fab fa-facebook" style="color: #3b82f6;"></i> የፌስቡክ አድራሻ
+            </a>
+        </div>
+
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> ኢሜይል: sami2all@gmail.com</p>
+            <p><i class="fas fa-phone"></i> ስልክ: +251 911 92 69 76</p>
+        </div>
+    </footer>
+
     <script>
-        function setLang(lang) {
-            // Hide all languages
-            document.querySelectorAll('.lang-om, .lang-am, .lang-en').forEach(el => {
+        function changeLanguage(lang) {
+            document.querySelectorAll('.lang-text-am, .lang-text-om, .lang-text-en').forEach(el => {
                 el.style.display = 'none';
             });
 
-            // Show selected language
-            document.querySelectorAll('.lang-' + lang).forEach(el => {
+            document.querySelectorAll('.lang-text-' + lang).forEach(el => {
                 el.style.display = 'block';
             });
-
-            // Update button active state
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-
-        function changeHeroImg(src) {
-            document.getElementById('mainHeroImg').src = src;
         }
     </script>
 </body>

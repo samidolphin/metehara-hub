@@ -29,7 +29,6 @@ HTML
             line-height: 1.6;
         }
 
-        /* Header & Navigation */
         header {
             background: linear-gradient(135deg, var(--primary-color), #003366);
             color: white;
@@ -77,7 +76,6 @@ HTML
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        /* Main Container */
         .container {
             max-width: 1200px;
             margin: 2.5rem auto;
@@ -102,7 +100,6 @@ HTML
             border-radius: 2px;
         }
 
-        /* News Card Layout */
         .news-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -123,10 +120,6 @@ HTML
             .news-card {
                 grid-template-columns: 1.2fr 1fr;
             }
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
         }
 
         .main-image-box {
@@ -152,7 +145,6 @@ HTML
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
         }
 
         .news-details {
@@ -186,7 +178,6 @@ HTML
             font-size: 1.05rem;
         }
 
-        /* Photo Gallery Thumbnails */
         .gallery-thumbs {
             display: flex;
             gap: 10px;
@@ -205,11 +196,6 @@ HTML
             transition: all 0.2s ease;
         }
 
-        .gallery-thumbs img:hover {
-            border-color: var(--primary-color);
-            transform: scale(1.05);
-        }
-
         .btn-read-more {
             background: var(--primary-color);
             color: white;
@@ -223,15 +209,9 @@ HTML
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: background 0.3s ease;
             width: 100%;
         }
 
-        .btn-read-more:hover {
-            background: #004085;
-        }
-
-        /* Full News Modal / Pop-up */
         .modal {
             display: none;
             position: fixed;
@@ -243,7 +223,6 @@ HTML
             z-index: 2000;
             overflow-y: auto;
             padding: 2rem 1rem;
-            backdrop-filter: blur(5px);
         }
 
         .modal-content {
@@ -253,13 +232,6 @@ HTML
             border-radius: 20px;
             padding: 2.5rem;
             position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            animation: modalSlide 0.3s ease-out;
-        }
-
-        @keyframes modalSlide {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
 
         .close-btn {
@@ -273,20 +245,6 @@ HTML
             border-radius: 50%;
             font-size: 1.3rem;
             cursor: pointer;
-            color: var(--gray-color);
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-btn:hover {
-            background: #e5e7eb;
-            color: var(--dark-color);
-        }
-
-        .modal-body {
-            margin-top: 1.5rem;
         }
 
         .modal-full-text {
@@ -294,7 +252,7 @@ HTML
             font-size: 1.1rem;
             line-height: 1.8;
             color: #374151;
-            margin-bottom: 2rem;
+            margin-top: 1rem;
         }
 
         .modal-gallery {
@@ -310,11 +268,6 @@ HTML
             object-fit: cover;
             border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .modal-gallery img:hover {
-            transform: scale(1.03);
         }
 
         .hashtags {
@@ -333,7 +286,6 @@ HTML
             font-weight: 600;
         }
 
-        /* Lightbox for Enlarged Photos */
         .lightbox {
             display: none;
             position: fixed;
@@ -351,10 +303,8 @@ HTML
             max-width: 90%;
             max-height: 85vh;
             border-radius: 10px;
-            box-shadow: 0 0 25px rgba(255,255,255,0.2);
         }
 
-        /* Footer */
         footer {
             background: var(--dark-color);
             color: #9ca3af;
@@ -366,20 +316,18 @@ HTML
 </head>
 <body>
 
-    <!-- Header & Language Selector -->
     <header>
         <div class="logo">
             <i class="fas fa-city"></i>
             <span>Matahara Digital News</span>
         </div>
         <div class="lang-switch">
-            <button class="lang-btn active" onclick="switchLanguage('om', event)">Afaan Oromoo</button>
-            <button class="lang-btn" onclick="switchLanguage('am', event)">አማርኛ</button>
-            <button class="lang-btn" onclick="switchLanguage('en', event)">English</button>
+            <button class="lang-btn active" onclick="switchLanguage('om')">Afaan Oromoo</button>
+            <button class="lang-btn" onclick="switchLanguage('am')">አማርኛ</button>
+            <button class="lang-btn" onclick="switchLanguage('en')">English</button>
         </div>
     </header>
 
-    <!-- Main Content Container -->
     <div class="container">
         <h2 class="section-title">
             <span class="lang-text lang-om">Odeeffannoo Haaraa</span>
@@ -388,10 +336,9 @@ HTML
         </h2>
 
         <div class="news-grid">
-            <!-- News Card Item -->
             <article class="news-card">
                 <div class="main-image-box">
-                    <img src="112.jpg" id="cardMainImg" alt="One Stop Service Center" onerror="this.src='112.jpg.jpg'">
+                    <img src="112.jpg" id="cardMainImg" alt="One Stop Service Center">
                     <span class="badge-tag">Haaraa / አዲስ</span>
                 </div>
                 <div class="news-details">
@@ -400,7 +347,6 @@ HTML
                             <i class="far fa-calendar-alt"></i> Adoolessa 2018 / ሐምሌ 2018 / July 2026
                         </div>
 
-                        <!-- Titles in 3 Languages -->
                         <h3 class="news-title lang-text lang-om">
                             Mataaharaan teeknoloojiin ammayyoomte! "Wiirtuu Tajaajila Iddoo Tokkoo Masoobii" tajaajila kennuu eegale! 💻🚀🏙️
                         </h3>
@@ -411,7 +357,6 @@ HTML
                             Matahara Embraces Digital Transformation! New One-Stop Service Center Officially Opens 💻🚀
                         </h3>
 
-                        <!-- Excerpts in 3 Languages -->
                         <p class="news-excerpt lang-text lang-om">
                             Godina Shawaa Bahaa, Magaalaa Mataaharaatti "Wiirtuun Tajaajila Iddoo Tokkoo" (One-Stop Service Center) haaraa ijaarame eebbifamee ummataaf banaa ta'eera.
                         </p>
@@ -422,19 +367,17 @@ HTML
                             The newly constructed One-Stop Service Center in Matahara City, East Shewa Zone, has been officially inaugurated and opened to the public.
                         </p>
 
-                        <!-- Thumbnail Gallery -->
                         <div class="gallery-thumbs">
-                            <img src="112.jpg" onerror="this.src='112.jpg.jpg'" onclick="changePreview(this.src)">
-                            <img src="111.jpg" onerror="this.src='111.jpg.jpg'" onclick="changePreview(this.src)">
-                            <img src="101.jpg" onerror="this.src='101.jpg.jpg'" onclick="changePreview(this.src)">
-                            <img src="102.jpg" onerror="this.src='102.jpg.jpg'" onclick="changePreview(this.src)">
-                            <img src="113.jpg" onerror="this.src='113.jpg.jpg'" onclick="changePreview(this.src)">
-                            <img src="114.jpg" onerror="this.src='114.jpg.jpg'" onclick="changePreview(this.src)">
-                            <img src="115.jpg" onerror="this.src='115.jpg.jpg'" onclick="changePreview(this.src)">
+                            <img src="112.jpg" onclick="changePreview('112.jpg')">
+                            <img src="111.jpg" onclick="changePreview('111.jpg')">
+                            <img src="101.jpg" onclick="changePreview('101.jpg')">
+                            <img src="102.jpg" onclick="changePreview('102.jpg')">
+                            <img src="113.jpg" onclick="changePreview('113.jpg')">
+                            <img src="114.jpg" onclick="changePreview('114.jpg')">
+                            <img src="115.jpg" onclick="changePreview('115.jpg')">
                         </div>
                     </div>
 
-                    <!-- Read More Button -->
                     <button class="btn-read-more" onclick="openModal()">
                         <span class="lang-text lang-om">Seenaa Guutuu Dubbisi <i class="fas fa-arrow-right"></i></span>
                         <span class="lang-text lang-am" style="display:none;">ሙሉውን ዘገባ ያንብቡ <i class="fas fa-arrow-right"></i></span>
@@ -445,7 +388,6 @@ HTML
         </div>
     </div>
 
-    <!-- Full News Modal -->
     <div class="modal" id="newsModal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -454,7 +396,6 @@ HTML
                     <i class="far fa-calendar-alt"></i> Adoolessa 2018 / ሐምሌ 2018 / July 2026
                 </div>
 
-                <!-- Modal Titles -->
                 <h2 class="news-title lang-text lang-om" style="font-size:1.6rem;">
                     Mataaharaan teeknoloojiin ammayyoomte! "Wiirtuu Tajaajila Iddoo Tokkoo Masoobii" tajaajila kennuu eegale! 💻🚀🏙️
                 </h2>
@@ -465,7 +406,6 @@ HTML
                     Matahara Embraces Digital Transformation! New One-Stop Service Center Officially Opens 💻🚀
                 </h2>
 
-                <!-- Modal Full Body Stories -->
                 <div class="modal-full-text lang-text lang-om">
 Mootummaan tajaajila hawaasaa teeknoloojii ammayyaatiin sirneessuudhaan quufinsa ummataa mirkaneessuuf xiyyeeffannaan hojjechaa jiraachuu Bulchaan Godina Shawaa Bahaa obbo Abbaabbuu Waaqoo ibsaniiru.
 
@@ -511,21 +451,19 @@ Key Benefits of the Center:
 The modern service center is expected to significantly enhance access to quality public services for the residents of Matahara City while supporting the government's ongoing digital transformation efforts. 📈👏
                 </div>
 
-                <!-- Full Photo Gallery -->
                 <h4 style="margin-top:1.5rem; color:var(--primary-color);">
                     <i class="fas fa-images"></i> Suuraa / ፎቶዎች / Photo Gallery:
                 </h4>
                 <div class="modal-gallery">
-                    <img src="112.jpg" onerror="this.src='112.jpg.jpg'" onclick="openLightbox(this.src)">
-                    <img src="111.jpg" onerror="this.src='111.jpg.jpg'" onclick="openLightbox(this.src)">
-                    <img src="101.jpg" onerror="this.src='101.jpg.jpg'" onclick="openLightbox(this.src)">
-                    <img src="102.jpg" onerror="this.src='102.jpg.jpg'" onclick="openLightbox(this.src)">
-                    <img src="113.jpg" onerror="this.src='113.jpg.jpg'" onclick="openLightbox(this.src)">
-                    <img src="114.jpg" onerror="this.src='114.jpg.jpg'" onclick="openLightbox(this.src)">
-                    <img src="115.jpg" onerror="this.src='115.jpg.jpg'" onclick="openLightbox(this.src)">
+                    <img src="112.jpg" onclick="openLightbox('112.jpg')">
+                    <img src="111.jpg" onclick="openLightbox('111.jpg')">
+                    <img src="101.jpg" onclick="openLightbox('101.jpg')">
+                    <img src="102.jpg" onclick="openLightbox('102.jpg')">
+                    <img src="113.jpg" onclick="openLightbox('113.jpg')">
+                    <img src="114.jpg" onclick="openLightbox('114.jpg')">
+                    <img src="115.jpg" onclick="openLightbox('115.jpg')">
                 </div>
 
-                <!-- Hashtags -->
                 <div class="hashtags">
                     <span class="tag">#Matahara</span>
                     <span class="tag">#EastShewa</span>
@@ -539,25 +477,20 @@ The modern service center is expected to significantly enhance access to quality
         </div>
     </div>
 
-    <!-- Image Lightbox View -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <img src="" id="lightboxImg">
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Matahara Town Communication Bureau & Sami Dolphin Media. All rights reserved.</p>
     </footer>
 
-    <!-- Interactive Script -->
     <script>
-        function switchLanguage(lang, e) {
+        function switchLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            if(e && e.target) {
-                e.target.classList.add('active');
-            }
+            event.target.classList.add('active');
 
             document.querySelectorAll('.lang-text').forEach(el => {
                 el.style.display = 'none';

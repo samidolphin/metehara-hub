@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="om">
+<html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matahara Digital News & Portal</title>
+    <title>SAMI-TUBE MEDIA | Metehara Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #0056b3;
-            --secondary-color: #107c41;
-            --dark-color: #1f2937;
-            --light-color: #f8fafc;
-            --gray-color: #4b5563;
-            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --bg-dark: #070d19;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --accent-blue: #1e40af;
+            --button-bg: #0f172a;
+            --button-hover: #1e293b;
         }
 
         * {
@@ -23,524 +24,289 @@
         }
 
         body {
-            background-color: #f0f2f5;
-            color: var(--dark-color);
+            background-color: var(--bg-dark);
+            color: #ffffff;
             line-height: 1.6;
         }
 
+        /* Header / Navbar */
         header {
-            background: linear-gradient(135deg, var(--primary-color), #003366);
-            color: white;
-            padding: 1.2rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            padding: 1.5rem 5%;
+            background-color: var(--bg-dark);
         }
 
-        .logo {
-            font-size: 1.6rem;
-            font-weight: bold;
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .lang-switch {
-            display: flex;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 6px;
-            border-radius: 30px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
+        .logo-icon {
+            background-color: #2563eb;
             color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
+            font-weight: bold;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        .lang-select {
+            background: transparent;
+            color: white;
+            border: 1px solid #334155;
+            padding: 6px 16px;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            outline: none;
+            font-size: 0.9rem;
         }
 
-        .lang-btn.active {
-            background: white;
-            color: var(--primary-color);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        .lang-select option {
+            background-color: var(--bg-dark);
+            color: white;
         }
 
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        /* Main Grid Hub */
         .container {
-            max-width: 1200px;
-            margin: 2.5rem auto;
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 0 1.5rem;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 90px;
-            height: 4px;
-            background: var(--secondary-color);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        .news-grid {
+        .grid-cards {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
         }
 
-        .news-card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            display: grid;
-            grid-template-columns: 1fr;
-            transition: transform 0.3s ease;
+        .card {
+            background: var(--card-bg);
+            color: var(--text-dark);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: left;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        @media (min-width: 900px) {
-            .news-card {
-                grid-template-columns: 1.2fr 1fr;
-            }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        .main-image-box {
-            position: relative;
-            min-height: 380px;
-            background: #1e293b;
+        .card-icon {
+            color: #2563eb;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .main-image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .badge-tag {
-            position: absolute;
-            top: 18px;
-            left: 18px;
-            background: #ef4444;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        .news-details {
-            padding: 2.2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .news-date {
-            color: var(--secondary-color);
-            font-size: 0.95rem;
-            font-weight: 600;
+        .card h3 {
+            font-size: 1.25rem;
             margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #040810;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid #1e293b;
+        }
+
+        .contact-section h2 {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn-social {
+            background-color: #0f172a;
+            color: white;
+            border: 1px solid #1e293b;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: background 0.2s;
         }
 
-        .news-title {
-            font-size: 1.5rem;
-            line-height: 1.4;
-            margin-bottom: 1rem;
-            color: #111827;
-            font-weight: 700;
+        .btn-social:hover {
+            background-color: #1e293b;
         }
 
-        .news-excerpt {
-            color: var(--gray-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .gallery-thumbs {
+        .contact-info {
+            color: #94a3b8;
+            font-size: 0.95rem;
             display: flex;
-            gap: 10px;
-            margin-bottom: 1.5rem;
-            overflow-x: auto;
-            padding-bottom: 8px;
-        }
-
-        .gallery-thumbs img {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .gallery-thumbs img:hover {
-            border-color: var(--primary-color);
-        }
-
-        .btn-read-more {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
+            flex-direction: column;
+            gap: 8px;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
         }
 
-        .modal {
+        .contact-info i {
+            color: #3b82f6;
+            margin-right: 6px;
+        }
+
+        /* Language visibility controls */
+        .lang-text-om, .lang-text-en {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 2rem 1rem;
-        }
-
-        .modal-content {
-            background: white;
-            max-width: 850px;
-            margin: auto;
-            border-radius: 20px;
-            padding: 2.5rem;
-            position: relative;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #f3f4f6;
-            border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            font-size: 1.3rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-full-text {
-            white-space: pre-line;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #374151;
-            margin-top: 1rem;
-        }
-
-        .modal-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 1.5rem;
-        }
-
-        .modal-gallery img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        .hashtags {
-            margin-top: 1.8rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tag {
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 85vh;
-            border-radius: 10px;
-        }
-
-        footer {
-            background: var(--dark-color);
-            color: #9ca3af;
-            text-align: center;
-            padding: 2.5rem;
-            margin-top: 5rem;
         }
     </style>
 </head>
 <body>
 
+    <!-- Header / Nav -->
     <header>
-        <div class="logo">
-            <i class="fas fa-city"></i>
-            <span>Matahara Digital News</span>
+        <div class="logo-container">
+            <div class="logo-icon">S</div>
+            <div class="logo-text">SAMI-TUBE MEDIA</div>
         </div>
-        <div class="lang-switch">
-            <button class="lang-btn active" onclick="switchLanguage('om', this)">Afaan Oromoo</button>
-            <button class="lang-btn" onclick="switchLanguage('am', this)">አማርኛ</button>
-            <button class="lang-btn" onclick="switchLanguage('en', this)">English</button>
+        <div>
+            <select class="lang-select" onchange="changeLanguage(this.value)">
+                <option value="am">🇪🇹 አማርኛ</option>
+                <option value="om">🇪🇹 Afaan Oromoo</option>
+                <option value="en">🇬🇧 English</option>
+            </select>
         </div>
     </header>
 
-    <div class="container">
-        <h2 class="section-title">
-            <span class="lang-text lang-om">Odeeffannoo Haaraa</span>
-            <span class="lang-text lang-am" style="display:none;">አዳዲስ ዜናዎች</span>
-            <span class="lang-text lang-en" style="display:none;">Latest News</span>
-        </h2>
+    <!-- Main Content -->
+    <main class="container">
+        <section class="hero">
+            <h1 class="lang-text-am">ወደ መተሃራ ሀብ እንኳን ደህና መጡ!</h1>
+            <h1 class="lang-text-om">Baga Gara Metehara Hub Nagaan Dhufte!</h1>
+            <h1 class="lang-text-en">Welcome to Metehara Hub!</h1>
+        </section>
 
-        <div class="news-grid">
-            <article class="news-card">
-                <div class="main-image-box">
-                    <img src="104.jpg" id="cardMainImg" alt="One Stop Service Center">
-                    <span class="badge-tag">Haaraa / አዲስ</span>
-                </div>
-                <div class="news-details">
-                    <div>
-                        <div class="news-date">
-                            <i class="far fa-calendar-alt"></i> Adoolessa 2018 / ሐምሌ 2018 / July 2026
-                        </div>
+        <section class="grid-cards">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-play-circle"></i></div>
+                <h3 class="lang-text-am">የቅርብ ጊዜ ቪዲዮዎች</h3>
+                <h3 class="lang-text-om">Viidiyoolee Yeroo Dhihoo</h3>
+                <h3 class="lang-text-en">Recent Videos</h3>
 
-                        <h3 class="news-title lang-text lang-om">
-                            Mataaharaan teeknoloojiin ammayyoomte! "Wiirtuu Tajaajila Iddoo Tokkoo Masoobii" tajaajila kennuu eegale! 💻🚀🏙️
-                        </h3>
-                        <h3 class="news-title lang-text lang-am" style="display:none;">
-                            🏙️ መተሐራ ወደ ዘመናዊ ቴክኖሎጂ ተሸጋገረች! "የአንድ ማዕከል አገልግሎት ማዕከል" በይፋ ሥራ ጀመረ! 💻🚀
-                        </h3>
-                        <h3 class="news-title lang-text lang-en" style="display:none;">
-                            Matahara Embraces Digital Transformation! New One-Stop Service Center Officially Opens 💻🚀
-                        </h3>
-
-                        <p class="news-excerpt lang-text lang-om">
-                            Godina Shawaa Bahaa, Magaalaa Mataaharaatti "Wiirtuun Tajaajila Iddoo Tokkoo" (One-Stop Service Center) haaraa ijaarame eebbifamee ummataaf banaa ta'eera.
-                        </p>
-                        <p class="news-excerpt lang-text lang-am" style="display:none;">
-                            በምሥራቅ ሸዋ ዞን መተሐራ ከተማ የተገነባው የአንድ ማዕከል አገልግሎት (One-Stop Service Center) በይፋ ተመርቆ ለሕዝብ ክፍት ሆኗል።
-                        </p>
-                        <p class="news-excerpt lang-text lang-en" style="display:none;">
-                            The newly constructed One-Stop Service Center in Matahara City, East Shewa Zone, has been officially inaugurated and opened to the public.
-                        </p>
-
-                        <div class="gallery-thumbs">
-                            <img src="104.jpg" onclick="changePreview('104.jpg')">
-                            <img src="103.jpg" onclick="changePreview('103.jpg')">
-                            <img src="101_2.jpg" onclick="changePreview('101_2.jpg')">
-                            <img src="102_2.jpg" onclick="changePreview('102_2.jpg')">
-                            <img src="105.jpg" onclick="changePreview('105.jpg')">
-                            <img src="106.jpg" onclick="changePreview('106.jpg')">
-                            <img src="107.jpg" onclick="changePreview('107.jpg')">
-                        </div>
-                    </div>
-
-                    <button class="btn-read-more" onclick="openModal()">
-                        <span class="lang-text lang-om">Seenaa Guutuu Dubbisi <i class="fas fa-arrow-right"></i></span>
-                        <span class="lang-text lang-am" style="display:none;">ሙሉውን ዘገባ ያንብቡ <i class="fas fa-arrow-right"></i></span>
-                        <span class="lang-text lang-en" style="display:none;">Read Full Story <i class="fas fa-arrow-right"></i></span>
-                    </button>
-                </div>
-            </article>
-        </div>
-    </div>
-
-    <div class="modal" id="newsModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <div class="modal-body">
-                <div class="news-date">
-                    <i class="far fa-calendar-alt"></i> Adoolessa 2018 / ሐምሌ 2018 / July 2026
-                </div>
-
-                <h2 class="news-title lang-text lang-om" style="font-size:1.6rem;">
-                    Mataaharaan teeknoloojiin ammayyoomte! "Wiirtuu Tajaajila Iddoo Tokkoo Masoobii" tajaajila kennuu eegale! 💻🚀🏙️
-                </h2>
-                <h2 class="news-title lang-text lang-am" style="display:none; font-size:1.6rem;">
-                    🏙️ መተሐራ ወደ ዘመናዊ ቴክኖሎጂ ተሸጋገረች! "የአንድ ማዕከል አገልግሎት ማዕከል" በይፋ ሥራ ጀመረ! 💻🚀
-                </h2>
-                <h2 class="news-title lang-text lang-en" style="display:none; font-size:1.6rem;">
-                    Matahara Embraces Digital Transformation! New One-Stop Service Center Officially Opens 💻🚀
-                </h2>
-
-                <!-- Afaan Oromoo Full Text -->
-                <div class="modal-full-text lang-text lang-om">
-Mootummaan tajaajila hawaasaa teeknoloojii ammayyaatiin sirneessuudhaan quufinsa ummataa mirkaneessuuf xiyyeeffannaan hojjechaa jiraachuu Bulchaan Godina Shawaa Bahaa obbo Abbaabbuu Waaqoo ibsaniiru.
-
-Hojii misoomaa kana ilaalchisuudhaan haasawa baninsaa kan taasisan Kantiibaan Bulchiinsa Magaalaa Mataaharaa obbo Addisuu Waaqoo; wiirtuun kun mootummaan tajaajila nama giddu-galeessa godhateef xiyyeeffannaa kennuusaatiin kan agarsiisu ta'uu eeranii, hawaasni biirokraasii hin barbaachisne irraa bilisa ta'ee tajaajila saffisaa akka argatu gahee guddaa kan qabu ta'uu dubbataniiru. 🤝✨
-
-Haaluma kanaan, Godina Shawaa Bahaa, Magaalaa Mataaharaatti "Wiirtuun Tajaajila Iddoo Tokkoo" (One-Stop Service Center) haaraa ijaarame eebbifamee ummataaf banaa ta'eera. 🎊✅
-
-Faayidaa Wiirtichaa:
-⏱️ Kenniinsa tajaajilaa daran saffisaa fi bu'a-qabeessa taasisuu.
-🤝 Biirokraasii xiqqeessuudhaan gidiraa ummataa hambisuu.
-🖥️ Teeknoloojii fayyadamuudhaan hojii iftoominaa fi itti gaafatamummaa qabu uumuu.
-
-Wiirtuun ammayyaa kun jiraattota Magaalaa Mataaharaa fayyadamaa tajaajilaa taasisa jedhamee eeggama. 📈👏
-                </div>
-
-                <!-- Amharic Full Text -->
-                <div class="modal-full-text lang-text lang-am" style="display:none;">
-መንግሥት የሕዝብ አገልግሎቶችን በዘመናዊ ቴክኖሎጂ በማዘመን ፈጣን፣ ቀልጣፋና ጥራት ያለው አገልግሎት በመስጠት የህዝብ እርካታን ለማረጋገጥ በትኩረት እየሠራ መሆኑን የምሥራቅ ሸዋ ዞን አስተዳዳሪ አቶ አባቡ ዋቆ ገልጸዋል።
-
-በምረቃ ሥነ-ሥርዓቱ ላይ የመክፈቻ ንግግር ያደረጉት የመተሐራ ከተማ ከንቲባ አቶ አዲሱ ዋቆ፣ ይህ አዲሱ የአንድ ማዕከል አገልግሎት (One-Stop Service Center) መንግሥት ለዜጎች ማዕከል ያደረገ አገልግሎት የሚሰጥበት ቁርጠኝነት መገለጫ መሆኑን ጠቁመው፣ ማዕከሉ አላስፈላጊ ቢሮክራሲን በመቀነስ ለህብረተሰቡ ፈጣንና ቀልጣፋ አገልግሎት ለማድረስ ከፍተኛ ሚና እንደሚጫወት ገልጸዋል። 🤝✨
-
-በዚሁ መሠረት፣ በምሥራቅ ሸዋ ዞን መተሐራ ከተማ የተገነባው የአንድ ማዕከል አገልግሎት (One-Stop Service Center) በይፋ ተመርቆ ለሕዝብ ክፍት ሆኗል። 🎊✅
-
-የማዕከሉ ዋና ጥቅሞች፦
-⏱️ ፈጣንና ውጤታማ የሕዝብ አገልግሎት መስጠት።
-🤝 ቢሮክራሲን በመቀነስ የዜጎችን እንግልት ማስወገድ።
-🖥️ በዘመናዊ ቴክኖሎጂ የተደገፈ ግልጽ፣ ተጠያቂነት ያለው አገልግሎት መስጠት።
-
-ይህ ዘመናዊ የአገልግሎት ማዕከል ለመተሐራ ከተማ ነዋሪዎች የተሻለ፣ ፈጣንና ዘመናዊ አገልግሎት በማቅረብ በከተማዋ የዲጂታል ለውጥ ጉዞ ውስጥ ከፍተኛ አስተዋጽኦ ያበረክታል ተብሎ ይጠበቃል። 📈👏
-                </div>
-
-                <!-- English Full Text -->
-                <div class="modal-full-text lang-text lang-en" style="display:none;">
-The government is working with strong commitment to modernize public service delivery through advanced technology in order to improve efficiency and ensure greater public satisfaction, East Shewa Zone Administrator Mr. Abbabu Wakoo stated.
-
-Speaking at the inauguration ceremony, Matahara City Mayor Mr. Addisu Wakoo emphasized that the newly established One-Stop Service Center reflects the government's commitment to providing citizen-centered public services. He noted that the center will play a significant role in eliminating unnecessary bureaucracy and enabling residents to receive faster, more efficient services. 🤝✨
-
-Accordingly, the newly constructed One-Stop Service Center in Matahara City, East Shewa Zone, has been officially inaugurated and opened to the public. 🎊✅
-
-Key Benefits of the Center:
-⏱️ Faster and more efficient public service delivery.
-🤝 Reduced bureaucracy and improved convenience for citizens.
-🖥️ Greater transparency, accountability, and digitalized service delivery through modern technology.
-
-The modern service center is expected to significantly enhance access to quality public services for the residents of Matahara City while supporting the government's ongoing digital transformation efforts. 📈👏
-                </div>
-
-                <h4 style="margin-top:1.5rem; color:var(--primary-color);">
-                    <i class="fas fa-images"></i> Suuraa / ፎቶዎች / Photo Gallery:
-                </h4>
-                <div class="modal-gallery">
-                    <img src="104.jpg" onclick="openLightbox('104.jpg')">
-                    <img src="103.jpg" onclick="openLightbox('103.jpg')">
-                    <img src="101_2.jpg" onclick="openLightbox('101_2.jpg')">
-                    <img src="102_2.jpg" onclick="openLightbox('102_2.jpg')">
-                    <img src="105.jpg" onclick="openLightbox('105.jpg')">
-                    <img src="106.jpg" onclick="openLightbox('106.jpg')">
-                    <img src="107.jpg" onclick="openLightbox('107.jpg')">
-                </div>
-
-                <div class="hashtags">
-                    <span class="tag">#Matahara</span>
-                    <span class="tag">#EastShewa</span>
-                    <span class="tag">#DigitalService</span>
-                    <span class="tag">#OneStopCenter</span>
-                    <span class="tag">#SamiTube</span>
-                    <span class="tag">#SamiDolphin</span>
-                    <span class="tag">#Development</span>
-                </div>
+                <p class="lang-text-am">በሳሚ-ቲዩብ የሚለቀቁ ወቅታዊ ዜናዎችን፣ ባህላዊ ዝግጅቶችን እና መረጃዎችን እዚህ ያግኙ።</p>
+                <p class="lang-text-om">Odeeffannoo, qophiilee aadaa fi oduuwwan Sami-Tube irratti gadhiifaman asitt argadhaa.</p>
+                <p class="lang-text-en">Find the latest news, cultural programs, and updates published on Sami-Tube here.</p>
             </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-city"></i></div>
+                <h3 class="lang-text-am">የከተማዋ መረጃዎች</h3>
+                <h3 class="lang-text-om">Odeeffannoo Magaalaa</h3>
+                <h3 class="lang-text-en">Town Information</h3>
+
+                <p class="lang-text-am">ስለ መተሃራ ከተማ ማህበራዊ እና ኢኮኖሚያዊ ልማፎች የተዘጋጁ አጨራጭ ሪፖርቶችና መረጃዎች።</p>
+                <p class="lang-text-om">Gabaasaalee gabaabaa fi odeeffannoowan guddina hawaasummaa fi diinagdee Magaalaa Mataaharaa.</p>
+                <p class="lang-text-en">Short reports and details regarding the social and economic development of Matahara town.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3 class="lang-text-am">ዲጂታል ኮሙኒኬሽን</h3>
+                <h3 class="lang-text-om">Komiunikeshinii Dijiitaalaa</h3>
+                <h3 class="lang-text-en">Digital Communication</h3>
+
+                <p class="lang-text-am">የማህበረሰብ ሚዲያ ግንኙነቶችን እና ቴክኖሎጂን ያማከሉ አዳዲስ አሰራሮች ስብስብ።</p>
+                <p class="lang-text-om">Sassaba inshiyaativoota haaraa hariiroo miidiyaa hawaasaa fi teeknoloojii irratti xiyyeeffatan.</p>
+                <p class="lang-text-en">Collection of modern practices focusing on community media outreach and technology integration.</p>
+            </div>
+
+            <!-- Card 4 (አዲሱ የአንድ ማዕከል አገልግሎት ዜና) -->
+            <div class="card" style="border-top: 4px solid #2563eb;">
+                <div class="card-icon"><i class="fas fa-building-circle-check"></i></div>
+                <h3 class="lang-text-am">የአንድ ማዕከል አገልግሎት</h3>
+                <h3 class="lang-text-om">Wiirtuu Tajaajila Iddoo Tokkoo</h3>
+                <h3 class="lang-text-en">One-Stop Service Center</h3>
+
+                <p class="lang-text-am">መተሐራ ከተማ ወደ ዘመናዊ ቴክኖሎጂ ተሸጋገረች! "የአንድ ማዕከል አገልግሎት ማዕከል (Masoob)" በይፋ ሥራ ጀመረ።</p>
+                <p class="lang-text-om">Mataaharaan teeknoloojiin ammayyoomte! "Wiirtuu Tajaajila Iddoo Tokkoo Masoobii" tajaajila kennuu eegale!</p>
+                <p class="lang-text-en">Matahara Town embraces digital transformation! The new One-Stop Service Center has officially opened.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer / Contact -->
+    <footer class="contact-section">
+        <h2>ያግኙን / CONTACT US</h2>
+        
+        <div class="social-buttons">
+            <a href="https://t.me/" class="btn-social" target="_blank">
+                <i class="fab fa-telegram"></i> የቴሌግራም ቦት
+            </a>
+            <a href="https://youtube.com/" class="btn-social" target="_blank">
+                <i class="fab fa-youtube" style="color: #ef4444;"></i> የዩቲዩብ ቻናል
+            </a>
+            <a href="https://facebook.com/" class="btn-social" target="_blank">
+                <i class="fab fa-facebook" style="color: #3b82f6;"></i> የፌስቡክ አድራሻ
+            </a>
         </div>
-    </div>
 
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <img src="" id="lightboxImg">
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Matahara Town Communication Bureau & Sami Dolphin Media. All rights reserved.</p>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> ኢሜይል: sami2all@gmail.com</p>
+            <p><i class="fas fa-phone"></i> ስልክ: +251 911 92 69 76</p>
+        </div>
     </footer>
 
     <script>
-        function switchLanguage(lang, btnElement) {
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            if (btnElement) {
-                btnElement.classList.add('active');
-            }
-
-            document.querySelectorAll('.lang-text').forEach(el => {
+        function changeLanguage(lang) {
+            // Hide all text language elements
+            document.querySelectorAll('.lang-text-am, .lang-text-om, .lang-text-en').forEach(el => {
                 el.style.display = 'none';
             });
 
-            document.querySelectorAll('.lang-' + lang).forEach(el => {
+            // Show selected language elements
+            document.querySelectorAll('.lang-text-' + lang).forEach(el => {
                 el.style.display = 'block';
             });
-        }
-
-        function changePreview(imgSrc) {
-            document.getElementById('cardMainImg').src = imgSrc;
-        }
-
-        function openModal() {
-            document.getElementById('newsModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('newsModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function openLightbox(imgSrc) {
-            document.getElementById('lightboxImg').src = imgSrc;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('newsModal');
-            if (event.target == modal) {
-                closeModal();
-            }
         }
     </script>
 </body>

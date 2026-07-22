@@ -27,6 +27,7 @@ HTML
         .border-gold {
             border-color: #f59e0b;
         }
+        
         /* ስላይደር ዲዛይን */
         .slideshow-container {
             position: relative;
@@ -57,7 +58,8 @@ HTML
             border-color: #f59e0b;
             box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
         }
-        /* የተቆልቋይ ማውጫ ዲዛይን */
+
+        /* የተቆልቋይ ማውጫ ዲዛይን (Collapsible Accordion) */
         .menu-btn {
             width: 100%;
             display: flex;
@@ -106,13 +108,15 @@ HTML
     <!-- Header Section -->
     <header class="bg-slate-950 text-white shadow-lg sticky top-0 z-50 border-b-2 border-gold">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <!-- የሞባይል ማውጫ መቀየሪያ ባተን -->
-                <button id="mobileMenuToggle" class="lg:hidden text-amber-500 text-xl focus:outline-none mr-2">
+            
+            <div class="flex items-center gap-4">
+                <!-- የሶስቱ ቢጫ መስመሮች (Hamburger Menu Button) -->
+                <button id="toggleMenuBtn" class="text-amber-500 text-2xl focus:outline-none hover:text-amber-400 transition p-1 rounded-lg border border-amber-500/30 bg-slate-900/50">
                     <i class="fas fa-bars"></i>
                 </button>
+                
                 <div class="bg-gold text-slate-950 font-black text-xl w-10 h-10 flex items-center justify-center rounded-xl shadow-md">S</div>
-                <h1 class="text-xl font-black tracking-wider gold-glow">SAMI-TUBE MEDIA</h1>
+                <h1 class="text-xl font-black tracking-wider gold-glow hidden sm:block">SAMI-TUBE MEDIA</h1>
             </div>
             
             <div class="flex items-center gap-4">
@@ -150,10 +154,10 @@ HTML
     <!-- Main Content Layout -->
     <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        <!-- በስተግራ በኩል ተቆልቋይ የገፅ ማውጫ (Collapsible Sidebar Menu) -->
-        <aside id="sidebarMenu" class="lg:col-span-1 hidden lg:block space-y-3">
+        <!-- በስተግራ በኩል የሚታይ የገፅ ማውጫ (Collapsible Sidebar Menu) -->
+        <aside id="sidebarMenu" class="lg:col-span-1 space-y-3 transition-all duration-300">
             <h3 id="menuTitle" class="text-sm font-bold tracking-wider text-amber-500 uppercase mb-4 border-b border-slate-800 pb-2 flex items-center gap-2">
-                <i class="fas fa-list-ul"></i> የገፅ ማውጫ
+                <i class="fas fa-list-ul"></i> ማውጫ
             </h3>
             
             <div class="space-y-2">
@@ -169,29 +173,66 @@ HTML
                     </div>
                 </div>
 
-                <!-- 2. ባህልና ቱሪዝም -->
+                <!-- 2. ባህል -->
                 <div>
                     <button onclick="toggleSubmenu('subCulture', 'arrowCulture')" class="menu-btn">
-                        <span class="flex items-center gap-2"><i class="fas fa-monument text-amber-500"></i> <span id="menuCulture">ባህልና ቱሪዝም</span></span>
+                        <span class="flex items-center gap-2"><i class="fas fa-masks-theater text-amber-500"></i> <span id="menuCulture">ባህል</span></span>
                         <i id="arrowCulture" class="fas fa-chevron-down arrow-icon text-xs"></i>
                     </button>
                     <div id="subCulture" class="submenu">
-                        <a href="#cultureSection" id="subCulture1"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የብርቱካን እርሻ ልማት</a>
-                        <a href="#cultureSection" id="subCulture2"><i class="fas fa-caret-right mr-2 text-amber-500"></i>ፈንታሌ እና በሰቃ ሐይቅ</a>
+                        <a href="#cultureSection" id="subCulture1"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የአካባቢው ባህላዊ እሴቶች</a>
+                        <a href="#cultureSection" id="subCulture2"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የሕዝብ ቅርሶችና ልማዶች</a>
                     </div>
                 </div>
 
-                <!-- 3. ስነ-ጽሑፍ እና ፍልስፍና -->
+                <!-- 3. ቱሪዝም -->
                 <div>
-                    <button onclick="toggleSubmenu('subLit', 'arrowLit')" class="menu-btn">
-                        <span class="flex items-center gap-2"><i class="fas fa-book-open text-amber-500"></i> <span id="menuLit">ስነ-ጽሑፍ እና ፍልስፍና</span></span>
-                        <i id="arrowLit" class="fas fa-chevron-down arrow-icon text-xs"></i>
+                    <button onclick="toggleSubmenu('subTourism', 'arrowTourism')" class="menu-btn">
+                        <span class="flex items-center gap-2"><i class="fas fa-monument text-amber-500"></i> <span id="menuTourism">ቱሪዝም</span></span>
+                        <i id="arrowTourism" class="fas fa-chevron-down arrow-icon text-xs"></i>
                     </button>
-                    <div id="subLit" class="submenu">
-                        <a href="#literatureSection" id="subLit1"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የእውቀት መርሆዎች</a>
-                        <a href="#literatureSection" id="subLit2"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የሲቫና-1 ትንተና</a>
+                    <div id="subTourism" class="submenu">
+                        <a href="#tourismSection" id="subTourism1"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የብርቱካን እርሻ ልማት</a>
+                        <a href="#tourismSection" id="subTourism2"><i class="fas fa-caret-right mr-2 text-amber-500"></i>ፈንታሌ እና በሰቃ ሐይቅ</a>
                     </div>
                 </div>
+
+                <!-- 4. ፍልስፍና -->
+                <div>
+                    <button onclick="toggleSubmenu('subPhilosophy', 'arrowPhil')" class="menu-btn">
+                        <span class="flex items-center gap-2"><i class="fas fa-brain text-amber-500"></i> <span id="menuPhilosophy">ፍልስፍና</span></span>
+                        <i id="arrowPhil" class="fas fa-chevron-down arrow-icon text-xs"></i>
+                    </button>
+                    <div id="subPhilosophy" class="submenu">
+                        <a href="#philosophySection" id="subPhil1"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የእውቀት መርሆዎች</a>
+                        <a href="#philosophySection" id="subPhil2"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የሂሳዊ አስተሳሰብ አስፈላጊነት</a>
+                    </div>
+                </div>
+
+                <!-- 5. ስነፅሁፍ -->
+                <div>
+                    <button onclick="toggleSubmenu('subLiterature', 'arrowLit')" class="menu-btn">
+                        <span class="flex items-center gap-2"><i class="fas fa-book-open text-amber-500"></i> <span id="menuLiterature">ስነፅሁፍ</span></span>
+                        <i id="arrowLit" class="fas fa-chevron-down arrow-icon text-xs"></i>
+                    </button>
+                    <div id="subLiterature" class="submenu">
+                        <a href="#literatureSection" id="subLit1"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የሲቫና-1 ትንተና</a>
+                        <a href="#literatureSection" id="subLit2"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የግል ስብዕና ግንባታ</a>
+                    </div>
+                </div>
+
+                <!-- 6. ስለ እኛ -->
+                <div>
+                    <button onclick="toggleSubmenu('subAbout', 'arrowAbout')" class="menu-btn">
+                        <span class="flex items-center gap-2"><i class="fas fa-info-circle text-amber-500"></i> <span id="menuAbout">ስለ እኛ</span></span>
+                        <i id="arrowAbout" class="fas fa-chevron-down arrow-icon text-xs"></i>
+                    </button>
+                    <div id="subAbout" class="submenu">
+                        <a href="#aboutSection" id="subAbout1"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የሳሚ-ቲዩብ ሚዲያ ራዕይ</a>
+                        <a href="#aboutSection" id="subAbout2"><i class="fas fa-caret-right mr-2 text-amber-500"></i>የመተሃራ ከተማ ኮሚኒኬሽን</a>
+                    </div>
+                </div>
+
             </div>
         </aside>
 
@@ -228,11 +269,23 @@ HTML
                 </div>
             </div>
 
-            <!-- 2. የባህልና ቱሪዝም ክፍል -->
+            <!-- 2. የባህል ክፍል -->
             <div id="cultureSection" class="scroll-mt-24">
                 <h3 id="cultureSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
                     <span class="w-2 h-6 bg-gold rounded-full"></span> 
-                    <span>ባህልና ቱሪዝም</span>
+                    <span>ባህል</span>
+                </h3>
+                <div class="custom-card p-6">
+                    <h4 class="text-lg font-bold text-amber-400 mb-2"><i class="fas fa-masks-theater mr-2"></i>የመተሃራ እና የአካባቢው ባህላዊ እሴቶች</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">የመተሃራ ከተማና የአካባቢው ማህበረሰብ የበለፀጉ ባህላዊ እሴቶች፣ አብሮ የመኖር ባህልና ታሪካዊ ቅርስ መረጃዎች እዚህ ይቀርባሉ።</p>
+                </div>
+            </div>
+
+            <!-- 3. የቱሪዝም ክፍል -->
+            <div id="tourismSection" class="scroll-mt-24">
+                <h3 id="tourismSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-gold rounded-full"></span> 
+                    <span>ቱሪዝም</span>
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="custom-card flex flex-col justify-between">
@@ -260,37 +313,41 @@ HTML
                 </div>
             </div>
 
-            <!-- 3. የስነ-ጽሑፍ እና ፍልስፍና ክፍል -->
+            <!-- 4. የፍልስፍና ክፍል -->
+            <div id="philosophySection" class="scroll-mt-24">
+                <h3 id="philosophySectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-gold rounded-full"></span> 
+                    <span>ፍልስፍና</span>
+                </h3>
+                <div class="custom-card p-5">
+                    <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-feather-alt mr-1"></i> እውቀትና አስተሳሰብ</div>
+                    <h4 id="lit1Title" class="text-base font-bold text-white mb-3 leading-snug">የማይፈላሰፍ ሰው የሞተ ብቻ ነው! የእውቀት መርሆዎች</h4>
+                    <p id="lit1Desc" class="text-slate-400 text-xs leading-relaxed">የሰው ልጅ የማሰብ አድማስ እና ሂሳዊ አስተሳሰብ ለህብረተሰብ እድገት ስላለው ከፍተኛ ሚና የሚተነትን መጣጥፍ።</p>
+                </div>
+            </div>
+
+            <!-- 5. የስነፅሁፍ ክፍል -->
             <div id="literatureSection" class="scroll-mt-24">
                 <h3 id="litSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
                     <span class="w-2 h-6 bg-gold rounded-full"></span> 
-                    <span>ስነ-ጽሑፍ እና ፍልስፍና</span>
+                    <span>ስነፅሁፍ</span>
                 </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="custom-card flex flex-col justify-between">
-                        <div class="w-full h-48 bg-slate-900 flex items-center justify-center border-b border-slate-800">
-                            <i class="fas fa-brain text-slate-700 text-5xl"></i>
-                        </div>
-                        <div class="p-5 flex-grow flex flex-col justify-between">
-                            <div>
-                                <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-feather-alt mr-1"></i> እውቀትና አስተሳሰብ</div>
-                                <h4 id="lit1Title" class="text-base font-bold text-white mb-3 leading-snug">የማይፈላሰፍ ሰው የሞተ ብቻ ነው! የእውቀት መርሆዎች</h4>
-                            </div>
-                            <p id="lit1Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የሰው ልጅ የማሰብ አድማስ እና ሂሳዊ አስተሳሰብ ለህብረተሰብ እድገት ስላለው ከፍተኛ ሚና የሚተነትን መጣጥፍ።</p>
-                        </div>
-                    </div>
-                    <div class="custom-card flex flex-col justify-between">
-                        <div class="w-full h-48 bg-slate-900 flex items-center justify-center border-b border-slate-800">
-                            <i class="fas fa-book text-slate-700 text-5xl"></i>
-                        </div>
-                        <div class="p-5 flex-grow flex flex-col justify-between">
-                            <div>
-                                <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-quote-left mr-1"></i> ትንተና</div>
-                                <h4 id="lit2Title" class="text-base font-bold text-white mb-3 leading-snug">የሲቫና-1 የስነ-ልቦና እና የስኬት ህግጋት ዳሰሳ</h4>
-                            </div>
-                            <p id="lit2Desc" class="text-slate-400 text-xs leading-relaxed mt-2">የሮቢን ሻርማን እሳቤዎች እና የግል ስብዕና ግንባታ ላይ ያተኮሩ የትርጉም ስራዎች ዝርዝር ግምገማ።</p>
-                        </div>
-                    </div>
+                <div class="custom-card p-5">
+                    <div class="text-xs font-bold text-amber-500 uppercase mb-2"><i class="fas fa-quote-left mr-1"></i> ትንተና</div>
+                    <h4 id="lit2Title" class="text-base font-bold text-white mb-3 leading-snug">የሲቫና-1 የስነ-ልቦና እና የስኬት ህግጋት ዳሰሳ</h4>
+                    <p id="lit2Desc" class="text-slate-400 text-xs leading-relaxed">የሮቢን ሻርማን እሳቤዎች እና የግል ስብዕና ግንባታ ላይ ያተኮሩ የትርጉም ስራዎች ዝርዝር ግምገማ።</p>
+                </div>
+            </div>
+
+            <!-- 6. ስለ እኛ ክፍል -->
+            <div id="aboutSection" class="scroll-mt-24">
+                <h3 id="aboutSectionTitle" class="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-gold rounded-full"></span> 
+                    <span>ስለ እኛ</span>
+                </h3>
+                <div class="custom-card p-6 bg-slate-900/90">
+                    <h4 class="text-lg font-bold text-amber-400 mb-3"><i class="fas fa-bullhorn mr-2"></i>ሳሚ-ቲዩብ ሚዲያ እና ዲጂታል ኮሚኒኬሽን</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">ሳሚ-ቲዩብ ሚዲያ በመተሃራ ከተማ እና አካባቢዋ የሚከናወኑ ልማቶችን፣ ባህላዊ እሴቶችን፣ እና ወቅታዊ ዜናዎችን ፈጣን እና እውነተኛ በሆነ መንገድ ለህብረተሰቡ የሚያደርስ የዲጂታል ሚዲያ መድረክ ነው።</p>
                 </div>
             </div>
 
@@ -327,7 +384,15 @@ HTML
 
     <!-- JavaScript Logic -->
     <script>
-        // 1. Dropdown Accordion Menu Logic
+        // 1. የሶስቱ ቢጫ መስመሮች (Hamburger Button) ማውጫ መክፈቻ/መዝጊያ
+        const toggleMenuBtn = document.getElementById('toggleMenuBtn');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+
+        toggleMenuBtn.addEventListener('click', () => {
+            sidebarMenu.classList.toggle('hidden');
+        });
+
+        // 2. ተቆልቋይ Accordion Menu Logic
         function toggleSubmenu(subId, arrowId) {
             const submenu = document.getElementById(subId);
             const arrow = document.getElementById(arrowId);
@@ -336,7 +401,7 @@ HTML
                 submenu.style.maxHeight = "0px";
                 arrow.classList.remove("rotate-180");
             } else {
-                // መጀመሪያ ሌሎቹን መዝጋት (አማራጭ)
+                // ሌሎቹን ንዑሳን ማውጫዎች መዝጋት
                 document.querySelectorAll('.submenu').forEach(el => el.style.maxHeight = "0px");
                 document.querySelectorAll('.arrow-icon').forEach(el => el.classList.remove("rotate-180"));
                 
@@ -345,13 +410,7 @@ HTML
             }
         }
 
-        // Mobile Menu Toggle
-        document.getElementById('mobileMenuToggle').addEventListener('click', () => {
-            const sidebar = document.getElementById('sidebarMenu');
-            sidebar.classList.toggle('hidden');
-        });
-
-        // 2. Image Slideshow Logic
+        // 3. Image Slideshow Logic
         let slideIndex = 0;
         function showSlides() {
             let slides = document.getElementsByClassName("mySlides");
@@ -364,7 +423,7 @@ HTML
             setTimeout(showSlides, 4000);
         }
 
-        // 3. Multilingual Dictionary
+        // 4. Multilingual Dictionary
         const translations = {
             am: {
                 welcomeTitle: "እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!",
@@ -373,31 +432,31 @@ HTML
                 slide2Subtitle: "የመተሃራ እና የአካባቢዋን ልማትና ገጽታ ለዓለም የምናስተዋውቅበት",
                 slide3Title: "ዲጂታል ኮሚኒኬሽን እና ሚዲያ",
                 slide3Subtitle: "ፈጣን መረጃዎች ማህበረሰቡን ተደራሽ የሚያደርጉበት መድረክ",
-                menuTitle: "<i class='fas fa-list-ul mr-2'></i> የገፅ ማውጫ",
+                menuTitle: "<i class='fas fa-list-ul mr-2'></i> ማውጫ",
                 menuNews: "ወቅታዊ ዜናዎች",
-                menuCulture: "ባህልና ቱሪዝም",
-                menuLit: "ስነ-ጽሑፍ እና ፍልስፍና",
+                menuCulture: "ባህል",
+                menuTourism: "ቱሪዝም",
+                menuPhilosophy: "ፍልስፍና",
+                menuLiterature: "ስነፅሁፍ",
+                menuAbout: "ስለ እኛ",
                 subNews1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>በሰቃ ሐይቅ ዳርቻ ልማት",
                 subNews2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የመጠጥ ውሃ ፕሮጀክት",
-                subCulture1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የብርቱካን እርሻ ልማት",
-                subCulture2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>ፈንታሌ እና በሰቃ ሐይቅ",
-                subLit1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የእውቀት መርሆዎች",
-                subLit2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የሲቫና-1 ትንተና",
+                subCulture1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የአካባቢው ባህላዊ እሴቶች",
+                subCulture2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የሕዝብ ቅርሶችና ልማዶች",
+                subTourism1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የብርቱካን እርሻ ልማት",
+                subTourism2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>ፈንታሌ እና በሰቃ ሐይቅ",
+                subPhil1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የእውቀት መርሆዎች",
+                subPhil2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የሂሳዊ አስተሳሰብ አስፈላጊነት",
+                subLit1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የሲቫና-1 ትንተና",
+                subLit2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የግል ስብዕና ግንባታ",
+                subAbout1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የሳሚ-ቲዩብ ሚዲያ ራዕይ",
+                subAbout2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>የመተሃራ ከተማ ኮሚኒኬሽን",
                 newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ወቅታዊ ዜናዎች</span>",
-                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ባህልና ቱሪዝም</span>",
-                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ስነ-ጽሑፍ እና ፍልስፍና</span>",
-                news1Title: "አቶ አዲሱ ዋቆ የመተሃራ ከተማ አስተዳደር ከንቲባ አመራር ሰጪነት በመተሃራ ከተማ በበሰቃ ሐይቅ ዳርቻ ልማት ስራዎች",
-                news1Desc: "በከንቲባው መሪነት በበሰቃ ሐይቅ ዙሪያ የሚከናወኑ ውብ የልማት ስራዎችና የአካባቢውን ገጽታ የመቀየር እንቅስቃሴዎች ማጠቃለያ።",
-                news2Title: "ከአንድ ቢሊዮን በላይ ተመድቦለት የመተሃራ ከተማ የመጠጥ ውሃ አገልግሎትን ለማሻሻል እየተሰራ ስላለው የመጠጥ ውሃ ፕሮጀክት",
-                news2Desc: "የከተማዋን የረጅም ጊዜ የውሃ አቅርቦት ችግር በዘላቂነት ለመፍታት በትልቅ በጀት እየተገነባ ስላለው ግዙፍ ፕሮጀክት ዝርዝር መረጃ።",
-                news3Title: "በበሰቃ ሐይቅ ዳርቻ ላይ እየተከናወነ ስላለው የብርቱካን እርሻ እና አረንጓዴ ልማት",
-                news3Desc: "በሐይቁ አካባቢ ያለውን መሬት በመጠቀም ለከተማዋና ለአካባቢው ነዋሪዎች የምግብ ዋስትና እያበረከተ ስላለው የብርቱካን ልማት ስራ።",
-                culture1Title: "የፈንታሌ እሳተ-ገሞራ እና የበሰቃ ሐይቅ የተፈጥሮ ስጦታዎች",
-                culture1Desc: "የመተሃራ ከተማን የቱሪስት መስህብነት የሚያሳድጉ የተፈጥሮ ድንቆች እና ታሪካዊ ዳራዎች መግለጫ።",
-                lit1Title: "የማይፈላሰፍ ሰው የሞተ ብቻ ነው! የእውቀት መርሆዎች",
-                lit1Desc: "የሰው ልጅ የማሰብ አድማስ እና ሂሳዊ አስተሳሰብ ለህብረተሰብ እድገት ስላለው ከፍተኛ ሚና የሚተነትን መጣጥፍ።",
-                lit2Title: "የሲቫና-1 የስነ-ልቦና እና የስኬት ህግጋት ዳሰሳ",
-                lit2Desc: "የሮቢን ሻርማን እሳቤዎች እና የግል ስብዕና ግንባታ ላይ ያተኮሩ የትርጉም ስራዎች ዝርዝር ግምገማ።",
+                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ባህል</span>",
+                tourismSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ቱሪዝም</span>",
+                philosophySectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ፍልስፍና</span>",
+                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ስነፅሁፍ</span>",
+                aboutSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>ስለ እኛ</span>",
                 contactTitle: "ያግኙን / CONTACT US",
                 tgBotLabel: "የቴሌግራም ቦት",
                 ytChannelLabel: "ዩቲዩብ ቻናል",
@@ -414,29 +473,29 @@ HTML
                 slide3Subtitle: "Odeeffannoon dafee hawaasa qaqqabu itti hojjetamu",
                 menuTitle: "<i class='fas fa-list-ul mr-2'></i> Baafata",
                 menuNews: "Oduuwwan Waqtaawaa",
-                menuCulture: "Aadaa fi Turiizimii",
-                menuLit: "Og-barruu fi Fiilsoofii",
+                menuCulture: "Aadaa",
+                menuTourism: "Turiizimii",
+                menuPhilosophy: "Fiilsoofii",
+                menuLiterature: "Og-barruu",
+                menuAbout: "Sabaaba Keenya",
                 subNews1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Misooma Qarqara Basakaa",
                 subNews2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Pirojekti Bishaan Dhugaatii",
-                subCulture1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Misooma Burtukaana",
-                subCulture2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Fantaallee fi Haroo Basakaa",
-                subLit1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Qajeelfama Beekumsaa",
-                subLit2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Xiinxala Sivana-1",
+                subCulture1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Aadaa fi Dudhaa",
+                subCulture2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Hambaawwan Naannoo",
+                subTourism1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Misooma Burtukaana",
+                subTourism2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Fantaallee fi Haroo Basakaa",
+                subPhil1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Qajeelfama Beekumsaa",
+                subPhil2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Sammuu Xiinxalaa",
+                subLit1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Xiinxala Sivana-1",
+                subLit2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Ijaarsa Eenyummaa",
+                subAbout1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Mul'ata Sami-Tube Media",
+                subAbout2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Kominikeeshinii Mataharaa",
                 newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Oduuwwan Waqtaawaa</span>",
-                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Aadaa fi Turiizimii</span>",
-                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Og-barruu fi Fiilsoofii</span>",
-                news1Title: "Bulchiinsa Magaalaa Mataharaa Kantiibaa obbo Addisuu Waaqoo gaggeessummaan hojiiwwan misooma qarqara haroo Basakaa",
-                news1Desc: "Hojiiwwan misooma bareedoo fi bifa magaalichaa jijjiiruuf qarqara haroo Basakaa irratti kantiibichaan durfamu.",
-                news2Title: "Biliyoona tokkoo ol kan ramadameef tajaajila bishaanii Magaalaa Mataharaa fooyyessuuf pirojekti bishaan dhugaatii hojjetamaa jiru",
-                news2Desc: "Odeeffannoo bal'aa pirojekti guddaa rakkoo bishaan dhugaatii magaalichaa yeroo dheeraaf furiinsa waaraa kennuuf ijaaramaa jiru.",
-                news3Title: "Misooma qonnaa burtukaanaa qarqara haroo Basakaa irratti hojjetamaa jiru",
-                news3Desc: "Hojii misooma burtukaanaa lafa qarqara harichaa fayyadamuun wabii nyaata uummata magaalichaaf gumaacha jiru.",
-                culture1Title: "Kennaa Uamaa Tulluu Fantaallee fi Haroo Basakaa",
-                culture1Desc: "Ibsa dinqisiiso weeywaa uumamaa fi seenaa haattuu Magaalaa Mataharaa hawata turiizimii guddisan.",
-                lit1Title: "Namni Hin Madaalle Du'aa Qofa! Qajeelfama Beekumsaa",
-                lit1Desc: "Barruu bal'ina ilaalcha namaa fi xiinsammuu sakatta'uun guddina hawaasaaf qooda inni qabu xiinxalu.",
-                lit2Title: "Xiinxala Seera Milkaa'inaa fi Xiinsammuu Sivana-1",
-                lit2Desc: "Madaallii barruulee hiikkaa fi qajeelfama ijaarsa eenyummaa irratti xiyyeeffatan kan Robin Sharma.",
+                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Aadaa</span>",
+                tourismSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Turiizimii</span>",
+                philosophySectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Fiilsoofii</span>",
+                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Og-barruu</span>",
+                aboutSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Sabaaba Keenya</span>",
                 contactTitle: "Nu Quunnamaa / CONTACT US",
                 tgBotLabel: "Bot Telegramii",
                 ytChannelLabel: "Chaanaalii YouTube",
@@ -453,29 +512,29 @@ HTML
                 slide3Subtitle: "A platform where timely information reaches the community efficiently",
                 menuTitle: "<i class='fas fa-list-ul mr-2'></i> Navigation Menu",
                 menuNews: "Current News",
-                menuCulture: "Culture & Tourism",
-                menuLit: "Literature & Philosophy",
+                menuCulture: "Culture",
+                menuTourism: "Tourism",
+                menuPhilosophy: "Philosophy",
+                menuLiterature: "Literature",
+                menuAbout: "About Us",
                 subNews1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Lake Basaka Shore Dev.",
                 subNews2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Water Supply Project",
-                subCulture1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Orange Farming",
-                subCulture2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Fentale & Lake Basaka",
-                subLit1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Knowledge Principles",
-                subLit2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Sivana-1 Analysis",
+                subCulture1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Local Heritage",
+                subCulture2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Cultural Values",
+                subTourism1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Orange Farming",
+                subTourism2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Fentale & Lake Basaka",
+                subPhil1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Knowledge Principles",
+                subPhil2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Critical Thinking",
+                subLit1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Sivana-1 Analysis",
+                subLit2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Personal Development",
+                subAbout1: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Sami-Tube Vision",
+                subAbout2: "<i class='fas fa-caret-right mr-2 text-amber-500'></i>Metehara Communication",
                 newsSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Current News</span>",
-                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Culture & Tourism</span>",
-                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Literature & Philosophy</span>",
-                news1Title: "Metehara Town Administration Mayor Addisu Wako's leadership in the development works on the shores of Lake Basaka",
-                news1Desc: "Summary of beautiful development activities and beautification works led by the Mayor around Lake Basaka.",
-                news2Title: "Over one billion allocated drinking water project underway to improve Metehara Town's water services",
-                news2Desc: "Detailed updates on the high-budget mega project designed to permanently solve the town's water supply shortage.",
-                news3Title: "Orange cultivation activities currently taking place on the shores of Lake Basaka",
-                news3Desc: "Agricultural highlights on the flourishing orange farming near the lake contributing to local food security.",
-                culture1Title: "Natural Wonders of Mount Fentale and Lake Basaka",
-                culture1Desc: "Description of ecological wonders and historical backgrounds that boost tourism potential in Metehara Town.",
-                lit1Title: "An Unexamined Life is Not Worth Living! Principles of Knowledge",
-                lit1Desc: "An essay analyzing human cognitive capacity and critical thinking for social development.",
-                lit2Title: "Review of Sivana-1 Psychological and Success Laws",
-                lit2Desc: "A comprehensive assessment of personal growth principles and translations inspired by Robin Sharma.",
+                cultureSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Culture</span>",
+                tourismSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Tourism</span>",
+                philosophySectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Philosophy</span>",
+                litSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>Literature</span>",
+                aboutSectionTitle: "<span class='w-2 h-6 bg-gold rounded-full'></span> <span>About Us</span>",
                 contactTitle: "CONTACT US",
                 tgBotLabel: "Telegram Bot",
                 ytChannelLabel: "YouTube Channel",
@@ -497,32 +556,30 @@ HTML
             document.getElementById('menuTitle').innerHTML = translations[selectedLang].menuTitle;
             document.getElementById('menuNews').innerText = translations[selectedLang].menuNews;
             document.getElementById('menuCulture').innerText = translations[selectedLang].menuCulture;
-            document.getElementById('menuLit').innerText = translations[selectedLang].menuLit;
+            document.getElementById('menuTourism').innerText = translations[selectedLang].menuTourism;
+            document.getElementById('menuPhilosophy').innerText = translations[selectedLang].menuPhilosophy;
+            document.getElementById('menuLiterature').innerText = translations[selectedLang].menuLiterature;
+            document.getElementById('menuAbout').innerText = translations[selectedLang].menuAbout;
 
             document.getElementById('subNews1').innerHTML = translations[selectedLang].subNews1;
             document.getElementById('subNews2').innerHTML = translations[selectedLang].subNews2;
             document.getElementById('subCulture1').innerHTML = translations[selectedLang].subCulture1;
             document.getElementById('subCulture2').innerHTML = translations[selectedLang].subCulture2;
+            document.getElementById('subTourism1').innerHTML = translations[selectedLang].subTourism1;
+            document.getElementById('subTourism2').innerHTML = translations[selectedLang].subTourism2;
+            document.getElementById('subPhil1').innerHTML = translations[selectedLang].subPhil1;
+            document.getElementById('subPhil2').innerHTML = translations[selectedLang].subPhil2;
             document.getElementById('subLit1').innerHTML = translations[selectedLang].subLit1;
             document.getElementById('subLit2').innerHTML = translations[selectedLang].subLit2;
+            document.getElementById('subAbout1').innerHTML = translations[selectedLang].subAbout1;
+            document.getElementById('subAbout2').innerHTML = translations[selectedLang].subAbout2;
             
             document.getElementById('newsSectionTitle').innerHTML = translations[selectedLang].newsSectionTitle;
             document.getElementById('cultureSectionTitle').innerHTML = translations[selectedLang].cultureSectionTitle;
+            document.getElementById('tourismSectionTitle').innerHTML = translations[selectedLang].tourismSectionTitle;
+            document.getElementById('philosophySectionTitle').innerHTML = translations[selectedLang].philosophySectionTitle;
             document.getElementById('litSectionTitle').innerHTML = translations[selectedLang].litSectionTitle;
-            
-            document.getElementById('news1Title').innerText = translations[selectedLang].news1Title;
-            document.getElementById('news1Desc').innerText = translations[selectedLang].news1Desc;
-            document.getElementById('news2Title').innerText = translations[selectedLang].news2Title;
-            document.getElementById('news2Desc').innerText = translations[selectedLang].news2Desc;
-            document.getElementById('news3Title').innerText = translations[selectedLang].news3Title;
-            document.getElementById('news3Desc').innerText = translations[selectedLang].news3Desc;
-            
-            document.getElementById('culture1Title').innerText = translations[selectedLang].culture1Title;
-            document.getElementById('culture1Desc').innerText = translations[selectedLang].culture1Desc;
-            document.getElementById('lit1Title').innerText = translations[selectedLang].lit1Title;
-            document.getElementById('lit1Desc').innerText = translations[selectedLang].lit1Desc;
-            document.getElementById('lit2Title').innerText = translations[selectedLang].lit2Title;
-            document.getElementById('lit2Desc').innerText = translations[selectedLang].lit2Desc;
+            document.getElementById('aboutSectionTitle').innerHTML = translations[selectedLang].aboutSectionTitle;
             
             document.getElementById('contactTitle').innerText = translations[selectedLang].contactTitle;
             document.getElementById('tgBotLabel').innerText = translations[selectedLang].tgBotLabel;

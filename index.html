@@ -16,6 +16,12 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.2);
         }
+        .lang-btn.active {
+            background-color: #f59e0b;
+            color: #020617;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between">
@@ -31,14 +37,20 @@
                 </div>
             </div>
 
-            <!-- Language Switcher & Admin Button -->
+            <!-- Language Switcher with Flags & Active State -->
             <div class="flex items-center gap-2">
-                <div class="bg-slate-800 p-1 rounded-lg flex gap-1 text-xs font-bold">
-                    <button onclick="changeLanguage('am')" class="px-2.5 py-1 rounded bg-amber-500 text-slate-950">AM</button>
-                    <button onclick="changeLanguage('om')" class="px-2.5 py-1 rounded hover:bg-slate-700">OM</button>
-                    <button onclick="changeLanguage('en')" class="px-2.5 py-1 rounded hover:bg-slate-700">EN</button>
+                <div class="bg-slate-800 p-1 rounded-xl flex gap-1 text-xs font-semibold border border-slate-700">
+                    <button id="btn-am" onclick="changeLanguage('am')" class="lang-btn active px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all">
+                        <span>🇪🇹</span> <span>AM</span>
+                    </button>
+                    <button id="btn-om" onclick="changeLanguage('om')" class="lang-btn px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white flex items-center gap-1.5 transition-all">
+                        <span>🌳</span> <span>OM</span>
+                    </button>
+                    <button id="btn-en" onclick="changeLanguage('en')" class="lang-btn px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white flex items-center gap-1.5 transition-all">
+                        <span>🇬🇧</span> <span>EN</span>
+                    </button>
                 </div>
-                <button onclick="toggleAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-500 px-3 py-1.5 rounded-lg text-xs font-semibold border border-amber-500/30 flex items-center gap-1">
+                <button onclick="toggleAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-500 px-3 py-1.5 rounded-xl text-xs font-semibold border border-amber-500/30 flex items-center gap-1">
                     <i class="fas fa-user-shield"></i>
                     <span data-i18n="adminBtn">አስተዳዳሪ</span>
                 </button>
@@ -322,6 +334,19 @@ This journey from a waste disposal site to a green paradise clearly showcases Me
 
         function changeLanguage(lang) {
             currentLang = lang;
+
+            // Highlight Active Language Button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-amber-500', 'text-slate-950', 'font-bold');
+                btn.classList.add('text-slate-300');
+            });
+            const activeBtn = document.getElementById('btn-' + lang);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.classList.remove('text-slate-300');
+            }
+
+            // Translate Text
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -329,6 +354,7 @@ This journey from a waste disposal site to a green paradise clearly showcases Me
                     el.innerText = translations[lang][key];
                 }
             });
+
             renderNews();
         }
 

@@ -42,7 +42,7 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <!-- Header Navigation -->
+    <!-- Header Navigation (ለሁሉም ተጠቃሚዎች የሚታይ) -->
     <header class="bg-slate-900 border-b border-amber-500/20 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center flex-wrap gap-3">
             <div class="flex items-center space-x-3 space-x-reverse">
@@ -60,7 +60,7 @@
                     </select>
                 </div>
 
-                <!-- Admin Button -->
+                <!-- Admin Access Button (ለአስተዳዳሪ ብቻ መግቢያ) -->
                 <button onclick="toggleAdminModal()" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 border border-amber-500/30 px-3 py-1.5 rounded-lg text-xs md:text-sm flex items-center gap-2 transition">
                     <i class="fas fa-lock"></i>
                     <span>አስተዳዳሪ</span>
@@ -121,7 +121,7 @@
                     <i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች
                 </h3>
                 <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Sample News Card -->
+                    <!-- Default News Card -->
                     <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden card-hover flex flex-col justify-between">
                         <div>
                             <img src="1776693450696.jpg" alt="News Image" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800'">
@@ -205,7 +205,7 @@
         </main>
     </div>
 
-    <!-- Read More / Full Post Modal -->
+    <!-- Read More / Full Post Modal (ለሁሉም ተጠቃሚዎች የሚከፈት) -->
     <div id="readMoreModal" class="modal flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-amber-500/30 rounded-3xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-4 shadow-2xl relative">
             <button onclick="closeReadMore()" class="absolute top-4 left-4 text-slate-400 hover:text-white bg-slate-950/80 rounded-full p-2 w-10 h-10 flex items-center justify-center">
@@ -217,7 +217,7 @@
         </div>
     </div>
 
-    <!-- Admin Panel Modal -->
+    <!-- Admin Panel Modal (ለአስተዳዳሪ ብቻ መረጃ መጫኛ) -->
     <div id="adminModal" class="modal flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-amber-500/30 rounded-3xl p-6 max-w-lg w-full space-y-4 shadow-2xl relative">
             <button onclick="toggleAdminModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white">
@@ -237,7 +237,7 @@
                 </button>
             </div>
 
-            <!-- Post Content Form -->
+            <!-- Post Content Form (የይለፍ ቃል ሲገባ ብቻ የሚከፈት መረጃ መጫኛ) -->
             <div id="postSection" class="space-y-4 hidden">
                 <div>
                     <label class="text-xs text-amber-400 font-bold block mb-1">ይዘቱ የሚለቀቅበትን ማውጫ ምረጥ</label>
@@ -314,7 +314,7 @@
 
         function loginAdmin() {
             const pass = document.getElementById('adminPass').value;
-            if (pass === '1234') { // ነባሪ የይለፍ ቃል
+            if (pass === '1234') { // ነባሪ የአስተዳዳሪ ይለፍ ቃል
                 document.getElementById('passSection').classList.add('hidden');
                 document.getElementById('postSection').classList.remove('hidden');
             } else {
@@ -344,7 +344,6 @@
                     `<div class="w-full h-48"><iframe class="w-full h-full" src="${video}" frameborder="0" allowfullscreen></iframe></div>` : 
                     `<img src="${img}" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800'">`;
 
-                // Safe quote escape for function string parameter
                 const safeTitle = title.replace(/'/g, "\\'");
                 const safeDesc = desc.replace(/'/g, "\\'").replace(/\n/g, "\\n");
 
@@ -366,7 +365,7 @@
                 targetContainer.prepend(newCard);
             }
 
-            // Reset Form & Close Modal
+            // Form Reset & Modal Close
             document.getElementById('postTitle').value = '';
             document.getElementById('postImg').value = '';
             document.getElementById('postVideo').value = '';
@@ -397,7 +396,7 @@
             document.getElementById('readMoreModal').style.display = 'none';
         }
 
-        // Newsletter Subscription Handler
+        // Newsletter Handler
         function subscribeNewsletter(e) {
             e.preventDefault();
             const email = document.getElementById('subscribeEmail').value;
@@ -405,10 +404,6 @@
                 alert('እናመሰግናለን! ' + email + ' በስኬት ተመዝግቧል። አዳዲስ ዜናዎች በኢሜይልዎ ይደርሱዎታል።');
                 document.getElementById('subscribeEmail').value = '';
             }
-        }
-
-        if (window.location.hash === '#admin') {
-            toggleAdminModal();
         }
     </script>
 </body>

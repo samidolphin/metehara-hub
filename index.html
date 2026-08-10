@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metehara Town News & Media Hub</title>
-    <!-- FontAwesome for icons -->
+    <title>Metehara Town Media & Information Hub</title>
+    <!-- FontAwesome icons for YouTube icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,6 +19,10 @@
             line-height: 1.6;
             padding: 20px;
         }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
         header {
             background: linear-gradient(135deg, #0056b3, #003366);
             color: white;
@@ -30,10 +34,7 @@
         }
         header h1 {
             font-size: 26px;
-            margin-bottom: 10px;
-        }
-        .social-links {
-            margin-top: 15px;
+            margin-bottom: 12px;
         }
         .social-btn {
             display: inline-flex;
@@ -41,7 +42,7 @@
             gap: 8px;
             background: #ff0000;
             color: white;
-            padding: 8px 16px;
+            padding: 8px 18px;
             text-decoration: none;
             border-radius: 20px;
             font-weight: bold;
@@ -50,10 +51,6 @@
         }
         .social-btn:hover {
             background: #cc0000;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
         }
         .news-card {
             background: white;
@@ -65,7 +62,7 @@
         .news-img {
             width: 100%;
             height: auto;
-            max-height: 480px;
+            max-height: 500px;
             object-fit: cover;
             display: block;
         }
@@ -109,28 +106,21 @@
     <div class="container">
         <header>
             <h1>Metehara Town Media & Information Hub</h1>
-            <div class="social-links">
-                <!-- የተስተካከለው የሳሚ ቲዩብ (Sami Tube) ዩቲዩብ ሊንክ -->
-                <a href="https://www.youtube.com/@samsontesfaye2670" target="_blank" class="social-btn">
-                    <i class="fab fa-youtube"></i> Sami Tube (ሳሚ ቲዩብ)
-                </a>
-            </div>
+            <a href="https://www.youtube.com/@samsontesfaye2670" target="_blank" class="social-btn">
+                <i class="fab fa-youtube"></i> Sami Tube (ሳሚ ቲዩብ)
+            </a>
         </header>
 
-        <!-- ዜናዎች የሚታዩበት ዋና ቦታ -->
+        <!-- ዜናዎች የሚታዩበት ቦታ -->
         <div id="news-container"></div>
     </div>
 
     <script>
-        // የዩቲዩብ ቻናል ሊንክ
-        const YOUTUBE_CHANNEL = "https://www.youtube.com/@samsontesfaye2670";
-
-        // የዜናዎች መረጃ (Data Array)
         const newsList = [
             {
                 id: 1,
+                // ምስሉ ካለበት ፎልደር ጋር ስሙ በትክክል መመሳሰሉን አረጋግጥ
                 img: "763318662_27813225308308215_4177930533862144705_n.jpg",
-                video: "",
                 am: {
                     badge: "አዲስ ልማት",
                     title: "የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ አዲስ የተገነባውን የበሰቃ ሎጅ ጎበኙ",
@@ -141,7 +131,6 @@
             {
                 id: 2,
                 img: "765035605_27839407149023364_6600243663990638006_n.jpg",
-                video: "",
                 am: {
                     badge: "አረንጓዴ ልማት",
                     title: "ከቆሻሻ ማከማቻነት ወደ አረንጓዴ ገነት፤ የበሰቃ ሐይቅ ዳርቻ ያስደነቀው የልማት ታሪክ!",
@@ -151,7 +140,6 @@
             }
         ];
 
-        // ዜናዎችን በገጹ ላይ የመስሪያ Function
         function displayNews() {
             const container = document.getElementById('news-container');
             container.innerHTML = newsList.map(item => `

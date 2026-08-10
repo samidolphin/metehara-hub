@@ -44,10 +44,23 @@
                 </button>
             </div>
         </div>
+
+        <!-- Navigation Bar -->
+        <nav class="bg-slate-900/90 border-t border-slate-800/80 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-4 overflow-x-auto flex gap-6 py-2.5 text-xs font-semibold text-slate-300 whitespace-nowrap">
+                <a href="#news" class="hover:text-amber-500 flex items-center gap-1.5"><i class="fas fa-newspaper text-amber-500"></i><span data-i18n="navNews">ወቅታዊ ዜናዎች</span></a>
+                <a href="#videos" class="hover:text-amber-500 flex items-center gap-1.5"><i class="fas fa-video text-amber-500"></i><span data-i18n="navVideos">ቪዲዮ ጋለሪ</span></a>
+                <a href="#culture" class="hover:text-amber-500 flex items-center gap-1.5"><i class="fas fa-landmark text-amber-500"></i><span data-i18n="navCulture">ባህል</span></a>
+                <a href="#tourism" class="hover:text-amber-500 flex items-center gap-1.5"><i class="fas fa-mountain-sun text-amber-500"></i><span data-i18n="navTourism">ቱሪዝም</span></a>
+                <a href="#philosophy" class="hover:text-amber-500 flex items-center gap-1.5"><i class="fas fa-brain text-amber-500"></i><span data-i18n="navPhilosophy">ፍልስፍና</span></a>
+                <a href="#literature" class="hover:text-amber-500 flex items-center gap-1.5"><i class="fas fa-book-open text-amber-500"></i><span data-i18n="navLiterature">ስነ-ጽሁፍ</span></a>
+                <a href="#about" class="hover:text-amber-500 flex items-center gap-1.5"><i class="fas fa-info-circle text-amber-500"></i><span data-i18n="navAbout">ስለ እኛ</span></a>
+            </div>
+        </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow space-y-10">
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow space-y-12">
 
         <!-- Hero Section -->
         <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 rounded-3xl border border-slate-800 text-center space-y-4">
@@ -55,19 +68,115 @@
             <p data-i18n="heroSubtitle" class="text-slate-300 max-w-2xl mx-auto text-sm md:text-base">የሳሚ-ቲዩብ ሚዲያ ወቅታዊ መረጃዎች፣ ባህል፣ ቱሪዝም እና ዕውቀት ማቀበያ ዲጂታል መድረክ</p>
         </section>
 
-        <!-- News Section Header -->
-        <section class="space-y-6">
+        <!-- News Section -->
+        <section id="news" class="space-y-6">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h3 data-i18n="secNews" class="text-2xl font-bold text-white flex items-center gap-2">
                     <i class="fas fa-newspaper text-amber-500"></i> ወቅታዊ ዜናዎች
                 </h3>
             </div>
+            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
 
-            <!-- News Dynamic Container -->
-            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Javascript Injection Spot -->
+        <!-- Videos Section -->
+        <section id="videos" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 data-i18n="secVideos" class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-video text-amber-500"></i> ቪዲዮ ጋለሪ
+                </h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden p-4 space-y-3">
+                    <div class="w-full h-52 bg-slate-800 rounded-xl flex items-center justify-center text-slate-500">
+                        <i class="fas fa-play-circle text-4xl text-amber-500"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white">የመተሃራ ከተማ የልማት እንቅስቃሴዎች</h4>
+                    <p class="text-slate-400 text-sm">በመተሃራ ከተማ አስተዳደር የተከናወኑ ዋና ዋና የመሰረተ ልማት እና የከተማ ውበት ስራዎች።</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden p-4 space-y-3">
+                    <div class="w-full h-52 bg-slate-800 rounded-xl flex items-center justify-center text-slate-500">
+                        <i class="fas fa-play-circle text-4xl text-amber-500"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white">የበሰቃ ሐይቅ እና የአካባቢ ጥበቃ</h4>
+                    <p class="text-slate-400 text-sm">የበሰቃ ሐይቅ ዳርቻ ልማት እና አረንጓዴ ስራዎች በምስል ቅንብር።</p>
+                </div>
             </div>
         </section>
+
+        <!-- Culture Section -->
+        <section id="culture" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 data-i18n="secCulture" class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-landmark text-amber-500"></i> ባህል
+                </h3>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
+                <h4 class="font-bold text-xl text-amber-500">የአካባቢው ባህላዊ እሴቶች እና ቅርስ</h4>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">መተሃራ እና አካባቢዋ የበለፀገ ባህላዊ ቅርስ እና የማህበረሰብ አንድነት መገለጫ የሆኑ በርካታ እሴቶች ባለቤት ናት።</p>
+            </div>
+        </section>
+
+        <!-- Tourism Section -->
+        <section id="tourism" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 data-i18n="secTourism" class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-mountain-sun text-amber-500"></i> ቱሪዝም
+                </h3>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
+                <h4 class="font-bold text-xl text-amber-500">የመተሃራ የቱሪዝም መዳረሻዎች</h4>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">የአዋሽ ብሔራዊ ፓርክ፣ የበሰቃ ሐይቅ ዳርቻ እና የፍል ውሃ መስህቦች ለመጎብኘት ተመራጭ የሆኑ ተፈጥሮአዊ ስፍራዎች ናቸው።</p>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 data-i18n="secPhilosophy" class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-brain text-amber-500"></i> ፍልስፍና
+                </h3>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
+                <h4 class="font-bold text-xl text-amber-500">የአስተሳሰብ እና የስነ-ልቦና እይታዎች</h4>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">በሰው ልጅ ንቃተ-ህሊና፣ አስተሳሰብ እና የህይወት እሴቶች ላይ የሚያተኩሩ ጥልቅ ውይይቶች እና ጽሁፎች።</p>
+            </div>
+        </section>
+
+        <!-- Literature Section -->
+        <section id="literature" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 data-i18n="secLiterature" class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-book-open text-amber-500"></i> ስነ-ጽሁፍ
+                </h3>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
+                <h4 class="font-bold text-xl text-amber-500">የስነ-ጽሁፍ እና የመፅሃፍት ዳሰሳ</h4>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">በቀለም እና በቃላት የተሳሉ ድንቅ መፅሃፍት፣ ግጥሞች እና የስነ-ጽሁፍ ስራዎች ዳሰሳ።</p>
+            </div>
+        </section>
+
+        <!-- Subscription Newsletter -->
+        <section class="bg-gradient-to-r from-amber-500/10 via-slate-900 to-amber-500/10 border border-amber-500/20 p-8 rounded-3xl text-center space-y-4">
+            <h3 data-i18n="subTitle" class="text-2xl font-bold text-amber-500">አዳዲስ ዜናዎች እንዲደርስዎ ይመዝገቡ</h3>
+            <p data-i18n="subDesc" class="text-slate-400 max-w-xl mx-auto text-sm">የኢሜይል አድራሻዎን በማስገባት ወቅታዊ መረጃዎችን እና የቪዲዮ ዝግጅቶችን በቀጥታ በኢሜይልዎ ያግኙ።</p>
+            <form onsubmit="subscribeNewsletter(event)" class="max-w-md mx-auto flex gap-2">
+                <input type="email" id="subscribeEmail" placeholder="ኢሜይልዎን ያስገቡ..." required class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white flex-grow focus:outline-none focus:border-amber-500">
+                <button type="submit" data-i18n="subBtn" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl text-sm hover:bg-amber-400">ይመዝገቡ</button>
+            </form>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 data-i18n="navAbout" class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-info-circle text-amber-500"></i> ስለ እኛ
+                </h3>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                <p data-i18n="aboutText" class="text-slate-300 leading-relaxed text-sm md:text-base">ሳሚ-ቲዩብ ሚዲያ በመተሃራ ከተማ እና አካባቢው የሚከናወኑ ልማቶችን፣ ባህላዊ እሴቶችን እና ወቅታዊ ዜናዎችን ፈጣንና እውነተኛ በሆነ መንገድ ለህብረተሰቡ የሚያደርስ የዲጂታል ሚዲያ መድረክ ነው።</p>
+            </div>
+        </section>
+
     </main>
 
     <!-- Modal for Read More Article -->
@@ -168,9 +277,9 @@ This journey from a waste disposal site to a green paradise clearly showcases Me
         ];
 
         const translations = {
-            am: { adminBtn: "አስተዳዳሪ", heroTitle: "እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!", heroSubtitle: "የሳሚ-ቲዩብ ሚዲያ ወቅታዊ መረጃዎች፣ ባህል፣ ቱሪዝም እና ዕውቀት ማቀበያ ዲጂታል መድረክ", secNews: "ወቅታዊ ዜናዎች", readMore: "ሙሉውን ያንብቡ", adminPanelTitle: "የአስተዳዳሪ መቆጣጠሪያ", passLabel: "የይለፍ ቃል አስገባ፡", loginBtn: "ይግቡ" },
-            om: { adminBtn: "Bulchaa", heroTitle: "Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataharaatti Nagaan Dhuftan!", heroSubtitle: "Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.", secNews: "Oduu Haaraa", readMore: "Guutuu Isaa Dubbisi", adminPanelTitle: "To'annoo Bulchaa", passLabel: "Jecha Darbiiti Galchaa:", loginBtn: "Seenaa" },
-            en: { adminBtn: "Admin", heroTitle: "Welcome to Metehara Town Information Hub!", heroSubtitle: "Sami-Tube Media digital platform for current news, culture, tourism, and knowledge sharing.", secNews: "Latest News", readMore: "Read Full Article", adminPanelTitle: "Admin Control Panel", passLabel: "Enter Password:", loginBtn: "Login" }
+            am: { adminBtn: "አስተዳዳሪ", navNews: "ወቅታዊ ዜናዎች", navVideos: "ቪዲዮ ጋለሪ", navCulture: "ባህል", navTourism: "ቱሪዝም", navPhilosophy: "ፍልስፍና", navLiterature: "ስነ-ጽሁፍ", navAbout: "ስለ እኛ", heroTitle: "እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!", heroSubtitle: "የሳሚ-ቲዩብ ሚዲያ ወቅታዊ መረጃዎች፣ ባህል፣ ቱሪዝም እና ዕውቀት ማቀበያ ዲጂታል መድረክ", secNews: "ወቅታዊ ዜናዎች", secVideos: "ቪዲዮ ጋለሪ", secCulture: "ባህል", secTourism: "ቱሪዝም", secPhilosophy: "ፍልስፍና", secLiterature: "ስነ-ጽሁፍ", readMore: "ሙሉውን ያንብቡ", subTitle: "አዳዲስ ዜናዎች እንዲደርስዎ ይመዝገቡ", subDesc: "የኢሜይል አድራሻዎን በማስገባት ወቅታዊ መረጃዎችን እና የቪዲዮ ዝግጅቶችን በቀጥታ በኢሜይልዎ ያግኙ።", subBtn: "ይመዝገቡ", aboutText: "ሳሚ-ቲዩብ ሚዲያ በመተሃራ ከተማ እና አካባቢው የሚከናወኑ ልማቶችን፣ ባህላዊ እሴቶችን እና ወቅታዊ ዜናዎችን ፈጣንና እውነተኛ በሆነ መንገድ ለህብረተሰቡ የሚያደርስ የዲጂታል ሚዲያ መድረክ ነው።", adminPanelTitle: "የአስተዳዳሪ መቆጣጠሪያ", passLabel: "የይለፍ ቃል አስገባ፡", loginBtn: "ይግቡ" },
+            om: { adminBtn: "Bulchaa", navNews: "Oduu Haaraa", navVideos: "Gulaala Viidiyoo", navCulture: "Aadaa", navTourism: "Turizimii", navPhilosophy: "Philosophy", navLiterature: "Og-barruu", navAbout: "Waa'ee Keenya", heroTitle: "Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataharaatti Nagaan Dhuftan!", heroSubtitle: "Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.", secNews: "Oduu Haaraa", secVideos: "Gulaala Viidiyoo", secCulture: "Aadaa", secTourism: "Turizimii", secPhilosophy: "Philosophy", secLiterature: "Og-barruu", readMore: "Guutuu Isaa Dubbisi", subTitle: "Oduu Haaraa Argachuuf Galmeeffadhaa", subDesc: "Teessoo imeeyilii keessaniin odeeffannoo haaraa fi qophiilee viidiyoo kallattiin argadhaa.", subBtn: "Galmeeffadhu", aboutText: "Sami-Tube Media odeeffannoo misoomaa, aadaa fi oduu haaraa Magaalaa Mataharaa fi naannoo isaa saffisaan hawaasa biraan gahuuf kan qophaa'edha.", adminPanelTitle: "To'annoo Bulchaa", passLabel: "Jecha Darbiiti Galchaa:", loginBtn: "Seenaa" },
+            en: { adminBtn: "Admin", navNews: "Latest News", navVideos: "Video Gallery", navCulture: "Culture", navTourism: "Tourism", navPhilosophy: "Philosophy", navLiterature: "Literature", navAbout: "About Us", heroTitle: "Welcome to Metehara Town Information Hub!", heroSubtitle: "Sami-Tube Media digital platform for current news, culture, tourism, and knowledge sharing.", secNews: "Latest News", secVideos: "Video Gallery", secCulture: "Culture", secTourism: "Tourism", secPhilosophy: "Philosophy", secLiterature: "Literature", readMore: "Read Full Article", subTitle: "Subscribe for Recent Updates", subDesc: "Enter your email address to receive latest news and video updates directly in your inbox.", subBtn: "Subscribe", aboutText: "Sami-Tube Media is a digital platform serving current news, culture, and development progress of Metehara Town and surrounding areas.", adminPanelTitle: "Admin Control Panel", passLabel: "Enter Password:", loginBtn: "Login" }
         };
 
         let currentLang = 'am';
@@ -288,6 +397,15 @@ This journey from a waste disposal site to a green paradise clearly showcases Me
 
         function closeReadMore() {
             document.getElementById('readMoreModal').style.display = 'none';
+        }
+
+        function subscribeNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('subscribeEmail').value;
+            if (email) {
+                alert('እናመሰግናለን! ' + email + ' በስኬት ተመዝግቧል።');
+                document.getElementById('subscribeEmail').value = '';
+            }
         }
 
         window.onload = function() {

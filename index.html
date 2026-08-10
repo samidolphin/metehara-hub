@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="am">
 <head>
@@ -59,7 +58,7 @@ HTML
             box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
         }
 
-        /* የተቆልቋይ ማውጫ ዲዛይን (Collapsible Accordion) */
+        /* የተቆልቋይ ማውጫ ዲዛይን */
         .menu-btn {
             width: 100%;
             display: flex;
@@ -110,7 +109,7 @@ HTML
     <header class="bg-slate-950 text-white shadow-lg sticky top-0 z-50 border-b-2 border-gold">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             
-            <!-- በስተግራ ጥግ የተደረገው የቢጫ መስመሮች ማውጫ ቁልፍ -->
+            <!-- በስተግራ ጥግ የተደረገው የማውጫ ቁልፍ -->
             <div class="flex items-center gap-3">
                 <button id="toggleMenuBtn" title="ማውጫ ክፈት/ዝጋ" class="text-amber-500 text-xl hover:text-amber-400 transition px-3 py-1.5 rounded-lg border border-amber-500/40 bg-slate-900 flex items-center gap-2">
                     <i class="fas fa-bars"></i>
@@ -131,10 +130,10 @@ HTML
         </div>
     </header>
 
-    <!-- Main Content Layout (ማውጫው በስተግራ ጥግ ላይ ይቀመጣል) -->
+    <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 w-full flex-grow grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        <!-- በስተግራ ጥግ የተቀመጠው ዋና ማውጫ (Top-Left Sidebar Menu) -->
+        <!-- በስተግራ ጥግ የተቀመጠው ዋና ማውጫ -->
         <aside id="sidebarMenu" class="lg:col-span-1 space-y-3 bg-slate-900/60 p-4 rounded-xl border border-amber-500/20 h-fit sticky top-20">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-2">
                 <h3 id="menuTitle" class="text-sm font-bold tracking-wider text-amber-500 uppercase flex items-center gap-2">
@@ -156,7 +155,19 @@ HTML
                     </div>
                 </div>
 
-                <!-- 2. ባህል -->
+                <!-- 2. ቪዲዮ ጋለሪ (አዲስ የተጨመረ) -->
+                <div>
+                    <button onclick="toggleSubmenu('subVideos', 'arrowVideos')" class="menu-btn">
+                        <span class="flex items-center gap-2"><i class="fas fa-video text-amber-500"></i> <span id="menuVideos">ቪዲዮ ጋለሪ</span></span>
+                        <i id="arrowVideos" class="fas fa-chevron-down arrow-icon text-xs"></i>
+                    </button>
+                    <div id="subVideos" class="submenu">
+                        <a href="#videoSection" id="subVideo1"><i class="fas fa-play-circle mr-1.5 text-amber-500"></i>የከተማ ልማት ቪዲዮዎች</a>
+                        <a href="#videoSection" id="subVideo2"><i class="fas fa-play-circle mr-1.5 text-amber-500"></i>የቱሪዝም እና ተፈጥሮ ቅንብሮች</a>
+                    </div>
+                </div>
+
+                <!-- 3. ባህል -->
                 <div>
                     <button onclick="toggleSubmenu('subCulture', 'arrowCulture')" class="menu-btn">
                         <span class="flex items-center gap-2"><i class="fas fa-masks-theater text-amber-500"></i> <span id="menuCulture">ባህል</span></span>
@@ -168,7 +179,7 @@ HTML
                     </div>
                 </div>
 
-                <!-- 3. ቱሪዝም -->
+                <!-- 4. ቱሪዝም -->
                 <div>
                     <button onclick="toggleSubmenu('subTourism', 'arrowTourism')" class="menu-btn">
                         <span class="flex items-center gap-2"><i class="fas fa-monument text-amber-500"></i> <span id="menuTourism">ቱሪዝም</span></span>
@@ -180,7 +191,7 @@ HTML
                     </div>
                 </div>
 
-                <!-- 4. ፍልስፍና -->
+                <!-- 5. ፍልስፍና -->
                 <div>
                     <button onclick="toggleSubmenu('subPhilosophy', 'arrowPhil')" class="menu-btn">
                         <span class="flex items-center gap-2"><i class="fas fa-brain text-amber-500"></i> <span id="menuPhilosophy">ፍልስፍና</span></span>
@@ -192,7 +203,7 @@ HTML
                     </div>
                 </div>
 
-                <!-- 5. ስነፅሁፍ -->
+                <!-- 6. ስነፅሁፍ -->
                 <div>
                     <button onclick="toggleSubmenu('subLiterature', 'arrowLit')" class="menu-btn">
                         <span class="flex items-center gap-2"><i class="fas fa-book-open text-amber-500"></i> <span id="menuLiterature">ስነፅሁፍ</span></span>
@@ -204,7 +215,7 @@ HTML
                     </div>
                 </div>
 
-                <!-- 6. ስለ እኛ -->
+                <!-- 7. ስለ እኛ -->
                 <div>
                     <button onclick="toggleSubmenu('subAbout', 'arrowAbout')" class="menu-btn">
                         <span class="flex items-center gap-2"><i class="fas fa-info-circle text-amber-500"></i> <span id="menuAbout">ስለ እኛ</span></span>
@@ -218,7 +229,7 @@ HTML
             </div>
         </aside>
 
-        <!-- በስተቀኝ በኩል የሚገኙት ዋና ዋና ይዘቶችና Slideshow -->
+        <!-- ዋና ዋና ይዘቶች -->
         <main class="lg:col-span-3 space-y-10">
             
             <!-- Slideshow Section -->
@@ -273,7 +284,37 @@ HTML
                 </div>
             </div>
 
-            <!-- 2. የባህል ክፍል -->
+            <!-- 2. የቪዲዮ ጋለሪ ክፍል (አዲስ የተጨመረ) -->
+            <div id="videoSection" class="scroll-mt-24">
+                <h3 id="videoSectionTitle" class="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
+                    <span class="w-2 h-5 bg-gold rounded-full"></span> 
+                    <span>የቪዲዮ ጋለሪ / Video Gallery</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="custom-card p-4">
+                        <div class="relative w-full h-48 bg-slate-900 rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 mb-3">
+                            <i class="fab fa-youtube text-red-600 text-5xl"></i>
+                            <a href="https://youtube.com/@samsontesfaye2670" target="_blank" class="absolute inset-0 bg-black/40 hover:bg-black/20 flex items-center justify-center text-white text-xs font-bold transition">
+                                <span class="bg-red-600 px-3 py-1.5 rounded-full flex items-center gap-2"><i class="fas fa-play"></i> ቪዲዮውን በዩቲዩብ ይመልከቱ</span>
+                            </a>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">የመተሃራ ከተማ የልማት እንቅስቃሴዎች</h4>
+                        <p class="text-slate-400 text-xs">በሳሚ-ቲዩብ ሚዲያ የተቀናበሩና የተዘጋጁ ልዩ የቪዲዮ ዘገባዎች።</p>
+                    </div>
+                    <div class="custom-card p-4">
+                        <div class="relative w-full h-48 bg-slate-900 rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 mb-3">
+                            <i class="fab fa-youtube text-red-600 text-5xl"></i>
+                            <a href="https://youtube.com/@samsontesfaye2670" target="_blank" class="absolute inset-0 bg-black/40 hover:bg-black/20 flex items-center justify-center text-white text-xs font-bold transition">
+                                <span class="bg-red-600 px-3 py-1.5 rounded-full flex items-center gap-2"><i class="fas fa-play"></i> ቪዲዮውን በዩቲዩብ ይመልከቱ</span>
+                            </a>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">የበሰቃ ሐይቅና የአካባቢው የቱሪዝም መስህቦች</h4>
+                        <p class="text-slate-400 text-xs">የተፈጥሮ ውበትና የልማት ስራዎች ጥንቅር የቪዲዮ ማጠቃለያ።</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. የባህል ክፍል -->
             <div id="cultureSection" class="scroll-mt-24">
                 <h3 id="cultureSectionTitle" class="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
                     <span class="w-2 h-5 bg-gold rounded-full"></span> 
@@ -285,7 +326,7 @@ HTML
                 </div>
             </div>
 
-            <!-- 3. የቱሪዝም ክፍል -->
+            <!-- 4. የቱሪዝም ክፍል -->
             <div id="tourismSection" class="scroll-mt-24">
                 <h3 id="tourismSectionTitle" class="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
                     <span class="w-2 h-5 bg-gold rounded-full"></span> 
@@ -317,7 +358,7 @@ HTML
                 </div>
             </div>
 
-            <!-- 4. የፍልስፍና ክፍል -->
+            <!-- 5. የፍልስፍና ክፍል -->
             <div id="philosophySection" class="scroll-mt-24">
                 <h3 id="philosophySectionTitle" class="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
                     <span class="w-2 h-5 bg-gold rounded-full"></span> 
@@ -330,7 +371,7 @@ HTML
                 </div>
             </div>
 
-            <!-- 5. የስነፅሁፍ ክፍል -->
+            <!-- 6. የስነፅሁፍ ክፍል -->
             <div id="literatureSection" class="scroll-mt-24">
                 <h3 id="litSectionTitle" class="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
                     <span class="w-2 h-5 bg-gold rounded-full"></span> 
@@ -343,7 +384,7 @@ HTML
                 </div>
             </div>
 
-            <!-- 6. ስለ እኛ ክፍል -->
+            <!-- 7. ስለ እኛ ክፍል -->
             <div id="aboutSection" class="scroll-mt-24">
                 <h3 id="aboutSectionTitle" class="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
                     <span class="w-2 h-5 bg-gold rounded-full"></span> 
@@ -353,6 +394,16 @@ HTML
                     <h4 class="text-base font-bold text-amber-400 mb-2"><i class="fas fa-bullhorn mr-2"></i>ሳሚ-ቲዩብ ሚዲያ እና ዲጂታል ኮሚኒኬሽን</h4>
                     <p class="text-slate-300 text-xs leading-relaxed">ሳሚ-ቲዩብ ሚዲያ በመተሃራ ከተማ እና አካባቢዋ የሚከናወኑ ልማቶችን፣ ባህላዊ እሴቶችን፣ እና ወቅታዊ ዜናዎችን ፈጣን እና እውነተኛ በሆነ መንገድ ለህብረተሰቡ የሚያደርስ የዲጂታል ሚዲያ መድረክ ነው።</p>
                 </div>
+            </div>
+
+            <!-- 8. ለዜና መጽሔት የመመዝገቢያ ክፍል (Newsletter Subscription) (አዲስ የተጨመረ) -->
+            <div class="custom-card p-6 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border border-amber-500/30 text-center">
+                <h4 class="text-lg font-bold text-amber-500 mb-2"><i class="fas fa-paper-plane mr-2"></i>በኢሜይልዎ አዳዲስ መረጃዎችን ያግኙ</h4>
+                <p class="text-slate-400 text-xs mb-4">የወቅታዊ ዜናዎች እና የቪዲዮ ዝግጅቶች ጥንቅር በኢሜይልዎ እንዲደርስዎ ይመዝገቡ።</p>
+                <form onsubmit="event.preventDefault(); alert('ምዝገባዎ በተሳካ ሁኔታ ተጠናቋል!');" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+                    <input type="email" placeholder="ኢሜይልዎን ያስገቡ..." required class="bg-slate-900 text-xs text-white border border-slate-700 rounded-lg px-4 py-2.5 flex-grow focus:outline-none focus:border-amber-500">
+                    <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-lg transition">ተመዝገብ</button>
+                </form>
             </div>
 
         </main>
@@ -441,6 +492,7 @@ HTML
                 slide3Subtitle: "ፈጣን መረጃዎች ማህበረሰቡን ተደራሽ የሚያደርጉበት መድረክ",
                 menuTitle: "<i class='fas fa-list-ul mr-2'></i> ማውጫ",
                 menuNews: "ወቅታዊ ዜናዎች",
+                menuVideos: "ቪዲዮ ጋለሪ",
                 menuCulture: "ባህል",
                 menuTourism: "ቱሪዝም",
                 menuPhilosophy: "ፍልስፍና",
@@ -448,6 +500,8 @@ HTML
                 menuAbout: "ስለ እኛ",
                 subNews1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>በሰቃ ሐይቅ ዳርቻ ልማት",
                 subNews2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>የመጠጥ ውሃ ፕሮጀክት",
+                subVideo1: "<i class='fas fa-play-circle mr-1.5 text-amber-500'></i>የከተማ ልማት ቪዲዮዎች",
+                subVideo2: "<i class='fas fa-play-circle mr-1.5 text-amber-500'></i>የቱሪዝም እና ተፈጥሮ ቅንብሮች",
                 subCulture1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>የአካባቢው ባህላዊ እሴቶች",
                 subCulture2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>የሕዝብ ቅርሶችና ልማዶች",
                 subTourism1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>የብርቱካን እርሻ ልማት",
@@ -459,6 +513,7 @@ HTML
                 subAbout1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>የሳሚ-ቲዩብ ሚዲያ ራዕይ",
                 subAbout2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>የመተሃራ ከተማ ኮሚኒኬሽን",
                 newsSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>ወቅታዊ ዜናዎች</span>",
+                videoSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>የቪዲዮ ጋለሪ / Video Gallery</span>",
                 cultureSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>ባህል</span>",
                 tourismSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>ቱሪዝም</span>",
                 philosophySectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>ፍልስፍና</span>",
@@ -480,6 +535,7 @@ HTML
                 slide3Subtitle: "Odeeffannoon dafee hawaasa qaqqabu itti hojjetamu",
                 menuTitle: "<i class='fas fa-list-ul mr-2'></i> Baafata",
                 menuNews: "Oduuwwan Waqtaawaa",
+                menuVideos: "Gaalarii Vidiyoo",
                 menuCulture: "Aadaa",
                 menuTourism: "Turiizimii",
                 menuPhilosophy: "Fiilsoofii",
@@ -487,6 +543,8 @@ HTML
                 menuAbout: "Sabaaba Keenya",
                 subNews1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Misooma Qarqara Basakaa",
                 subNews2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Pirojekti Bishaan Dhugaatii",
+                subVideo1: "<i class='fas fa-play-circle mr-1.5 text-amber-500'></i>Viidiyoowwan Misoomaa",
+                subVideo2: "<i class='fas fa-play-circle mr-1.5 text-amber-500'></i>Viidiyoowwan Turiizimii",
                 subCulture1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Aadaa fi Dudhaa",
                 subCulture2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Hambaawwan Naannoo",
                 subTourism1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Misooma Burtukaana",
@@ -498,6 +556,7 @@ HTML
                 subAbout1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Mul'ata Sami-Tube Media",
                 subAbout2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Kominikeeshinii Mataharaa",
                 newsSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Oduuwwan Waqtaawaa</span>",
+                videoSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Gaalarii Vidiyoo</span>",
                 cultureSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Aadaa</span>",
                 tourismSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Turiizimii</span>",
                 philosophySectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Fiilsoofii</span>",
@@ -519,6 +578,7 @@ HTML
                 slide3Subtitle: "A platform where timely information reaches the community efficiently",
                 menuTitle: "<i class='fas fa-list-ul mr-2'></i> Navigation Menu",
                 menuNews: "Current News",
+                menuVideos: "Video Gallery",
                 menuCulture: "Culture",
                 menuTourism: "Tourism",
                 menuPhilosophy: "Philosophy",
@@ -526,6 +586,8 @@ HTML
                 menuAbout: "About Us",
                 subNews1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Lake Basaka Shore Dev.",
                 subNews2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Water Supply Project",
+                subVideo1: "<i class='fas fa-play-circle mr-1.5 text-amber-500'></i>Development Videos",
+                subVideo2: "<i class='fas fa-play-circle mr-1.5 text-amber-500'></i>Tourism Highlights",
                 subCulture1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Local Heritage",
                 subCulture2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Cultural Values",
                 subTourism1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Orange Farming",
@@ -537,6 +599,7 @@ HTML
                 subAbout1: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Sami-Tube Vision",
                 subAbout2: "<i class='fas fa-caret-right mr-1.5 text-amber-500'></i>Metehara Communication",
                 newsSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Current News</span>",
+                videoSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Video Gallery</span>",
                 cultureSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Culture</span>",
                 tourismSectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Tourism</span>",
                 philosophySectionTitle: "<span class='w-2 h-5 bg-gold rounded-full'></span> <span>Philosophy</span>",
@@ -562,6 +625,7 @@ HTML
             
             document.getElementById('menuTitle').innerHTML = translations[selectedLang].menuTitle;
             document.getElementById('menuNews').innerText = translations[selectedLang].menuNews;
+            document.getElementById('menuVideos').innerText = translations[selectedLang].menuVideos;
             document.getElementById('menuCulture').innerText = translations[selectedLang].menuCulture;
             document.getElementById('menuTourism').innerText = translations[selectedLang].menuTourism;
             document.getElementById('menuPhilosophy').innerText = translations[selectedLang].menuPhilosophy;
@@ -570,6 +634,8 @@ HTML
 
             document.getElementById('subNews1').innerHTML = translations[selectedLang].subNews1;
             document.getElementById('subNews2').innerHTML = translations[selectedLang].subNews2;
+            document.getElementById('subVideo1').innerHTML = translations[selectedLang].subVideo1;
+            document.getElementById('subVideo2').innerHTML = translations[selectedLang].subVideo2;
             document.getElementById('subCulture1').innerHTML = translations[selectedLang].subCulture1;
             document.getElementById('subCulture2').innerHTML = translations[selectedLang].subCulture2;
             document.getElementById('subTourism1').innerHTML = translations[selectedLang].subTourism1;
@@ -582,6 +648,7 @@ HTML
             document.getElementById('subAbout2').innerHTML = translations[selectedLang].subAbout2;
             
             document.getElementById('newsSectionTitle').innerHTML = translations[selectedLang].newsSectionTitle;
+            document.getElementById('videoSectionTitle').innerHTML = translations[selectedLang].videoSectionTitle;
             document.getElementById('cultureSectionTitle').innerHTML = translations[selectedLang].cultureSectionTitle;
             document.getElementById('tourismSectionTitle').innerHTML = translations[selectedLang].tourismSectionTitle;
             document.getElementById('philosophySectionTitle').innerHTML = translations[selectedLang].philosophySectionTitle;

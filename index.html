@@ -1,6 +1,118 @@
-<!-- Script Block for Multi-lingual Dynamic News & UI -->
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metehara Town Administration & Media Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header Section -->
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-amber-500 text-slate-950 font-black p-2 rounded-xl text-xl">SAMI</div>
+                <div>
+                    <h1 class="font-bold text-lg leading-none">Metehara Town Hub</h1>
+                    <p class="text-xs text-amber-500 font-medium">Sami-Tube Media & Information Center</p>
+                </div>
+            </div>
+
+            <!-- Language Switcher & Admin Button -->
+            <div class="flex items-center gap-2">
+                <div class="bg-slate-800 p-1 rounded-lg flex gap-1 text-xs font-bold">
+                    <button onclick="changeLanguage('am')" class="px-2.5 py-1 rounded bg-amber-500 text-slate-950">AM</button>
+                    <button onclick="changeLanguage('om')" class="px-2.5 py-1 rounded hover:bg-slate-700">OM</button>
+                    <button onclick="changeLanguage('en')" class="px-2.5 py-1 rounded hover:bg-slate-700">EN</button>
+                </div>
+                <button onclick="toggleAdminModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-500 px-3 py-1.5 rounded-lg text-xs font-semibold border border-amber-500/30 flex items-center gap-1">
+                    <i class="fas fa-user-shield"></i>
+                    <span data-i18n="adminBtn">አስተዳዳሪ</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow space-y-10">
+
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 rounded-3xl border border-slate-800 text-center space-y-4">
+            <h2 data-i18n="heroTitle" class="text-3xl md:text-4xl font-extrabold text-amber-500">እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!</h2>
+            <p data-i18n="heroSubtitle" class="text-slate-300 max-w-2xl mx-auto text-sm md:text-base">የሳሚ-ቲዩብ ሚዲያ ወቅታዊ መረጃዎች፣ ባህል፣ ቱሪዝም እና ዕውቀት ማቀበያ ዲጂታል መድረክ</p>
+        </section>
+
+        <!-- News Section Header -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 data-i18n="secNews" class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-newspaper text-amber-500"></i> ወቅታዊ ዜናዎች
+                </h3>
+            </div>
+
+            <!-- News Dynamic Container -->
+            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript Injection Spot -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Read More Article -->
+    <div id="readMoreModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-4 relative">
+            <button onclick="closeReadMore()" class="absolute top-4 right-4 bg-slate-800 text-slate-400 hover:text-white rounded-full w-8 h-8 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="readMoreMedia"></div>
+            <h3 id="readMoreTitle" class="text-2xl font-bold text-amber-500 leading-snug"></h3>
+            <p id="readMoreDesc" class="text-slate-300 whitespace-pre-line text-sm md:text-base leading-relaxed"></p>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 space-y-4 relative">
+            <button onclick="toggleAdminModal()" class="absolute top-4 right-4 bg-slate-800 text-slate-400 hover:text-white rounded-full w-8 h-8 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 data-i18n="adminPanelTitle" class="text-xl font-bold text-amber-500">የአስተዳዳሪ መቆጣጠሪያ</h3>
+            
+            <div id="passSection" class="space-y-3">
+                <label data-i18n="passLabel" class="text-sm text-slate-300 block">የይለፍ ቃል አስገባ፡</label>
+                <input type="password" id="adminPass" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-amber-500">
+                <button onclick="loginAdmin()" data-i18n="loginBtn" class="w-full bg-amber-500 text-slate-950 font-bold py-3 rounded-xl hover:bg-amber-400">ይግቡ</button>
+            </div>
+
+            <div id="postSection" class="hidden space-y-3">
+                <input type="text" id="postTitle" placeholder="የዜናው ርዕስ" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white">
+                <input type="text" id="postImg" placeholder="የምስል ፋይል ስም (ምሳሌ: image.jpg)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white">
+                <input type="text" id="postVideo" placeholder="የቪዲዮ YouTube Embed Link (ካለ)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white">
+                <textarea id="postDesc" placeholder="ሙሉ የዜናው ዝርዝር..." class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white h-32"></textarea>
+                <button onclick="addNewsPost()" class="w-full bg-amber-500 text-slate-950 font-bold py-3 rounded-xl hover:bg-amber-400">ለጥፍ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-slate-500 text-sm">
+        <p>© 2026 Sami-Tube Media & Metehara Town Administration. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Multi-lingual Dynamic Logic -->
     <script>
-        // 1. Multi-lingual News Data Array
         const newsList = [
             {
                 id: 1,
@@ -55,100 +167,14 @@ This journey from a waste disposal site to a green paradise clearly showcases Me
             }
         ];
 
-        // 2. UI Translation Dictionary
         const translations = {
-            am: {
-                adminBtn: "አስተዳዳሪ",
-                menuTitle: "ማውጫ",
-                navNews: "ወቅታዊ ዜናዎች",
-                navVideos: "ቪዲዮ ጋለሪ",
-                navCulture: "ባህል",
-                navTourism: "ቱሪዝም",
-                navPhilosophy: "ፍልስፍና",
-                navLiterature: "ስነ-ጽሁፍ",
-                navAbout: "ስለ እኛ",
-                heroTitle: "እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!",
-                heroSubtitle: "የሳሚ-ቲዩብ ሚዲያ ወቅታዊ መረጃዎች፣ ባህል፣ ቱሪዝም እና ዕውቀት ማቀበያ ዲጂታል መድረክ",
-                secNews: "ወቅታዊ ዜናዎች",
-                secVideos: "ቪዲዮ ጋለሪ",
-                secCulture: "ባህል",
-                secTourism: "ቱሪዝም",
-                secPhilosophy: "ፍልስፍና",
-                secLiterature: "ስነ-ጽሁፍ",
-                readMore: "ሙሉውን ያንብቡ",
-                subTitle: "አዳዲስ ዜናዎች እንዲደርስዎ ይመዝገቡ",
-                subDesc: "የኢሜይል አድራሻዎን በማስገባት ወቅታዊ መረጃዎችን እና የቪዲዮ ዝግጅቶችን በቀጥታ በኢሜይልዎ ያግኙ።",
-                subBtn: "ይመዝገቡ",
-                aboutText: "ሳሚ-ቲዩብ ሚዲያ በመተሃራ ከተማ እና አካባቢው የሚከናወኑ ልማቶችን፣ ባህላዊ እሴቶችን እና ወቅታዊ ዜናዎችን ፈጣንና እውነተኛ በሆነ መንገድ ለህብረተሰቡ የሚያደርስ የዲጂታል ሚዲያ መድረክ ነው።",
-                quickLinks: "ፈጣን ማውጫዎች",
-                contactUs: "እኛን ለማግኘት",
-                adminPanelTitle: "የአስተዳዳሪ መቆጣጠሪያ",
-                passLabel: "የይለፍ ቃል አስገባ፡",
-                loginBtn: "ይግቡ"
-            },
-            om: {
-                adminBtn: "Bulchaa",
-                menuTitle: "Baafata",
-                navNews: "Oduu Haaraa",
-                navVideos: "Gulaala Viidiyoo",
-                navCulture: "Aadaa",
-                navTourism: "Turizimii",
-                navPhilosophy: "Philosophy",
-                navLiterature: "Og-barruu",
-                navAbout: "Waa'ee Keenya",
-                heroTitle: "Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataharaatti Nagaan Dhuftan!",
-                heroSubtitle: "Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.",
-                secNews: "Oduu Haaraa",
-                secVideos: "Gulaala Viidiyoo",
-                secCulture: "Aadaa",
-                secTourism: "Turizimii",
-                secPhilosophy: "Philosophy",
-                secLiterature: "Og-barruu",
-                readMore: "Guutuu Isaa Dubbisi",
-                subTitle: "Oduu Haaraa Argachuuf Galmeeffadhaa",
-                subDesc: "Teessoo imeeyilii keessaniin odeeffannoo haaraa fi qophiilee viidiyoo kallattiin argadhaa.",
-                subBtn: "Galmeeffadhu",
-                aboutText: "Sami-Tube Media odeeffannoo misoomaa, aadaa fi oduu haaraa Magaalaa Mataharaa fi naannoo isaa saffisaan hawaasa biraan gahuuf kan qophaa'edha.",
-                quickLinks: "Baafata Saffisaa",
-                contactUs: "Nu Quunnamuuf",
-                adminPanelTitle: "To'annoo Bulchaa",
-                passLabel: "Jecha Darbiiti Galchaa:",
-                loginBtn: "Seenaa"
-            },
-            en: {
-                adminBtn: "Admin",
-                menuTitle: "Menu",
-                navNews: "Latest News",
-                navVideos: "Video Gallery",
-                navCulture: "Culture",
-                navTourism: "Tourism",
-                navPhilosophy: "Philosophy",
-                navLiterature: "Literature",
-                navAbout: "About Us",
-                heroTitle: "Welcome to Metehara Town Information Hub!",
-                heroSubtitle: "Sami-Tube Media digital platform for current news, culture, tourism, and knowledge sharing.",
-                secNews: "Latest News",
-                secVideos: "Video Gallery",
-                secCulture: "Culture",
-                secTourism: "Tourism",
-                secPhilosophy: "Philosophy",
-                secLiterature: "Literature",
-                readMore: "Read Full Article",
-                subTitle: "Subscribe for Recent Updates",
-                subDesc: "Enter your email address to receive latest news and video updates directly in your inbox.",
-                subBtn: "Subscribe",
-                aboutText: "Sami-Tube Media is a digital platform serving current news, culture, and development progress of Metehara Town and surrounding areas.",
-                quickLinks: "Quick Links",
-                contactUs: "Contact Us",
-                adminPanelTitle: "Admin Control Panel",
-                passLabel: "Enter Password:",
-                loginBtn: "Login"
-            }
+            am: { adminBtn: "አስተዳዳሪ", heroTitle: "እንኳን ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጣችሁ!", heroSubtitle: "የሳሚ-ቲዩብ ሚዲያ ወቅታዊ መረጃዎች፣ ባህል፣ ቱሪዝም እና ዕውቀት ማቀበያ ዲጂታል መድረክ", secNews: "ወቅታዊ ዜናዎች", readMore: "ሙሉውን ያንብቡ", adminPanelTitle: "የአስተዳዳሪ መቆጣጠሪያ", passLabel: "የይለፍ ቃል አስገባ፡", loginBtn: "ይግቡ" },
+            om: { adminBtn: "Bulchaa", heroTitle: "Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataharaatti Nagaan Dhuftan!", heroSubtitle: "Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.", secNews: "Oduu Haaraa", readMore: "Guutuu Isaa Dubbisi", adminPanelTitle: "To'annoo Bulchaa", passLabel: "Jecha Darbiiti Galchaa:", loginBtn: "Seenaa" },
+            en: { adminBtn: "Admin", heroTitle: "Welcome to Metehara Town Information Hub!", heroSubtitle: "Sami-Tube Media digital platform for current news, culture, tourism, and knowledge sharing.", secNews: "Latest News", readMore: "Read Full Article", adminPanelTitle: "Admin Control Panel", passLabel: "Enter Password:", loginBtn: "Login" }
         };
 
         let currentLang = 'am';
 
-        // 3. Render News Dynamic Multi-lingual Cards
         function renderNews() {
             const container = document.getElementById('news-container');
             if (!container) return;
@@ -185,7 +211,6 @@ This journey from a waste disposal site to a green paradise clearly showcases Me
             });
         }
 
-        // 4. Change Language Function
         function changeLanguage(lang) {
             currentLang = lang;
             const elements = document.querySelectorAll('[data-i18n]');
@@ -214,7 +239,6 @@ This journey from a waste disposal site to a green paradise clearly showcases Me
         }
 
         function addNewsPost() {
-            const category = document.getElementById('postCategory').value;
             const title = document.getElementById('postTitle').value;
             const img = document.getElementById('postImg').value || 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800';
             const desc = document.getElementById('postDesc').value;
@@ -266,16 +290,9 @@ This journey from a waste disposal site to a green paradise clearly showcases Me
             document.getElementById('readMoreModal').style.display = 'none';
         }
 
-        function subscribeNewsletter(e) {
-            e.preventDefault();
-            const email = document.getElementById('subscribeEmail').value;
-            if (email) {
-                alert('እናመሰግናለን! ' + email + ' በስኬት ተመዝግቧል።');
-                document.getElementById('subscribeEmail').value = '';
-            }
-        }
-
         window.onload = function() {
             renderNews();
         };
     </script>
+</body>
+</html>

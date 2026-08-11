@@ -7,10 +7,10 @@
     <style>
         body { font-family: 'Abyssinica SIL', serif; background-color: #f4f4f9; margin: 0; padding: 0; }
         header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
-        .admin-section { text-align: center; margin: 20px; }
+        .admin-section { text-align: center; margin: 20px; padding: 15px; background: #ddd; border-radius: 10px; }
         
         /* Gallery */
-        .gallery-container { width: 80%; margin: auto; height: 350px; overflow: hidden; position: relative; border-radius: 10px; }
+        .gallery-container { width: 80%; margin: 40px auto; height: 350px; overflow: hidden; position: relative; border-radius: 10px; }
         .slide { width: 100%; height: 100%; background-size: cover; background-position: center; position: absolute; opacity: 0; transition: opacity 1s ease-in-out; }
         .slide.active { opacity: 1; }
 
@@ -33,16 +33,15 @@
     <h1>እንኳን ወደ መታሃራ መረጃ ማዕከል በደህና መጡ</h1>
 </header>
 
-<!-- Admin Section (Dropdown) -->
+<!-- Admin Section -->
 <div class="admin-section">
     <h3>አድሚን: መረጃ መጫኛ</h3>
     <select id="contentCategory">
         <option value="news">ወቅታዊ ዜና</option>
         <option value="culture">ባህልና ወግ</option>
         <option value="tourism">የተፈጥሮ ፀጋ</option>
-        <option value="events">ቱሪዝም</option>
     </select>
-    <button onclick="alert('ክፍል ' + document.getElementById('contentCategory').value + ' ተመርጧል። ፋይሎችን ይስቀሉ')">ይዘት ይጫኑ</button>
+    <button onclick="alert('ክፍል ' + document.getElementById('contentCategory').value + ' ተመርጧል። ይዘትዎን ይስቀሉ።')">ይዘት ይጫኑ</button>
 </div>
 
 <!-- Auto-Sliding Gallery -->
@@ -79,7 +78,7 @@
         slides[index].classList.remove('active');
         index = (index + 1) % slides.length;
         slides[index].classList.add('active');
-    }, 3000); // በየ 3 ሰከንዱ ይቀያይራል
+    }, 3000);
 </script>
 
 </body>

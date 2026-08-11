@@ -2,254 +2,91 @@
 <html lang="am">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mataaharaa Town Hub | መታሃራ መረጃ ማዕከል</title>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #e67e22;
-            --bg-color: #f4f4f9;
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .lang-switch select {
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-        }
-
-        .admin-card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--accent-color);
-            margin-bottom: 30px;
-        }
-
-        .admin-form {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .admin-form input, .admin-form select, .admin-form button {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .admin-form button {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .slider-box {
-            position: relative;
-            height: 380px;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-            background: #000;
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide-caption {
-            position: absolute;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.75);
-            color: white;
-            width: 100%;
-            padding: 15px 20px;
-            box-sizing: border-box;
-        }
-
-        .news-feed {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .post-item {
-            border-bottom: 1px solid #eee;
-            padding: 12px 0;
-        }
+        :root { --primary-color: #2c3e50; --accent-color: #e67e22; }
+        body { font-family: sans-serif; background: #f4f4f9; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; }
+        .admin-card { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .admin-form { display: grid; gap: 10px; }
+        .slider-box { position: relative; height: 350px; overflow: hidden; background: #000; border-radius: 10px; }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s; background-size: cover; background-position: center; }
+        .slide.active { opacity: 1; }
+        .post-item { background: white; padding: 15px; margin: 10px 0; cursor: pointer; border: 1px solid #ddd; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1 id="site-title">የመታሃራ ከተማ መረጃ ማዕከል (Mataaharaa Hub)</h1>
-    <div class="lang-switch">
-        <select id="languageSelect" onchange="changeLanguage()">
-            <option value="am">አማርኛ</option>
-            <option value="om">Afaan Oromoo</option>
-            <option value="en">English</option>
-        </select>
-    </div>
-</header>
-
 <div class="container">
+    <!-- አድሚን ፓነል -->
     <div class="admin-card">
-        <h3 id="admin-title">⚙️ አድሚን ፓነል (አዲስ መረጃ መጫኛ)</h3>
+        <h3>⚙️ አዲስ ዜና እና ፎቶዎች መጫኛ</h3>
         <div class="admin-form">
-            <select id="postCategory">
-                <option value="news" class="opt-news">ወቅታዊ ዜና</option>
-                <option value="culture" class="opt-culture">ባህልና ቱሪዝም</option>
-                <option value="dev" class="opt-dev">የልማት እንቅስቃሴ</option>
-            </select>
-            <input type="text" id="postTitle" placeholder="የዜናው/መረጃው ርዕስ...">
-            <button onclick="publishPost()" id="btn-publish">ይዘት ልቀቅ (Publish)</button>
+            <input type="text" id="pTitle" placeholder="የዜናው ርዕስ">
+            <input type="text" id="img1" placeholder="የፎቶ 1 ሊንክ (URL)">
+            <input type="text" id="img2" placeholder="የፎቶ 2 ሊንክ (URL)">
+            <input type="text" id="img3" placeholder="የፎቶ 3 ሊንክ (URL)">
+            <button onclick="addPost()">ዜናውን ለቀቅ</button>
         </div>
     </div>
 
+    <!-- ሞሽን ስላይደር -->
     <div class="slider-box" id="slider">
-        <div class="slide active" style="background-image: url('1776693450696.jpg');">
-            <div class="slide-caption" id="cap-1">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ወቅታዊ መግለጫ</div>
-        </div>
-        <div class="slide" style="background-image: url('1776693453243.jpg');">
-            <div class="slide-caption" id="cap-2">የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ምልከታ</div>
-        </div>
-        <div class="slide" style="background-image: url('1776693457106.jpg');">
-            <div class="slide-caption" id="cap-3">የመታሃራ ከተማ አዳዲስ የልማትና የኮሪደር ስራዎች እንቅስቃሴ</div>
-        </div>
+        <div class="slide active" id="s1"></div>
+        <div class="slide" id="s2"></div>
+        <div class="slide" id="s3"></div>
     </div>
 
-    <div class="news-feed">
-        <h3 id="feed-title">📌 የቅርብ ጊዜ የተጫኑ መረጃዎች</h3>
-        <div id="postsContainer">
-            <div class="post-item">
-                <small style="color: var(--accent-color);">[ወቅታዊ ዜና]</small>
-                <h4>እንኳን ወደ አዲሱ የመታሃራ ከተማ መረጃ ማዕከል በደህና መጡ!</h4>
-            </div>
-        </div>
-    </div>
+    <!-- የዜና ዝርዝር -->
+    <div id="newsList"></div>
 </div>
 
 <script>
-    const translations = {
-        am: {
-            title: "የመታሃራ ከተማ መረጃ ማዕከል (Mataaharaa Hub)",
-            adminTitle: "⚙️ አድሚን ፓነል (አዲስ መረጃ መጫኛ)",
-            placeholder: "የዜናው/መረጃው ርዕስ...",
-            btnPublish: "ይዘት ልቀቅ (Publish)",
-            feedTitle: "📌 የቅርብ ጊዜ የተጫኑ መረጃዎች",
-            optNews: "ወቅታዊ ዜና",
-            optCulture: "ባህልና ቱሪዝም",
-            optDev: "የልማት እንቅስቃሴ",
-            cap1: "የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ወቅታዊ መግለጫ",
-            cap2: "የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ምልከታ",
-            cap3: "የመታሃራ ከተማ አዳዲስ የልማትና የኮሪደር ስራዎች እንቅስቃሴ"
-        },
-        om: {
-            title: "Giddu-gala Odeeffannoo Magaalaa Mataaharaa",
-            adminTitle: "⚙️ Paanaalii Admin (Odeeffannoo Haaraa Maxxansuu)",
-            placeholder: "Mata duree odeeffannoo...",
-            btnPublish: "Maxxansi (Publish)",
-            feedTitle: "📌 Odeeffannoowwan Dhihoo Maxxansaman",
-            optNews: "Oduu Ammee",
-            optCulture: "Aadaa fi Tuurizimii",
-            optDev: "Sochii Misoomaa",
-            cap1: "Ibsa Haala Yeroo Pirezidaantii Naannoo Oromiyaa Obbo Shimallis Abdiisaa",
-            cap2: "Dawwanna Kantiibaa Magaalaa Mataaharaa Obbo Addisuu Waaqo",
-            cap3: "Misooma Koriidarii fi Sochii Haaraa Magaalaa Mataaharaa"
-        },
-        en: {
-            title: "Mataaharaa Town Information Hub",
-            adminTitle: "⚙️ Admin Panel (Post New Content)",
-            placeholder: "Enter title or description...",
-            btnPublish: "Publish Content",
-            feedTitle: "📌 Recent Updates",
-            optNews: "Current News",
-            optCulture: "Culture & Tourism",
-            optDev: "Development Activity",
-            cap1: "Oromia Regional President Shimelis Abdisa Current Briefing",
-            cap2: "Mataaharaa Town Mayor Addisu Wako Development Inspection",
-            cap3: "Mataaharaa Town Corridor Development & Progress"
-        }
-    };
+    let posts = [];
+    let currentSlide = 0;
+    let slideInterval;
 
-    function changeLanguage() {
-        const lang = document.getElementById('languageSelect').value;
-        const t = translations[lang];
-        document.getElementById('site-title').innerText = t.title;
-        document.getElementById('admin-title').innerText = t.adminTitle;
-        document.getElementById('postTitle').placeholder = t.placeholder;
-        document.getElementById('btn-publish').innerText = t.btnPublish;
-        document.getElementById('feed-title').innerText = t.feedTitle;
-        document.querySelector('.opt-news').innerText = t.optNews;
-        document.querySelector('.opt-culture').innerText = t.optCulture;
-        document.querySelector('.opt-dev').innerText = t.optDev;
-        document.getElementById('cap-1').innerText = t.cap1;
-        document.getElementById('cap-2').innerText = t.cap2;
-        document.getElementById('cap-3').innerText = t.cap3;
+    function addPost() {
+        const post = {
+            title: document.getElementById('pTitle').value,
+            images: [
+                document.getElementById('img1').value,
+                document.getElementById('img2').value,
+                document.getElementById('img3').value
+            ]
+        };
+        posts.push(post);
+        renderPosts();
     }
 
-    function publishPost() {
-        const titleInput = document.getElementById('postTitle');
-        const categoryInput = document.getElementById('postCategory');
-        const postsContainer = document.getElementById('postsContainer');
-        if (titleInput.value.trim() === '') return;
-        const newPost = document.createElement('div');
-        newPost.className = 'post-item';
-        newPost.innerHTML = `<small style="color: var(--accent-color);">[${categoryInput.options[categoryInput.selectedIndex].text}]</small><h4>${titleInput.value}</h4>`;
-        postsContainer.prepend(newPost);
-        titleInput.value = '';
+    function renderPosts() {
+        const list = document.getElementById('newsList');
+        list.innerHTML = '<h3>የተለቀቁ ዜናዎች</h3>';
+        posts.forEach((p, index) => {
+            list.innerHTML += `<div class="post-item" onclick="loadPost(${index})"><h4>${p.title}</h4></div>`;
+        });
     }
 
-    let slides = document.querySelectorAll('.slide');
-    let currentIndex = 0;
-    setInterval(() => {
-        slides[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        slides[currentIndex].classList.add('active');
-    }, 3000);
+    function loadPost(index) {
+        const post = posts[index];
+        document.getElementById('s1').style.backgroundImage = `url('${post.images[0]}')`;
+        document.getElementById('s2').style.backgroundImage = `url('${post.images[1]}')`;
+        document.getElementById('s3').style.backgroundImage = `url('${post.images[2]}')`;
+        
+        // ሞሽኑን ለማስጀመር
+        clearInterval(slideInterval);
+        startSlider();
+    }
+
+    function startSlider() {
+        let slides = document.querySelectorAll('.slide');
+        currentSlide = 0;
+        slideInterval = setInterval(() => {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+        }, 3000);
+    }
 </script>
-
 </body>
 </html>

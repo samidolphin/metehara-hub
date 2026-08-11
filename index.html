@@ -3,91 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>የመታሃራ እና አካባቢው መረጃ ማዕከል | Sami-Tube</title>
+    <title>Mataaharaa Town Hub | Sami-Tube Media</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1e293b;
-            --accent-color: #d97706;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
+            --bg-dark: #0b0f19;
+            --card-dark: #111827;
+            --accent-orange: #f59e0b;
+            --accent-blue: #2563eb;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --tag-green: #065f46;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* Header & Navigation */
+        /* Navigation Header */
         header {
-            background: #0f172a;
-            border-bottom: 2px solid #334155;
-            padding: 15px 5%;
+            background: #090d16;
+            padding: 15px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border-bottom: 1px solid #1f2937;
         }
 
-        .logo {
-            font-size: 1.5rem;
+        .brand-container { display: flex; align-items: center; gap: 12px; }
+        .brand-badge {
+            background: var(--accent-orange);
+            color: #000;
             font-weight: bold;
-            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 1.1rem;
         }
+        .brand-title h1 { font-size: 1.2rem; font-weight: bold; color: #fff; }
+        .brand-title p { font-size: 0.8rem; color: var(--text-muted); }
 
-        .admin-btn {
-            background: var(--accent-color);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
+        .nav-controls { display: flex; align-items: center; gap: 10px; }
+        .lang-btn {
+            background: #1f2937;
+            color: var(--text-main);
+            border: 1px solid #374151;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
             cursor: pointer;
+        }
+        .lang-btn.active { background: var(--accent-orange); color: #000; font-weight: bold; border: none; }
+        .admin-login-btn {
+            background: var(--accent-blue);
+            color: white;
             border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-weight: bold;
-            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .admin-btn:hover {
-            background: #b45309;
-        }
+        /* Main Container */
+        .main-container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
 
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
+        /* Featured News Card (In Screenshot) */
+        .featured-card {
+            background: var(--card-dark);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #1f2937;
+            margin-bottom: 40px;
         }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-            font-size: 1.8rem;
+        .featured-img-container { width: 100%; height: 350px; overflow: hidden; }
+        .featured-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .featured-content { padding: 25px; }
+        .tag-green {
+            background: var(--tag-green);
+            color: #34d399;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-weight: bold;
         }
+        .featured-title { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .featured-desc { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* Gallery Section with Motion */
+        /* Auto Motion Gallery */
+        .section-heading { font-size: 1.3rem; margin-bottom: 20px; color: var(--accent-orange); text-align: center; }
         .gallery-wrapper {
             position: relative;
-            height: 400px;
-            border-radius: 15px;
+            height: 320px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
+            border: 1px solid #1f2937;
         }
-
         .gallery-slide {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             background-size: cover;
@@ -97,232 +113,213 @@
             display: flex;
             align-items: flex-end;
         }
-
-        .gallery-slide.active {
-            opacity: 1;
-        }
-
-        .slide-caption {
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        .gallery-slide.active { opacity: 1; }
+        .slide-overlay {
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
             width: 100%;
             padding: 20px;
-            color: white;
-            font-size: 1.2rem;
+            color: #fff;
         }
 
-        /* YouTube Video Section */
-        .video-section {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 50px;
-            text-align: center;
+        /* Video Section */
+        .video-box {
+            background: var(--card-dark);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            margin-bottom: 40px;
         }
-
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Newsletter Section */
-        .newsletter {
-            background: linear-gradient(135deg, #1e293b, #334155);
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 15px;
-            margin-bottom: 50px;
-        }
-
-        .newsletter h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .newsletter p {
-            margin-bottom: 20px;
-            color: #94a3b8;
-        }
-
-        .newsletter-form {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form input[type="email"] {
-            padding: 12px 15px;
-            width: 70%;
             border-radius: 8px;
+        }
+        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Newsletter */
+        .newsletter-box {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 50px;
+            border: 1px solid #334155;
+        }
+        .newsletter-form { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .newsletter-form input {
+            padding: 10px 15px;
+            border-radius: 6px;
             border: 1px solid #475569;
             background: #0f172a;
             color: white;
+            width: 300px;
             outline: none;
         }
-
         .newsletter-form button {
-            padding: 12px 20px;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+            padding: 10px 20px;
+            background: var(--accent-orange);
+            color: black;
             font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
         }
 
-        /* Footer */
+        /* Footer (Updated with Correct Contacts) */
         footer {
-            background: #090d16;
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 1px solid #1e293b;
+            background: #050811;
+            padding: 40px 8% 20px;
+            border-top: 1px solid #1f2937;
         }
-
-        footer p {
-            margin: 8px 0;
-            color: #94a3b8;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
         }
+        .footer-col h3 { color: var(--accent-orange); font-size: 1.1rem; margin-bottom: 15px; }
+        .footer-col p, .footer-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.9rem; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #111827; color: var(--text-muted); font-size: 0.85rem; }
 
-        /* Admin Modal */
+        /* Admin Modal Modal CMS */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
-
         .modal-content {
-            background: var(--card-bg);
-            padding: 30px;
+            background: var(--card-dark);
+            padding: 25px;
             border-radius: 12px;
             width: 90%;
-            max-width: 500px;
+            max-width: 450px;
+            border: 1px solid #374151;
             position: relative;
         }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #94a3b8;
+        .modal-content h3 { color: var(--accent-orange); margin-bottom: 15px; }
+        .form-group { margin-bottom: 12px; text-align: left; }
+        .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px; }
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%; padding: 9px; border-radius: 6px; border: 1px solid #374151; background: #0b0f19; color: #fff; outline: none;
         }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #cbd5e1;
-        }
-
-        .form-group select, 
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #475569;
-            background: #0f172a;
-            color: white;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--accent-color);
-            border: none;
-            color: white;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+        .close-btn { position: absolute; top: 15px; right: 20px; cursor: pointer; color: var(--text-muted); font-size: 1.3rem; }
+        .submit-btn { width: 100%; padding: 10px; background: var(--accent-orange); color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <!-- Header -->
     <header>
-        <div class="logo">መታሃራ Hub</div>
-        <button class="admin-btn" onclick="openAdminModal()"><i class="fas fa-user-cog"></i> አድሚን ፓነል</button>
+        <div class="brand-container">
+            <div class="brand-badge">SAMI</div>
+            <div class="brand-title">
+                <h1>Mataaharaa Town Hub</h1>
+                <p>Sami-Tube Media & Information Center</p>
+            </div>
+        </div>
+        <div class="nav-controls">
+            <button class="lang-btn active">ET AM</button>
+            <button class="lang-btn">OM</button>
+            <button class="lang-btn">GB EN</button>
+            <button class="admin-login-btn" onclick="openAdmin()"><i class="fas fa-user-lock"></i> አድሚን</button>
+        </div>
     </header>
 
-    <div class="container">
+    <div class="main-container">
 
-        <!-- Photo Gallery Section -->
-        <h2 class="section-title">የመታሃራ ባህል፣ የተፈጥሮ ፀጋዎች እና እሴቶች</h2>
+        <!-- Featured News Section -->
+        <div class="featured-card">
+            <div class="featured-img-container">
+                <img src="president_visit.jpg" alt="የኦሮሚያ ክልል ፕሬዝዳንት">
+            </div>
+            <div class="featured-content">
+                <span class="tag-green">አረንጓዴ አሻራ</span>
+                <h2 class="featured-title">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጐበኙ!</h2>
+                <p class="featured-desc">ዛሬ የኦሮሚያ ክልላዊ መንግሥት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምሥራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።</p>
+            </div>
+        </div>
+
+        <!-- Culture & Nature Auto-Motion Gallery -->
+        <h3 class="section-heading">የመታሃራ ባህል፣ የተፈጥሮ ፀጋ እና እሴቶች</h3>
         <div class="gallery-wrapper">
             <div class="gallery-slide active" style="background-image: url('nature1.jpg');">
-                <div class="slide-caption">የመታሃራ የተፈጥሮ ውበት እና አዋሽ ብሔራዊ ፓርክ ፀጋዎች</div>
+                <div class="slide-overlay">
+                    <h4>የመታሃራ የተፈጥሮ ውበትና የአዋሽ ፓርክ ፀጋዎች</h4>
+                </div>
             </div>
             <div class="gallery-slide" style="background-image: url('culture1.jpg');">
-                <div class="slide-caption">የአካባቢው ህዝብ ድንቅ ባህል፣ ወግ እና እሴቶች</div>
+                <div class="slide-overlay">
+                    <h4>የአካባቢው ህዝብ ድንቅ ባህልና እሴቶች</h4>
+                </div>
             </div>
             <div class="gallery-slide" style="background-image: url('tourism1.jpg');">
-                <div class="slide-caption">የመታሃራ ከተማ እና የቱሪዝም መስህቦች</div>
+                <div class="slide-overlay">
+                    <h4>የከተማዋ የቱሪዝም እና የልማት እንቅስቃሴዎች</h4>
+                </div>
             </div>
         </div>
 
         <!-- YouTube Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">የቅርብ ጊዜ የዜና ቪዲዮ (Sami-Tube)</h2>
+        <div class="video-box">
+            <h3 class="section-heading" style="margin-bottom: 15px;">የቀጥታ የዜና ቪዲዮ (Sami-Tube)</h3>
             <div class="video-container">
-                <!-- የራስህን የዩቲዩብ ቪዲዮ ID እዚህ 'YOUR_VIDEO_ID' በሚለው ቦታ ተካው -->
+                <!-- የዩቲዩብ ቪዲዮ ID አስገባ -->
                 <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
             </div>
-        </section>
+        </div>
 
-        <!-- Newsletter Section -->
-        <section class="newsletter">
-            <h3>ለተከታታይ መረጃዎች ይወቁ!</h3>
-            <p>አዳዲስ ወቅታዊ ዜናዎች እና መረጃዎች በቀጥታ ወደ ኢሜይልዎ እንዲደርስዎ ያድርጉ።</p>
+        <!-- Newsletter Subscription -->
+        <div class="newsletter-box">
+            <h3>ለተከታታይ መረጃዎች በኢሜይል ይመዝገቡ</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">አዳዲስ ወቅታዊ ዜናዎች እና መረጃዎች በቀጥታ እንዲደርስዎት ኢሜይልዎን ያስገቡ።</p>
             <div class="newsletter-form">
-                <input type="email" placeholder="የኢሜይል አድራሻዎን ያስገቡ..." required>
-                <button type="submit">ይመዝገቡ</button>
+                <input type="email" placeholder="ኢሜይል አድራሻዎን ያስገቡ...">
+                <button type="button" onclick="alert('ስለተመዘገቡ እናመሰግናለን!')">ይመዝገቡ</button>
             </div>
-        </section>
+        </div>
 
     </div>
 
     <!-- Footer -->
     <footer>
-        <p><i class="fas fa-phone-alt"></i> ስልክ ቁጥር፦ +251911926976</p>
-        <p><i class="fas fa-envelope"></i> ኢሜይል አድራሻ፦ sami2all@gmail.com</p>
-        <p>© 2026 የመታሃራ እና አካባቢው መረጃ ማዕከል | በሳሚ የተዘጋጀ</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Mataaharaa Town Hub</h3>
+                <p>የመታሃራ ከተማ እና የአካባቢው አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::</p>
+            </div>
+            <div class="footer-col">
+                <h3>የመገናኛ አድራሻ</h3>
+                <p><i class="fas fa-phone-alt"></i> +251 911 926 976</p>
+                <p><i class="fas fa-envelope"></i> sami2all@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mataaharaa, Oromia, Ethiopia</p>
+            </div>
+            <div class="footer-col">
+                <h3>ማህበራዊ ሚዲያ</h3>
+                <a href="#"><i class="fab fa-youtube"></i> YouTube Channel</a>
+                <a href="#"><i class="fab fa-facebook"></i> Facebook Page</a>
+                <a href="#"><i class="fab fa-telegram"></i> Telegram Channel</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Sami-Tube Media & Information Center. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <!-- Admin Modal Panel -->
+    <!-- Admin Modal Panel CMS -->
     <div class="modal" id="adminModal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeAdminModal()">&times;</span>
-            <h3 style="margin-bottom: 20px; text-align: center;">ይዘት መጫኛ (Admin CMS)</h3>
+            <span class="close-btn" onclick="closeAdmin()">&times;</span>
+            <h3>ይዘት መጫኛ (Admin Control)</h3>
             
             <div class="form-group">
-                <label>የይዘቱን ክፍል ይምረጡ፦</label>
+                <label>የሚጫንበትን ክፍል ይምረጡ፦</label>
                 <select id="sectionSelect">
                     <option value="ወቅታዊ ዜና">ወቅታዊ ዜና</option>
                     <option value="ባህልና ወግ">ባህልና ወግ</option>
@@ -333,12 +330,12 @@
 
             <div class="form-group">
                 <label>ርዕስ ያስገቡ፦</label>
-                <input type="text" placeholder="የዜናው ወይም የፅሁፉ ርዕስ...">
+                <input type="text" placeholder="የመረጃው ርዕስ...">
             </div>
 
             <div class="form-group">
-                <label>ዝርዝር ፅሁፍ ያስገቡ፦</label>
-                <textarea rows="4" placeholder="የሚጫነው ፅሁፍ ማብራሪያ..."></textarea>
+                <label>ዝርዝር ፅሁፍ፦</label>
+                <textarea rows="3" placeholder="ማብራሪያ ያስገቡ..."></textarea>
             </div>
 
             <div class="form-group">
@@ -346,34 +343,27 @@
                 <input type="file" accept="image/*,video/*">
             </div>
 
-            <button class="submit-btn" onclick="handleUpload()">መረጃውን ስቀል (Upload)</button>
+            <button class="submit-btn" onclick="uploadContent()">መረጃውን ስቀል (Upload)</button>
         </div>
     </div>
 
     <script>
-        // Gallery Auto-Motion Script (በየ 3 ሰከንዱ ይዘጋጃል)
+        // Auto Gallery Motion (3-second cycle)
         let slides = document.querySelectorAll('.gallery-slide');
-        let currentSlide = 0;
-
+        let currentIdx = 0;
         setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 3000); // 3000ms = 3 seconds
+            slides[currentIdx].classList.remove('active');
+            currentIdx = (currentIdx + 1) % slides.length;
+            slides[currentIdx].classList.add('active');
+        }, 3000);
 
-        // Admin Modal Controls
-        function openAdminModal() {
-            document.getElementById('adminModal').style.display = 'flex';
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').style.display = 'none';
-        }
-
-        function handleUpload() {
-            let selectedSection = document.getElementById('sectionSelect').value;
-            alert('መረጃው ለ "' + selectedSection + '" ክፍል በተከታታይ እንዲጫን ተዘጋጅቷል!');
-            closeAdminModal();
+        // Modal Controls
+        function openAdmin() { document.getElementById('adminModal').style.display = 'flex'; }
+        function closeAdmin() { document.getElementById('adminModal').style.display = 'none'; }
+        function uploadContent() {
+            let cat = document.getElementById('sectionSelect').value;
+            alert('መረጃው በ "' + cat + '" ክፍል ስር ተዘጋጅቷል!');
+            closeAdmin();
         }
     </script>
 </body>

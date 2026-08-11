@@ -1,624 +1,160 @@
 <!DOCTYPE html>
-<html lang="om">
+<html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mataaharaa Town Hub | Sami-Tube Media</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Mataaharaa Town Hub | መታሃራ መረጃ ማዕከል</title>
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #111827;
-            --accent-color: #ff9800;
-            --text-color: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --primary-btn: #2563eb;
-        }
+        :root { --primary-color: #2c3e50; --accent-color: #e67e22; --bg-color: #f4f4f9; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; }
+        header { background: var(--primary-color); color: white; padding: 20px; text-align: center; }
+        .container { width: 90%; max-width: 900px; margin: 20px auto; }
+        
+        /* Admin Panel */
+        .admin-card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 5px solid var(--accent-color); }
+        .admin-form input { width: 95%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 20px; background: var(--accent-color); color: white; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        /* Slider - 4 Seconds Motion */
+        .slider-box { position: relative; height: 380px; overflow: hidden; border-radius: 12px; background: #000; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
+        .slide.active { opacity: 1; }
+        .slide-caption { position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.75); color: white; width: 100%; padding: 15px 20px; box-sizing: border-box; font-size: 1.1rem; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* Header Navigation */
-        header {
-            background-color: rgba(17, 24, 39, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #1f2937;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-badge {
-            background: var(--accent-color);
-            color: #000;
-            font-weight: bold;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 1.2rem;
-        }
-
-        .logo-title h1 {
-            font-size: 1.1rem;
-            color: #fff;
-        }
-
-        .logo-title p {
-            font-size: 0.75rem;
-            color: var(--accent-color);
-        }
-
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .lang-switch {
-            background: #1f2937;
-            border-radius: 20px;
-            padding: 3px;
-            display: flex;
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            padding: 5px 12px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .lang-btn.active {
-            background: var(--accent-color);
-            color: #000;
-        }
-
-        .admin-btn {
-            background: #2563eb;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-
-        .admin-btn:hover {
-            background: #1d4ed8;
-        }
-
-        /* Navigation Menu */
-        nav {
-            background: #151c2c;
-            border-bottom: 1px solid #1f2937;
-            overflow-x: auto;
-        }
-
-        .menu-list {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            list-style: none;
-            padding: 0 20px;
-        }
-
-        .menu-list li a {
-            display: block;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 12px 18px;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            transition: 0.3s;
-        }
-
-        .menu-list li a:hover, .menu-list li a.active {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
-        }
-
-        /* Hero Background Motion Slider */
-        .hero {
-            position: relative;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 20px;
-            overflow: hidden;
-        }
-
-        .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out, transform 6s ease-out;
-            transform: scale(1);
-        }
-
-        .slide.active {
-            opacity: 1;
-            transform: scale(1.08);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(11,15,25,0.7) 0%, rgba(11,15,25,0.95) 100%);
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            max-width: 800px;
-        }
-
-        .hero-content h2 {
-            font-size: 2.2rem;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: #e5e7eb;
-            margin-bottom: 25px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-
-        .btn-youtube { background: #ff0000; }
-        .btn-facebook { background: #1877f2; }
-        .btn-telegram { background: #0088cc; }
-        .social-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-
-        /* Main Content & News Section */
-        main {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
-            margin-bottom: 25px;
-        }
-
-        .news-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #1f2937;
-            max-width: 800px;
-        }
-
-        .news-img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .news-body {
-            padding: 25px;
-        }
-
-        .news-tag {
-            background: #065f46;
-            color: #34d399;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .news-body h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-        }
-
-        .news-body p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            white-space: pre-line;
-        }
-
-        /* Footer Section */
-        footer {
-            background: #080c14;
-            border-top: 1px solid #1f2937;
-            padding: 40px 20px 20px;
-            margin-top: 60px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-col h4 {
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .footer-col p, .footer-col a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-
-        .footer-col a:hover {
-            color: #fff;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            border-top: 1px solid #1f2937;
-            padding-top: 20px;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        /* Modal Popup for Admin */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            border: 1px solid #1f2937;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .modal-content h3 {
-            margin-bottom: 15px;
-            color: var(--accent-color);
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-            background: #1f2937;
-            border: 1px solid #374151;
-            color: #fff;
-            border-radius: 6px;
-        }
-
-        .modal-content button {
-            width: 100%;
-            padding: 10px;
-            background: var(--accent-color);
-            border: none;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+        /* News Feed */
+        .news-feed { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .post-item { background: white; padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; border-radius: 5px; transition: background 0.2s; }
+        .post-item:hover { background: #fef5ec; }
+        
+        /* Footer */
+        footer { background: #2c3e50; color: #ffffff; text-align: center; padding: 25px; margin-top: 40px; border-top: 5px solid var(--accent-color); }
+        footer p { margin: 5px 0; font-size: 1rem; }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="nav-container">
-            <div class="logo-container">
-                <div class="logo-badge">SAMI</div>
-                <div class="logo-title">
-                    <h1>Mataaharaa Town Hub</h1>
-                    <p>Sami-Tube Media & Information Center</p>
-                </div>
-            </div>
-            <div class="nav-controls">
-                <div class="lang-switch">
-                    <button class="lang-btn active" onclick="setLanguage('am')">ET AM</button>
-                    <button class="lang-btn" onclick="setLanguage('om')">OM</button>
-                    <button class="lang-btn" onclick="setLanguage('en')">GB EN</button>
-                </div>
-                <button class="admin-btn" id="adminBtn">
-                    <i class="fas fa-user-shield"></i> <span id="adminText">አድሚን</span>
-                </button>
-            </div>
-        </div>
-    </header>
+<header>
+    <h1>የመታሃራ ከተማ መረጃ ማዕከል</h1>
+</header>
 
-    <!-- Navigation Menu -->
-    <nav>
-        <ul class="menu-list">
-            <li><a href="#news" class="active" id="m1"><i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች</a></li>
-            <li><a href="#video" id="m2"><i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ</a></li>
-            <li><a href="#culture" id="m3"><i class="fas fa-landmark"></i> ባህል</a></li>
-            <li><a href="#tourism" id="m4"><i class="fas fa-mountain"></i> ቱሪዝም</a></li>
-            <li><a href="#philosophy" id="m5"><i class="fas fa-brain"></i> ፊሎሶፊ</a></li>
-            <li><a href="#literature" id="m6"><i class="fas fa-book"></i> ስነ-ጽሁፍ</a></li>
-            <li><a href="#about" id="m7"><i class="fas fa-info-circle"></i> ስለ እኛ</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section with Motion Background Slider -->
-    <section class="hero">
-        <div class="hero-slider">
-            <!-- የበሰቃ ሃይቅና የልማት ምስሎች -->
-            <div class="slide active" style="background-image: url('burtukaana.jpg');"></div>
-            <div class="slide" style="background-image: url('burtukaana1.jpg');"></div>
-            <div class="slide" style="background-image: url('burtukaana2.jpg');"></div>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2 id="heroTitle">ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጡ!</h2>
-            <p id="heroSub">ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።</p>
-            <div class="social-links">
-                <a href="https://www.youtube.com/@samsontesfaye2670/posts" target="_blank" class="social-btn btn-youtube">
-                    <i class="fab fa-youtube"></i> YouTube
-                </a>
-                <a href="https://facebook.com" target="_blank" class="social-btn btn-facebook">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
-                <a href="https://t.me" target="_blank" class="social-btn btn-telegram">
-                    <i class="fab fa-telegram"></i> Telegram
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content Area -->
-    <main>
-        <h2 class="section-title" id="secTitle">ወቅታዊ ዜናዎች</h2>
-        
-        <article class="news-card">
-            <img src="burtukaana.jpg" alt="Ashaaraa Magariisaa" class="news-img">
-            <div class="news-body">
-                <span class="news-tag" id="newsTag">አረንጓዴ አሻራ</span>
-                <h3 id="newsTitle">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመተሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!</h3>
-                <p id="newsDesc">ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መተሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።</p>
-            </div>
-        </article>
-    </main>
-
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Mataaharaa Town Hub</h4>
-                <p>የመተሃራ ከተማ እና የአካባቢዋን አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::</p>
-            </div>
-            <div class="footer-col">
-                <h4>የመواصلያ አድራሻ</h4>
-                <p><i class="fas fa-phone"></i> +251 91 000 0000</p>
-                <p><i class="fas fa-envelope"></i> samsontesfaye18@gmail.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> Mataaharaa, Oromia, Ethiopia</p>
-            </div>
-            <div class="footer-col">
-                <h4>ማህበራዊ ሚዲያ</h4>
-                <a href="https://www.youtube.com/@samsontesfaye2670/posts" target="_blank"><i class="fab fa-youtube"></i> YouTube Channel</a>
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook Page</a>
-                <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i> Telegram Channel</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Sami-Tube Media & Information Center. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Admin Modal Window -->
-    <div class="modal" id="adminModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <h3>የአድሚን መግቢያ</h3>
-            <form id="adminForm">
-                <input type="text" placeholder="የተጠቃሚ ስም" required>
-                <input type="password" placeholder="የይለፍ ቃል" required>
-                <button type="submit">ግባ</button>
-            </form>
+<div class="container">
+    <!-- አድሚን ፓነል (በይለፍ ቃል የሚጠበቅ) -->
+    <div class="admin-card">
+        <h3>⚙️ አዲስ ዜና እና 3 ፎቶዎችን ጫን (አድሚን ብቻ)</h3>
+        <div class="admin-form">
+            <input type="text" id="inTitle" placeholder="የዜናው ርዕስ (ምሳሌ: የኦሮሚያ ክልላዊ ፕሬዚዳንት)...">
+            <input type="text" id="inImg1" placeholder="የፎቶ 1 ሊንክ/ስም (URL)...">
+            <input type="text" id="inImg2" placeholder="የፎቶ 2 ሊንክ/ስም (URL)...">
+            <input type="text" id="inImg3" placeholder="የፎቶ 3 ሊንክ/ስም (URL)...">
+            <button onclick="addPost()">ይዘት ልቀቅ (Publish)</button>
         </div>
     </div>
 
-    <script>
-        // Language Data
-        const translations = {
-            am: {
-                admin: '<i class="fas fa-user-shield"></i> አድሚን',
-                m1: '<i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች',
-                m2: '<i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ',
-                m3: '<i class="fas fa-landmark"></i> ባህል',
-                m4: '<i class="fas fa-mountain"></i> ቱሪዝም',
-                m5: '<i class="fas fa-brain"></i> ፊሎሶፊ',
-                m6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
-                m7: '<i class="fas fa-info-circle"></i> ስለ እኛ',
-                heroTitle: 'ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጡ!',
-                heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
-                secTitle: 'ወቅታዊ ዜናዎች',
-                newsTag: 'አረንጓዴ አሻራ',
-                newsTitle: 'የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመተሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!',
-                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መተሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።'
-            },
-            om: {
-                admin: '<i class="fas fa-user-shield"></i> Bulchaa',
-                m1: '<i class="fas fa-newspaper"></i> Oduu Haaraa',
-                m2: '<i class="fas fa-video"></i> Gulaala Viidiyoo',
-                m3: '<i class="fas fa-landmark"></i> Aadaa',
-                m4: '<i class="fas fa-mountain"></i> Turizimii',
-                m5: '<i class="fas fa-brain"></i> Filosoochii',
-                m6: '<i class="fas fa-book"></i> Og-barruu',
-                m7: '<i class="fas fa-info-circle"></i> Waa\'ee Keenya',
-                heroTitle: 'Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataaharaatti Nagaan Dhuftan!',
-                heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
-                secTitle: 'Oduu Haaraa',
-                newsTag: 'Ashaaraa Magariisaa',
-                newsTitle: 'Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Ashaaraa Magariisaa Daawwatan!',
-                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.'
-            },
-            en: {
-                admin: '<i class="fas fa-user-shield"></i> Admin',
-                m1: '<i class="fas fa-newspaper"></i> Latest News',
-                m2: '<i class="fas fa-video"></i> Video Editing',
-                m3: '<i class="fas fa-landmark"></i> Culture',
-                m4: '<i class="fas fa-mountain"></i> Tourism',
-                m5: '<i class="fas fa-brain"></i> Philosophy',
-                m6: '<i class="fas fa-book"></i> Literature',
-                m7: '<i class="fas fa-info-circle"></i> About Us',
-                heroTitle: 'Welcome to Mataaharaa Town Information Hub!',
-                heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge with the community.',
-                secTitle: 'Latest News',
-                newsTag: 'Green Legacy',
-                newsTitle: 'Oromia Regional President Mr. Shimallis Abdiisaa Visits Orange Tree Plantations in Mataaharaa!',
-                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Mataaharaa town in East Shoa Zone to inspect orange trees planted under the Green Legacy initiative.'
+    <!-- ሞሽን ስላይደር (በየ 4 ሰከንዱ የሚቀያየር) -->
+    <div class="slider-box" id="slider">
+        <div class="slide active" id="s1" style="background-image: url('1776693450696.jpg');">
+            <div class="slide-caption" id="cap-1">የኦሮሚያ ክልላዊ ፕሬዚዳንት ወቅታዊ መግለጫ (ፎቶ 1)</div>
+        </div>
+        <div class="slide" id="s2" style="background-image: url('1776693453243.jpg');">
+            <div class="slide-caption" id="cap-2">የኦሮሚያ ክልላዊ ፕሬዚዳንት የعمل ስራዎች (ፎቶ 2)</div>
+        </div>
+        <div class="slide" id="s3" style="background-image: url('1776693457106.jpg');">
+            <div class="slide-caption" id="cap-3">የኦሮሚያ ክልላዊ ፕሬዚዳንት ሐገራዊ ጉብኝት (ፎቶ 3)</div>
+        </div>
+    </div>
+
+    <!-- የዜና ዝርዝር -->
+    <div class="news-feed">
+        <h3 id="feed-title">📌 የዜና ዝርዝር (ለመመልከት ክሊክ ያድርጉ)</h3>
+        <div id="postsContainer">
+            <div class="post-item" onclick="loadNewsToSlider('የኦሮሚያ ክልላዊ ፕሬዚዳንት ወቅታዊ መግለጫ', '1776693450696.jpg', '1776693453243.jpg', '1776693457106.jpg')">
+                <small style="color: var(--accent-color);">[ወቅታዊ ዜና]</small>
+                <h4>የኦሮሚያ ክልላዊ ፕሬዚዳንት ወቅታዊ መግለጫ እና የልማት ምልከታ</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>የመታሃራ ከተማ መረጃ ማዕከል © 2026</p>
+    <p>ስልክ፦ +251911926976</p>
+    <p>ኢሜይል፦ sami2all@gmail.com</p>
+    <p>የተገነባው በ፦ Sami-Tube</p>
+</footer>
+
+<script>
+    let slideInterval;
+
+    // በየ 4 ሰከንዱ እንዲቀያየር የተደረገ ሞሽን
+    function startAutoSlide() {
+        let slides = document.querySelectorAll('.slide');
+        let currentIndex = 0;
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => {
+            slides.forEach(s => s.classList.remove('active'));
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }, 4000); // 4000 ሚሊሰከንድ = 4 ሰከንድ
+    }
+
+    // ድረ-ገጹ ሲከፈት ሞሽኑን ማስጀመር
+    startAutoSlide();
+
+    // የተመረጠውን ዜና 3 ፎቶዎች ወደ ስላይደር መጫኛ
+    function loadNewsToSlider(title, i1, i2, i3) {
+        document.getElementById('s1').style.backgroundImage = `url('${i1}')`;
+        document.getElementById('s2').style.backgroundImage = `url('${i2}')`;
+        document.getElementById('s3').style.backgroundImage = `url('${i3}')`;
+
+        document.getElementById('cap-1').innerText = `${title} (ፎቶ 1)`;
+        document.getElementById('cap-2').innerText = `${title} (ፎቶ 2)`;
+        document.getElementById('cap-3').innerText = `${title} (ፎቶ 3)`;
+
+        startAutoSlide();
+    }
+
+    // አድሚን ዜና ሲለቅ የይለፍ ቃል (1-4) መጠየቂያ
+    function addPost() {
+        const password = prompt("እባክዎ የአድሚን የይለፍ ቃል ያስገቡ (Password):");
+
+        if (password === "1234") {
+            const title = document.getElementById('inTitle').value.trim();
+            const i1 = document.getElementById('inImg1').value.trim();
+            const i2 = document.getElementById('inImg2').value.trim();
+            const i3 = document.getElementById('inImg3').value.trim();
+
+            if (title === '' || i1 === '') {
+                alert('እባክዎ ቢያንስ ርዕስ እና የመጀመሪያውን ፎቶ ያስገቡ!');
+                return;
             }
-        };
 
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            const imgTwo = i2 !== '' ? i2 : i1;
+            const imgThree = i3 !== '' ? i3 : i1;
 
-            const t = translations[lang];
-            document.getElementById('adminText').innerHTML = t.admin;
-            document.getElementById('m1').innerHTML = t.m1;
-            document.getElementById('m2').innerHTML = t.m2;
-            document.getElementById('m3').innerHTML = t.m3;
-            document.getElementById('m4').innerHTML = t.m4;
-            document.getElementById('m5').innerHTML = t.m5;
-            document.getElementById('m6').innerHTML = t.m6;
-            document.getElementById('m7').innerHTML = t.m7;
-            document.getElementById('heroTitle').innerText = t.heroTitle;
-            document.getElementById('heroSub').innerText = t.heroSub;
-            document.getElementById('secTitle').innerText = t.secTitle;
-            document.getElementById('newsTag').innerText = t.newsTag;
-            document.getElementById('newsTitle').innerText = t.newsTitle;
-            document.getElementById('newsDesc').innerText = t.newsDesc;
+            const postsContainer = document.getElementById('postsContainer');
+            const newPost = document.createElement('div');
+            newPost.className = 'post-item';
+            newPost.onclick = function() {
+                loadNewsToSlider(title, i1, imgTwo, imgThree);
+            };
+            newPost.innerHTML = `<small style="color: var(--accent-color);">[አዲስ የተጫነ]</small><h4>${title}</h4>`;
+            
+            postsContainer.prepend(newPost);
+            loadNewsToSlider(title, i1, imgTwo, imgThree);
+
+            // ሳጥኖቹን ባዶ ማድረግ
+            document.getElementById('inTitle').value = '';
+            document.getElementById('inImg1').value = '';
+            document.getElementById('inImg2').value = '';
+            document.getElementById('inImg3').value = '';
+
+            alert('ዜናው ከነ 3 ፎቶዎቹ በተሳካ ሁኔታ ተለቋል!');
+        } else {
+            alert('የይለፍ ቃል ስህተት ነው!');
         }
+    }
+</script>
 
-        // Background Slider Motion (Every 5 Seconds)
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(nextSlide, 5000);
-
-        // Admin Modal Popup Functionality
-        const adminBtn = document.getElementById('adminBtn');
-        const adminModal = document.getElementById('adminModal');
-        const closeModal = document.getElementById('closeModal');
-
-        adminBtn.addEventListener('click', () => {
-            adminModal.style.display = 'flex';
-        });
-
-        closeModal.addEventListener('click', () => {
-            adminModal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === adminModal) {
-                adminModal.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>

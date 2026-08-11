@@ -3,251 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mataaharaa Town Hub | መታሃራ መረጃ ማዕከል</title>
+    <title>Mataaharaa Town Hub | Sami-Tube</title>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #e67e22;
-            --bg-color: #f4f4f9;
-            --text-color: #333;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0b0f19; color: #f3f4f6; line-height: 1.6; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
+        /* Header Navigation */
+        header { 
+            background: #111827; 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #1f2937; 
+            flex-wrap: wrap; 
+            gap: 15px; 
         }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .logo-badge { background: #f97316; color: #fff; font-weight: 900; padding: 8px 14px; border-radius: 6px; font-size: 1.2rem; }
+        .brand-text h2 { font-size: 1.1rem; color: #fff; margin: 0; }
+        .brand-text p { font-size: 0.8rem; color: #f97316; margin: 0; }
 
-        header {
-            background: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        .top-nav { display: flex; align-items: center; gap: 12px; }
+        .lang-group { display: flex; background: #1f2937; padding: 4px; border-radius: 20px; }
+        .lang-btn { background: transparent; color: #9ca3af; border: none; padding: 6px 12px; border-radius: 16px; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
+        .lang-btn.active { background: #f97316; color: #fff; }
 
-        .lang-switch select {
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        .admin-btn { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+        .admin-btn:hover { background: #1d4ed8; }
 
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-        }
+        /* Container */
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
 
-        .admin-card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--accent-color);
-            margin-bottom: 30px;
-        }
+        /* Admin Active Form (Pop-up style) */
+        .admin-modal { display: none; background: #1f2937; border: 1px solid #374151; padding: 20px; border-radius: 12px; margin-bottom: 25px; }
+        .admin-modal.open { display: block; }
+        .admin-modal h3 { margin-bottom: 15px; color: #f97316; }
+        .admin-inputs { display: flex; flex-direction: column; gap: 10px; }
+        .admin-inputs input, .admin-inputs textarea { background: #111827; border: 1px solid #374151; color: white; padding: 10px; border-radius: 6px; }
+        .pub-btn { background: #f97316; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
-        .admin-form {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
+        /* Main Feature Card & Motion Slider */
+        .news-card { background: #111827; border-radius: 12px; overflow: hidden; border: 1px solid #1f2937; margin-bottom: 30px; }
+        .slider-wrapper { position: relative; height: 360px; width: 100%; overflow: hidden; background: #000; }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
+        .slide.active { opacity: 1; }
 
-        .admin-form input, .admin-form select, .admin-form button {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+        .card-body { padding: 25px; }
+        .tag { display: inline-block; background: #065f46; color: #34d399; font-size: 0.8rem; font-weight: bold; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; }
+        .card-title { font-size: 1.3rem; color: #fff; margin-bottom: 10px; }
+        .card-desc { color: #9ca3af; font-size: 0.92rem; }
 
-        .admin-form button {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        /* Dynamic Posts Feed */
+        .feed-section h3 { margin-bottom: 15px; color: #f3f4f6; border-left: 4px solid #f97316; padding-left: 10px; }
+        .post-list { display: flex; flex-direction: column; gap: 15px; }
+        .post-item { background: #111827; padding: 15px; border-radius: 8px; border: 1px solid #1f2937; }
 
-        .slider-box {
-            position: relative;
-            height: 380px;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-            background: #000;
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide-caption {
-            position: absolute;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.75);
-            color: white;
-            width: 100%;
-            padding: 15px 20px;
-            box-sizing: border-box;
-        }
-
-        .news-feed {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .post-item {
-            border-bottom: 1px solid #eee;
-            padding: 12px 0;
-        }
+        /* Footer */
+        footer { background: #070a12; border-top: 1px solid #1f2937; padding: 40px 5% 20px; margin-top: 50px; }
+        .footer-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .footer-col h4 { color: #f97316; margin-bottom: 15px; }
+        .footer-col p, .footer-col a { color: #9ca3af; font-size: 0.9rem; text-decoration: none; display: block; margin-bottom: 8px; }
+        .footer-col a:hover { color: #fff; }
+        .copyright { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #1f2937; color: #6b7280; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 id="site-title">የመታሃራ ከተማ መረጃ ማዕከል (Mataaharaa Hub)</h1>
-    <div class="lang-switch">
-        <select id="languageSelect" onchange="changeLanguage()">
-            <option value="am">አማርኛ</option>
-            <option value="om">Afaan Oromoo</option>
-            <option value="en">English</option>
-        </select>
+    <div class="brand">
+        <div class="logo-badge">SAMI</div>
+        <div class="brand-text">
+            <h2>Mataaharaa Town Hub</h2>
+            <p>Sami-Tube Media & Information Center</p>
+        </div>
+    </div>
+    <div class="top-nav">
+        <div class="lang-group">
+            <button class="lang-btn active" id="btn-am" onclick="setLanguage('am')">ET AM</button>
+            <button class="lang-btn" id="btn-om" onclick="setLanguage('om')">OM</button>
+            <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">GB EN</button>
+        </div>
+        <button class="admin-btn" onclick="toggleAdminPanel()">👤 <span id="lbl-admin">አድሚን</span></button>
     </div>
 </header>
 
 <div class="container">
-    <div class="admin-card">
-        <h3 id="admin-title">⚙️ አድሚን ፓነል (አዲስ መረጃ መጫኛ)</h3>
-        <div class="admin-form">
-            <select id="postCategory">
-                <option value="news" class="opt-news">ወቅታዊ ዜና</option>
-                <option value="culture" class="opt-culture">ባህልና ቱሪዝም</option>
-                <option value="dev" class="opt-dev">የልማት እንቅስቃሴ</option>
-            </select>
-            <input type="text" id="postTitle" placeholder="የዜናው/መረጃው ርዕስ...">
-            <button onclick="publishPost()" id="btn-publish">ይዘት ልቀቅ (Publish)</button>
+
+    <!-- Active Admin Form (Toggles on button click) -->
+    <div class="admin-modal" id="adminPanel">
+        <h3 id="lbl-admin-title">⚙️ አድሚን ፓነል - አዲስ ዜና/መረጃ መጫኛ</h3>
+        <div class="admin-inputs">
+            <input type="text" id="newTitle" placeholder="የዜናው ርዕስ...">
+            <textarea id="newDesc" rows="3" placeholder="የዜናው ዝርዝር መግለጫ..."></textarea>
+            <button class="pub-btn" onclick="publishNews()" id="lbl-pub-btn">ይዘት ልቀቅ (Publish)</button>
         </div>
     </div>
 
-    <div class="slider-box" id="slider">
-        <div class="slide active" style="background-image: url('1776693450696.jpg');">
-            <div class="slide-caption" id="cap-1">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ወቅታዊ መግለጫ</div>
+    <!-- Main Motion Slider Card -->
+    <div class="news-card">
+        <div class="slider-wrapper">
+            <div class="slide active" style="background-image: url('1776693450696.jpg');"></div>
+            <div class="slide" style="background-image: url('1776693453243.jpg');"></div>
+            <div class="slide" style="background-image: url('1776693457106.jpg');"></div>
         </div>
-        <div class="slide" style="background-image: url('1776693453243.jpg');">
-            <div class="slide-caption" id="cap-2">የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ምልከታ</div>
-        </div>
-        <div class="slide" style="background-image: url('1776693457106.jpg');">
-            <div class="slide-caption" id="cap-3">የመታሃራ ከተማ አዳዲስ የልማትና የኮሪደር ስራዎች እንቅስቃሴ</div>
+        <div class="card-body">
+            <span class="tag" id="lbl-tag">አረንጓዴ አሻራ</span>
+            <h2 class="card-title" id="card-title-text">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!</h2>
+            <p class="card-desc" id="card-desc-text">ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎበኝተዋል።</p>
         </div>
     </div>
 
-    <div class="news-feed">
-        <h3 id="feed-title">📌 የቅርብ ጊዜ የተጫኑ መረጃዎች</h3>
-        <div id="postsContainer">
-            <div class="post-item">
-                <small style="color: var(--accent-color);">[ወቅታዊ ዜና]</small>
-                <h4>እንኳን ወደ አዲሱ የመታሃራ ከተማ መረጃ ማዕከል በደህና መጡ!</h4>
-            </div>
+    <!-- Feed Section -->
+    <div class="feed-section">
+        <h3 id="lbl-feed-title">የቅርብ ጊዜ አዳዲስ መረጃዎች</h3>
+        <div class="post-list" id="postList">
+            <!-- Dynamic posts appear here -->
         </div>
     </div>
+
 </div>
 
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Mataaharaa Town Hub</h4>
+            <p id="lbl-foot-desc">የመታሃራ ከተማ እና የአካባቢዋ አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::</p>
+        </div>
+        <div class="footer-col">
+            <h4 id="lbl-foot-contact">የመገናኛ አድራሻ</h4>
+            <p>📞 +251 911 92 69 76</p>
+            <p>✉️ sami2all@gmail.com</p>
+            <p>📍 Mataaharaa, Oromia, Ethiopia</p>
+        </div>
+        <div class="footer-col">
+            <h4 id="lbl-foot-social">ማህበራዊ ሚዲያ</h4>
+            <a href="https://youtube.com" target="_blank">▶️ YouTube Channel</a>
+            <a href="https://facebook.com" target="_blank">📘 Facebook Page</a>
+            <a href="https://telegram.org" target="_blank">✈️ Telegram Channel</a>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2026 Sami-Tube Media & Information Center. All Rights Reserved.
+    </div>
+</footer>
+
 <script>
-    const translations = {
+    // Language Translations
+    const content = {
         am: {
-            title: "የመታሃራ ከተማ መረጃ ማዕከል (Mataaharaa Hub)",
-            adminTitle: "⚙️ አድሚን ፓነል (አዲስ መረጃ መጫኛ)",
-            placeholder: "የዜናው/መረጃው ርዕስ...",
-            btnPublish: "ይዘት ልቀቅ (Publish)",
-            feedTitle: "📌 የቅርብ ጊዜ የተጫኑ መረጃዎች",
-            optNews: "ወቅታዊ ዜና",
-            optCulture: "ባህልና ቱሪዝም",
-            optDev: "የልማት እንቅስቃሴ",
-            cap1: "የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ወቅታዊ መግለጫ",
-            cap2: "የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ምልከታ",
-            cap3: "የመታሃራ ከተማ አዳዲስ የልማትና የኮሪደር ስራዎች እንቅስቃሴ"
+            adminBtn: "አድሚን",
+            adminTitle: "⚙️ አድሚን ፓነል - አዲስ ዜና/መረጃ መጫኛ",
+            pubBtn: "ይዘት ልቀቅ (Publish)",
+            tag: "አረንጓዴ አሻራ",
+            feedTitle: "የቅርብ ጊዜ አዳዲስ መረጃዎች",
+            footDesc: "የመታሃራ ከተማ እና የአካባቢዋ አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::",
+            footContact: "የመገናኛ አድራሻ",
+            footSocial: "ማህበራዊ ሚዲያ",
+            slides: [
+                {
+                    title: "የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!",
+                    desc: "ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎበኝተዋል።"
+                },
+                {
+                    title: "የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ስራዎችን ጎበኙ",
+                    desc: "የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ በከተማው ውስጥ እየተከናወኑ ያሉ አዳዲስ የኮሪደር እና የልማት ስራዎችን በቦታው በመገኘት ምልከታ አድርገዋል።"
+                },
+                {
+                    title: "በመታሃራ ከተማ አዳዲስ የኮሪደር ልማት እና የመሰረተ ልማት ግንባታዎች ተጠናቀቁ",
+                    desc: "የመታሃራ ከተማን ገጽታ የሚያስ ውቡ አዳዲስ የኮሪደር ልማት እና የከተማ ፅዳት ስራዎች በተሳካ ሁኔታ እየተከናወኑ ይገኛሉ።"
+                }
+            ]
         },
         om: {
-            title: "Giddu-gala Odeeffannoo Magaalaa Mataaharaa",
-            adminTitle: "⚙️ Paanaalii Admin (Odeeffannoo Haaraa Maxxansuu)",
-            placeholder: "Mata duree odeeffannoo...",
-            btnPublish: "Maxxansi (Publish)",
-            feedTitle: "📌 Odeeffannoowwan Dhihoo Maxxansaman",
-            optNews: "Oduu Ammee",
-            optCulture: "Aadaa fi Tuurizimii",
-            optDev: "Sochii Misoomaa",
-            cap1: "Ibsa Haala Yeroo Pirezidaantii Naannoo Oromiyaa Obbo Shimallis Abdiisaa",
-            cap2: "Dawwanna Kantiibaa Magaalaa Mataaharaa Obbo Addisuu Waaqo",
-            cap3: "Misooma Koriidarii fi Sochii Haaraa Magaalaa Mataaharaa"
+            adminBtn: "Admin",
+            adminTitle: "⚙️ Paanaalii Admin - Odeeffannoo Haaraa Maxxansuu",
+            pubBtn: "Maxxansi (Publish)",
+            tag: "Ashaaraa Magariisaa",
+            feedTitle: "Odeeffannoowwan Dhihoo Maxxansaman",
+            footDesc: "Oduu haaraa, aadaa fi iddoowwan hawata tuurizimii Magaalaa Mataaharaa fi naannoo ishee beeksisuu.",
+            footContact: "Teessoo Quunnamtii",
+            footSocial: "Miidiyaa Hawaasaa",
+            slides: [
+                {
+                    title: "Pirezidaantii Naannoo Oromiyaa Obbo Shimallis Abdiisaa Biqiltuu Birtukaana Dawwatan!",
+                    desc: "Har'a Pirezidaantii Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun biqiltuu birtukaana ashaaraa magariisaan dhahaman dawwatan."
+                },
+                {
+                    title: "Kantiibaa Magaalaa Mataaharaa Obbo Addisuu Waaqo Sochii Misoomaa Dawwatan",
+                    desc: "Kantiibaa Magaalaa Mataaharaa Obbo Addisuu Waaqo hojiilee misoomaa fi koriidarii magaalaa keessatti raawwatamaa jiran bakkeetti argamuun gamaggamaniiru."
+                },
+                {
+                    title: "Misooma Koriidarii fi Hojiilee Misoomaa Magaalaa Mataaharaa",
+                    desc: "Hojiileen misooma koriidarii bara kanaa magaalaa Mataaharaa keessatti haala miidhagaa ta'een raawwatamaa jiru."
+                }
+            ]
         },
         en: {
-            title: "Mataaharaa Town Information Hub",
-            adminTitle: "⚙️ Admin Panel (Post New Content)",
-            placeholder: "Enter title or description...",
-            btnPublish: "Publish Content",
-            feedTitle: "📌 Recent Updates",
-            optNews: "Current News",
-            optCulture: "Culture & Tourism",
-            optDev: "Development Activity",
-            cap1: "Oromia Regional President Shimelis Abdisa Current Briefing",
-            cap2: "Mataaharaa Town Mayor Addisu Wako Development Inspection",
-            cap3: "Mataaharaa Town Corridor Development & Progress"
+            adminBtn: "Admin",
+            adminTitle: "⚙️ Admin Panel - Post New News/Updates",
+            pubBtn: "Publish Content",
+            tag: "Green Legacy",
+            feedTitle: "Recent News & Updates",
+            footDesc: "Official information portal promoting Mataaharaa town news, culture, and regional tourism attractions.",
+            footContact: "Contact Details",
+            footSocial: "Social Media",
+            slides: [
+                {
+                    title: "Oromia Regional President Shimelis Abdisa Inspected Citrus Plantations in Mataaharaa!",
+                    desc: "Today, President of Oromia Regional State Shimelis Abdisa visited Mataaharaa Town in East Shewa Zone to inspect orange plantations planted under the Green Legacy Initiative."
+                },
+                {
+                    title: "Mataaharaa Town Mayor Addisu Wako Inspected Local Development Projects",
+                    desc: "Mayor Addisu Wako conducted a field visit to inspect ongoing urban corridor developments and infrastructure projects across Mataaharaa town."
+                },
+                {
+                    title: "New Corridor Development & Municipal Upgrades Completed in Mataaharaa",
+                    desc: "New municipal beautification and infrastructure projects are transforming Mataaharaa town's urban ecosystem."
+                }
+            ]
         }
     };
 
-    function changeLanguage() {
-        const lang = document.getElementById('languageSelect').value;
-        const t = translations[lang];
-        document.getElementById('site-title').innerText = t.title;
-        document.getElementById('admin-title').innerText = t.adminTitle;
-        document.getElementById('postTitle').placeholder = t.placeholder;
-        document.getElementById('btn-publish').innerText = t.btnPublish;
-        document.getElementById('feed-title').innerText = t.feedTitle;
-        document.querySelector('.opt-news').innerText = t.optNews;
-        document.querySelector('.opt-culture').innerText = t.optCulture;
-        document.querySelector('.opt-dev').innerText = t.optDev;
-        document.getElementById('cap-1').innerText = t.cap1;
-        document.getElementById('cap-2').innerText = t.cap2;
-        document.getElementById('cap-3').innerText = t.cap3;
+    let currentLang = 'am';
+    let currentSlideIndex = 0;
+
+    // Toggle Language
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`btn-${lang}`).classList.add('active');
+
+        const data = content[lang];
+        document.getElementById('lbl-admin').innerText = data.adminBtn;
+        document.getElementById('lbl-admin-title').innerText = data.adminTitle;
+        document.getElementById('lbl-pub-btn').innerText = data.pubBtn;
+        document.getElementById('lbl-tag').innerText = data.tag;
+        document.getElementById('lbl-feed-title').innerText = data.feedTitle;
+        document.getElementById('lbl-foot-desc').innerText = data.footDesc;
+        document.getElementById('lbl-foot-contact').innerText = data.footContact;
+        document.getElementById('lbl-foot-social').innerText = data.footSocial;
+
+        updateSlideContent();
     }
 
-    function publishPost() {
-        const titleInput = document.getElementById('postTitle');
-        const categoryInput = document.getElementById('postCategory');
-        const postsContainer = document.getElementById('postsContainer');
-        if (titleInput.value.trim() === '') return;
+    // Toggle Admin Panel Modal
+    function toggleAdminPanel() {
+        const panel = document.getElementById('adminPanel');
+        panel.classList.toggle('open');
+    }
+
+    // Publish Post Functionality
+    function publishNews() {
+        const title = document.getElementById('newTitle').value;
+        const desc = document.getElementById('newDesc').value;
+        const postList = document.getElementById('postList');
+
+        if (!title.trim()) {
+            alert('እባክዎ መጀመሪያ ርዕስ ያስገቡ!');
+            return;
+        }
+
         const newPost = document.createElement('div');
         newPost.className = 'post-item';
-        newPost.innerHTML = `<small style="color: var(--accent-color);">[${categoryInput.options[categoryInput.selectedIndex].text}]</small><h4>${titleInput.value}</h4>`;
-        postsContainer.prepend(newPost);
-        titleInput.value = '';
+        newPost.innerHTML = `
+            <span class="tag" style="background:#2563eb; color:#fff;">የተጫነ መረጃ</span>
+            <h4 style="color:#fff; margin: 5px 0;">${title}</h4>
+            <p style="color:#9ca3af; font-size:0.9rem;">${desc}</p>
+        `;
+
+        postList.prepend(newPost);
+        document.getElementById('newTitle').value = '';
+        document.getElementById('newDesc').value = '';
+        toggleAdminPanel();
+        alert('መረጃው በተሳካ ሁኔታ ተለቋል!');
     }
 
-    let slides = document.querySelectorAll('.slide');
-    let currentIndex = 0;
+    // 3-Second Motion Slider Logic
+    const slides = document.querySelectorAll('.slide');
+
+    function updateSlideContent() {
+        const slideData = content[currentLang].slides[currentSlideIndex];
+        document.getElementById('card-title-text').innerText = slideData.title;
+        document.getElementById('card-desc-text').innerText = slideData.desc;
+    }
+
     setInterval(() => {
-        slides[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        slides[currentIndex].classList.add('active');
+        slides[currentSlideIndex].classList.remove('active');
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        slides[currentSlideIndex].classList.add('active');
+        updateSlideContent();
     }, 3000);
 </script>
 

@@ -73,6 +73,7 @@
             cursor: pointer;
             font-size: 12px;
             font-weight: bold;
+            transition: 0.3s;
         }
         .lang-btn.active {
             background: #f59e0b;
@@ -231,30 +232,30 @@
         </div>
         <div class="nav-right">
             <div class="lang-switch">
-                <button class="lang-btn">ET AM</button>
-                <button class="lang-btn active">OM</button>
-                <button class="lang-btn">GB EN</button>
+                <button class="lang-btn" onclick="changeLanguage('am')">ET AM</button>
+                <button class="lang-btn active" onclick="changeLanguage('om')">OM</button>
+                <button class="lang-btn" onclick="changeLanguage('en')">GB EN</button>
             </div>
-            <a href="#" class="admin-link"><i class="fas fa-user-shield"></i> Bulchaa</a>
+            <a href="#" class="admin-link" id="adminBtn"><i class="fas fa-user-shield"></i> Bulchaa</a>
         </div>
     </nav>
 
     <!-- Navigation Menu -->
     <div class="menu-bar">
-        <a href="#"><i class="fas fa-newspaper"></i> Oduu Haaraa</a>
-        <a href="#"><i class="fas fa-video"></i> Gulaala Viidiyoo</a>
-        <a href="#"><i class="fas fa-landmark"></i> Aadaa</a>
-        <a href="#"><i class="fas fa-mountain"></i> Turizimii</a>
-        <a href="#"><i class="fas fa-brain"></i> Philosophy</a>
-        <a href="#"><i class="fas fa-book"></i> Og-barruu</a>
-        <a href="#"><i class="fas fa-info-circle"></i> Waa'ee Keenya</a>
+        <a href="#" id="menu1"><i class="fas fa-newspaper"></i> Oduu Haaraa</a>
+        <a href="#" id="menu2"><i class="fas fa-video"></i> Gulaala Viidiyoo</a>
+        <a href="#" id="menu3"><i class="fas fa-landmark"></i> Aadaa</a>
+        <a href="#" id="menu4"><i class="fas fa-mountain"></i> Turizimii</a>
+        <a href="#" id="menu5"><i class="fas fa-brain"></i> Philosophy</a>
+        <a href="#" id="menu6"><i class="fas fa-book"></i> Og-barruu</a>
+        <a href="#" id="menu7"><i class="fas fa-info-circle"></i> Waa'ee Keenya</a>
     </div>
 
     <div class="container">
         <!-- Hero Section -->
         <div class="hero-card">
-            <h1 class="hero-title">Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataharaatti Nagaan Dhuftan!</h1>
-            <p class="hero-sub">Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.</p>
+            <h1 class="hero-title" id="heroTitle">Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataharaatti Nagaan Dhuftan!</h1>
+            <p class="hero-sub" id="heroSub">Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.</p>
             <div class="social-group">
                 <a href="https://youtube.com/@samsontesfaye2670?si=y9kxoP-0nxZdlJ4y" target="_blank" class="btn-social btn-yt">
                     <i class="fab fa-youtube"></i> YouTube
@@ -268,19 +269,17 @@
             </div>
         </div>
 
-        <!-- Oduu Haaraa (Latest News) -->
-        <h2 class="section-title">Oduu Haaraa</h2>
+        <!-- Latest News -->
+        <h2 class="section-title" id="secTitle">Oduu Haaraa</h2>
         
         <div class="news-grid">
-            <!-- Article 1: Obbo Shimallis Abdiisaa -->
             <div class="news-card">
-                <!-- GitHub ላይ ያለውን የምስል ስም እዚህ ይተኩ -->
                 <img src="763107043_27813499481614131_3295471807967793805_n.jpg" alt="Ashaaraa Magariisaa">
                 <div class="news-card-body">
-                    <span class="news-tag">Ashaaraa Magariisaa</span>
-                    <h3 class="news-card-title">Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Ashaaraa Magariisaa Daawwatan!</h3>
-                    <p class="news-card-desc">Har'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.</p>
-                    <div class="news-full-text">
+                    <span class="news-tag" id="newsTag">Ashaaraa Magariisaa</span>
+                    <h3 class="news-card-title" id="newsTitle">Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Ashaaraa Magariisaa Daawwatan!</h3>
+                    <p class="news-card-desc" id="newsDesc">Har'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.</p>
+                    <div class="news-full-text" id="newsFull">
 Oduu Gammachiisaa Magaalaa Mataaharaa irraa!
 
 Har'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.
@@ -299,5 +298,86 @@ Baga gammanne, Mataaharaa! Baga gammanne, Oromiyaa!
 
     </div>
 
+    <!-- Multi-language Translation Script -->
+    <script>
+        const translations = {
+            om: {
+                admin: '<i class="fas fa-user-shield"></i> Bulchaa',
+                menu1: '<i class="fas fa-newspaper"></i> Oduu Haaraa',
+                menu2: '<i class="fas fa-video"></i> Gulaala Viidiyoo',
+                menu3: '<i class="fas fa-landmark"></i> Aadaa',
+                menu4: '<i class="fas fa-mountain"></i> Turizimii',
+                menu5: '<i class="fas fa-brain"></i> Philosophy',
+                menu6: '<i class="fas fa-book"></i> Og-barruu',
+                menu7: '<i class="fas fa-info-circle"></i> Waa\'ee Keenya',
+                heroTitle: 'Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataaharaatti Nagaan Dhuftan!',
+                heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
+                secTitle: 'Oduu Haaraa',
+                newsTag: 'Ashaaraa Magariisaa',
+                newsTitle: 'Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Ashaaraa Magariisaa Daawwatan!',
+                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.',
+                newsFull: `Oduu Gammachiisaa Magaalaa Mataaharaa irraa!\n\nHar'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.\n\nAshaaraan Magariisaa Firii Naafata!\nDaawwannaan kun, biqiltuun dhaabbate kunoo akkamitti guddachaa fi firii buusuuf deemaa akka jiru kan agarsiisudha. Kunis, carraaqqiin keenya Magariisa uumuu fi wabii nyaataa mirkaneessuuf gochaa jirru fiidetti deemaa jiraachuu isaati.\n\nItti fufinsaan hojjenna!\nPirezedaantiin keenya carraaqqii uummataa fi mootummaan harka walqabatanii gochaa jiran kana dinqisiifataniiru. Sagantaan Ashaaraa Magariisaa naannoo keenya fi biyya keenya misoomaan jireessuuf akkamitti shoora taphachaa akka jiru hubachuuf daawwannaan kun furtuudha.\n\nBaga gammanne, Mataaharaa! Baga gammanne, Oromiyaa!`
+            },
+            am: {
+                admin: '<i class="fas fa-user-shield"></i> አድሚን',
+                menu1: '<i class="fas fa-newspaper"></i> አዳዲስ ዜናዎች',
+                menu2: '<i class="fas fa-video"></i> የቪዲዮ ኤዲቲንግ',
+                menu3: '<i class="fas fa-landmark"></i> ባህል',
+                menu4: '<i class="fas fa-mountain"></i> ቱሪዝም',
+                menu5: '<i class="fas fa-brain"></i> ፊሎሶፊ',
+                menu6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
+                menu7: '<i class="fas fa-info-circle"></i> ስለ እኛ',
+                heroTitle: 'ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጡ!',
+                heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
+                secTitle: 'አዳዲስ ዜናዎች',
+                newsTag: 'አረንጓዴ አሻራ',
+                newsTitle: 'የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመተሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!',
+                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መተሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።',
+                newsFull: `አስደሳች ዜና ከመተሃራ ከተማ!\n\nዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መተሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።\n\nአረንጓዴ አሻራችን ፍሬ እያፈራ ነው!\nይህ ጉብኝት የተተከሉት ችግኞች እንዴት እያደጉና ፍሬ ለማፍራት እየደረሱ እንደሆነ የሚያሳይ ነው። ይህም አካባቢያችንን አረንጓዴ ለማድረግና የምግብ ዋስትናን ለማረጋገጥ የምናደርገው ጥረት ውጤታማ መሆኑን ያሳያል።\n\nበቅንጅት መስራታችንን እንቀጥላለን!\nፕሬዝዳንቱ ህዝብና መንግስት በጋራ እያደረጉት ያለውን ጥረት አደንቀዋል። የአረንጓዴ አሻራ መርሃ ግብር አካባቢያችንን እና ሀገራችንን በልማት ለማበልፀግ ከፍተኛ ሚና እየተጫወተ ይገኛል።\n\nእንኳን ደስ አለን መተሃራ! እንኳን ደስ አለን ኦሮሚያ!`
+            },
+            en: {
+                admin: '<i class="fas fa-user-shield"></i> Admin',
+                menu1: '<i class="fas fa-newspaper"></i> Latest News',
+                menu2: '<i class="fas fa-video"></i> Video Editing',
+                menu3: '<i class="fas fa-landmark"></i> Culture',
+                menu4: '<i class="fas fa-mountain"></i> Tourism',
+                menu5: '<i class="fas fa-brain"></i> Philosophy',
+                menu6: '<i class="fas fa-book"></i> Literature',
+                menu7: '<i class="fas fa-info-circle"></i> About Us',
+                heroTitle: 'Welcome to Metehara Town Information Hub!',
+                heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge with the community.',
+                secTitle: 'Latest News',
+                newsTag: 'Green Legacy',
+                newsTitle: 'Oromia Regional President Mr. Shimallis Abdiisaa Visits Orange Tree Plantations in Metehara!',
+                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Metehara town in East Shoa Zone to inspect orange trees planted under the Green Legacy initiative.',
+                newsFull: `Exciting News from Metehara Town!\n\nToday, President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Metehara town in East Shoa Zone to inspect orange plantations planted during last year's Green Legacy campaign.\n\nGreen Legacy Bears Fruit!\nThis visit shows how planted seedlings are growing and preparing to yield fruit. It demonstrates the success of our efforts toward environmental sustainability and food security.\n\nContinuing Success Together!\nThe President praised the joint efforts of the public and government. The Green Legacy initiative plays a crucial role in enhancing our region and nation's prosperity.\n\nCongratulations Metehara! Congratulations Oromia!`
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update buttons active class
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Apply translations
+            document.getElementById('adminBtn').innerHTML = translations[lang].admin;
+            document.getElementById('menu1').innerHTML = translations[lang].menu1;
+            document.getElementById('menu2').innerHTML = translations[lang].menu2;
+            document.getElementById('menu3').innerHTML = translations[lang].menu3;
+            document.getElementById('menu4').innerHTML = translations[lang].menu4;
+            document.getElementById('menu5').innerHTML = translations[lang].menu5;
+            document.getElementById('menu6').innerHTML = translations[lang].menu6;
+            document.getElementById('menu7').innerHTML = translations[lang].menu7;
+            
+            document.getElementById('heroTitle').innerText = translations[lang].heroTitle;
+            document.getElementById('heroSub').innerText = translations[lang].heroSub;
+            document.getElementById('secTitle').innerText = translations[lang].secTitle;
+            
+            document.getElementById('newsTag').innerText = translations[lang].newsTag;
+            document.getElementById('newsTitle').innerText = translations[lang].newsTitle;
+            document.getElementById('newsDesc').innerText = translations[lang].newsDesc;
+            document.getElementById('newsFull').innerText = translations[lang].newsFull;
+        }
+    </script>
 </body>
 </html>

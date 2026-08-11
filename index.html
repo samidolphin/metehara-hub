@@ -87,14 +87,15 @@
             font-weight: bold;
         }
 
-        /* Motion News & Gallery */
+        /* 3-Second Motion Slider */
         .slider-box {
             position: relative;
-            height: 350px;
+            height: 380px;
             overflow: hidden;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             margin-bottom: 30px;
+            background: #000;
         }
 
         .slide {
@@ -114,11 +115,13 @@
         .slide-caption {
             position: absolute;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             color: white;
             width: 100%;
-            padding: 15px;
+            padding: 15px 20px;
             box-sizing: border-box;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         /* Dynamic Post Feed */
@@ -131,7 +134,7 @@
 
         .post-item {
             border-bottom: 1px solid #eee;
-            padding: 10px 0;
+            padding: 12px 0;
         }
 
         .post-item:last-child {
@@ -179,14 +182,14 @@
 
     <!-- 3-Second Motion Gallery -->
     <div class="slider-box" id="slider">
-        <div class="slide active" style="background-image: url('oromia_president.jpg');">
-            <div class="slide-caption" id="cap-1">የኦሮሚያ ክልል ፕሬዝዳንት ወቅታዊ መግለጫ</div>
+        <div class="slide active" style="background-image: url('1776693450696.jpg');">
+            <div class="slide-caption" id="cap-1">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ወቅታዊ መግለጫ</div>
         </div>
-        <div class="slide" style="background-image: url('mataahara_mayor.jpg');">
-            <div class="slide-caption" id="cap-2">የመታሃራ ከተማ አስተዳደር ከንቲባ የልማት ምልከታ</div>
+        <div class="slide" style="background-image: url('1776693453243.jpg');">
+            <div class="slide-caption" id="cap-2">የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ምልከታ</div>
         </div>
-        <div class="slide" style="background-image: url('general_news.jpg');">
-            <div class="slide-caption" id="cap-3">የመታሃራ ከተማ የኮሪደር ልማት እና አዳዲስ እንቅስቃሴዎች</div>
+        <div class="slide" style="background-image: url('1776693457106.jpg');">
+            <div class="slide-caption" id="cap-3">የመታሃራ ከተማ አዳዲስ የልማትና የኮሪደር ስራዎች እንቅስቃሴ</div>
         </div>
     </div>
 
@@ -221,9 +224,9 @@
             optNews: "ወቅታዊ ዜና",
             optCulture: "ባህልና ቱሪዝም",
             optDev: "የልማት እንቅስቃሴ",
-            cap1: "የኦሮሚያ ክልል ፕሬዝዳንት ወቅታዊ መግለጫ",
-            cap2: "የመታሃራ ከተማ አስተዳደር ከንቲባ የልማት ምልከታ",
-            cap3: "የመታሃራ ከተማ የኮሪደር ልማት እና አዳዲስ እንቅስቃሴዎች"
+            cap1: "የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ወቅታዊ መግለጫ",
+            cap2: "የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ምልከታ",
+            cap3: "የመታሃራ ከተማ አዳዲስ የልማትና የኮሪደር ስራዎች እንቅስቃሴ"
         },
         om: {
             title: "Giddu-gala Odeeffannoo Magaalaa Mataaharaa",
@@ -234,8 +237,8 @@
             optNews: "Oduu Ammee",
             optCulture: "Aadaa fi Tuurizimii",
             optDev: "Sochii Misoomaa",
-            cap1: "Ibsa Haala Yeroo Pirezidaantii Naannoo Oromiyaa",
-            cap2: "Dawwanna Kantiibaa Magaalaa Mataaharaa",
+            cap1: "Ibsa Haala Yeroo Pirezidaantii Naannoo Oromiyaa Obbo Shimallis Abdiisaa",
+            cap2: "Dawwanna Kantiibaa Magaalaa Mataaharaa Obbo Addisuu Waaqo",
             cap3: "Misooma Koriidarii fi Sochii Haaraa Magaalaa Mataaharaa"
         },
         en: {
@@ -247,9 +250,9 @@
             optNews: "Current News",
             optCulture: "Culture & Tourism",
             optDev: "Development Activity",
-            cap1: "Oromia Regional President Current Update",
-            cap2: "Mataaharaa Town Mayor Development Inspection",
-            cap3: "Mataaharaa Town Corridor Development & News"
+            cap1: "Oromia Regional President Shimelis Abdisa Current Briefing",
+            cap2: "Mataaharaa Town Mayor Addisu Wako Development Inspection",
+            cap3: "Mataaharaa Town Corridor Development & Progress"
         }
     };
 
@@ -293,10 +296,10 @@
 
         postsContainer.prepend(newPost);
         titleInput.value = '';
-        alert('መረጃው በተሳካ ሁኔታ ተለቋል! / Odeeffannoon milkaa'inaan maxxansameera!');
+        alert('መረጃው በተሳካ ሁኔታ ተለቋል! / Odeeffannoon milkaa\'inaan maxxansameera!');
     }
 
-    // 3-Second Motion Slider
+    // 3-Second Automatic Motion Slider
     let slides = document.querySelectorAll('.slide');
     let currentIndex = 0;
 

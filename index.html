@@ -6,25 +6,19 @@
     <title>Mataaharaa Town Hub | መታሃራ መረጃ ማዕከል</title>
     <style>
         :root { --primary-color: #2c3e50; --accent-color: #e67e22; --bg-color: #f4f4f9; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: #333; }
         header { background: var(--primary-color); color: white; padding: 20px; text-align: center; }
         .container { width: 90%; max-width: 900px; margin: 20px auto; }
         
-        /* Admin Panel */
-        .admin-card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 5px solid var(--accent-color); }
-        .admin-form input { width: 95%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 20px; background: var(--accent-color); color: white; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
-
-        /* Slider - 4 Seconds Motion */
-        .slider-box { position: relative; height: 380px; overflow: hidden; border-radius: 12px; background: #000; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        /* Slider */
+        .slider-box { position: relative; height: 380px; overflow: hidden; border-radius: 12px; background: #000; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
         .slide.active { opacity: 1; }
         .slide-caption { position: absolute; bottom: 0; background: rgba(0, 0, 0, 0.75); color: white; width: 100%; padding: 15px 20px; box-sizing: border-box; font-size: 1.1rem; }
 
         /* News Feed */
         .news-feed { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .post-item { background: white; padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; border-radius: 5px; transition: background 0.2s; }
-        .post-item:hover { background: #fef5ec; }
+        .post-item { background: white; padding: 15px; border-bottom: 1px solid #eee; margin-bottom: 5px; }
         
         /* Footer */
         footer { background: #2c3e50; color: #ffffff; text-align: center; padding: 25px; margin-top: 40px; border-top: 5px solid var(--accent-color); }
@@ -38,39 +32,25 @@
 </header>
 
 <div class="container">
-    <!-- አድሚን ፓነል (በይለፍ ቃል የሚጠበቅ) -->
-    <div class="admin-card">
-        <h3>⚙️ አዲስ ዜና እና 3 ፎቶዎችን ጫን (አድሚን ብቻ)</h3>
-        <div class="admin-form">
-            <input type="text" id="inTitle" placeholder="የዜናው ርዕስ (ምሳሌ: የኦሮሚያ ክልላዊ ፕሬዚዳንት)...">
-            <input type="text" id="inImg1" placeholder="የፎቶ 1 ሊንክ/ስም (URL)...">
-            <input type="text" id="inImg2" placeholder="የፎቶ 2 ሊንክ/ስም (URL)...">
-            <input type="text" id="inImg3" placeholder="የፎቶ 3 ሊንክ/ስም (URL)...">
-            <button onclick="addPost()">ይዘት ልቀቅ (Publish)</button>
-        </div>
-    </div>
-
-    <!-- ሞሽን ስላይደር (በየ 4 ሰከንዱ የሚቀያየር) -->
+    <!-- ሞሽን ስላይደር -->
     <div class="slider-box" id="slider">
-        <div class="slide active" id="s1" style="background-image: url('1776693450696.jpg');">
-            <div class="slide-caption" id="cap-1">የኦሮሚያ ክልላዊ ፕሬዚዳንት ወቅታዊ መግለጫ (ፎቶ 1)</div>
+        <div class="slide active" style="background-image: url('1776693450696.jpg');">
+            <div class="slide-caption">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ወቅታዊ መግለጫ</div>
         </div>
-        <div class="slide" id="s2" style="background-image: url('1776693453243.jpg');">
-            <div class="slide-caption" id="cap-2">የኦሮሚያ ክልላዊ ፕሬዚዳንት የعمل ስራዎች (ፎቶ 2)</div>
+        <div class="slide" style="background-image: url('1776693453243.jpg');">
+            <div class="slide-caption">የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ምልከታ</div>
         </div>
-        <div class="slide" id="s3" style="background-image: url('1776693457106.jpg');">
-            <div class="slide-caption" id="cap-3">የኦሮሚያ ክልላዊ ፕሬዚዳንት ሐገራዊ ጉብኝት (ፎቶ 3)</div>
+        <div class="slide" style="background-image: url('1776693457106.jpg');">
+            <div class="slide-caption">የመታሃራ ከተማ አዳዲስ የልማትና የኮሪደር ስራዎች እንቅስቃሴ</div>
         </div>
     </div>
 
     <!-- የዜና ዝርዝር -->
     <div class="news-feed">
-        <h3 id="feed-title">📌 የዜና ዝርዝር (ለመመልከት ክሊክ ያድርጉ)</h3>
-        <div id="postsContainer">
-            <div class="post-item" onclick="loadNewsToSlider('የኦሮሚያ ክልላዊ ፕሬዚዳንት ወቅታዊ መግለጫ', '1776693450696.jpg', '1776693453243.jpg', '1776693457106.jpg')">
-                <small style="color: var(--accent-color);">[ወቅታዊ ዜና]</small>
-                <h4>የኦሮሚያ ክልላዊ ፕሬዚዳንት ወቅታዊ መግለጫ እና የልማት ምልከታ</h4>
-            </div>
+        <h3>📌 የቅርብ ጊዜ የተጫኑ መረጃዎች</h3>
+        <div class="post-item">
+            <small style="color: var(--accent-color);">[ወቅታዊ ዜና]</small>
+            <h4>እንኳን ወደ አዲሱ የመታሃራ ከተማ መረጃ ማዕከል በደህና መጡ!</h4>
         </div>
     </div>
 </div>
@@ -84,76 +64,13 @@
 </footer>
 
 <script>
-    let slideInterval;
-
-    // በየ 4 ሰከንዱ እንዲቀያየር የተደረገ ሞሽን
-    function startAutoSlide() {
-        let slides = document.querySelectorAll('.slide');
-        let currentIndex = 0;
-        clearInterval(slideInterval);
-        slideInterval = setInterval(() => {
-            slides.forEach(s => s.classList.remove('active'));
-            currentIndex = (currentIndex + 1) % slides.length;
-            slides[currentIndex].classList.add('active');
-        }, 4000); // 4000 ሚሊሰከንድ = 4 ሰከንድ
-    }
-
-    // ድረ-ገጹ ሲከፈት ሞሽኑን ማስጀመር
-    startAutoSlide();
-
-    // የተመረጠውን ዜና 3 ፎቶዎች ወደ ስላይደር መጫኛ
-    function loadNewsToSlider(title, i1, i2, i3) {
-        document.getElementById('s1').style.backgroundImage = `url('${i1}')`;
-        document.getElementById('s2').style.backgroundImage = `url('${i2}')`;
-        document.getElementById('s3').style.backgroundImage = `url('${i3}')`;
-
-        document.getElementById('cap-1').innerText = `${title} (ፎቶ 1)`;
-        document.getElementById('cap-2').innerText = `${title} (ፎቶ 2)`;
-        document.getElementById('cap-3').innerText = `${title} (ፎቶ 3)`;
-
-        startAutoSlide();
-    }
-
-    // አድሚን ዜና ሲለቅ የይለፍ ቃል (1-4) መጠየቂያ
-    function addPost() {
-        const password = prompt("እባክዎ የአድሚን የይለፍ ቃል ያስገቡ (Password):");
-
-        if (password === "1234") {
-            const title = document.getElementById('inTitle').value.trim();
-            const i1 = document.getElementById('inImg1').value.trim();
-            const i2 = document.getElementById('inImg2').value.trim();
-            const i3 = document.getElementById('inImg3').value.trim();
-
-            if (title === '' || i1 === '') {
-                alert('እባክዎ ቢያንስ ርዕስ እና የመጀመሪያውን ፎቶ ያስገቡ!');
-                return;
-            }
-
-            const imgTwo = i2 !== '' ? i2 : i1;
-            const imgThree = i3 !== '' ? i3 : i1;
-
-            const postsContainer = document.getElementById('postsContainer');
-            const newPost = document.createElement('div');
-            newPost.className = 'post-item';
-            newPost.onclick = function() {
-                loadNewsToSlider(title, i1, imgTwo, imgThree);
-            };
-            newPost.innerHTML = `<small style="color: var(--accent-color);">[አዲስ የተጫነ]</small><h4>${title}</h4>`;
-            
-            postsContainer.prepend(newPost);
-            loadNewsToSlider(title, i1, imgTwo, imgThree);
-
-            // ሳጥኖቹን ባዶ ማድረግ
-            document.getElementById('inTitle').value = '';
-            document.getElementById('inImg1').value = '';
-            document.getElementById('inImg2').value = '';
-            document.getElementById('inImg3').value = '';
-
-            alert('ዜናው ከነ 3 ፎቶዎቹ በተሳካ ሁኔታ ተለቋል!');
-        } else {
-            alert('የይለፍ ቃል ስህተት ነው!');
-        }
-    }
+    let slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+    setInterval(() => {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add('active');
+    }, 3000);
 </script>
 
 </body>

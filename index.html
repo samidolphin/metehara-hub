@@ -3,381 +3,622 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metehara Town Hub - Sami-Tube Media</title>
+    <title>Mataaharaa Town Hub | Sami-Tube Media</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent-color: #ff9800;
+            --text-color: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --primary-btn: #2563eb;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            background-color: #0b0f19;
-            color: #e2e8f0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
-        
-        /* Navbar Section */
-        nav {
-            background-color: #111827;
-            padding: 15px 5%;
+
+        /* Header Navigation */
+        header {
+            background-color: rgba(17, 24, 39, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #1f2937;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 15px 20px;
         }
+
         .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
         }
+
         .logo-badge {
-            background-color: #f59e0b;
+            background: var(--accent-color);
             color: #000;
-            font-weight: 900;
+            font-weight: bold;
             padding: 6px 12px;
             border-radius: 6px;
-            font-size: 20px;
-        }
-        .site-title h2 {
-            font-size: 18px;
-            color: #ffffff;
-        }
-        .site-title p {
-            font-size: 12px;
-            color: #9ca3af;
+            font-size: 1.2rem;
         }
 
-        .nav-right {
+        .logo-title h1 {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .logo-title p {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+        }
+
+        .nav-controls {
             display: flex;
             align-items: center;
             gap: 15px;
         }
+
         .lang-switch {
             background: #1f2937;
-            padding: 4px;
-            border-radius: 8px;
+            border-radius: 20px;
+            padding: 3px;
             display: flex;
-            gap: 4px;
         }
+
         .lang-btn {
-            background: transparent;
+            background: none;
             border: none;
-            color: #9ca3af;
-            padding: 6px 10px;
-            border-radius: 6px;
+            color: var(--text-secondary);
+            padding: 5px 12px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 0.85rem;
             font-weight: bold;
             transition: 0.3s;
         }
+
         .lang-btn.active {
-            background: #f59e0b;
+            background: var(--accent-color);
             color: #000;
         }
-        .admin-link {
+
+        .admin-btn {
             background: #2563eb;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 13px;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
         }
 
-        /* Menu Bar */
-        .menu-bar {
-            background: #111827;
-            padding: 10px 5%;
-            display: flex;
-            gap: 20px;
+        .admin-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background: #151c2c;
             border-bottom: 1px solid #1f2937;
             overflow-x: auto;
         }
-        .menu-bar a {
-            color: #d1d5db;
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-        }
-        .menu-bar a:hover {
-            color: #f59e0b;
-        }
 
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
+        .menu-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            list-style: none;
             padding: 0 20px;
         }
 
-        /* Hero Banner */
-        .hero-card {
-            background: linear-gradient(180deg, #111827 0%, #0b0f19 100%);
-            border: 1px solid #1f2937;
-            border-radius: 16px;
-            padding: 50px 20px;
+        .menu-list li a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+
+        .menu-list li a:hover, .menu-list li a.active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* Hero Background Motion Slider */
+        .hero {
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            margin-bottom: 40px;
+            padding: 60px 20px;
+            overflow: hidden;
         }
-        .hero-title {
-            color: #f59e0b;
-            font-size: 32px;
-            font-weight: 800;
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 6s ease-out;
+            transform: scale(1);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(11,15,25,0.7) 0%, rgba(11,15,25,0.95) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+        }
+
+        .hero-content h2 {
+            font-size: 2.2rem;
+            color: var(--accent-color);
             margin-bottom: 15px;
-            line-height: 1.3;
         }
-        .hero-sub {
-            color: #9ca3af;
-            font-size: 16px;
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #e5e7eb;
             margin-bottom: 25px;
         }
-        .social-group {
+
+        .social-links {
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
         }
-        .btn-social {
+
+        .social-btn {
             padding: 10px 20px;
             border-radius: 8px;
-            color: white;
+            color: #fff;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: 0.3s;
         }
-        .btn-yt { background: #cc0000; }
-        .btn-fb { background: #1877f2; }
-        .btn-tg { background: #0088cc; }
 
-        /* News Section */
+        .btn-youtube { background: #ff0000; }
+        .btn-facebook { background: #1877f2; }
+        .btn-telegram { background: #0088cc; }
+        .social-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* Main Content & News Section */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
         .section-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #ffffff;
-            border-left: 4px solid #f59e0b;
+            font-size: 1.5rem;
+            border-left: 4px solid var(--accent-color);
             padding-left: 10px;
+            margin-bottom: 25px;
         }
 
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
         .news-card {
-            background: #111827;
-            border: 1px solid #1f2937;
+            background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
+            border: 1px solid #1f2937;
+            max-width: 800px;
         }
-        .news-card img {
+
+        .news-img {
             width: 100%;
-            height: 240px;
+            height: auto;
+            max-height: 400px;
             object-fit: cover;
+            display: block;
         }
-        .news-card-body {
-            padding: 20px;
+
+        .news-body {
+            padding: 25px;
         }
+
         .news-tag {
-            background: #059669;
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 4px 8px;
+            background: #065f46;
+            color: #34d399;
+            padding: 4px 10px;
             border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
             display: inline-block;
             margin-bottom: 10px;
-            text-transform: uppercase;
         }
-        .news-card-title {
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 10px;
-            line-height: 1.4;
+
+        .news-body h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
         }
-        .news-card-desc {
-            color: #9ca3af;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-        .news-full-text {
+
+        .news-body p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             white-space: pre-line;
+        }
+
+        /* Footer Section */
+        footer {
+            background: #080c14;
+            border-top: 1px solid #1f2937;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #1f2937;
+            padding-top: 20px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Modal Popup for Admin */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #1f2937;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
             background: #1f2937;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: #d1d5db;
+            border: 1px solid #374151;
+            color: #fff;
+            border-radius: 6px;
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 10px;
+            background: var(--accent-color);
+            border: none;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navbar -->
-    <nav>
-        <div class="logo-container">
-            <div class="logo-badge">SAMI</div>
-            <div class="site-title">
-                <h2>Metehara Town Hub</h2>
-                <p>Sami-Tube Media & Information Center</p>
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-badge">SAMI</div>
+                <div class="logo-title">
+                    <h1>Mataaharaa Town Hub</h1>
+                    <p>Sami-Tube Media & Information Center</p>
+                </div>
+            </div>
+            <div class="nav-controls">
+                <div class="lang-switch">
+                    <button class="lang-btn active" onclick="setLanguage('am')">ET AM</button>
+                    <button class="lang-btn" onclick="setLanguage('om')">OM</button>
+                    <button class="lang-btn" onclick="setLanguage('en')">GB EN</button>
+                </div>
+                <button class="admin-btn" id="adminBtn">
+                    <i class="fas fa-user-shield"></i> <span id="adminText">አድሚን</span>
+                </button>
             </div>
         </div>
-        <div class="nav-right">
-            <div class="lang-switch">
-                <button class="lang-btn" onclick="changeLanguage('am')">ET AM</button>
-                <button class="lang-btn active" onclick="changeLanguage('om')">OM</button>
-                <button class="lang-btn" onclick="changeLanguage('en')">GB EN</button>
-            </div>
-            <a href="#" class="admin-link" id="adminBtn"><i class="fas fa-user-shield"></i> Bulchaa</a>
-        </div>
-    </nav>
+    </header>
 
     <!-- Navigation Menu -->
-    <div class="menu-bar">
-        <a href="#" id="menu1"><i class="fas fa-newspaper"></i> Oduu Haaraa</a>
-        <a href="#" id="menu2"><i class="fas fa-video"></i> Gulaala Viidiyoo</a>
-        <a href="#" id="menu3"><i class="fas fa-landmark"></i> Aadaa</a>
-        <a href="#" id="menu4"><i class="fas fa-mountain"></i> Turizimii</a>
-        <a href="#" id="menu5"><i class="fas fa-brain"></i> Philosophy</a>
-        <a href="#" id="menu6"><i class="fas fa-book"></i> Og-barruu</a>
-        <a href="#" id="menu7"><i class="fas fa-info-circle"></i> Waa'ee Keenya</a>
-    </div>
+    <nav>
+        <ul class="menu-list">
+            <li><a href="#news" class="active" id="m1"><i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች</a></li>
+            <li><a href="#video" id="m2"><i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ</a></li>
+            <li><a href="#culture" id="m3"><i class="fas fa-landmark"></i> ባህል</a></li>
+            <li><a href="#tourism" id="m4"><i class="fas fa-mountain"></i> ቱሪዝም</a></li>
+            <li><a href="#philosophy" id="m5"><i class="fas fa-brain"></i> ፊሎሶፊ</a></li>
+            <li><a href="#literature" id="m6"><i class="fas fa-book"></i> ስነ-ጽሁፍ</a></li>
+            <li><a href="#about" id="m7"><i class="fas fa-info-circle"></i> ስለ እኛ</a></li>
+        </ul>
+    </nav>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero-card">
-            <h1 class="hero-title" id="heroTitle">Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataharaatti Nagaan Dhuftan!</h1>
-            <p class="hero-sub" id="heroSub">Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.</p>
-            <div class="social-group">
-                <a href="https://youtube.com/@samsontesfaye2670?si=y9kxoP-0nxZdlJ4y" target="_blank" class="btn-social btn-yt">
+    <!-- Hero Section with Motion Background Slider -->
+    <section class="hero">
+        <div class="hero-slider">
+            <!-- የበሰቃ ሃይቅና የልማት ምስሎች -->
+            <div class="slide active" style="background-image: url('burtukaana.jpg');"></div>
+            <div class="slide" style="background-image: url('burtukaana1.jpg');"></div>
+            <div class="slide" style="background-image: url('burtukaana2.jpg');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2 id="heroTitle">ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጡ!</h2>
+            <p id="heroSub">ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።</p>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@samsontesfaye2670/posts" target="_blank" class="social-btn btn-youtube">
                     <i class="fab fa-youtube"></i> YouTube
                 </a>
-                <a href="#" class="btn-social btn-fb">
+                <a href="https://facebook.com" target="_blank" class="social-btn btn-facebook">
                     <i class="fab fa-facebook"></i> Facebook
                 </a>
-                <a href="#" class="btn-social btn-tg">
+                <a href="https://t.me" target="_blank" class="social-btn btn-telegram">
                     <i class="fab fa-telegram"></i> Telegram
                 </a>
             </div>
         </div>
+    </section>
 
-        <!-- Latest News -->
-        <h2 class="section-title" id="secTitle">Oduu Haaraa</h2>
+    <!-- Main Content Area -->
+    <main>
+        <h2 class="section-title" id="secTitle">ወቅታዊ ዜናዎች</h2>
         
-        <div class="news-grid">
-            <div class="news-card">
-                <img src="763107043_27813499481614131_3295471807967793805_n.jpg" alt="Ashaaraa Magariisaa">
-                <div class="news-card-body">
-                    <span class="news-tag" id="newsTag">Ashaaraa Magariisaa</span>
-                    <h3 class="news-card-title" id="newsTitle">Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Ashaaraa Magariisaa Daawwatan!</h3>
-                    <p class="news-card-desc" id="newsDesc">Har'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.</p>
-                    <div class="news-full-text" id="newsFull">
-Oduu Gammachiisaa Magaalaa Mataaharaa irraa!
+        <article class="news-card">
+            <img src="burtukaana.jpg" alt="Ashaaraa Magariisaa" class="news-img">
+            <div class="news-body">
+                <span class="news-tag" id="newsTag">አረንጓዴ አሻራ</span>
+                <h3 id="newsTitle">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመተሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!</h3>
+                <p id="newsDesc">ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መተሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።</p>
+            </div>
+        </article>
+    </main>
 
-Har'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.
-
-Ashaaraan Magariisaa Firii Naafata!
-Daawwannaan kun, biqiltuun dhaabbate kunoo akkamitti guddachaa fi firii buusuuf deemaa akka jiru kan agarsiisudha. Kunis, carraaqqiin keenya Magariisa uumuu fi wabii nyaataa mirkaneessuuf gochaa jirru fiidetti deemaa jiraachuu isaati.
-
-Itti fufinsaan hojjenna!
-Pirezedaantiin keenya carraaqqii uummataa fi mootummaan harka walqabatanii gochaa jiran kana dinqisiifataniiru. Sagantaan Ashaaraa Magariisaa naannoo keenya fi biyya keenya misoomaan jireessuuf akkamitti shoora taphachaa akka jiru hubachuuf daawwannaan kun furtuudha.
-
-Baga gammanne, Mataaharaa! Baga gammanne, Oromiyaa!
-                    </div>
-                </div>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Mataaharaa Town Hub</h4>
+                <p>የመተሃራ ከተማ እና የአካባቢዋን አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::</p>
+            </div>
+            <div class="footer-col">
+                <h4>የመواصلያ አድራሻ</h4>
+                <p><i class="fas fa-phone"></i> +251 91 000 0000</p>
+                <p><i class="fas fa-envelope"></i> samsontesfaye18@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Mataaharaa, Oromia, Ethiopia</p>
+            </div>
+            <div class="footer-col">
+                <h4>ማህበራዊ ሚዲያ</h4>
+                <a href="https://www.youtube.com/@samsontesfaye2670/posts" target="_blank"><i class="fab fa-youtube"></i> YouTube Channel</a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook Page</a>
+                <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i> Telegram Channel</a>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sami-Tube Media & Information Center. All Rights Reserved.</p>
+        </div>
+    </footer>
 
+    <!-- Admin Modal Window -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3>የአድሚን መግቢያ</h3>
+            <form id="adminForm">
+                <input type="text" placeholder="የተጠቃሚ ስም" required>
+                <input type="password" placeholder="የይለፍ ቃል" required>
+                <button type="submit">ግባ</button>
+            </form>
+        </div>
     </div>
 
-    <!-- Multi-language Translation Script -->
     <script>
+        // Language Data
         const translations = {
+            am: {
+                admin: '<i class="fas fa-user-shield"></i> አድሚን',
+                m1: '<i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች',
+                m2: '<i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ',
+                m3: '<i class="fas fa-landmark"></i> ባህል',
+                m4: '<i class="fas fa-mountain"></i> ቱሪዝም',
+                m5: '<i class="fas fa-brain"></i> ፊሎሶፊ',
+                m6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
+                m7: '<i class="fas fa-info-circle"></i> ስለ እኛ',
+                heroTitle: 'ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጡ!',
+                heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
+                secTitle: 'ወቅታዊ ዜናዎች',
+                newsTag: 'አረንጓዴ አሻራ',
+                newsTitle: 'የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመተሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!',
+                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መተሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።'
+            },
             om: {
                 admin: '<i class="fas fa-user-shield"></i> Bulchaa',
-                menu1: '<i class="fas fa-newspaper"></i> Oduu Haaraa',
-                menu2: '<i class="fas fa-video"></i> Gulaala Viidiyoo',
-                menu3: '<i class="fas fa-landmark"></i> Aadaa',
-                menu4: '<i class="fas fa-mountain"></i> Turizimii',
-                menu5: '<i class="fas fa-brain"></i> Philosophy',
-                menu6: '<i class="fas fa-book"></i> Og-barruu',
-                menu7: '<i class="fas fa-info-circle"></i> Waa\'ee Keenya',
+                m1: '<i class="fas fa-newspaper"></i> Oduu Haaraa',
+                m2: '<i class="fas fa-video"></i> Gulaala Viidiyoo',
+                m3: '<i class="fas fa-landmark"></i> Aadaa',
+                m4: '<i class="fas fa-mountain"></i> Turizimii',
+                m5: '<i class="fas fa-brain"></i> Filosoochii',
+                m6: '<i class="fas fa-book"></i> Og-barruu',
+                m7: '<i class="fas fa-info-circle"></i> Waa\'ee Keenya',
                 heroTitle: 'Baga Gara Wiirtuu Odeeffannoo Magaalaa Mataaharaatti Nagaan Dhuftan!',
                 heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
                 secTitle: 'Oduu Haaraa',
                 newsTag: 'Ashaaraa Magariisaa',
                 newsTitle: 'Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Ashaaraa Magariisaa Daawwatan!',
-                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.',
-                newsFull: `Oduu Gammachiisaa Magaalaa Mataaharaa irraa!\n\nHar'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.\n\nAshaaraan Magariisaa Firii Naafata!\nDaawwannaan kun, biqiltuun dhaabbate kunoo akkamitti guddachaa fi firii buusuuf deemaa akka jiru kan agarsiisudha. Kunis, carraaqqiin keenya Magariisa uumuu fi wabii nyaataa mirkaneessuuf gochaa jirru fiidetti deemaa jiraachuu isaati.\n\nItti fufinsaan hojjenna!\nPirezedaantiin keenya carraaqqii uummataa fi mootummaan harka walqabatanii gochaa jiran kana dinqisiifataniiru. Sagantaan Ashaaraa Magariisaa naannoo keenya fi biyya keenya misoomaan jireessuuf akkamitti shoora taphachaa akka jiru hubachuuf daawwannaan kun furtuudha.\n\nBaga gammanne, Mataaharaa! Baga gammanne, Oromiyaa!`
-            },
-            am: {
-                admin: '<i class="fas fa-user-shield"></i> አድሚን',
-                menu1: '<i class="fas fa-newspaper"></i> አዳዲስ ዜናዎች',
-                menu2: '<i class="fas fa-video"></i> የቪዲዮ ኤዲቲንግ',
-                menu3: '<i class="fas fa-landmark"></i> ባህል',
-                menu4: '<i class="fas fa-mountain"></i> ቱሪዝም',
-                menu5: '<i class="fas fa-brain"></i> ፊሎሶፊ',
-                menu6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
-                menu7: '<i class="fas fa-info-circle"></i> ስለ እኛ',
-                heroTitle: 'ወደ መተሃራ ከተማ የመረጃ ማዕከል በደህና መጡ!',
-                heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
-                secTitle: 'አዳዲስ ዜናዎች',
-                newsTag: 'አረንጓዴ አሻራ',
-                newsTitle: 'የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመተሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!',
-                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መተሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።',
-                newsFull: `አስደሳች ዜና ከመተሃራ ከተማ!\n\nዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መተሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል።\n\nአረንጓዴ አሻራችን ፍሬ እያፈራ ነው!\nይህ ጉብኝት የተተከሉት ችግኞች እንዴት እያደጉና ፍሬ ለማፍራት እየደረሱ እንደሆነ የሚያሳይ ነው። ይህም አካባቢያችንን አረንጓዴ ለማድረግና የምግብ ዋስትናን ለማረጋገጥ የምናደርገው ጥረት ውጤታማ መሆኑን ያሳያል።\n\nበቅንጅት መስራታችንን እንቀጥላለን!\nፕሬዝዳንቱ ህዝብና መንግስት በጋራ እያደረጉት ያለውን ጥረት አደንቀዋል። የአረንጓዴ አሻራ መርሃ ግብር አካባቢያችንን እና ሀገራችንን በልማት ለማበልፀግ ከፍተኛ ሚና እየተጫወተ ይገኛል።\n\nእንኳን ደስ አለን መተሃራ! እንኳን ደስ አለን ኦሮሚያ!`
+                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.'
             },
             en: {
                 admin: '<i class="fas fa-user-shield"></i> Admin',
-                menu1: '<i class="fas fa-newspaper"></i> Latest News',
-                menu2: '<i class="fas fa-video"></i> Video Editing',
-                menu3: '<i class="fas fa-landmark"></i> Culture',
-                menu4: '<i class="fas fa-mountain"></i> Tourism',
-                menu5: '<i class="fas fa-brain"></i> Philosophy',
-                menu6: '<i class="fas fa-book"></i> Literature',
-                menu7: '<i class="fas fa-info-circle"></i> About Us',
-                heroTitle: 'Welcome to Metehara Town Information Hub!',
+                m1: '<i class="fas fa-newspaper"></i> Latest News',
+                m2: '<i class="fas fa-video"></i> Video Editing',
+                m3: '<i class="fas fa-landmark"></i> Culture',
+                m4: '<i class="fas fa-mountain"></i> Tourism',
+                m5: '<i class="fas fa-brain"></i> Philosophy',
+                m6: '<i class="fas fa-book"></i> Literature',
+                m7: '<i class="fas fa-info-circle"></i> About Us',
+                heroTitle: 'Welcome to Mataaharaa Town Information Hub!',
                 heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge with the community.',
                 secTitle: 'Latest News',
                 newsTag: 'Green Legacy',
-                newsTitle: 'Oromia Regional President Mr. Shimallis Abdiisaa Visits Orange Tree Plantations in Metehara!',
-                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Metehara town in East Shoa Zone to inspect orange trees planted under the Green Legacy initiative.',
-                newsFull: `Exciting News from Metehara Town!\n\nToday, President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Metehara town in East Shoa Zone to inspect orange plantations planted during last year's Green Legacy campaign.\n\nGreen Legacy Bears Fruit!\nThis visit shows how planted seedlings are growing and preparing to yield fruit. It demonstrates the success of our efforts toward environmental sustainability and food security.\n\nContinuing Success Together!\nThe President praised the joint efforts of the public and government. The Green Legacy initiative plays a crucial role in enhancing our region and nation's prosperity.\n\nCongratulations Metehara! Congratulations Oromia!`
+                newsTitle: 'Oromia Regional President Mr. Shimallis Abdiisaa Visits Orange Tree Plantations in Mataaharaa!',
+                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Mataaharaa town in East Shoa Zone to inspect orange trees planted under the Green Legacy initiative.'
             }
         };
 
-        function changeLanguage(lang) {
-            // Update buttons active class
+        function setLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Apply translations
-            document.getElementById('adminBtn').innerHTML = translations[lang].admin;
-            document.getElementById('menu1').innerHTML = translations[lang].menu1;
-            document.getElementById('menu2').innerHTML = translations[lang].menu2;
-            document.getElementById('menu3').innerHTML = translations[lang].menu3;
-            document.getElementById('menu4').innerHTML = translations[lang].menu4;
-            document.getElementById('menu5').innerHTML = translations[lang].menu5;
-            document.getElementById('menu6').innerHTML = translations[lang].menu6;
-            document.getElementById('menu7').innerHTML = translations[lang].menu7;
-            
-            document.getElementById('heroTitle').innerText = translations[lang].heroTitle;
-            document.getElementById('heroSub').innerText = translations[lang].heroSub;
-            document.getElementById('secTitle').innerText = translations[lang].secTitle;
-            
-            document.getElementById('newsTag').innerText = translations[lang].newsTag;
-            document.getElementById('newsTitle').innerText = translations[lang].newsTitle;
-            document.getElementById('newsDesc').innerText = translations[lang].newsDesc;
-            document.getElementById('newsFull').innerText = translations[lang].newsFull;
+            const t = translations[lang];
+            document.getElementById('adminText').innerHTML = t.admin;
+            document.getElementById('m1').innerHTML = t.m1;
+            document.getElementById('m2').innerHTML = t.m2;
+            document.getElementById('m3').innerHTML = t.m3;
+            document.getElementById('m4').innerHTML = t.m4;
+            document.getElementById('m5').innerHTML = t.m5;
+            document.getElementById('m6').innerHTML = t.m6;
+            document.getElementById('m7').innerHTML = t.m7;
+            document.getElementById('heroTitle').innerText = t.heroTitle;
+            document.getElementById('heroSub').innerText = t.heroSub;
+            document.getElementById('secTitle').innerText = t.secTitle;
+            document.getElementById('newsTag').innerText = t.newsTag;
+            document.getElementById('newsTitle').innerText = t.newsTitle;
+            document.getElementById('newsDesc').innerText = t.newsDesc;
         }
+
+        // Background Slider Motion (Every 5 Seconds)
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // Admin Modal Popup Functionality
+        const adminBtn = document.getElementById('adminBtn');
+        const adminModal = document.getElementById('adminModal');
+        const closeModal = document.getElementById('closeModal');
+
+        adminBtn.addEventListener('click', () => {
+            adminModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            adminModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === adminModal) {
+                adminModal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>

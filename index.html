@@ -5,107 +5,280 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mataaharaa Town Hub | መታሃራ መረጃ ማዕከል</title>
     <style>
-        :root { --primary-color: #2c3e50; --accent-color: #e67e22; --bg-color: #f4f4f9; }
-        body { font-family: sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; }
-        header { background: var(--primary-color); color: white; padding: 20px; text-align: center; }
-        .container { width: 90%; max-width: 900px; margin: 20px auto; }
-        
-        /* Admin Panel */
-        .admin-card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .admin-form input { width: 95%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 20px; background: var(--accent-color); color: white; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+        }
 
-        /* Slider */
-        .slider-box { position: relative; height: 350px; overflow: hidden; border-radius: 12px; background: #333; margin-bottom: 20px; }
-        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h1 { margin: 0; font-size: 1.5rem; }
+
+        .lang-switch select {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        .admin-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent-color);
+            margin-bottom: 25px;
+        }
+
+        .admin-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .admin-form input, .admin-form select, .admin-form button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .admin-form button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            grid-column: 1 / -1;
+        }
+
+        /* Motion Slider */
+        .slider-box {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            background: #000;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
         .slide.active { opacity: 1; }
 
-        /* News Feed */
-        .post-item { background: white; padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; border-radius: 5px; margin-bottom: 5px; }
-        .post-item:hover { background: #fff3e0; }
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            width: 100%;
+            padding: 15px 20px;
+            box-sizing: border-box;
+            font-size: 1.1rem;
+        }
+
+        .news-feed {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .post-item {
+            border-bottom: 1px solid #eee;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .post-item:hover { background: #fef5ec; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>የመታሃራ ከተማ መረጃ ማዕከል</h1>
+    <h1 id="site-title">የመታሃራ ከተማ መረጃ ማዕከል (Mataaharaa Hub)</h1>
+    <div class="lang-switch">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="am">አማርኛ</option>
+            <option value="om">Afaan Oromoo</option>
+            <option value="en">English</option>
+        </select>
+    </div>
 </header>
 
 <div class="container">
-    <!-- አድሚን ፓነል -->
+
+    <!-- Admin Panel -->
     <div class="admin-card">
-        <h3>⚙️ አዲስ ዜና እና 3 ፎቶዎችን ጫን</h3>
-        <input type="text" id="inTitle" placeholder="የዜናው ርዕስ...">
-        <input type="text" id="inImg1" placeholder="የፎቶ 1 ሊንክ (URL)...">
-        <input type="text" id="inImg2" placeholder="የፎቶ 2 ሊንክ (URL)...">
-        <input type="text" id="inImg3" placeholder="የፎቶ 3 ሊንክ (URL)...">
-        <button onclick="addPost()">ይዘት ልቀቅ (Publish)</button>
+        <h3 id="admin-title">⚙️ አድሚን ፓነል (አዲስ ዜና ከ3 ፎቶዎች ጋር መጫኛ)</h3>
+        <div class="admin-form">
+            <input type="text" id="postTitle" placeholder="የዜናው ርዕስ...">
+            <input type="text" id="img1" placeholder="የፎቶ 1 ስም/URL (ምሳሌ: 1776693450696.jpg)">
+            <input type="text" id="img2" placeholder="የፎቶ 2 ስም/URL (ምሳሌ: 1776693453243.jpg)">
+            <input type="text" id="img3" placeholder="የፎቶ 3 ስም/URL (ምሳሌ: 1776693457106.jpg)">
+            <button onclick="publishPost()" id="btn-publish">ይዘት ልቀቅ (Publish)</button>
+        </div>
     </div>
 
-    <!-- ሞሽን ስላይደር -->
+    <!-- 3-Second Motion Slider -->
     <div class="slider-box" id="slider">
-        <div class="slide active" id="s1" style="background-image: url('');"></div>
-        <div class="slide" id="s2" style="background-image: url('');"></div>
-        <div class="slide" id="s3" style="background-image: url('');"></div>
+        <div class="slide active" id="s1" style="background-image: url('1776693450696.jpg');">
+            <div class="slide-caption" id="slide-title">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ ወቅታዊ መግለጫ (ፎቶ 1)</div>
+        </div>
+        <div class="slide" id="s2" style="background-image: url('1776693453243.jpg');">
+            <div class="slide-caption" id="slide-title2">የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ የልማት ምልከታ (ፎቶ 2)</div>
+        </div>
+        <div class="slide" id="s3" style="background-image: url('1776693457106.jpg');">
+            <div class="slide-caption" id="slide-title3">የመታሃራ ከተማ አዳዲስ የልማትና የኮሪደር ስራዎች እንቅስቃሴ (ፎቶ 3)</div>
+        </div>
     </div>
 
-    <!-- የዜና ዝርዝር -->
-    <div id="postsContainer">
-        <h3>📌 የዜና ዝርዝር</h3>
+    <!-- Published News Feed -->
+    <div class="news-feed">
+        <h3 id="feed-title">📌 የቅርብ ጊዜ የተጫኑ ዜናዎች (ለመመልከት ክሊክ ያድርጉ)</h3>
+        <div id="postsContainer">
+            <div class="post-item" onclick="loadNewsToSlider('የመታሃራ ከተማ አስተዳደር ወቅታዊ እንቅስቃሴዎች', '1776693450696.jpg', '1776693453243.jpg', '1776693457106.jpg')">
+                <small style="color: var(--accent-color);">[ወቅታዊ ዜና]</small>
+                <h4>እንኳን ወደ አዲሱ የመታሃራ ከተማ መረጃ ማዕከል በደህና መጡ!</h4>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <script>
-    let posts = [];
-    let currentIndex = 0;
+    const translations = {
+        am: {
+            title: "የመታሃራ ከተማ መረጃ ማዕከል (Mataaharaa Hub)",
+            adminTitle: "⚙️ አድሚን ፓነል (አዲስ ዜና ከ3 ፎቶዎች ጋር መጫኛ)",
+            placeholderTitle: "የዜናው ርዕስ...",
+            btnPublish: "ይዘት ልቀቅ (Publish)",
+            feedTitle: "📌 የቅርብ ጊዜ የተጫኑ ዜናዎች (ለመመልከት ክሊክ ያድርጉ)"
+        },
+        om: {
+            title: "Giddu-gala Odeeffannoo Magaalaa Mataaharaa",
+            adminTitle: "⚙️ Paanaalii Admin (Oduu Haaraa Suuraa 3 Wajjin Maxxansuu)",
+            placeholderTitle: "Mata duree odeeffannoo...",
+            btnPublish: "Maxxansi (Publish)",
+            feedTitle: "📌 Odeeffannoowwan Dhihoo Maxxansaman (Banaachuf Tuqaa)"
+        },
+        en: {
+            title: "Mataaharaa Town Information Hub",
+            adminTitle: "⚙️ Admin Panel (Post News with 3 Photos)",
+            placeholderTitle: "Enter news title...",
+            btnPublish: "Publish Content",
+            feedTitle: "📌 Recent Updates (Click to view in slider)"
+        }
+    };
+
+    function changeLanguage() {
+        const lang = document.getElementById('languageSelect').value;
+        const t = translations[lang];
+        document.getElementById('site-title').innerText = t.title;
+        document.getElementById('admin-title').innerText = t.adminTitle;
+        document.getElementById('postTitle').placeholder = t.placeholderTitle;
+        document.getElementById('btn-publish').innerText = t.btnPublish;
+        document.getElementById('feed-title').innerText = t.feedTitle;
+    }
+
     let slideInterval;
-
-    function addPost() {
-        const p = {
-            title: document.getElementById('inTitle').value,
-            imgs: [
-                document.getElementById('inImg1').value,
-                document.getElementById('inImg2').value,
-                document.getElementById('inImg3').value
-            ]
-        };
-        posts.push(p);
-        renderPosts();
-        // Clear inputs
-        document.getElementById('inTitle').value = '';
-        document.getElementById('inImg1').value = '';
-        document.getElementById('inImg2').value = '';
-        document.getElementById('inImg3').value = '';
-    }
-
-    function renderPosts() {
-        const container = document.getElementById('postsContainer');
-        container.innerHTML = '<h3>📌 የዜና ዝርዝር</h3>';
-        posts.forEach((p, index) => {
-            container.innerHTML += `<div class="post-item" onclick="loadSlider(${index})"><h4>${p.title}</h4></div>`;
-        });
-    }
-
-    function loadSlider(index) {
-        const p = posts[index];
-        // ፎቶዎችን ወደ ስላይደር መጫን
-        document.getElementById('s1').style.backgroundImage = `url('${p.imgs[0]}')`;
-        document.getElementById('s2').style.backgroundImage = `url('${p.imgs[1]}')`;
-        document.getElementById('s3').style.backgroundImage = `url('${p.imgs[2]}')`;
-        
-        // አሮጌውን ሞሽን ማቆም እና አዲሱን መጀመር
-        clearInterval(slideInterval);
-        startAutoSlide();
-    }
 
     function startAutoSlide() {
         let slides = document.querySelectorAll('.slide');
-        let i = 0;
+        let currentIndex = 0;
+        clearInterval(slideInterval);
         slideInterval = setInterval(() => {
             slides.forEach(s => s.classList.remove('active'));
-            slides[i].classList.add('active');
-            i = (i + 1) % slides.length;
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
         }, 3000);
+    }
+
+    // Start auto slide on page load
+    startAutoSlide();
+
+    function loadNewsToSlider(title, i1, i2, i3) {
+        document.getElementById('s1').style.backgroundImage = `url('${i1}')`;
+        document.getElementById('s2').style.backgroundImage = `url('${i2}')`;
+        document.getElementById('s3').style.backgroundImage = `url('${i3}')`;
+
+        document.getElementById('slide-title').innerText = `${title} (1/3)`;
+        document.getElementById('slide-title2').innerText = `${title} (2/3)`;
+        document.getElementById('slide-title3').innerText = `${title} (3/3)`;
+
+        startAutoSlide();
+    }
+
+    function publishPost() {
+        const title = document.getElementById('postTitle').value.trim();
+        const i1 = document.getElementById('img1').value.trim();
+        const i2 = document.getElementById('img2').value.trim();
+        const i3 = document.getElementById('img3').value.trim();
+
+        if (title === '' || i1 === '') {
+            alert('እባክዎ ቢያንስ ርዕስ እና የመጀመሪያውን ፎቶ ያስገቡ!');
+            return;
+        }
+
+        const imgTwo = i2 !== '' ? i2 : i1;
+        const imgThree = i3 !== '' ? i3 : i1;
+
+        const postsContainer = document.getElementById('postsContainer');
+        const newPost = document.createElement('div');
+        newPost.className = 'post-item';
+        newPost.onclick = function() {
+            loadNewsToSlider(title, i1, imgTwo, imgThree);
+        };
+        newPost.innerHTML = `<small style="color: var(--accent-color);">[አዲስ የተጫነ]</small><h4>${title}</h4>`;
+        
+        postsContainer.prepend(newPost);
+
+        // Load immediately to main slider
+        loadNewsToSlider(title, i1, imgTwo, imgThree);
+
+        // Reset inputs
+        document.getElementById('postTitle').value = '';
+        document.getElementById('img1').value = '';
+        document.getElementById('img2').value = '';
+        document.getElementById('img3').value = '';
+
+        alert('ዜናው ከነ 3 ፎቶዎቹ በተሳካ ሁኔታ ተለቋል!');
     }
 </script>
 

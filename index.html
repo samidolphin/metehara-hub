@@ -811,91 +811,107 @@
             news2Full: `
                 <p>By transforming an environmental challenge into an opportunity for development, the Metahara City Administration, under the leadership of Mayor H.E. Ato Addisu Wako and in collaboration with the local community, has undertaken sustained efforts that have produced a remarkable and visible transformation within a relatively short period.</p>
                 <p>The area, once heavily affected by waste, is now covered with greenery and enhanced by thriving orange trees, creating an attractive landscape where natural beauty and development come together. As the fragrance of orange blossoms fills the surroundings, the lakeshore is increasingly becoming a new destination for recreation, relaxation, and tourism.</p>
-                <p>The development was personally visited and observed by the President of the Oromia Regional State, H.E. Ato Shimelis Abdisa, during his recent visit. The transformation stands as tangible evidence of what can be achieved when vision, determination, coordinated leadership, and meaningful public participation come together.</p>
-                <p>The journey of Lake Beseka’s shoreline—from a former waste-disposal site to a green haven—has become a compelling success story, clearly demonstrating Metahara’s growing commitment to urban development, environmental protection, and tourism.</p>
-                <p>What was once a landscape of waste has today become a destination defined by green development and the refreshing presence of orange orchards. It is a powerful reflection of how Metahara is turning its vision for a cleaner, greener, and more vibrant city into reality.</p>
+                <p>The development was personally visited and observed by the President of the Oromia Regional State, H.E. Ato Shimelis Abdisa, during his recent visit. The transformation stands as tangible evidence of what can be achieved when vision, determination, coordinated leadership, and community participation come together.</p>
+                <p>The journey of Lake Beseka’s shoreline from a waste dump to a green paradise clearly demonstrates Metahara’s strong commitment to urban development, environmental protection, and tourism expansion.</p>
+                <p>What was yesterday a dumpsite has today become a green center filled with the scent of oranges—a true testament to Metahara turning vision into reality.</p>
             `,
             
             readMore: 'Read More',
-            readLess: 'Read Less',
+            readLess: 'Show Less',
             subTitle: '<i class="fas fa-envelope-open-text"></i> Subscribe for Updates',
-            subDesc: 'Enter your email address to receive the latest news, updates, and media content directly in your inbox.',
-            subPlaceholder: 'Enter your email address here...',
+            subDesc: 'Enter your email to receive the latest news, updates, and media content directly in your inbox.',
+            subPlaceholder: 'Enter your email address...',
             subBtnText: '<i class="fas fa-paper-plane"></i> Subscribe',
-            fDesc1: 'Official information portal promoting Mataaharaa town and surrounding news, culture, and tourism attractions.',
-            fTitle2: 'Contact Address', 
+            fDesc1: 'Official information portal showcasing news, culture, and tourism attractions of Mataaharaa Town and surroundings.',
+            fTitle2: 'Contact Info', 
             fTitle3: 'Social Media'
         }
     };
 
     function setLanguage(lang, event) {
         currentLang = lang;
-        if (event) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+
+        // Update active class on language buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        if (event && event.target) {
+            event.target.classList.add('active');
         }
-        
-        const t = translations[lang];
-        document.getElementById('m1').innerHTML = t.m1;
-        document.getElementById('m2').innerHTML = t.m2;
-        document.getElementById('m3').innerHTML = t.m3;
-        document.getElementById('m4').innerHTML = t.m4;
-        document.getElementById('m5').innerHTML = t.m5;
-        document.getElementById('m6').innerHTML = t.m6;
-        document.getElementById('heroTitle').innerText = t.heroTitle;
-        document.getElementById('heroSub').innerText = t.heroSub;
-        document.getElementById('secTitle').innerText = t.secTitle;
-        
-        // News 1 Updates
-        document.getElementById('news1Tag').innerText = t.news1Tag;
-        document.getElementById('news1Title').innerText = t.news1Title;
-        document.getElementById('news1Author').innerHTML = t.news1Author;
-        document.getElementById('news1Desc').innerText = t.news1Desc;
-        document.getElementById('fullNews1').innerHTML = t.news1Full;
-        
-        // News 2 Updates
-        document.getElementById('news2Tag').innerText = t.news2Tag;
-        document.getElementById('news2Title').innerText = t.news2Title;
-        document.getElementById('news2Author').innerHTML = t.news2Author;
-        document.getElementById('news2Desc').innerText = t.news2Desc;
-        document.getElementById('fullNews2').innerHTML = t.news2Full;
 
-        // Footer & Newsletter
-        document.getElementById('subTitle').innerHTML = t.subTitle;
-        document.getElementById('subDesc').innerText = t.subDesc;
-        document.getElementById('subscriberEmail').placeholder = t.subPlaceholder;
-        document.getElementById('subBtn').innerHTML = t.subBtnText;
-        document.getElementById('fDesc1').innerText = t.fDesc1;
-        document.getElementById('fTitle2').innerText = t.fTitle2;
-        document.getElementById('fTitle3').innerText = t.fTitle3;
+        const data = translations[lang];
 
-        // Update Read More Buttons according to current state
-        [1, 2].forEach(id => {
-            const content = document.getElementById(`fullNews${id}`);
-            const btnText = document.getElementById(`readMore${id}Text`);
-            if (content.style.display === 'block') {
-                btnText.innerText = t.readLess;
-            } else {
-                btnText.innerText = t.readMore;
-            }
-        });
+        // Update Menu
+        document.getElementById('m1').innerHTML = data.m1;
+        document.getElementById('m2').innerHTML = data.m2;
+        document.getElementById('m3').innerHTML = data.m3;
+        document.getElementById('m4').innerHTML = data.m4;
+        document.getElementById('m5').innerHTML = data.m5;
+        document.getElementById('m6').innerHTML = data.m6;
+
+        // Update Hero
+        document.getElementById('heroTitle').innerText = data.heroTitle;
+        document.getElementById('heroSub').innerText = data.heroSub;
+        document.getElementById('secTitle').innerText = data.secTitle;
+
+        // Update News 1
+        document.getElementById('news1Tag').innerText = data.news1Tag;
+        document.getElementById('news1Title').innerText = data.news1Title;
+        document.getElementById('news1Author').innerHTML = data.news1Author;
+        document.getElementById('news1Desc').innerText = data.news1Desc;
+        document.getElementById('fullNews1').innerHTML = data.news1Full;
+
+        // Update News 2
+        document.getElementById('news2Tag').innerText = data.news2Tag;
+        document.getElementById('news2Title').innerText = data.news2Title;
+        document.getElementById('news2Author').innerHTML = data.news2Author;
+        document.getElementById('news2Desc').innerText = data.news2Desc;
+        document.getElementById('fullNews2').innerHTML = data.news2Full;
+
+        // Update Read More Button Labels
+        const full1Visible = document.getElementById('fullNews1').style.display === 'block';
+        document.getElementById('readMore1Text').innerText = full1Visible ? data.readLess : data.readMore;
+
+        const full2Visible = document.getElementById('fullNews2').style.display === 'block';
+        document.getElementById('readMore2Text').innerText = full2Visible ? data.readLess : data.readMore;
+
+        // Update Subscription Form
+        document.getElementById('subTitle').innerHTML = data.subTitle;
+        document.getElementById('subDesc').innerText = data.subDesc;
+        document.getElementById('subscriberEmail').placeholder = data.subPlaceholder;
+        document.getElementById('subBtn').innerHTML = data.subBtnText;
+
+        // Update Footer
+        document.getElementById('fDesc1').innerText = data.fDesc1;
+        document.getElementById('fTitle2').innerText = data.fTitle2;
+        document.getElementById('fTitle3').innerText = data.fTitle3;
     }
 
-    function toggleReadMore(newsId) {
-        const fullContent = document.getElementById(`fullNews${newsId}`);
-        const btnText = document.getElementById(`readMore${newsId}Text`);
-        const t = translations[currentLang];
+    function toggleReadMore(id) {
+        const fullContent = document.getElementById(`fullNews${id}`);
+        const btnText = document.getElementById(`readMore${id}Text`);
+        const isExpanded = fullContent.style.display === 'block';
 
-        if (fullContent.style.display === "block") {
-            fullContent.style.display = "none";
-            btnText.innerText = t.readMore;
+        if (isExpanded) {
+            fullContent.style.display = 'none';
+            btnText.innerText = translations[currentLang].readMore;
         } else {
-            fullContent.style.display = "block";
-            btnText.innerText = t.readLess;
+            fullContent.style.display = 'block';
+            btnText.innerText = translations[currentLang].readLess;
         }
     }
 
-    // Modal Control
+    // Hero Image Slider Functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slider .slide');
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(nextSlide, 5000);
+
+    // Modal Controls
     function openAdminModal() {
         document.getElementById('adminModal').style.display = 'flex';
     }
@@ -904,30 +920,32 @@
         document.getElementById('adminModal').style.display = 'none';
     }
 
-    function handleSubscribe(e) {
-        e.preventDefault();
-        alert('ስለተመዘገቡ እናመሰግናለን! / Galatoomaa! / Thank you for subscribing!');
+    // Close Modal on outside click
+    window.onclick = function(event) {
+        const modal = document.getElementById('adminModal');
+        if (event.target === modal) {
+            closeAdminModal();
+        }
+    };
+
+    function publishPost(event) {
+        event.preventDefault();
+        alert('ፖስቱ በተሳካ ሁኔታ ተለጥፏል! / Post published successfully!');
+        closeAdminModal();
+        document.getElementById('adminForm').reset();
+    }
+
+    function handleSubscribe(event) {
+        event.preventDefault();
+        const email = document.getElementById('subscriberEmail').value;
+        alert(`እናመሰግናለን! ${email} በተሳካ ሁኔታ ተመዝግቧል። / Thank you! ${email} has been subscribed.`);
         document.getElementById('subscriberEmail').value = '';
     }
 
-    function publishPost(e) {
-        e.preventDefault();
-        alert('ፖስቱ በጥሩ ሁኔታ ተለቋል! / Post Published Successfully!');
-        closeAdminModal();
-    }
-
-    // Image Slider Animation
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    
-    function showNextSlide() {
-        slides[slideIndex].classList.remove('active');
-        slideIndex = (slideIndex + 1) % slides.length;
-        slides[slideIndex].classList.add('active');
-    }
-
-    setInterval(showNextSlide, 5000);
+    // Initialize Default Language Content
+    window.onload = function() {
+        setLanguage('am');
+    };
 </script>
-
 </body>
 </html>

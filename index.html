@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="om">
+<html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -291,6 +291,37 @@
             margin-bottom: 15px;
         }
 
+        /* Full News Collapsible Content */
+        .full-news-content {
+            display: none;
+            margin-top: 15px;
+            border-top: 1px dashed #374151;
+            padding-top: 15px;
+            color: #d1d5db;
+        }
+
+        .full-news-content p {
+            margin-bottom: 12px;
+        }
+
+        .full-news-content blockquote {
+            background: #1f2937;
+            border-left: 3px solid var(--accent-color);
+            padding: 12px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #f3f4f6;
+        }
+
+        .full-news-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .full-news-content li {
+            margin-bottom: 8px;
+        }
+
         /* Read More Button */
         .read-more-btn {
             background: transparent;
@@ -305,7 +336,6 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            text-decoration: none;
         }
 
         .read-more-btn:hover {
@@ -506,9 +536,17 @@
             <img src="burtukaana.jpg" alt="Mataaharaa News" class="news-img">
             <div class="news-body">
                 <span class="news-tag" id="newsTag">አረንጓዴ አሻራ</span>
-                <h3 id="newsTitle">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!</h3>
-                <p id="newsDesc">ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል፤ የልማት ሥራዎችንም አጠናክረው እንደሚቀጥሉ ገልጸዋል...</p>
-                <a href="#" class="read-more-btn" id="readMoreBtn"><i class="fas fa-arrow-right"></i> ተጨማሪ ያንብቡ</a>
+                <h3 id="newsTitle">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በበሰቃ ሐይቅ ዳርቻ የተተከለውን የብርቱካን እርሻ ጎበኙ</h3>
+                <p id="newsDesc">መታሃራ — የኦሮሚያ ብሔራዊ ክልላዊ መንግሥት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ-ግብር በበሰቃ ሐይቅ ዳርቻ የተተከለውን የብርቱካን እርሻ ጎብኝተዋል።</p>
+                
+                <!-- Expanded Full News Article -->
+                <div id="fullNews" class="full-news-content">
+                    <!-- Dynamic Javascript Content Injected Here -->
+                </div>
+
+                <button class="read-more-btn" id="readMoreBtn" onclick="toggleReadMore()">
+                    <i class="fas fa-arrow-right"></i> <span id="readMoreText">ተጨማሪ ያንብቡ</span>
+                </button>
             </div>
         </article>
     </main>
@@ -570,7 +608,122 @@
     </footer>
 
     <script>
-        // Admin Dashboard Logic
+        let currentLang = 'am';
+
+        // Full Multilingual Content Data
+        const translations = {
+            am: {
+                m1: '<i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች', m2: '<i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ', m3: '<i class="fas fa-landmark"></i> ባህል', m4: '<i class="fas fa-mountain"></i> ቱሪዝም', m5: '<i class="fas fa-brain"></i> ፊሎሶፊ', m6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
+                heroTitle: 'እንኳን ወደ መታሃራ ከተማ የመረጃ ማእከል በደህና መጡ',
+                heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
+                secTitle: 'ወቅታዊ ዜናዎች', newsTag: 'አረንጓዴ አሻራ',
+                newsTitle: 'የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በበሰቃ ሐይቅ ዳርቻ የተተከለውን የብርቱካን እርሻ ጎበኙ',
+                newsDesc: 'መታሃራ — የኦሮሚያ ብሔራዊ ክልላዊ መንግሥት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ-ግብር በበሰቃ ሐይቅ ዳርቻ የተተከለውን የብርቱካን እርሻ ጎብኝተዋል።',
+                fullNewsHtml: `
+                    <p>ፕሬዝዳንቱ ባለፈው ዓመት የተተከሉት የብርቱካን ችግኞች በጥሩ ሁኔታ አድገው ፍሬ ማፍራት መጀመራቸውን ገምግመዋል። ይህ ጉብኝት የአካባቢ ጥበቃን ከምግብ ዋስትና እና ከአካባቢ ኢኮኖሚ እድገት ጋር አጣጥሞ ለማስኬድ የሚደረገውን ጥረት አሳይቷል።</p>
+                    <blockquote>"ለመጀመሪያ ጊዜ በበሰቃ ሐይቅ ዳርቻ ላይ የተከልነው የብርቱካን እርሻ መታሃራ ከተማን የብርቱካን መሸጫ ብቻ ሳይሆን መገኛም ከማድረግ ባሻገር፤ በአካባቢው የስነ-ምህዳር ቱሪዝምን ለማሳደግና ለበርካታ ዜጎች የስራ እድል ለመፍጠር ከፍተኛ አስተዋጽኦ ያበረክታል" — <strong>አቶ አዲሱ ዋቆ (የመታሃራ ከተማ አስተዳደር ከንቲባ)</strong></blockquote>
+                    <h4>የልማት ስራው ዋና ዋና ነጥቦች፦</h4>
+                    <ul>
+                        <li><strong>የግብርና እድገት፦</strong> ችግኞቹ በጥሩ ደረጃ ላይ የሚገኙ በመሆናቸው የአካባቢውን የፍራፍሬ ምርታማነት በከፍተኛ ደረጃ ያሳድጋል።</li>
+                        <li><strong>የምግብ ዋስትና እና የስነ-ምህዳር ቱሪዝም፦</strong> ከተማዋን የምርቱ መገኛ በማድረግ የአካባቢውን የተፈጥሮ ሚዛን ለመጠበቅ እና የቱሪስት መስህብነትን ለማሳደግ ያስችላል።</li>
+                        <li><strong>የስራ እድል ፈጠራ፦</strong> ፕሮጀክቱ ለብዙ የአካባቢው ነዋሪዎችና ወጣቶች የረጅም ጊዜ የኢኮኖሚ ተጠቃሚነት እና የስራ እድል ይፈጥራል።</li>
+                    </ul>
+                `,
+                readMore: 'ተጨማሪ ያንብቡ',
+                readLess: 'ትንሽ አሳይ',
+                fTitle2: 'የመገናኛ አድራሻ', fTitle3: 'ማህበራዊ ሚዲያ'
+            },
+            om: {
+                m1: '<i class="fas fa-newspaper"></i> Oduu Haaraa', m2: '<i class="fas fa-video"></i> Gulaala Viidiyoo', m3: '<i class="fas fa-landmark"></i> Aadaa', m4: '<i class="fas fa-mountain"></i> Turizimii', m5: '<i class="fas fa-brain"></i> Filosoochii', m6: '<i class="fas fa-book"></i> Og-barruu',
+                heroTitle: 'Baga nagaan gara Magaala Mataaharaa Giddugala Odeeffannootti nagaan dhuftan!',
+                heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
+                secTitle: 'Oduu Haaraa', newsTag: 'Ashaaraa Magariisaa',
+                newsTitle: 'Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Ashaaraa Magariisaa Daawwatan!',
+                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa sagantaa Ashaaraa Magariisaatiin bara darbe dhaabbate daawwataniiru.',
+                fullNewsHtml: `
+                    <p><strong>Ashaaraan Magariisaa Firii Naafata!</strong></p>
+                    <p>Daawwannaan kun, biqiltuun dhaabbate kunoo akkamitti guddachaa fi firii buusuuf deemaa akka jiru kan agarsiisudha. Kunis, carraaqqiin keenya Magariisa uumuu fi wabii nyaataa mirkaneessuuf gochaa jirru fiidetti deemaa jiraachuu isaati.</p>
+                    <p><strong>Itti fufinsaan hojjenna!</strong></p>
+                    <p>Pirezedaantiin keenya carraaqqii uummataa fi mootummaan harka walqabatanii gochaa jiran kana dinqisiifataniiru. Sagantaan Ashaaraa Magariisaa naannoo keenya fi biyya keenya misoomaan jireessuuf akkamitti shoora taphachaa akka jiru hubachuuf daawwannaan kun furtuudha.</p>
+                `,
+                readMore: 'Dabalata Dubbisaa',
+                readLess: 'Xiqqaessii Agarsiisi',
+                fTitle2: 'Teessoo Qunnamtii', fTitle3: 'Miidiyaa Hawaasaa'
+            },
+            en: {
+                m1: '<i class="fas fa-newspaper"></i> Latest News', m2: '<i class="fas fa-video"></i> Video Editing', m3: '<i class="fas fa-landmark"></i> Culture', m4: '<i class="fas fa-mountain"></i> Tourism', m5: '<i class="fas fa-brain"></i> Philosophy', m6: '<i class="fas fa-book"></i> Literature',
+                heroTitle: 'Welcome to the Mataaharaa Town Information Center!',
+                heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge.',
+                secTitle: 'Latest News', newsTag: 'Green Legacy',
+                newsTitle: 'Oromia Regional State President Visits Orange Farm Established Along the Shores of Lake Beseka',
+                newsDesc: 'Metahara — President of the Oromia National Regional State, H.E. Shimelis Abdisa, visited Metahara City in the East Shewa Zone and toured an orange farm established along the shores of Lake Beseka under Ethiopia’s Green Legacy Initiative.',
+                fullNewsHtml: `
+                    <p>During the visit, President Shimelis assessed the progress of orange seedlings planted last year, noting that the trees have developed well and have already begun bearing fruit. The visit highlighted ongoing efforts to integrate environmental conservation with food security and local economic development.</p>
+                    <blockquote>"The orange farm, established for the first time along the shores of Lake Beseka, is expected to play a significant role in transforming Metahara into not only a major orange market but also a center of orange production, enhancing ecotourism and job opportunities." — <strong>Ato Addisu Wako (Mayor of Metahara City Administration)</strong></blockquote>
+                    <h4>Key Development Highlights:</h4>
+                    <ul>
+                        <li><strong>Agricultural Development:</strong> The healthy growth of the orange seedlings is expected to significantly increase fruit production in the area and strengthen the local agricultural economy.</li>
+                        <li><strong>Food Security and Ecotourism:</strong> By establishing Metahara as a center of orange production, the initiative contributes to food security, environmental conservation, and tourism.</li>
+                        <li><strong>Employment Creation:</strong> The project generates long-term economic benefits and employment opportunities for local residents and young people.</li>
+                    </ul>
+                `,
+                readMore: 'Read More',
+                readLess: 'Read Less',
+                fTitle2: 'Contact Address', fTitle3: 'Social Media'
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            const t = translations[lang];
+            document.getElementById('m1').innerHTML = t.m1;
+            document.getElementById('m2').innerHTML = t.m2;
+            document.getElementById('m3').innerHTML = t.m3;
+            document.getElementById('m4').innerHTML = t.m4;
+            document.getElementById('m5').innerHTML = t.m5;
+            document.getElementById('m6').innerHTML = t.m6;
+            document.getElementById('heroTitle').innerText = t.heroTitle;
+            document.getElementById('heroSub').innerText = t.heroSub;
+            document.getElementById('secTitle').innerText = t.secTitle;
+            document.getElementById('newsTag').innerText = t.newsTag;
+            document.getElementById('newsTitle').innerText = t.newsTitle;
+            document.getElementById('newsDesc').innerText = t.newsDesc;
+            document.getElementById('fullNews').innerHTML = t.fullNewsHtml;
+            document.getElementById('fTitle2').innerText = t.fTitle2;
+            document.getElementById('fTitle3').innerText = t.fTitle3;
+
+            // Reset Read More state upon changing language
+            const fullNewsDiv = document.getElementById('fullNews');
+            const readMoreText = document.getElementById('readMoreText');
+            if (fullNewsDiv.style.display === 'block') {
+                readMoreText.innerText = t.readLess;
+            } else {
+                readMoreText.innerText = t.readMore;
+            }
+        }
+
+        // Read More Toggle Function
+        function toggleReadMore() {
+            const fullNewsDiv = document.getElementById('fullNews');
+            const readMoreText = document.getElementById('readMoreText');
+            const t = translations[currentLang];
+
+            if (fullNewsDiv.style.display === 'block') {
+                fullNewsDiv.style.display = 'none';
+                readMoreText.innerText = t.readMore;
+            } else {
+                fullNewsDiv.style.display = 'block';
+                readMoreText.innerText = t.readLess;
+            }
+        }
+
+        // Initialize default view
+        document.getElementById('fullNews').innerHTML = translations.am.fullNewsHtml;
+
+        // Admin Dashboard Modal Logic
         function openAdminModal() {
             document.getElementById('adminModal').style.display = 'flex';
         }
@@ -599,7 +752,6 @@
                         <span class="news-tag">${category}</span>
                         <h3>${title}</h3>
                         <p>${content}</p>
-                        <a href="#" class="read-more-btn"><i class="fas fa-arrow-right"></i> ተጨማሪ ያንብቡ</a>
                     </div>
                 </article>
             `;
@@ -610,61 +762,6 @@
             alert("በተሳካ ሁኔታ ፖስት ተደርጓል! (Posted Successfully!)");
             closeAdminModal();
             document.getElementById('adminForm').reset();
-        }
-
-        // Language Switcher Logic
-        const translations = {
-            am: {
-                m1: '<i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች', m2: '<i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ', m3: '<i class="fas fa-landmark"></i> ባህል', m4: '<i class="fas fa-mountain"></i> ቱሪዝም', m5: '<i class="fas fa-brain"></i> ፊሎሶፊ', m6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
-                heroTitle: 'እንኳን ወደ መታሃራ ከተማ የመረጃ ማእከል በደህና መጡ',
-                heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
-                secTitle: 'ወቅታዊ ዜናዎች', newsTag: 'አረንጓዴ አሻራ',
-                newsTitle: 'የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!',
-                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል፤ የልማት ሥራዎችንም አጠናክረው እንደሚቀጥሉ ገልጸዋል...',
-                readMore: '<i class="fas fa-arrow-right"></i> ተጨማሪ ያንብቡ',
-                fTitle2: 'የመገናኛ አድራሻ', fTitle3: 'ማህበራዊ ሚዲያ'
-            },
-            om: {
-                m1: '<i class="fas fa-newspaper"></i> Oduu Haaraa', m2: '<i class="fas fa-video"></i> Gulaala Viidiyoo', m3: '<i class="fas fa-landmark"></i> Aadaa', m4: '<i class="fas fa-mountain"></i> Turizimii', m5: '<i class="fas fa-brain"></i> Filosoochii', m6: '<i class="fas fa-book"></i> Og-barruu',
-                heroTitle: 'Baga nagaan gara Magaala Mataaharaa Giddugala Odeeffannootti nagaan dhuftan!',
-                heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
-                secTitle: 'Oduu Haaraa', newsTag: 'Ashaaraa Magariisaa',
-                newsTitle: 'Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Mataaharaatti Daawwatan!',
-                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa daawwataniiru...',
-                readMore: '<i class="fas fa-arrow-right"></i> Dabalata Dubbisaa',
-                fTitle2: 'Teessoo Qunnamtii', fTitle3: 'Miidiyaa Hawaasaa'
-            },
-            en: {
-                m1: '<i class="fas fa-newspaper"></i> Latest News', m2: '<i class="fas fa-video"></i> Video Editing', m3: '<i class="fas fa-landmark"></i> Culture', m4: '<i class="fas fa-mountain"></i> Tourism', m5: '<i class="fas fa-brain"></i> Philosophy', m6: '<i class="fas fa-book"></i> Literature',
-                heroTitle: 'Welcome to the Mataaharaa Town Information Center!',
-                heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge.',
-                secTitle: 'Latest News', newsTag: 'Green Legacy',
-                newsTitle: 'Oromia Regional President Mr. Shimallis Abdiisaa Visits Orange Tree Plantations in Mataaharaa!',
-                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Mataaharaa town to inspect orange trees...',
-                readMore: '<i class="fas fa-arrow-right"></i> Read More',
-                fTitle2: 'Contact Address', fTitle3: 'Social Media'
-            }
-        };
-
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            const t = translations[lang];
-            document.getElementById('m1').innerHTML = t.m1;
-            document.getElementById('m2').innerHTML = t.m2;
-            document.getElementById('m3').innerHTML = t.m3;
-            document.getElementById('m4').innerHTML = t.m4;
-            document.getElementById('m5').innerHTML = t.m5;
-            document.getElementById('m6').innerHTML = t.m6;
-            document.getElementById('heroTitle').innerText = t.heroTitle;
-            document.getElementById('heroSub').innerText = t.heroSub;
-            document.getElementById('secTitle').innerText = t.secTitle;
-            document.getElementById('newsTag').innerText = t.newsTag;
-            document.getElementById('newsTitle').innerText = t.newsTitle;
-            document.getElementById('newsDesc').innerText = t.newsDesc;
-            document.getElementById('readMoreBtn').innerHTML = t.readMore;
-            document.getElementById('fTitle2').innerText = t.fTitle2;
-            document.getElementById('fTitle3').innerText = t.fTitle3;
         }
 
         // Hero Slider Logic

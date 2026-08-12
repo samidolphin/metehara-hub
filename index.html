@@ -12,6 +12,7 @@
             --accent-color: #ff9800;
             --text-color: #f3f4f6;
             --text-secondary: #9ca3af;
+            --primary-btn: #2563eb;
         }
 
         * {
@@ -72,6 +73,33 @@
         .logo-title p {
             font-size: 0.8rem;
             color: var(--accent-color);
+        }
+
+        .nav-right-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Admin Button */
+        .admin-btn {
+            background: var(--primary-btn);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .admin-btn:hover {
+            background: #1d4ed8;
         }
 
         /* Language Switcher */
@@ -199,30 +227,6 @@
             margin-bottom: 20px;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-
-        .btn-youtube { background: #ff0000; }
-        .btn-facebook { background: #1877f2; }
-        .btn-telegram { background: #0088cc; }
-        .social-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-
         /* Main Content */
         main {
             max-width: 900px;
@@ -243,6 +247,13 @@
             overflow: hidden;
             border: 1px solid #1f2937;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .news-img {
@@ -279,6 +290,99 @@
             line-height: 1.6;
         }
 
+        /* Admin Dashboard Modal UI */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--accent-color);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: 0.3s;
+        }
+
+        .close-modal:hover { color: #ef4444; }
+
+        .admin-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            border-bottom: 1px solid #374151;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e5e7eb;
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #374151;
+            background: #1f2937;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .publish-btn {
+            background: var(--primary-btn);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .publish-btn:hover { background: #1d4ed8; }
+
         /* Footer */
         footer {
             background: #080c14;
@@ -310,9 +414,7 @@
             font-size: 0.9rem;
         }
 
-        .footer-col a:hover {
-            color: #fff;
-        }
+        .footer-col a:hover { color: #fff; }
 
         .footer-bottom {
             text-align: center;
@@ -335,10 +437,13 @@
                     <p>Sami-Tube Media & Information Center</p>
                 </div>
             </div>
-            <div class="lang-switch">
-                <button class="lang-btn active" onclick="setLanguage('am')">ET<br>AM</button>
-                <button class="lang-btn" onclick="setLanguage('om')">OM</button>
-                <button class="lang-btn" onclick="setLanguage('en')">GB<br>EN</button>
+            <div class="nav-right-controls">
+                <button class="admin-btn" onclick="openAdminModal()"><i class="fas fa-user-shield"></i> Admin</button>
+                <div class="lang-switch">
+                    <button class="lang-btn active" onclick="setLanguage('am')">ET<br>AM</button>
+                    <button class="lang-btn" onclick="setLanguage('om')">OM</button>
+                    <button class="lang-btn" onclick="setLanguage('en')">GB<br>EN</button>
+                </div>
             </div>
         </div>
     </header>
@@ -366,23 +471,14 @@
         <div class="hero-content">
             <h2 id="heroTitle">ወደ Mataaharaa ከተማ የመረጃ ማዕከል በደህና መጡ!</h2>
             <p id="heroSub">ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።</p>
-            <div class="social-links">
-                <a href="https://www.youtube.com/@samsontesfaye2670/posts" target="_blank" class="social-btn btn-youtube">
-                    <i class="fab fa-youtube"></i> YouTube
-                </a>
-                <a href="https://facebook.com" target="_blank" class="social-btn btn-facebook">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
-                <a href="https://t.me" target="_blank" class="social-btn btn-telegram">
-                    <i class="fab fa-telegram"></i> Telegram
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main>
+    <!-- Main Content where news is displayed -->
+    <main id="mainContent">
         <h2 class="section-title" id="secTitle">ወቅታዊ ዜናዎች</h2>
+        
+        <!-- Default News Post -->
         <article class="news-card">
             <img src="burtukaana.jpg" alt="Mataaharaa News" class="news-img">
             <div class="news-body">
@@ -393,21 +489,52 @@
         </article>
     </main>
 
+    <!-- Admin Dashboard Modal -->
+    <div id="adminModal" class="admin-modal">
+        <div class="admin-content">
+            <span class="close-modal" onclick="closeAdminModal()">&times;</span>
+            <h3><i class="fas fa-edit"></i> ፖስት ማድረጊያ ማዕከል</h3>
+            <form id="adminForm" onsubmit="publishPost(event)">
+                <div class="form-group">
+                    <label>የፖስቱ አይነት (Category)</label>
+                    <select id="postCategory">
+                        <option value="ወቅታዊ ዜና">ወቅታዊ ዜና</option>
+                        <option value="ቪዲዮ መረጃ">ቪዲዮ መረጃ</option>
+                        <option value="ባህልና ቱሪዝም">ባህልና ቱሪዝም</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>ርዕስ (Title)</label>
+                    <input type="text" id="postTitle" required placeholder="የርዕሱን ስም እዚህ ያስገቡ...">
+                </div>
+                <div class="form-group">
+                    <label>ዝርዝር መረጃ (Content/Description)</label>
+                    <textarea id="postContent" rows="4" required placeholder="የዜናውን ወይም የፅሁፉን ሙሉ መረጃ እዚህ ይፃፉ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>ፎቶ ይጫኑ (Upload Photo)</label>
+                    <input type="file" id="postImage" accept="image/*">
+                </div>
+                <button type="submit" class="publish-btn"><i class="fas fa-paper-plane"></i> ፖስት አድርግ (Publish)</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-col">
-                <h4>Mataaharaa Town Hub</h4>
-                <p>የMataaharaa ከተማ እና የአካባቢዋን አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::</p>
+                <h4 id="fTitle1">Mataaharaa Town Hub</h4>
+                <p id="fDesc1">የMataaharaa ከተማ እና የአካባቢዋን አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::</p>
             </div>
             <div class="footer-col">
-                <h4>የመገናኛ አድራሻ</h4>
+                <h4 id="fTitle2">የመገናኛ አድራሻ</h4>
                 <p><i class="fas fa-phone"></i> +251 91 000 0000</p>
                 <p><i class="fas fa-envelope"></i> samsontesfaye18@gmail.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> Mataaharaa, Oromia, Ethiopia</p>
             </div>
             <div class="footer-col">
-                <h4>ማህበራዊ ሚዲያ</h4>
+                <h4 id="fTitle3">ማህበራዊ ሚዲያ</h4>
                 <a href="https://www.youtube.com/@samsontesfaye2670/posts" target="_blank"><i class="fab fa-youtube"></i> YouTube Channel</a>
                 <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook Page</a>
                 <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i> Telegram Channel</a>
@@ -419,6 +546,48 @@
     </footer>
 
     <script>
+        // Admin Dashboard Logic
+        function openAdminModal() {
+            document.getElementById('adminModal').style.display = 'flex';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        function publishPost(event) {
+            event.preventDefault();
+            
+            const category = document.getElementById('postCategory').value;
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            const imageInput = document.getElementById('postImage');
+            
+            let imageUrl = 'burtukaana.jpg'; 
+            if (imageInput.files && imageInput.files[0]) {
+                imageUrl = URL.createObjectURL(imageInput.files[0]);
+            }
+
+            const newPostHTML = `
+                <article class="news-card">
+                    <img src="${imageUrl}" alt="New Post" class="news-img">
+                    <div class="news-body">
+                        <span class="news-tag">${category}</span>
+                        <h3>${title}</h3>
+                        <p>${content}</p>
+                    </div>
+                </article>
+            `;
+
+            const secTitle = document.getElementById('secTitle');
+            secTitle.insertAdjacentHTML('afterend', newPostHTML);
+            
+            alert("በተሳካ ሁኔታ ፖስት ተደርጓል! (Posted Successfully!)");
+            closeAdminModal();
+            document.getElementById('adminForm').reset();
+        }
+
+        // Language Switcher Logic
         const translations = {
             am: {
                 m1: '<i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች', m2: '<i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ', m3: '<i class="fas fa-landmark"></i> ባህል', m4: '<i class="fas fa-mountain"></i> ቱሪዝም', m5: '<i class="fas fa-brain"></i> ፊሎሶፊ', m6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
@@ -426,7 +595,8 @@
                 heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
                 secTitle: 'ወቅታዊ ዜናዎች', newsTag: 'አረንጓዴ አሻራ',
                 newsTitle: 'የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመataaharaa ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!',
-                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን Mataaharaa ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል፤ የልማት ሥራዎችንም አጠናክረው እንደሚቀጥሉ ገልጸዋል።'
+                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን Mataaharaa ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል፤ የልማት ሥራዎችንም አጠናክረው እንደሚቀጥሉ ገልጸዋል።',
+                fTitle2: 'የመገናኛ አድራሻ', fTitle3: 'ማህበራዊ ሚዲያ'
             },
             om: {
                 m1: '<i class="fas fa-newspaper"></i> Oduu Haaraa', m2: '<i class="fas fa-video"></i> Gulaala Viidiyoo', m3: '<i class="fas fa-landmark"></i> Aadaa', m4: '<i class="fas fa-mountain"></i> Turizimii', m5: '<i class="fas fa-brain"></i> Filosoochii', m6: '<i class="fas fa-book"></i> Og-barruu',
@@ -434,7 +604,8 @@
                 heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
                 secTitle: 'Oduu Haaraa', newsTag: 'Ashaaraa Magariisaa',
                 newsTitle: 'Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Mataaharaatti Daawwatan!',
-                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa daawwataniiru.'
+                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa daawwataniiru.',
+                fTitle2: 'Teessoo Qunnamtii', fTitle3: 'Miidiyaa Hawaasaa'
             },
             en: {
                 m1: '<i class="fas fa-newspaper"></i> Latest News', m2: '<i class="fas fa-video"></i> Video Editing', m3: '<i class="fas fa-landmark"></i> Culture', m4: '<i class="fas fa-mountain"></i> Tourism', m5: '<i class="fas fa-brain"></i> Philosophy', m6: '<i class="fas fa-book"></i> Literature',
@@ -442,7 +613,8 @@
                 heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge.',
                 secTitle: 'Latest News', newsTag: 'Green Legacy',
                 newsTitle: 'Oromia Regional President Mr. Shimallis Abdiisaa Visits Orange Tree Plantations in Mataaharaa!',
-                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Mataaharaa town to inspect orange trees.'
+                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Mataaharaa town to inspect orange trees.',
+                fTitle2: 'Contact Address', fTitle3: 'Social Media'
             }
         };
 
@@ -462,8 +634,11 @@
             document.getElementById('newsTag').innerText = t.newsTag;
             document.getElementById('newsTitle').innerText = t.newsTitle;
             document.getElementById('newsDesc').innerText = t.newsDesc;
+            document.getElementById('fTitle2').innerText = t.fTitle2;
+            document.getElementById('fTitle3').innerText = t.fTitle3;
         }
 
+        // Hero Slider Logic
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         setInterval(() => {

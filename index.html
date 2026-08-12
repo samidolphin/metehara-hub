@@ -343,6 +343,74 @@
             color: #000;
         }
 
+        /* Newsletter Subscription Section */
+        .newsletter-card {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .newsletter-card h3 {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .subscribe-form input[type="email"] {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #374151;
+            background: #0b0f19;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .subscribe-form input[type="email"]:focus {
+            border-color: var(--accent-color);
+        }
+
+        .subscribe-btn {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subscribe-btn:hover {
+            background: #ffa726;
+            transform: translateY(-2px);
+        }
+
         /* Admin Dashboard Modal UI */
         .admin-modal {
             display: none;
@@ -549,6 +617,16 @@
                 </button>
             </div>
         </article>
+
+        <!-- Newsletter Subscription Box -->
+        <section class="newsletter-card">
+            <h3 id="subTitle"><i class="fas fa-envelope-open-text"></i> አዳዲስ መረጃዎች እንዲደርስዎ ይመዝገቡ</h3>
+            <p id="subDesc">አዳዲስ ዜናዎችን፣ የቪዲዮ ስራዎችን እና መረጃዎችን በኢሜይልዎ ለማግኘት የኢሜይል አድራሻዎን እዚህ ያስገቡ።</p>
+            <form class="subscribe-form" onsubmit="handleSubscribe(event)">
+                <input type="email" id="subscriberEmail" placeholder="ኢሜይል አድራሻዎን እዚህ ይፃፉ..." required>
+                <button type="submit" class="subscribe-btn" id="subBtn"><i class="fas fa-paper-plane"></i> ተመዝገብ</button>
+            </form>
+        </section>
     </main>
 
     <!-- Admin Dashboard Modal -->
@@ -631,6 +709,10 @@
                 `,
                 readMore: 'ተጨማሪ ያንብቡ',
                 readLess: 'ትንሽ አሳይ',
+                subTitle: '<i class="fas fa-envelope-open-text"></i> አዳዲስ መረጃዎች እንዲደርስዎ ይመዝገቡ',
+                subDesc: 'አዳዲስ ዜናዎችን፣ የቪዲዮ ስራዎችን እና መረጃዎችን በኢሜይልዎ ለማግኘት የኢሜይል አድራሻዎን እዚህ ያስገቡ።',
+                subPlaceholder: 'ኢሜይል አድራሻዎን እዚህ ይፃፉ...',
+                subBtnText: '<i class="fas fa-paper-plane"></i> ተመዝገብ',
                 fTitle2: 'የመገናኛ አድራሻ', fTitle3: 'ማህበራዊ ሚዲያ'
             },
             om: {
@@ -648,6 +730,10 @@
                 `,
                 readMore: 'Dabalata Dubbisaa',
                 readLess: 'Xiqqaessii Agarsiisi',
+                subTitle: '<i class="fas fa-envelope-open-text"></i> Odeeffannoo Haaraa Argachuuf Galmaa\'aa',
+                subDesc: 'Oduu haaraa, hojiiwwan viidiyoo fi odeeffannoo garaa garaa teessoo teessoo email keessaniin argachuuf asitti galmeessaa.',
+                subPlaceholder: 'Teessoo Email keessan asitti barreessaa...',
+                subBtnText: '<i class="fas fa-paper-plane"></i> Galmaa\'a',
                 fTitle2: 'Teessoo Qunnamtii', fTitle3: 'Miidiyaa Hawaasaa'
             },
             en: {
@@ -669,6 +755,10 @@
                 `,
                 readMore: 'Read More',
                 readLess: 'Read Less',
+                subTitle: '<i class="fas fa-envelope-open-text"></i> Subscribe for Updates',
+                subDesc: 'Enter your email address to receive the latest news, updates, and media content directly in your inbox.',
+                subPlaceholder: 'Enter your email address here...',
+                subBtnText: '<i class="fas fa-paper-plane"></i> Subscribe',
                 fTitle2: 'Contact Address', fTitle3: 'Social Media'
             }
         };
@@ -692,6 +782,13 @@
             document.getElementById('newsTitle').innerText = t.newsTitle;
             document.getElementById('newsDesc').innerText = t.newsDesc;
             document.getElementById('fullNews').innerHTML = t.fullNewsHtml;
+            
+            // Newsletter translations
+            document.getElementById('subTitle').innerHTML = t.subTitle;
+            document.getElementById('subDesc').innerText = t.subDesc;
+            document.getElementById('subscriberEmail').placeholder = t.subPlaceholder;
+            document.getElementById('subBtn').innerHTML = t.subBtnText;
+
             document.getElementById('fTitle2').innerText = t.fTitle2;
             document.getElementById('fTitle3').innerText = t.fTitle3;
 
@@ -717,6 +814,18 @@
             } else {
                 fullNewsDiv.style.display = 'block';
                 readMoreText.innerText = t.readLess;
+            }
+        }
+
+        // Newsletter Subscription Handler
+        function handleSubscribe(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('subscriberEmail');
+            const userEmail = emailInput.value;
+
+            if (userEmail) {
+                alert(`እናመሰግናለን! በ ${userEmail} አድራሻዎ አዳዲስ መረጃዎች እንዲደርስዎ በተሳካ ሁኔታ ተመዝግበዋል።`);
+                emailInput.value = '';
             }
         }
 

@@ -288,6 +288,29 @@
             color: var(--text-secondary);
             font-size: 1rem;
             line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Read More Button */
+        .read-more-btn {
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .read-more-btn:hover {
+            background: var(--accent-color);
+            color: #000;
         }
 
         /* Admin Dashboard Modal UI */
@@ -484,7 +507,8 @@
             <div class="news-body">
                 <span class="news-tag" id="newsTag">አረንጓዴ አሻራ</span>
                 <h3 id="newsTitle">የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!</h3>
-                <p id="newsDesc">ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል፤ የልማት ሥራዎችንም አጠናክረው እንደሚቀጥሉ ገልጸዋል።</p>
+                <p id="newsDesc">ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል፤ የልማት ሥራዎችንም አጠናክረው እንደሚቀጥሉ ገልጸዋል...</p>
+                <a href="#" class="read-more-btn" id="readMoreBtn"><i class="fas fa-arrow-right"></i> ተጨማሪ ያንብቡ</a>
             </div>
         </article>
     </main>
@@ -529,8 +553,8 @@
             </div>
             <div class="footer-col">
                 <h4 id="fTitle2">የመገናኛ አድራሻ</h4>
-                <p><i class="fas fa-phone"></i> +251 91 000 0000</p>
-                <p><i class="fas fa-envelope"></i> samsontesfaye18@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +251 91 192 66976</p>
+                <p><i class="fas fa-envelope"></i> sami2all@gmail.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> Mataaharaa, Oromia, Ethiopia</p>
             </div>
             <div class="footer-col">
@@ -575,6 +599,7 @@
                         <span class="news-tag">${category}</span>
                         <h3>${title}</h3>
                         <p>${content}</p>
+                        <a href="#" class="read-more-btn"><i class="fas fa-arrow-right"></i> ተጨማሪ ያንብቡ</a>
                     </div>
                 </article>
             `;
@@ -595,7 +620,8 @@
                 heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
                 secTitle: 'ወቅታዊ ዜናዎች', newsTag: 'አረንጓዴ አሻራ',
                 newsTitle: 'የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ የተተከሉ የብርቱካን ተክሎችን ጎበኙ!',
-                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል፤ የልማት ሥራዎችንም አጠናክረው እንደሚቀጥሉ ገልጸዋል።',
+                newsDesc: 'ዛሬ የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በምስራቅ ሸዋ ዞን መታሃራ ከተማ በመገኘት በአረንጓዴ አሻራ መርሃ ግብር የተተከሉ የብርቱካን ተክሎችን ጎብኝተዋል፤ የልማት ሥራዎችንም አጠናክረው እንደሚቀጥሉ ገልጸዋል...',
+                readMore: '<i class="fas fa-arrow-right"></i> ተጨማሪ ያንብቡ',
                 fTitle2: 'የመገናኛ አድራሻ', fTitle3: 'ማህበራዊ ሚዲያ'
             },
             om: {
@@ -604,7 +630,8 @@
                 heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
                 secTitle: 'Oduu Haaraa', newsTag: 'Ashaaraa Magariisaa',
                 newsTitle: 'Pirezedaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Burtukaana Mataaharaatti Daawwatan!',
-                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa daawwataniiru.',
+                newsDesc: 'Har\'a, Pirezedaantiin Mootummaa Naannoo Oromiyaa, Obbo Shimallis Abdiisaa, Godina Shawaa Bahaa Magaalaa Mataaharaatti argamuun, biqiltuu burtukaanaa daawwataniiru...',
+                readMore: '<i class="fas fa-arrow-right"></i> Dabalata Dubbisaa',
                 fTitle2: 'Teessoo Qunnamtii', fTitle3: 'Miidiyaa Hawaasaa'
             },
             en: {
@@ -613,7 +640,8 @@
                 heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge.',
                 secTitle: 'Latest News', newsTag: 'Green Legacy',
                 newsTitle: 'Oromia Regional President Mr. Shimallis Abdiisaa Visits Orange Tree Plantations in Mataaharaa!',
-                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Mataaharaa town to inspect orange trees.',
+                newsDesc: 'Today, the President of Oromia Regional State, Mr. Shimallis Abdiisaa, visited Mataaharaa town to inspect orange trees...',
+                readMore: '<i class="fas fa-arrow-right"></i> Read More',
                 fTitle2: 'Contact Address', fTitle3: 'Social Media'
             }
         };
@@ -634,6 +662,7 @@
             document.getElementById('newsTag').innerText = t.newsTag;
             document.getElementById('newsTitle').innerText = t.newsTitle;
             document.getElementById('newsDesc').innerText = t.newsDesc;
+            document.getElementById('readMoreBtn').innerHTML = t.readMore;
             document.getElementById('fTitle2').innerText = t.fTitle2;
             document.getElementById('fTitle3').innerText = t.fTitle3;
         }

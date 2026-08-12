@@ -238,7 +238,7 @@
             margin-bottom: 25px;
         }
 
-        /* Grid layout for displaying news side-by-side or stacked */
+        /* Grid layout for displaying news side-by-side */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -300,7 +300,7 @@
         .news-body p {
             color: var(--text-secondary);
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 15px;
         }
 
@@ -314,7 +314,8 @@
         }
 
         .full-news-content p {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            line-height: 1.6;
         }
 
         .read-more-btn {
@@ -542,9 +543,9 @@
             <div class="nav-right-controls">
                 <button class="admin-btn" onclick="openAdminModal()"><i class="fas fa-user-shield"></i> Admin</button>
                 <div class="lang-switch">
-                    <button class="lang-btn active" onclick="setLanguage('am')">ET<br>AM</button>
-                    <button class="lang-btn" onclick="setLanguage('om')">OM</button>
-                    <button class="lang-btn" onclick="setLanguage('en')">GB<br>EN</button>
+                    <button class="lang-btn active" onclick="setLanguage('am', event)">ET<br>AM</button>
+                    <button class="lang-btn" onclick="setLanguage('om', event)">OM</button>
+                    <button class="lang-btn" onclick="setLanguage('en', event)">GB<br>EN</button>
                 </div>
             </div>
         </div>
@@ -575,12 +576,12 @@
         </div>
     </section>
 
-    <!-- Main Content with Both News Displayed Side-by-Side -->
+    <!-- Main Content with Both News Items -->
     <main id="mainContent">
         <h2 class="section-title" id="secTitle">ወቅታዊ ዜናዎች</h2>
         
         <div class="news-grid" id="newsGrid">
-            <!-- News Card 1 (Original News) -->
+            <!-- News Card 1 (Original First News) -->
             <article class="news-card">
                 <img src="burtukaana All.jpg" alt="Beseka Development" class="news-img">
                 <div class="news-body">
@@ -589,9 +590,8 @@
                     <div class="author-meta" id="news1Author"><i class="fas fa-user-edit"></i> መታሃራ | ሳሚ ዶልፊን</div>
                     <p id="news1Desc">የመታሃራ ከተማ አስተዳደር በአካባቢ ጥበቃ እና በአረንጓዴ ልማት ዙሪያ ያከናወናቸውን አበይት ተግባራት የሚያሳይ ልዩ ዘገባ።</p>
 
-                    <div id="fullNews1" class="full-news-content">
-                        <!-- Dynamic content injected via JS -->
-                    </div>
+                    <!-- Full Expanded Content -->
+                    <div id="fullNews1" class="full-news-content"></div>
 
                     <button class="read-more-btn" onclick="toggleReadMore(1)">
                         <i class="fas fa-arrow-right"></i> <span id="readMore1Text">ተጨማሪ ያንብቡ</span>
@@ -599,7 +599,7 @@
                 </div>
             </article>
 
-            <!-- News Card 2 (New Beseka Orange Paradise Story) -->
+            <!-- News Card 2 (New Second News Story) -->
             <article class="news-card">
                 <img src="burtukaana2.jpg" alt="Beseka Lake Green Paradise" class="news-img">
                 <div class="news-body">
@@ -608,9 +608,8 @@
                     <div class="author-meta" id="news2Author"><i class="fas fa-user-edit"></i> መታሃራ | ሳሚ ዶልፊን</div>
                     <p id="news2Desc">በአንድ ወቅት በቆሻሻ ክምር የተሸፈነ፣ በብክለት የተጎዳና ለተመልካቾች የሐዘን ስሜት የሚፈጥር የነበረው የበሰቃ ሐይቅ ዳርቻ፣ ዛሬ ግን የአረንጓዴነት ተምሳሌት እና የቱሪዝም ተስፋ ሆኗል።</p>
 
-                    <div id="fullNews2" class="full-news-content">
-                        <!-- Dynamic content injected via JS -->
-                    </div>
+                    <!-- Full Expanded Content -->
+                    <div id="fullNews2" class="full-news-content"></div>
 
                     <button class="read-more-btn" onclick="toggleReadMore(2)">
                         <i class="fas fa-arrow-right"></i> <span id="readMore2Text">ተጨማሪ ያንብቡ</span>
@@ -689,7 +688,7 @@
     <script>
         let currentLang = 'am';
 
-        // Translations Array for both news items
+        // Full translations for menu, hero, and BOTH news articles
         const translations = {
             am: {
                 m1: '<i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች', m2: '<i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ', m3: '<i class="fas fa-landmark"></i> ባህል', m4: '<i class="fas fa-mountain"></i> ቱሪዝም', m5: '<i class="fas fa-brain"></i> ፊሎሶፊ', m6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
@@ -697,7 +696,7 @@
                 heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
                 secTitle: 'ወቅታዊ ዜናዎች',
                 
-                // News 1 Data
+                // News 1 Data (Amharic)
                 news1Tag: 'አረንጓዴ ልማት',
                 news1Title: 'የበሰቃ ሐይቅ ዳርቻ ልማት፤ ከመታሃራ ከተማ አስተዳደር የተገኘ ወቅታዊ መረጃ',
                 news1Author: '<i class="fas fa-user-edit"></i> መታሃራ | ሳሚ ዶልፊን',
@@ -705,9 +704,10 @@
                 news1Full: `
                     <p>በመታሃራ ከተማ አስተዳደር በከንቲባ ክቡር አቶ አዲሱ ዋቆ አመራር ከተማዋን የምቾት፣ የላቀ የንግድና የቱሪዝም ማዕከል ለማድረግ በርካታ የልማት ስራዎች በመካሄድ ላይ ይገኛሉ።</p>
                     <p>በተለይም የበሰቃ ሐይቅ ዳርቻን ወደ አረንጓዴ ልማት ማዕከልነት የመቀየር ስራ በአርአያነት የሚጠቀስ ሲሆን፣ በርካታ የብርቱካንና የፍራፍሬ ተክሎች ተተክለው ለውጥ ማምጣት ተችሏል።</p>
+                    <p>ይህ የልማት ስራ ከተማዋን ውብ እና ለኑሮ ተስማሚ ከማድረጉም በላይ ለከተማዋ የኢኮኖሚ እና የቱሪዝም እድገት ከፍተኛ አስተዋፅኦ እያበረከተ ይገኛል።</p>
                 `,
 
-                // News 2 Data
+                // News 2 Data (Amharic)
                 news2Tag: 'አረንጓዴ ገነት',
                 news2Title: 'ከቆሻሻ ማከማቻነት ወደ አረንጓዴ ገነት፤ የበሰቃ ሐይቅ ዳርቻ ያስደነቀው የልማት ታሪክ!',
                 news2Author: '<i class="fas fa-user-edit"></i> መታሃራ | ሳሚ ዶልፊን',
@@ -734,7 +734,7 @@
                 heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
                 secTitle: 'Oduu Haaraa',
                 
-                // News 1 Data
+                // News 1 Data (Afaan Oromoo)
                 news1Tag: 'Misooma Magariisaa',
                 news1Title: 'Misooma Qarqara Haroo Beesaqaa; Odeeffannoo Haaraa Bulchiinsa Magaalaa Mataaharaa',
                 news1Author: '<i class="fas fa-user-edit"></i> Mataaharaa | Sami Dolphin',
@@ -742,9 +742,10 @@
                 news1Full: `
                     <p>Bulchiinsi Magaalaa Mataaharaa hoggansa Kantiibaa kabajamoo Obbo Addisuu Waaqootiin magaalaa giddogala daldalaa fi turizimii gochuuf hojiiwwan misoomaa hedduu hojjechaa jira.</p>
                     <p>Keessattuu qarqara Haroo Beesaqaa gara iddoo misooma magariisaatti jijjiiruuf muka burtukaanaatiin miidhagsanii bu'aa guddaa galmeessisuun danda'ameera.</p>
+                    <p>Hojiin misoomaa kun magaalattii bareechuu fi jireenyaaf mijataa gochuu bira darbee guddina diinagdee fi turizimii magaalaatiif gumaacha guddaa gochaa jira.</p>
                 `,
 
-                // News 2 Data
+                // News 2 Data (Afaan Oromoo)
                 news2Tag: 'Jannata Magariisaa',
                 news2Title: 'Kuusaa Kosii Irraa Gara Jannata Magariisaatti; Seenaa Misoomaa Qarqara Haroo Beesaqaa Nama Dinqisiise!',
                 news2Author: '<i class="fas fa-user-edit"></i> Mataaharaa | Sami Dolphin',
@@ -771,7 +772,7 @@
                 heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge.',
                 secTitle: 'Latest News',
                 
-                // News 1 Data
+                // News 1 Data (English)
                 news1Tag: 'Green Development',
                 news1Title: 'Lake Beseka Shoreline Development: Updates from Metahara City Administration',
                 news1Author: '<i class="fas fa-user-edit"></i> Metahara | Sami Dolphin',
@@ -779,9 +780,10 @@
                 news1Full: `
                     <p>Under the leadership of Mayor H.E. Ato Addisu Wako, the Metahara City Administration is actively pursuing major projects to build a vibrant commercial and tourism center.</p>
                     <p>Transforming the shoreline of Lake Beseka into a thriving green landscape with orange orchards stands as an exemplary success story.</p>
+                    <p>This initiative not only beautifies the city but also contributes significantly to the economic and tourism growth of Metahara.</p>
                 `,
 
-                // News 2 Data
+                // News 2 Data (English)
                 news2Tag: 'Green Paradise',
                 news2Title: 'From Waste Dump to Green Paradise: The Remarkable Transformation of Lake Beseka’s Shoreline',
                 news2Author: '<i class="fas fa-user-edit"></i> Metahara | Sami Dolphin',
@@ -804,10 +806,12 @@
             }
         };
 
-        function setLanguage(lang) {
+        function setLanguage(lang, event) {
             currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if (event) {
+                document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+            }
             
             const t = translations[lang];
             document.getElementById('m1').innerHTML = t.m1;
@@ -820,21 +824,27 @@
             document.getElementById('heroSub').innerText = t.heroSub;
             document.getElementById('secTitle').innerText = t.secTitle;
             
-            // News 1 Update
+            // News 1 Updates
             document.getElementById('news1Tag').innerText = t.news1Tag;
             document.getElementById('news1Title').innerText = t.news1Title;
             document.getElementById('news1Author').innerHTML = t.news1Author;
             document.getElementById('news1Desc').innerText = t.news1Desc;
             document.getElementById('fullNews1').innerHTML = t.news1Full;
+            
+            const fullNews1Div = document.getElementById('fullNews1');
+            document.getElementById('readMore1Text').innerText = (fullNews1Div.style.display === 'block') ? t.readLess : t.readMore;
 
-            // News 2 Update
+            // News 2 Updates
             document.getElementById('news2Tag').innerText = t.news2Tag;
             document.getElementById('news2Title').innerText = t.news2Title;
             document.getElementById('news2Author').innerHTML = t.news2Author;
             document.getElementById('news2Desc').innerText = t.news2Desc;
             document.getElementById('fullNews2').innerHTML = t.news2Full;
 
-            // Subscription Section Update
+            const fullNews2Div = document.getElementById('fullNews2');
+            document.getElementById('readMore2Text').innerText = (fullNews2Div.style.display === 'block') ? t.readLess : t.readMore;
+
+            // Newsletter Section Update
             document.getElementById('subTitle').innerHTML = t.subTitle;
             document.getElementById('subDesc').innerText = t.subDesc;
             document.getElementById('subscriberEmail').placeholder = t.subPlaceholder;
@@ -844,7 +854,7 @@
             document.getElementById('fTitle3').innerText = t.fTitle3;
         }
 
-        // Read More Toggle for multiple cards
+        // Toggle Expand/Collapse for News Content
         function toggleReadMore(id) {
             const fullNewsDiv = document.getElementById(`fullNews${id}`);
             const readMoreText = document.getElementById(`readMore${id}Text`);
@@ -868,10 +878,10 @@
             }
         }
 
-        // Initialize content
-        setLanguage('am');
+        // Initialize Page Content in Amharic
+        setLanguage('am', null);
 
-        // Admin Dashboard Modal Logic
+        // Admin Modal Controls
         function openAdminModal() { document.getElementById('adminModal').style.display = 'flex'; }
         function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
 
@@ -904,7 +914,7 @@
             document.getElementById('adminForm').reset();
         }
 
-        // Hero Slider
+        // Hero Image Slider
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         setInterval(() => {

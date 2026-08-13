@@ -651,6 +651,9 @@
     let currentCategory = 'news';
     let currentLang = 'am';
 
+    // Set Admin Password (አዲሱ የይለፍ ቃል)
+    const ADMIN_PASSWORD = "samron@8080";
+
     // Disable Right Click across page
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
@@ -765,8 +768,14 @@
         filterCategory(cat, targetMenu);
     }
 
+    /* Protected Admin Modal Opening */
     function openAdminModal() {
-        document.getElementById('adminModal').style.display = 'flex';
+        const enteredPassword = prompt("እባክዎን የአድሚን ሚስጥር ቁጥር (Password) ያስገቡ:");
+        if (enteredPassword === ADMIN_PASSWORD) {
+            document.getElementById('adminModal').style.display = 'flex';
+        } else if (enteredPassword !== null) {
+            alert("የተሳሳተ ሚስጥር ቁጥር ነው! መግባት አይችሉም።");
+        }
     }
 
     function closeAdminModal() {

@@ -30,7 +30,6 @@
             user-select: none;
         }
 
-        /* Allow Input fields to be selected for typing */
         input, textarea, select {
             -webkit-user-select: text;
             -moz-user-select: text;
@@ -282,7 +281,7 @@
 
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
         }
@@ -298,11 +297,30 @@
             justify-content: space-between;
         }
 
-        .news-img {
+        /* Card Image Motion Slider */
+        .card-slider-container {
+            position: relative;
             width: 100%;
-            height: 220px;
+            height: 240px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .card-slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            display: block;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 4s ease-out;
+            transform: scale(1);
+        }
+
+        .card-slide-img.active {
+            opacity: 1;
+            transform: scale(1.05);
         }
 
         .news-body {
@@ -343,9 +361,10 @@
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 15px;
+            white-space: pre-line;
         }
 
-        /* Admin Controls on Cards */
+        /* Admin Controls */
         .admin-controls {
             display: none;
             gap: 10px;
@@ -354,8 +373,7 @@
             border-top: 1px solid #1f2937;
         }
 
-        .edit-btn-card {
-            background: var(--edit-btn);
+        .edit-btn-card, .delete-btn-card {
             color: #fff;
             border: none;
             padding: 6px 12px;
@@ -370,21 +388,8 @@
             gap: 5px;
         }
 
-        .delete-btn-card {
-            background: var(--danger-btn);
-            color: #fff;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: bold;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
+        .edit-btn-card { background: var(--edit-btn); }
+        .delete-btn-card { background: var(--danger-btn); }
 
         .no-posts-msg {
             color: var(--text-secondary);
@@ -616,8 +621,10 @@
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-slider">
-        <div class="slide active" style="background-image: url('burtukaana All.jpg');"></div>
-        <div class="slide" style="background-image: url('burtukaana2.jpg');"></div>
+        <div class="slide active" style="background-image: url('sami  (1).png');"></div>
+        <div class="slide" style="background-image: url('sami  (2).png');"></div>
+        <div class="slide" style="background-image: url('sami  (3).png');"></div>
+        <div class="slide" style="background-image: url('sami  (5).png');"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -670,10 +677,6 @@
             <div class="form-group">
                 <label id="lblContent">ዝርዝር መረጃ (Content/Description)</label>
                 <textarea id="postContent" rows="4" required placeholder="የዜናውን ወይም የፅሁፉን ሙሉ መረጃ እዚህ ይፃፉ..."></textarea>
-            </div>
-            <div class="form-group">
-                <label id="lblMedia">ፎቶ ወይም ቪዲዮ ይጫኑ (Upload Media)</label>
-                <input type="file" id="postImage" accept="image/*,video/*">
             </div>
             <button type="submit" class="publish-btn" id="btnPublish"><i class="fas fa-paper-plane"></i> ፖስት አድርግ (Publish)</button>
         </form>
@@ -729,23 +732,21 @@
     let currentCategory = 'news';
     let currentLang = 'am';
     let isAdminLoggedIn = false;
+    let cardSliderIntervals = [];
 
-    // Set Admin Password
     const ADMIN_PASSWORD = "samron@8080";
 
     // Disable Right Click across page
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
+    document.addEventListener('contextmenu', e => e.preventDefault());
 
     // Prevent Copy Shortcuts
-    document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'a')) {
+    document.addEventListener('keydown', e => {
+        if (e.ctrlKey && ['c', 'u', 's', 'a'].includes(e.key.toLowerCase())) {
             e.preventDefault();
         }
     });
 
-    // Full Site Translations Dictionary
+    // Site Translations Dictionary
     const siteTranslations = {
         am: {
             docTitle: "መታሃራ ከተማ መረጃ ማዕከል | Sami-Tube Media",
@@ -854,27 +855,93 @@
         }
     };
 
-    // Initial Data Posts
-    let posts = JSON.parse(localStorage.getItem('sami_posts')) || [
-        {
-            id: 1,
-            category: 'news',
-            title: 'የበሰቃ ሐይቅ ዳርቻ ልማት፤ ከመታሃራ ከተማ አስተዳደር የተገኘ ወቅታዊ መረጃ',
-            author: 'መታሃራ | ሳሚ ዶልፊን',
-            tag: 'አረንጓዴ ልማት',
-            desc: 'የመታሃራ ከተማ አስተዳደር በአካባቢ ጥበቃ እና በአረንጓዴ ልማት ዙሪያ ያከናወናቸውን አበይት ተግባራት የሚያሳይ ልዩ ዘገባ።',
-            image: 'burtukaana All.jpg'
+    // Multi-Language News Data
+    const initialNewsData = {
+        am: {
+            title: "🌿መታሃራ፦ ያልታየውን ዕድል በንስር ዓይን ማየት! 🌱",
+            tag: "አረንጓዴ ልማት",
+            author: "መታሃራ | ሳሚ ዶልፊን",
+            desc: `አንዳንድ ጊዜ ከተማን ይበልጥ ለማስዋብ ትልቅ በጀት ብቻ አይበቃም። ያለውን ነገር በሌላ ዓይን ማየት፣ ያልታየውን ዕድል መለየት እና ነገን አስቦ ዛሬ መሥራት የሚችል “የንስር ዓይን” ያስፈልጋል። 🦅
+
+ይህንን የልማት ራዕይ በተጨባጭ እየገለጠች ካለችው የመታሃራ ከተማ ለውጥ መካከል አንዱ የሚያስደምም ምሳሌ ደግሞ ዛሬ ልናካፍላችሁ የምንፈልገው ይህ ነው። ከመታሃራ ከተማ መሃል እስከ የኢትዮ–ጅቡቲ የምድር ባቡር ጣቢያ የሚያደርሰው ውብ የአስፓልት መንገድ ለዓመታት በመሃሉ ለአበባ፣ ለዛፍና ለችግኝ ተከላ የተዘጋጀ ቦታ ነበረው። ነገር ግን ይህ ዕድል ለረጅም ጊዜ በትኩረት ሳይታይ ቆይቷል። ዛሬ ግን ሁኔታው ተለውጧል። 🌿
+
+ይህ ቦታ ዘመናዊና ማራኪ በሆነ የአጥር አወቃቀር በማስዋብ፣ ለበረሃማ አካባቢው ተስማሚ የሆኑ የከተማ ውበት ችግኞችን በመትከል እና በተገቢው የአረንጓዴ እፅዋት አወቃቀር ወደ ማራኪ የከተማ ውበት ማዕከል እየተቀየረ ይገኛል። 🌱✨
+
+ይህ አስደናቂ የችግኝ ተከላ ፕሮግራምም የመታሃራ ከተማ አስተዳደር ከ Future Generation Organization ጋር በመተባበር ያከናወነው ሲሆን፣ የመታሃራ ከተማ አስተዳደር ከንቲባ አቶ አዲሱ ዋቆ እና የFuture Generation Organization የመታሃራ ከተማ አስተባባሪ በጋራ ችግኝ በመትከል የከተማዋን አረንጓዴ የወደፊት ራዕይ በተግባር አሳይተዋል። 🌳
+
+ይህ ሥራ ችግኝ መትከል ብቻ አይደለም። ለከተማ ያለንን ፍቅር፣ ለሀገር ያለንን ኃላፊነት፣ ለቀጣዩ ትውልድ ያለንን አስተሳሰብ እና የአረንጓዴ አሻራ ተግባርን በተጨባጭ የሚያሳይ ሥራ ነው። 🌍💚
+
+የተተከሉት ችግኞች እንዲያድጉና የከተማዋን ውበት እንዲያሳድጉ የተከታታይ እንክብካቤም በጋራ ታስቦበታል። የችግኝ ተከላውን ለመጠበቅ እና ከአደጋ ለመከላከል የከተማውን ደረጃ የጠበቀ ውብ አጥር፣ በቋሚነት የሚከታተል ባለሙያ እና 10,000 ሊትር የውሃ ማጠራቀሚያ ታንከር በጋራ ተዘጋጅቷል። 💧🌱
+
+ክቡር ከንቲባውም ይህ ሥራ በአስተዳደሩ ብቻ የሚጠናቀቅ እንዳልሆነ በመግለጽ፣ የመታሃራ ከተማ ነዋሪዎች የተተከሉትን ችግኞች በመጠበቅ፣ በመንከባከብና የከተማቸውን ውበት በጋራ በማስጠበቅ የራሳቸውን ኃላፊነት እንዲወጡ ጥሪ አቅርበዋል። 🌱
+
+ዛሬ የምንተክለው ችግኝ ነገ የከተማችን ውበት ነው። ዛሬ የምንንከባከበው አረንጓዴ ልማት ነገ የትውልድ ቅርስ ነው። 💚
+
+መታሃራ እየተለወጠች ነው—እኛም የዚህ ለውጥ ተሳታፊ እንሁን!
+
+#መታሃራ #Matahara #አረንጓዴልማት #GreenCorridor #FutureGeneration #የአረንጓዴአሻራ #SamiDolphin`
         },
-        {
-            id: 2,
-            category: 'news',
-            title: 'ከቆሻሻ ማከማቻነት ወደ አረንጓዴ ገነት፤ የበሰቃ ሐይቅ ዳርቻ ያስደነቀው የልማት ታሪክ!',
-            author: 'መታሃራ | ሳሚ ዶልፊን',
-            tag: 'አረንጓዴ ገነት',
-            desc: 'በአንድ ወቅት በቆሻሻ ክምር የተሸፈነ የነበረው የበሰቃ ሐይቅ ዳርቻ፣ ዛሬ የአረንጓዴነት ተምሳሌትና የቱሪዝም ተስፋ ሆኗል።',
-            image: 'burtukaana2.jpg'
+        om: {
+            title: "🌿Mataaharaa: Carraa Hin Mul’anne Ija Risaa’n Arguu! 🌱",
+            tag: "Misooma Magariisaa",
+            author: "Mataaharaa | Sami Dolphin",
+            desc: `Yeroo tokko tokko magaalaa tokko caalaatti bareechuuf baajata guddaa qofa qabaachuun hin ga’u. Waan jiru karaa addaatiin ilaaluun, carraa hin mul’anne adda baasuun, boru yaadanii har’a hojjechuu danda’uun “ija risaa” barbaada. 🦅
+
+Mul’ata misoomaa kana hojii qabatamaa keessatti kan mul’isaa jirtu jijjiirama Magaalaa Mataaharaa keessatti mul’achaa jiru keessaa, fakkeenyi ajaa’ibaa tokko har’a isin waliin qooduu barbaannu kunooti.
+
+Daandii asfaltii bareedaan wiirtuu Magaalaa Mataaharaa irraa gara Buufata Baaburaa Itoophiyaa–Jibuutii geessu, waggoota hedduuf gidduutti bakka daraaraa, muka fi biqiltuu dhaabuuf qophaa’e qaba ture. Haa ta’u malee, carraan kun yeroo dheeraaf xiyyeeffannoo gahaa osoo hin argatin ture. Har’a garuu haalli isaa jijjiirameera. 🌿
+
+Bakkichi dallaa ammayyaa fi hawwataa ta’een miidhagfamaa, biqiltoota naannoo gammoojjii fi qilleensa ho’aa sanaaf mijatoo ta’an dhaabuun, akkasumas qindaa’ina sirrii biqiltoota magariisaa fayyadamuun gara wiirtuu miidhagina magaalaa hawwataa ta’etti jijjiiramaa jira. 🌱✨
+
+Sagantaan dhaabbii biqiltuu kunis Bulchiinsa Magaalaa Mataaharaa fi Future Generation Organization waliin ta’uun kan raawwatame yoo ta’u, Kantibaan Bulchiinsa Magaalaa Mataaharaa Obbo Addisuu Waqqoo fi Qindeessaan Future Generation Organization Magaalaa Mataaharaa waliin biqiltuu dhaabuun mul’ata magariisaa gara fuulduraa magaalaa kanaa hojii irra oolchanii agarsiisaniiru. 🌳
+
+Hojiin kun biqiltuu dhaabuu qofa miti. Inni jaalala magaalaa keenyaaf qabnu, itti-gaafatamummaa biyya keenyaaf qabnu, yaada dhaloota dhufuuf qabnu, akkasumas hojii Asqama Magariisaa (Green Legacy) qabatamaan kan mul’isuudha. 🌍💚
+
+Biqiltoonni dhaabaman akka guddatan, miidhagina magaalaa akka dabalan, kunuunsi itti fufiinsa qabu akka taasifamuufis waliin karoorfamuu isaa ibsameera. Dhaabbii biqiltuu kana eeguuf, miidhaa irraa ittisuufis dallaan bareedaan sadarkaa magaalaa eeggate, ogeessi yeroo hunda hordofu, akkasumas taankariin kuusaa bishaanii liitira 10,000 qophaa’aniiru. 💧🌱
+
+Kantiibaan Magaalaa Mataaharaa Obbo Addisuu Waqqoo hojii kun bulchiinsa qofaatiin xumuramuu akka hin dandeenye ibsuun, jiraattonni Magaalaa Mataaharaa biqiltoota dhaabaman eeguu, kunuunsuu fi miidhagina magaalaa isaanii waliin ta’uun tiksuu keessatti gahee fi itti-gaafatamummaa isaanii akka ba’an waamicha dhiyeessaniiru.
+
+🌱 Biqiltuun har’a dhaabnu, boru miidhagina magaalaa keenyaati. Misooma magariisaa har’a kunuunsinu, boru dhaala dhalootaati.
+
+💚 Mataaharaan jijjiiramaa jirti — nutis jijjiirama kana keessatti hirmaattota haa taanu!
+
+#Mataaharaa #Matahara #MisoomaMagariisaa #GreenCorridor #FutureGeneration #AsqamaMagariisaa #GreenLegacy #SamiDolphin`
+        },
+        en: {
+            title: "Matahara: Seeing Untapped Potential Through an Eagle’s Eye 🦅🌱",
+            tag: "Green Development",
+            author: "Mataaharaa | Sami Dolphin",
+            desc: `Sometimes, transforming and beautifying a town requires more than a large budget. It requires the ability to see existing spaces from a different perspective, identify opportunities that others may overlook, envision the future, and take meaningful action today. It requires an “eagle’s eye.” 🦅
+
+One remarkable example of this development vision can be seen in the ongoing transformation of Matahara City—and this is one of the stories we are proud to share today. For years, the beautiful asphalt road connecting the heart of Matahara town to the Ethio-Djibouti railway station had a designated central space for flowers, trees, and seedlings. Yet, despite its potential, this space remained largely overlooked for a long time. Today, that is changing. 🌿
+
+Through thoughtful urban design, the area is being transformed with a modern and attractive fencing system, carefully selected plants suited to the city’s arid environment, and a well-planned green landscape. What was once an underutilized space is gradually becoming an attractive feature of Matahara’s urban environment—a place that can enhance the city’s beauty and provide a more pleasant setting for residents and visitors. 🌱✨
+
+This impressive tree-planting and urban beautification initiative is being implemented through collaboration between the Matahara City Administration and Future Generation Organization. H.E. Ato Addisu Wako, Mayor of Matahara town, and the Matahara City Coordinator of Future Generation Organization jointly participated in the tree-planting activity, demonstrating in action their shared vision for a greener and more beautiful future for the town. 🌳
+
+This initiative is about much more than planting seedlings. It represents a commitment to the city, a responsibility to the country, a vision for future generations, and a practical expression of Ethiopia’s Green Legacy. 🌍💚
+
+Importantly, the initiative also includes plans for continued care and maintenance to ensure that the newly planted seedlings grow successfully and contribute to the city’s long-term beauty. To protect the plantation and support its sustainability, a modern city-standard protective fence has been prepared, along with continuous professional supervision and a 10,000-liter water storage tanker to support regular watering and maintenance. 💧🌱
+
+Mayor Addisu Wako has also emphasized that this work cannot be completed by the administration alone. He called upon the residents of Matahara to take shared responsibility by protecting and caring for the newly planted seedlings and by collectively safeguarding the beauty of their city.
+
+The seedlings we plant today will become the beauty of our city tomorrow. The green development we nurture today will become a legacy for future generations.
+
+Matahara is changing—and let us all become active participants in that transformation!
+
+#Matahara #MataharaCity #GreenDevelopment #GreenCorridor #FutureGeneration #GreenLegacy #UrbanBeautification #SustainableDevelopment #SamiDolphin`
         }
+    };
+
+    // Shared 4 Images Carousel Array
+    const newsImages = [
+        'sami  (1).png',
+        'sami  (2).png',
+        'sami  (3).png',
+        'sami  (5).png'
     ];
+
+    let posts = JSON.parse(localStorage.getItem('sami_posts')) || [];
 
     const categoryTitles = {
         news: { am: 'ወቅታዊ ዜናዎች', om: 'Oduu Haaraa', en: 'Latest News' },
@@ -886,37 +953,114 @@
         sports: { am: 'ስፖርት', om: 'Ispoortii', en: 'Sports' }
     };
 
+    function clearCardSliders() {
+        cardSliderIntervals.forEach(clearInterval);
+        cardSliderIntervals = [];
+    }
+
     function renderPosts() {
+        clearCardSliders();
         const grid = document.getElementById('newsGrid');
         grid.innerHTML = '';
 
-        const filtered = posts.filter(p => p.category === currentCategory);
-
         document.getElementById('secTitle').innerText = categoryTitles[currentCategory][currentLang];
 
-        if (filtered.length === 0) {
-            grid.innerHTML = `<div class="no-posts-msg">${siteTranslations[currentLang].noPostMsg}</div>`;
-            return;
-        }
-
-        filtered.forEach(post => {
+        if (currentCategory === 'news') {
+            const newsData = initialNewsData[currentLang];
             const card = document.createElement('article');
             card.className = 'news-card';
+            
+            // Build Dynamic Image Slider HTML
+            let sliderHTML = `<div class="card-slider-container" id="cardSlider1">`;
+            newsImages.forEach((img, idx) => {
+                sliderHTML += `<img src="${img}" class="card-slide-img ${idx === 0 ? 'active' : ''}" alt="Matahara Green Corridor">`;
+            });
+            sliderHTML += `</div>`;
+
             card.innerHTML = `
-                ${post.image ? `<img src="${post.image}" class="news-img" alt="Post Image">` : ''}
+                ${sliderHTML}
                 <div class="news-body">
-                    <span class="news-tag">${post.tag || categoryTitles[post.category][currentLang]}</span>
-                    <h3>${post.title}</h3>
-                    <div class="author-meta"><i class="fas fa-user-edit"></i> ${post.author || siteTranslations[currentLang].authorDefault}</div>
-                    <p>${post.desc}</p>
+                    <span class="news-tag">${newsData.tag}</span>
+                    <h3>${newsData.title}</h3>
+                    <div class="author-meta"><i class="fas fa-user-edit"></i> ${newsData.author}</div>
+                    <p>${newsData.desc}</p>
                     <div class="admin-controls" style="display: ${isAdminLoggedIn ? 'flex' : 'none'}">
-                        <button class="edit-btn-card" onclick="openEditModal(${post.id})"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="delete-btn-card" onclick="deletePost(${post.id})"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button class="edit-btn-card" onclick="openEditModal(1)"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="delete-btn-card" onclick="deletePost(1)"><i class="fas fa-trash-alt"></i> Delete</button>
                     </div>
                 </div>
             `;
             grid.appendChild(card);
-        });
+
+            // Activate Motion Slider for Card
+            startCardSlider('cardSlider1');
+
+            // Render additional custom dynamic posts if any
+            const customPosts = posts.filter(p => p.category === currentCategory);
+            customPosts.forEach(post => {
+                const cCard = document.createElement('article');
+                cCard.className = 'news-card';
+                cCard.innerHTML = `
+                    <div class="card-slider-container">
+                        <img src="${post.image || 'sami  (1).png'}" class="card-slide-img active" alt="Post Image">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-tag">${post.tag || categoryTitles[post.category][currentLang]}</span>
+                        <h3>${post.title}</h3>
+                        <div class="author-meta"><i class="fas fa-user-edit"></i> ${post.author || siteTranslations[currentLang].authorDefault}</div>
+                        <p>${post.desc}</p>
+                        <div class="admin-controls" style="display: ${isAdminLoggedIn ? 'flex' : 'none'}">
+                            <button class="edit-btn-card" onclick="openEditModal(${post.id})"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="delete-btn-card" onclick="deletePost(${post.id})"><i class="fas fa-trash-alt"></i> Delete</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(cCard);
+            });
+
+        } else {
+            const filtered = posts.filter(p => p.category === currentCategory);
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="no-posts-msg">${siteTranslations[currentLang].noPostMsg}</div>`;
+                return;
+            }
+            filtered.forEach(post => {
+                const card = document.createElement('article');
+                card.className = 'news-card';
+                card.innerHTML = `
+                    <div class="card-slider-container">
+                        <img src="${post.image || 'sami  (1).png'}" class="card-slide-img active" alt="Post Image">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-tag">${post.tag || categoryTitles[post.category][currentLang]}</span>
+                        <h3>${post.title}</h3>
+                        <div class="author-meta"><i class="fas fa-user-edit"></i> ${post.author || siteTranslations[currentLang].authorDefault}</div>
+                        <p>${post.desc}</p>
+                        <div class="admin-controls" style="display: ${isAdminLoggedIn ? 'flex' : 'none'}">
+                            <button class="edit-btn-card" onclick="openEditModal(${post.id})"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="delete-btn-card" onclick="deletePost(${post.id})"><i class="fas fa-trash-alt"></i> Delete</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+    }
+
+    // Motion Motion Effect for Card Images
+    function startCardSlider(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const slides = container.querySelectorAll('.card-slide-img');
+        let index = 0;
+
+        const interval = setInterval(() => {
+            slides[index].classList.remove('active');
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+        }, 4000);
+
+        cardSliderIntervals.push(interval);
     }
 
     function filterCategory(cat, element) {
@@ -932,12 +1076,6 @@
         const cat = document.getElementById('postCategory').value;
         const title = document.getElementById('postTitle').value;
         const desc = document.getElementById('postContent').value;
-        const fileInput = document.getElementById('postImage');
-
-        let imageSrc = '';
-        if (fileInput.files && fileInput.files[0]) {
-            imageSrc = URL.createObjectURL(fileInput.files[0]);
-        }
 
         const newPost = {
             id: Date.now(),
@@ -946,7 +1084,7 @@
             author: siteTranslations[currentLang].authorDefault,
             tag: categoryTitles[cat][currentLang],
             desc: desc,
-            image: imageSrc
+            image: 'sami  (1).png'
         };
 
         posts.unshift(newPost);
@@ -960,7 +1098,7 @@
         filterCategory(cat, targetMenu);
     }
 
-    /* Protected Admin Modal Opening */
+    /* Admin Security */
     function openAdminModal() {
         if (!isAdminLoggedIn) {
             const enteredPassword = prompt("እባክዎን የአድሚን ሚስጥር ቁጥር (Password) ያስገቡ:");
@@ -988,41 +1126,14 @@
         document.getElementById('adminModal').style.display = 'none';
     }
 
-    /* Edit Post Functions */
     function openEditModal(id) {
-        const postToEdit = posts.find(p => p.id === id);
-        if (postToEdit) {
-            document.getElementById('editPostId').value = postToEdit.id;
-            document.getElementById('editPostTitle').value = postToEdit.title;
-            document.getElementById('editPostContent').value = postToEdit.desc;
-            document.getElementById('editModal').style.display = 'flex';
-        }
+        alert("የዋናውን ዜና መረጃ በኮዱ ውስጥ በቀላሉ ማስተካከል ይችላሉ።");
     }
 
     function closeEditModal() {
         document.getElementById('editModal').style.display = 'none';
     }
 
-    function saveEditedPost(e) {
-        e.preventDefault();
-        const id = parseInt(document.getElementById('editPostId').value);
-        const newTitle = document.getElementById('editPostTitle').value;
-        const newDesc = document.getElementById('editPostContent').value;
-
-        posts = posts.map(p => {
-            if (p.id === id) {
-                return { ...p, title: newTitle, desc: newDesc };
-            }
-            return p;
-        });
-
-        localStorage.setItem('sami_posts', JSON.stringify(posts));
-        alert('ፖስቱ በተሳካ ሁኔታ ተስተካክሏል!');
-        closeEditModal();
-        renderPosts();
-    }
-
-    /* Delete Post Function */
     function deletePost(id) {
         if (confirm("እርግጠኛ ነዎት ይህንን ፖስት ማጥፋት ይፈልጋሉ?")) {
             posts = posts.filter(p => p.id !== id);
@@ -1043,18 +1154,15 @@
         currentLang = lang;
         const t = siteTranslations[lang];
 
-        // Active Button Toggle
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
         if (event && event.currentTarget) event.currentTarget.classList.add('active');
 
-        // Document Title & Headers
         document.getElementById('docTitle').innerText = t.docTitle;
         document.getElementById('headerTitle').innerText = t.headerTitle;
         document.getElementById('headerSub').innerText = t.headerSub;
         document.getElementById('adminText').innerText = t.adminText;
         document.getElementById('exitAdminText').innerText = t.exitAdminText;
 
-        // Navigation Links
         document.querySelector('#m1 span').innerText = t.m1;
         document.querySelector('#m2 span').innerText = t.m2;
         document.querySelector('#m3 span').innerText = t.m3;
@@ -1063,45 +1171,39 @@
         document.querySelector('#m6 span').innerText = t.m6;
         document.querySelector('#m7 span').innerText = t.m7;
 
-        // Hero Section
         document.getElementById('heroTitle').innerText = t.heroTitle;
         document.getElementById('heroSub').innerText = t.heroSub;
 
-        // Subscription Box
         document.getElementById('subTitle').innerHTML = `<i class="fas fa-envelope-open-text"></i> ${t.subTitle}`;
         document.getElementById('subDesc').innerText = t.subDesc;
         document.getElementById('subscriberEmail').placeholder = t.subscriberPlaceholder;
         document.getElementById('subBtnText').innerText = t.subBtnText;
 
-        // Admin Modal Labels
         document.getElementById('addPostModalTitle').innerHTML = `<i class="fas fa-edit"></i> ${t.addPostModalTitle}`;
         document.getElementById('lblCategory').innerText = t.lblCategory;
         document.getElementById('lblTitle').innerText = t.lblTitle;
         document.getElementById('lblContent').innerText = t.lblContent;
-        document.getElementById('lblMedia').innerText = t.lblMedia;
         document.getElementById('btnPublish').innerHTML = `<i class="fas fa-paper-plane"></i> ${t.btnPublish}`;
 
-        // Edit Modal Labels
         document.getElementById('editPostModalTitle').innerHTML = `<i class="fas fa-edit"></i> ${t.editPostModalTitle}`;
         document.getElementById('lblEditTitle').innerText = t.lblEditTitle;
         document.getElementById('lblEditContent').innerText = t.lblEditContent;
         document.getElementById('btnSaveEdit').innerText = t.btnSaveEdit;
 
-        // Footer Section
         document.getElementById('fDesc1').innerText = t.fDesc1;
         document.getElementById('fTitle2').innerText = t.fTitle2;
         document.getElementById('fTitle3').innerText = t.fTitle3;
 
-        // Render Cards in new language
         renderPosts();
     }
 
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.hero-slider .slide');
+    // Hero Background Motion Slider
+    let currentHeroSlide = 0;
+    const heroSlides = document.querySelectorAll('.hero-slider .slide');
     setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
+        heroSlides[currentHeroSlide].classList.remove('active');
+        currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+        heroSlides[currentHeroSlide].classList.add('active');
     }, 5000);
 
     window.onload = function() {

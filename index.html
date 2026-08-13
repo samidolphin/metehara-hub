@@ -163,6 +163,7 @@
             font-size: 0.9rem;
             white-space: nowrap;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .menu-list li a:hover, .menu-list li a.active {
@@ -173,12 +174,12 @@
         /* Hero Section */
         .hero {
             position: relative;
-            min-height: 350px;
+            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 50px 20px;
+            padding: 40px 20px;
             overflow: hidden;
         }
 
@@ -226,15 +227,14 @@
         }
 
         .hero-content h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-color);
             margin-bottom: 15px;
         }
 
         .hero-content p {
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: #e5e7eb;
-            margin-bottom: 20px;
         }
 
         /* Main Content Grid */
@@ -271,7 +271,7 @@
 
         .news-img {
             width: 100%;
-            height: 240px;
+            height: 220px;
             object-fit: cover;
             display: block;
         }
@@ -316,40 +316,15 @@
             margin-bottom: 15px;
         }
 
-        .full-news-content {
-            display: none;
-            margin-top: 15px;
-            border-top: 1px dashed #374151;
-            padding-top: 15px;
-            color: #d1d5db;
-            font-size: 0.95rem;
-        }
-
-        .full-news-content p {
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-
-        .read-more-btn {
-            background: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: bold;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: auto;
-            align-self: flex-start;
-        }
-
-        .read-more-btn:hover {
-            background: var(--accent-color);
-            color: #000;
+        .no-posts-msg {
+            color: var(--text-secondary);
+            font-style: italic;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px dashed #374151;
         }
 
         /* Newsletter Subscription Section */
@@ -396,10 +371,6 @@
             outline: none;
         }
 
-        .subscribe-form input[type="email"]:focus {
-            border-color: var(--accent-color);
-        }
-
         .subscribe-btn {
             background: var(--accent-color);
             color: #000;
@@ -413,11 +384,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .subscribe-btn:hover {
-            background: #ffa726;
-            transform: translateY(-2px);
         }
 
         /* Admin Dashboard Modal */
@@ -529,8 +495,6 @@
             font-size: 0.9rem;
         }
 
-        .footer-col a:hover { color: #fff; }
-
         .footer-bottom {
             text-align: center;
             border-top: 1px solid #1f2937;
@@ -568,13 +532,13 @@
 <!-- Navigation Menu -->
 <nav>
     <ul class="menu-list">
-        <li><a href="#news" class="active" id="m1"><i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች</a></li>
-        <li><a href="#video" id="m2"><i class="fas fa-video"></i> ቪዲዮ ኤዲቲንግ</a></li>
-        <li><a href="#culture" id="m3"><i class="fas fa-landmark"></i> ባህል</a></li>
-        <li><a href="#tourism" id="m4"><i class="fas fa-mountain"></i> ቱሪዝም</a></li>
-        <li><a href="#philosophy" id="m5"><i class="fas fa-brain"></i> ፊሎሶፊ</a></li>
-        <li><a href="#literature" id="m6"><i class="fas fa-book"></i> ስነ-ጽሁፍ</a></li>
-        <li><a href="#sports" id="m7"><i class="fas fa-football-ball"></i> ስፖርት</a></li>
+        <li><a onclick="filterCategory('news', this)" class="active" id="m1"><i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች</a></li>
+        <li><a onclick="filterCategory('video', this)" id="m2"><i class="fas fa-video"></i> ቪዲዮ ጋለሪ</a></li>
+        <li><a onclick="filterCategory('culture', this)" id="m3"><i class="fas fa-landmark"></i> ባህል</a></li>
+        <li><a onclick="filterCategory('tourism', this)" id="m4"><i class="fas fa-mountain"></i> ቱሪዝም</a></li>
+        <li><a onclick="filterCategory('philosophy', this)" id="m5"><i class="fas fa-brain"></i> ፊሎሶፊ</a></li>
+        <li><a onclick="filterCategory('literature', this)" id="m6"><i class="fas fa-book"></i> ስነ-ጽሁፍ</a></li>
+        <li><a onclick="filterCategory('sports', this)" id="m7"><i class="fas fa-football-ball"></i> ስፖርት</a></li>
     </ul>
 </nav>
 
@@ -596,39 +560,7 @@
     <h2 class="section-title" id="secTitle">ወቅታዊ ዜናዎች</h2>
     
     <div class="news-grid" id="newsGrid">
-        <!-- News Card 1 -->
-        <article class="news-card">
-            <img src="burtukaana All.jpg" alt="Beseka Development" class="news-img">
-            <div class="news-body">
-                <span class="news-tag" id="news1Tag">አረንጓዴ ልማት</span>
-                <h3 id="news1Title">የበሰቃ ሐይቅ ዳርቻ ልማት፤ ከመታሃራ ከተማ አስተዳደር የተገኘ ወቅታዊ መረጃ</h3>
-                <div class="author-meta" id="news1Author"><i class="fas fa-user-edit"></i> መታሃራ | ሳሚ ዶልፊን</div>
-                <p id="news1Desc">የመታሃራ ከተማ አስተዳደር በአካባቢ ጥበቃ እና በአረንጓዴ ልማት ዙሪያ ያከናወናቸውን አበይት ተግባራት የሚያሳይ ልዩ ዘገባ።</p>
-
-                <div id="fullNews1" class="full-news-content"></div>
-
-                <button class="read-more-btn" onclick="toggleReadMore(1)">
-                    <i class="fas fa-arrow-right"></i> <span id="readMore1Text">ተጨማሪ ያንብቡ</span>
-                </button>
-            </div>
-        </article>
-
-        <!-- News Card 2 -->
-        <article class="news-card">
-            <img src="burtukaana2.jpg" alt="Beseka Lake Green Paradise" class="news-img">
-            <div class="news-body">
-                <span class="news-tag" id="news2Tag">አረንጓዴ ገነት</span>
-                <h3 id="news2Title">ከቆሻሻ ማከማቻነት ወደ አረንጓዴ ገነት፤ የበሰቃ ሐይቅ ዳርቻ ያስደነቀው የልማት ታሪክ!</h3>
-                <div class="author-meta" id="news2Author"><i class="fas fa-user-edit"></i> መታሃራ | ሳሚ ዶልፊን</div>
-                <p id="news2Desc">በአንድ ወቅት በቆሻሻ ክምር የተሸፈነ፣ በብክለት የተጎዳና ለተመልካቾች የሐዘን ስሜት የሚፈጥር የነበረው የበሰቃ ሐይቅ ዳርቻ፣ ዛሬ ግን የአረንጓዴነት ተምሳሌት እና የቱሪዝም ተስፋ ሆኗል።</p>
-
-                <div id="fullNews2" class="full-news-content"></div>
-
-                <button class="read-more-btn" onclick="toggleReadMore(2)">
-                    <i class="fas fa-arrow-right"></i> <span id="readMore2Text">ተጨማሪ ያንብቡ</span>
-                </button>
-            </div>
-        </article>
+        <!-- Content will be rendered dynamically -->
     </div>
 
     <!-- Newsletter Subscription Box -->
@@ -642,7 +574,7 @@
     </section>
 </main>
 
-<!-- Updated Admin Dashboard Modal (Complete Options Included) -->
+<!-- Admin Dashboard Modal -->
 <div id="adminModal" class="admin-modal">
     <div class="admin-content">
         <span class="close-modal" onclick="closeAdminModal()">&times;</span>
@@ -651,13 +583,13 @@
             <div class="form-group">
                 <label>የፖስቱ አይነት (Category Choice)</label>
                 <select id="postCategory">
-                    <option value="ወቅታዊ ዜና">ወቅታዊ ዜና (Latest News)</option>
-                    <option value="ቪዲዮ ጋለሪ">ቪዲዮ ጋለሪ (Video Gallery)</option>
-                    <option value="ባህል">ባህል (Culture)</option>
-                    <option value="ቱሪዝም">ቱሪዝም (Tourism)</option>
-                    <option value="ፍልስፍና">ፍልስፍና (Philosophy)</option>
-                    <option value="ስነ-ጽሁፍ">ስነ-ጽሁፍ (Literature)</option>
-                    <option value="ስፖርት">ስፖርት (Sports)</option>
+                    <option value="news">ወቅታዊ ዜና (Latest News)</option>
+                    <option value="video">ቪዲዮ ጋለሪ (Video Gallery)</option>
+                    <option value="culture">ባህል (Culture)</option>
+                    <option value="tourism">ቱሪዝም (Tourism)</option>
+                    <option value="philosophy">ፍልስፍና (Philosophy)</option>
+                    <option value="literature">ስነ-ጽሁፍ (Literature)</option>
+                    <option value="sports">ስፖርት (Sports)</option>
                 </select>
             </div>
             <div class="form-group">
@@ -681,7 +613,7 @@
 <footer>
     <div class="footer-container">
         <div class="footer-col">
-            <h4 id="fTitle1">Mataaharaa Town Hub</h4>
+            <h4>Mataaharaa Town Hub</h4>
             <p id="fDesc1">የመታሃራ ከተማ እና የአካባቢዋን አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::</p>
         </div>
         <div class="footer-col">
@@ -703,217 +635,111 @@
 </footer>
 
 <script>
+    let currentCategory = 'news';
     let currentLang = 'am';
 
-    const translations = {
-        am: {
-            m1: '<i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች', 
-            m2: '<i class="fas fa-video"></i> ቪዲዮ ጋለሪ', 
-            m3: '<i class="fas fa-landmark"></i> ባህል', 
-            m4: '<i class="fas fa-mountain"></i> ቱሪዝም', 
-            m5: '<i class="fas fa-brain"></i> ፊሎሶፊ', 
-            m6: '<i class="fas fa-book"></i> ስነ-ጽሁፍ',
-            m7: '<i class="fas fa-football-ball"></i> ስፖርት',
-            heroTitle: 'እንኳን ወደ መታሃራ ከተማ የመረጃ ማእከል በደህና መጡ',
-            heroSub: 'ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።',
-            secTitle: 'ወቅታዊ ዜናዎች',
-            
-            news1Tag: 'አረንጓዴ ልማት',
-            news1Title: 'የበሰቃ ሐይቅ ዳርቻ ልማት፤ ከመታሃራ ከተማ አስተዳደር የተገኘ ወቅታዊ መረጃ',
-            news1Author: '<i class="fas fa-user-edit"></i> መታሃራ | ሳሚ ዶልፊን',
-            news1Desc: 'የመታሃራ ከተማ አስተዳደር በአካባቢ ጥበቃ እና በአረንጓዴ ልማት ዙሪያ ያከናወናቸውን አበይት ተግባራት የሚያሳይ ልዩ ዘገባ።',
-            news1Full: `
-                <p>በመታሃራ ከተማ አስተዳደር በከንቲባ ክቡር አቶ አዲሱ ዋቆ አመራር ከተማዋን የምቾት፣ የላቀ የንግድና የቱሪዝም ማዕከል ለማድረግ በርካታ የልማት ስራዎች በመካሄድ ላይ ይገኛሉ።</p>
-                <p>በተለይም የበሰቃ ሐይቅ ዳርቻን ወደ አረንጓዴ ልማት ማዕከልነት የመቀየር ስራ በአርአያነት የሚጠቀስ ሲሆን፣ በርካታ የብርቱካንና የፍራፍሬ ተክሎች ተተክለው ለውጥ ማምጣት ተችሏል።</p>
-                <p>ይህ የልማት ስራ ከተማዋን ውብ እና ለኑሮ ተስማሚ ከማድረጉም በላይ ለከተማዋ የኢኮኖሚ እና የቱሪዝም እድገት ከፍተኛ አስተዋፅኦ እያበረከተ ይገኛል።</p>
-            `,
-
-            news2Tag: 'አረንጓዴ ገነት',
-            news2Title: 'ከቆሻሻ ማከማቻነት ወደ አረንጓዴ ገነት፤ የበሰቃ ሐይቅ ዳርቻ ያስደነቀው የልማት ታሪክ!',
-            news2Author: '<i class="fas fa-user-edit"></i> መታሃራ | ሳሚ ዶልፊን',
-            news2Desc: 'በአንድ ወቅት በቆሻሻ ክምር የተሸፈነ፣ በብክለት የተጎዳና ለተመልካቾች የሐዘን ስሜት የሚፈጥር የነበረው የበሰቃ ሐይቅ ዳርቻ፣ ዛሬ ግን የአረንጓዴነት ተምሳሌት፣ የቱሪዝም ተስፋ እና የመታሃራ ከተማ አዲስ መለያ ሆኖ ብቅ ብሏል።',
-            news2Full: `
-                <p>ከተማዋ የተጋፈጠችውን የአካባቢ ብክለት ችግር ወደ የልማት ዕድል በመቀየር፣ የመታሃራ ከተማ አስተዳደር በከንቲባ ክቡር አቶ አዲሱ ዋቆ አመራር ከማህበረሰቡ ጋር በመተባበር ያከናወነው ዘላቂ ጥረት፣ በአጭር ጊዜ ውስጥ የሚታይ አስደናቂ ለውጥ አስመዝግቧል።</p>
-                <p>ቀድሞ በቆሻሻ የተጎዳው ይህ ስፍራ ዛሬ በአረንጓዴ ተክሎች ተሸፍኖ፣ በብርቱካን ተክሎች ተውቦ የተፈጥሮ ውበትን እና የልማት እሴትን በአንድ ላይ የሚያሳይ መስህብ ሆኗል። የብርቱካኑ መዓዛ በአካባቢው ሲያውድ፣ የሐይቁ ዳርቻም ለመዝናኛ፣ ለእረፍት እና ለቱሪዝም አዲስ መዳረሻ እየሆነ ይገኛል።</p>
-                <p>ይህን የልማት ሥራ ከትላንት በስቲያ የኦሮሚያ ክልል ፕሬዝዳንት ክቡር አቶ ሽመልስ አብዲሳ በአካል በመጎብኘት የተመለከቱ ሲሆን፣ የተገኘው ውጤት ራዕይ፣ ጽናት፣ የተቀናጀ አመራር እና የህዝብ ተሳትፎ ሲጣመሩ ምን ያህል ታላቅ ለውጥ ማምጣት እንደሚቻል የሚያሳይ ተጨባጭ ማሳያ መሆኑን መስክረዋል።</p>
-                <p>የበሰቃ ሐይቅ ዳርቻ ዛሬ ከቆሻሻ ማከማቻነት ወደ አረንጓዴ ገነት የተሸጋገረበት ጉዞ፣ መታሃራ ለከተማ ልማት፣ ለአካባቢ ጥበቃ እና ለቱሪዝም እያደረገች ያለውን ጠንካራ እንቅስቃሴ በግልጽ የሚያሳይ የስኬት ታሪክ ሆኗል።</p>
-                <p>ትናንት የቆሻሻ ክምር የነበረው ስፍራ፣ ዛሬ የአረንጓዴ ልማት እና የብርቱካን መዓዛ መዳረሻ ሆኗል፤ ይህም መታሃራ ራዕይን ወደ እውነት የቀየረችበትን ታሪክ ያሳያል።</p>
-            `,
-            
-            readMore: 'ተጨማሪ ያንብቡ',
-            readLess: 'ትንሽ አሳይ',
-            subTitle: '<i class="fas fa-envelope-open-text"></i> አዳዲስ መረጃዎች እንዲደርስዎ ይመዝገቡ',
-            subDesc: 'አዳዲስ ዜናዎችን፣ የቪዲዮ ስራዎችን እና መረጃዎችን በኢሜይልዎ ለማግኘት የኢሜይል አድራሻዎን እዚህ ያስገቡ።',
-            subPlaceholder: 'ኢሜይል አድራሻዎን እዚህ ይፃፉ...',
-            subBtnText: '<i class="fas fa-paper-plane"></i> ተመዝገብ',
-            fDesc1: 'የመታሃራ ከተማ እና የአካባቢዋን አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::',
-            fTitle2: 'የመገናኛ አድራሻ', 
-            fTitle3: 'ማህበራዊ ሚዲያ'
+    // Initial Data Posts
+    let posts = JSON.parse(localStorage.getItem('sami_posts')) || [
+        {
+            id: 1,
+            category: 'news',
+            title: 'የበሰቃ ሐይቅ ዳርቻ ልማት፤ ከመታሃራ ከተማ አስተዳደር የተገኘ ወቅታዊ መረጃ',
+            author: 'መታሃራ | ሳሚ ዶልፊን',
+            tag: 'አረንጓዴ ልማት',
+            desc: 'የመታሃራ ከተማ አስተዳደር በአካባቢ ጥበቃ እና በአረንጓዴ ልማት ዙሪያ ያከናወናቸውን አበይት ተግባራት የሚያሳይ ልዩ ዘገባ።',
+            image: 'burtukaana All.jpg'
         },
-        om: {
-            m1: '<i class="fas fa-newspaper"></i> Oduu Haaraa', 
-            m2: '<i class="fas fa-video"></i> Gaalerii Viidiyoo', 
-            m3: '<i class="fas fa-landmark"></i> Aadaa', 
-            m4: '<i class="fas fa-mountain"></i> Turizimii', 
-            m5: '<i class="fas fa-brain"></i> Filosoochii', 
-            m6: '<i class="fas fa-book"></i> Og-barruu',
-            m7: '<i class="fas fa-football-ball"></i> Ispoortii',
-            heroTitle: 'Baga nagaan gara Magaala Mataaharaa Giddugala Odeeffannootti nagaan dhuftan!',
-            heroSub: 'Sami-Tube Media odeeffannoo haaraa, aadaa, turizimii fi beekumsa walii qooduuf saaqame.',
-            secTitle: 'Oduu Haaraa',
-            
-            news1Tag: 'Misooma Magariisaa',
-            news1Title: 'Misooma Qarqara Haroo Beesaqaa; Odeeffannoo Haaraa Bulchiinsa Magaalaa Mataaharaa',
-            news1Author: '<i class="fas fa-user-edit"></i> Mataaharaa | Sami Dolphin',
-            news1Desc: 'Gabaasa addaa hojiiwwan gurguddoo eegumsa naannoo fi misooma magariisaa Bulchiinsa Magaalaa Mataaharaatiin hojjetaman agarsiisu.',
-            news1Full: `
-                <p>Bulchiinsi Magaalaa Mataaharaa hoggansa Kantiibaa kabajamoo Obbo Addisuu Waaqootiin magaalaa giddogala daldalaa fi turizimii gochuuf hojiiwwan misoomaa hedduu hojjechaa jira.</p>
-                <p>Keessattuu qarqara Haroo Beesaqaa gara iddoo misooma magariisaatti jijjiiruuf muka burtukaanaatiin miidhagsanii bu'aa guddaa galmeessisuun danda'ameera.</p>
-                <p>Hojiin misoomaa kun magaalattii bareechuu fi jireenyaaf mijataa gochuu bira darbee guddina diinagdee fi turizimii magaalaatiif gumaacha guddaa gochaa jira.</p>
-            `,
-
-            news2Tag: 'Jannata Magariisaa',
-            news2Title: 'Kuusaa Kosii Irraa Gara Jannata Magariisaatti; Seenaa Misoomaa Qarqara Haroo Beesaqaa Nama Dinqisiise!',
-            news2Author: '<i class="fas fa-user-edit"></i> Mataaharaa | Sami Dolphin',
-            news2Desc: 'Yeroo tokko qarqara Haroo Beesaqaa kuusaa kosiin guutamee, faalama naannoo hamaaf saaxilamee fi namoota daawwatan keessatti miira gaddaa uumaa ture, har\'a garuu mallattoo magariisummaa, abdii tuuriizimii fi eenyummaa haaraa Magaalaa Mataaharaatti jijjiiramee mul\'ateera.',
-            news2Full: `
-                <p>Bulchiinsi Magaalaa Mataaharaa rakkoo faalama naannoo magaalaan mudatte gara carraa misoomaatti jijjiiruuf, hoggansa Kantiibaa kabajamoo Obbo Addisuu Waaqoo hawaasa waliin ta\'uun hojii itti fufiinsa qabu hojjeteen yeroo gabaabaa keessatti jijjiirama guddaa fi mul\'ataa galmeessiseera.</p>
-                <p>Bakki duraan kosiin manca\'e kun har\'a biqiltuu magariisaan miidhagsee, muka Burtukaanaatiin bareedee, bareedina uumamaa fi gatii misoomaa walitti fiduun iddoo hawwataa ta\'eera. Urgaan Burtukaanaas naannicha keessatti babal\'achaa jira; qarqarri harichaas boqonnaa, bashannanaa fi tuuriizimiif bakka haaraa ta\'aa jira.</p>
-                <p>Hojiin misoomaa kun kaleessa mootummaa Naannoo Oromiyaa Pirezidaantiin kabajamoo Obbo Shimallis Abdiisaa qaamaan daawwatanii ilaaluun isaanii ni yaadatama. Bu\'aan hojii kanaa mul\'ate mul\'ata, obsaa, hoggansa qindaa\'aa fi hirmaannaa uummataa yoo walitti dhufan jijjiirama guddaa akkamii fiduu akka danda\'an ragaa bahaniiru.</p>
-                <p>Imalli qarqara Haroo Beesaqaa kuusaa kosii irraa gara jannata magariisaatti geeddarame kun, Magaalaan Mataaharaa misooma magaalaa, eegumsa naannoo fi tuuriizimii cimsuuf hojii cimaa hojjechaa jirti jechuun seenaa milkaa\'inaa ifatti agarsiisu ta\'eera.</p>
-                <p>Bakki kaleessa kuusaa kosii ture har\'a wiirtuu misooma magariisaa fi urgaa Burtukaanaa ta\'eera. Kunis Mataaharaan mul\'ata gara dhugaa jijjiiruu ishee irratti seenaa mootummaa fi uummata waliin galmeessisan keessaa isa tokko ta\'uu mirkaneessa.</p>
-            `,
-            
-            readMore: 'Dabalata Dubbisaa',
-            readLess: 'Xiqqaessii Agarsiisi',
-            subTitle: '<i class="fas fa-envelope-open-text"></i> Odeeffannoo Haaraa Argachuuf Galmaa\'aa',
-            subDesc: 'Oduu haaraa, hojiiwwan viidiyoo fi odeeffannoo garaa garaa teessoo email keessaniin argachuuf asitti galmeessaa.',
-            subPlaceholder: 'Teessoo Email keessan asitti barreessaa...',
-            subBtnText: '<i class="fas fa-paper-plane"></i> Galmaa\'a',
-            fDesc1: 'Portalii odeeffannoo mootummaa fi hawaasa Magaalaa Mataaharaa fi naannoo ishee beeksisu.',
-            fTitle2: 'Teessoo Qunnamtii', 
-            fTitle3: 'Miidiyaa Hawaasaa'
-        },
-        en: {
-            m1: '<i class="fas fa-newspaper"></i> Latest News', 
-            m2: '<i class="fas fa-video"></i> Video Gallery', 
-            m3: '<i class="fas fa-landmark"></i> Culture', 
-            m4: '<i class="fas fa-mountain"></i> Tourism', 
-            m5: '<i class="fas fa-brain"></i> Philosophy', 
-            m6: '<i class="fas fa-book"></i> Literature',
-            m7: '<i class="fas fa-football-ball"></i> Sports',
-            heroTitle: 'Welcome to the Mataaharaa Town Information Center!',
-            heroSub: 'Sami-Tube Media is dedicated to sharing latest news, culture, tourism, and knowledge.',
-            secTitle: 'Latest News',
-            
-            news1Tag: 'Green Development',
-            news1Title: 'Lake Beseka Shoreline Development: Updates from Metahara City Administration',
-            news1Author: '<i class="fas fa-user-edit"></i> Metahara | Sami Dolphin',
-            news1Desc: 'A special coverage highlighting environmental protection and green development initiatives by the Metahara City Administration.',
-            news1Full: `
-                <p>Under the leadership of Mayor H.E. Ato Addisu Wako, the Metahara City Administration is actively pursuing major projects to build a vibrant commercial and tourism center.</p>
-                <p>Transforming the shoreline of Lake Beseka into a thriving green landscape with orange orchards stands as an exemplary success story.</p>
-                <p>This initiative not only beautifies the city but also contributes significantly to the economic and tourism growth of Metahara.</p>
-            `,
-
-            news2Tag: 'Green Paradise',
-            news2Title: 'From Waste Dump to Green Paradise: The Remarkable Transformation of Lake Beseka’s Shoreline',
-            news2Author: '<i class="fas fa-user-edit"></i> Metahara | Sami Dolphin',
-            news2Desc: 'Once covered with piles of waste, affected by pollution, and presenting a disheartening sight to visitors, the shoreline of Lake Beseka has today emerged as a symbol of environmental renewal and a promising tourism destination.',
-            news2Full: `
-                <p>By transforming an environmental challenge into an opportunity for development, the Metahara City Administration, under the leadership of Mayor H.E. Ato Addisu Wako and in collaboration with the local community, has undertaken sustained efforts that have produced a remarkable and visible transformation within a relatively short period.</p>
-                <p>The area, once heavily affected by waste, is now covered with greenery and enhanced by thriving orange trees, creating an attractive landscape where natural beauty and development come together. As the fragrance of orange blossoms fills the surroundings, the lakeshore is increasingly becoming a new destination for recreation, relaxation, and tourism.</p>
-                <p>The development was personally visited and observed by the President of the Oromia Regional State, H.E. Ato Shimelis Abdisa, during his recent visit. The transformation stands as tangible evidence of what can be achieved when vision, determination, coordinated leadership, and community participation come together.</p>
-                <p>The journey of Lake Beseka’s shoreline from a waste dump to a green paradise clearly demonstrates Metahara’s strong commitment to urban development, environmental protection, and tourism expansion.</p>
-                <p>What was yesterday a dumpsite has today become a green center filled with the scent of oranges—a true testament to Metahara turning vision into reality.</p>
-            `,
-            
-            readMore: 'Read More',
-            readLess: 'Show Less',
-            subTitle: '<i class="fas fa-envelope-open-text"></i> Subscribe for Updates',
-            subDesc: 'Enter your email to receive the latest news, updates, and media content directly in your inbox.',
-            subPlaceholder: 'Enter your email address...',
-            subBtnText: '<i class="fas fa-paper-plane"></i> Subscribe',
-            fDesc1: 'Official information portal showcasing news, culture, and tourism attractions of Mataaharaa Town and surroundings.',
-            fTitle2: 'Contact Info', 
-            fTitle3: 'Social Media'
+        {
+            id: 2,
+            category: 'news',
+            title: 'ከቆሻሻ ማከማቻነት ወደ አረንጓዴ ገነት፤ የበሰቃ ሐይቅ ዳርቻ ያስደነቀው የልማት ታሪክ!',
+            author: 'መታሃራ | ሳሚ ዶልፊን',
+            tag: 'አረንጓዴ ገነት',
+            desc: 'በአንድ ወቅት በቆሻሻ ክምር የተሸፈነ የነበረው የበሰቃ ሐይቅ ዳርቻ፣ ዛሬ የአረንጓዴነት ተምሳሌትና የቱሪዝም ተስፋ ሆኗል።',
+            image: 'burtukaana2.jpg'
         }
+    ];
+
+    const categoryTitles = {
+        news: { am: 'ወቅታዊ ዜናዎች', om: 'Oduu Haaraa', en: 'Latest News' },
+        video: { am: 'ቪዲዮ ጋለሪ', om: 'Gaalerii Viidiyoo', en: 'Video Gallery' },
+        culture: { am: 'ባህል', om: 'Aadaa', en: 'Culture' },
+        tourism: { am: 'ቱሪዝም', om: 'Turizimii', en: 'Tourism' },
+        philosophy: { am: 'ፊሎሶፊ (ፍልስፍና)', om: 'Filosoochii', en: 'Philosophy' },
+        literature: { am: 'ስነ-ጽሁፍ', om: 'Og-barruu', en: 'Literature' },
+        sports: { am: 'ስፖርት', om: 'Ispoortii', en: 'Sports' }
     };
 
-    function setLanguage(lang, event) {
-        currentLang = lang;
+    function renderPosts() {
+        const grid = document.getElementById('newsGrid');
+        grid.innerHTML = '';
 
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        if (event && event.currentTarget) {
-            event.currentTarget.classList.add('active');
+        const filtered = posts.filter(p => p.category === currentCategory);
+
+        document.getElementById('secTitle').innerText = categoryTitles[currentCategory][currentLang];
+
+        if (filtered.length === 0) {
+            grid.innerHTML = `<div class="no-posts-msg">በዚህ ዘርፍ ስር እስካሁን የተጫነ መረጃ የለም። በአድሚን በኩል ፖስት ማድረግ ይችላሉ።</div>`;
+            return;
         }
 
-        const data = translations[lang];
-
-        document.getElementById('m1').innerHTML = data.m1;
-        document.getElementById('m2').innerHTML = data.m2;
-        document.getElementById('m3').innerHTML = data.m3;
-        document.getElementById('m4').innerHTML = data.m4;
-        document.getElementById('m5').innerHTML = data.m5;
-        document.getElementById('m6').innerHTML = data.m6;
-        document.getElementById('m7').innerHTML = data.m7;
-
-        document.getElementById('heroTitle').innerText = data.heroTitle;
-        document.getElementById('heroSub').innerText = data.heroSub;
-        document.getElementById('secTitle').innerText = data.secTitle;
-
-        document.getElementById('news1Tag').innerText = data.news1Tag;
-        document.getElementById('news1Title').innerText = data.news1Title;
-        document.getElementById('news1Author').innerHTML = data.news1Author;
-        document.getElementById('news1Desc').innerText = data.news1Desc;
-        document.getElementById('fullNews1').innerHTML = data.news1Full;
-
-        document.getElementById('news2Tag').innerText = data.news2Tag;
-        document.getElementById('news2Title').innerText = data.news2Title;
-        document.getElementById('news2Author').innerHTML = data.news2Author;
-        document.getElementById('news2Desc').innerText = data.news2Desc;
-        document.getElementById('fullNews2').innerHTML = data.news2Full;
-
-        const full1Visible = document.getElementById('fullNews1').style.display === 'block';
-        document.getElementById('readMore1Text').innerText = full1Visible ? data.readLess : data.readMore;
-
-        const full2Visible = document.getElementById('fullNews2').style.display === 'block';
-        document.getElementById('readMore2Text').innerText = full2Visible ? data.readLess : data.readMore;
-
-        document.getElementById('subTitle').innerHTML = data.subTitle;
-        document.getElementById('subDesc').innerText = data.subDesc;
-        document.getElementById('subscriberEmail').placeholder = data.subPlaceholder;
-        document.getElementById('subBtn').innerHTML = data.subBtnText;
-
-        document.getElementById('fDesc1').innerText = data.fDesc1;
-        document.getElementById('fTitle2').innerText = data.fTitle2;
-        document.getElementById('fTitle3').innerText = data.fTitle3;
+        filtered.forEach(post => {
+            const card = document.createElement('article');
+            card.className = 'news-card';
+            card.innerHTML = `
+                ${post.image ? `<img src="${post.image}" class="news-img" alt="Post Image">` : ''}
+                <div class="news-body">
+                    <span class="news-tag">${post.tag || 'መረጃ'}</span>
+                    <h3>${post.title}</h3>
+                    <div class="author-meta"><i class="fas fa-user-edit"></i> ${post.author || 'ሳሚ ዶልፊን'}</div>
+                    <p>${post.desc}</p>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
     }
 
-    function toggleReadMore(id) {
-        const fullContent = document.getElementById(`fullNews${id}`);
-        const btnText = document.getElementById(`readMore${id}Text`);
-        const isExpanded = fullContent.style.display === 'block';
+    function filterCategory(cat, element) {
+        currentCategory = cat;
+        document.querySelectorAll('.menu-list a').forEach(a => a.classList.remove('active'));
+        if (element) element.classList.add('active');
+        renderPosts();
+    }
 
-        if (isExpanded) {
-            fullContent.style.display = 'none';
-            btnText.innerText = translations[currentLang].readMore;
-        } else {
-            fullContent.style.display = 'block';
-            btnText.innerText = translations[currentLang].readLess;
+    function publishPost(event) {
+        event.preventDefault();
+        
+        const cat = document.getElementById('postCategory').value;
+        const title = document.getElementById('postTitle').value;
+        const desc = document.getElementById('postContent').value;
+        const fileInput = document.getElementById('postImage');
+
+        let imageSrc = '';
+        if (fileInput.files && fileInput.files[0]) {
+            imageSrc = URL.createObjectURL(fileInput.files[0]);
         }
+
+        const newPost = {
+            id: Date.now(),
+            category: cat,
+            title: title,
+            author: 'መታሃራ | ሳሚ ዶልፊን',
+            tag: categoryTitles[cat]['am'],
+            desc: desc,
+            image: imageSrc
+        };
+
+        posts.unshift(newPost);
+        localStorage.setItem('sami_posts', JSON.stringify(posts));
+
+        alert('ፖስቱ በተሳካ ሁኔታ ተለጥፏል!');
+        closeAdminModal();
+        document.getElementById('adminForm').reset();
+
+        // Switch to the updated category and view
+        const targetMenu = document.querySelector(`.menu-list a[onclick*="${cat}"]`);
+        filterCategory(cat, targetMenu);
     }
-
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.hero-slider .slide');
-
-    function nextSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }
-
-    setInterval(nextSlide, 5000);
 
     function openAdminModal() {
         document.getElementById('adminModal').style.display = 'flex';
@@ -923,30 +749,30 @@
         document.getElementById('adminModal').style.display = 'none';
     }
 
-    window.onclick = function(event) {
-        const modal = document.getElementById('adminModal');
-        if (event.target === modal) {
-            closeAdminModal();
-        }
-    };
-
-    function publishPost(event) {
-        event.preventDefault();
-        const category = document.getElementById('postCategory').value;
-        alert(`ፖስቱ በ"${category}" ዘርፍ ስር በተሳካ ሁኔታ ተለጥፏል! / Post published successfully under ${category}!`);
-        closeAdminModal();
-        document.getElementById('adminForm').reset();
-    }
-
-    function handleSubscribe(event) {
-        event.preventDefault();
-        const email = document.getElementById('subscriberEmail').value;
-        alert(`እናመሰግናለን! ${email} በተሳካ ሁኔታ ተመዝግቧል። / Thank you! ${email} has been subscribed.`);
+    function handleSubscribe(e) {
+        e.preventDefault();
+        alert('በተሳካ ሁኔታ ተመዝግበዋል!');
         document.getElementById('subscriberEmail').value = '';
     }
 
+    function setLanguage(lang, event) {
+        currentLang = lang;
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        if (event && event.currentTarget) event.currentTarget.classList.add('active');
+        renderPosts();
+    }
+
+    // Hero Slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slider .slide');
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 5000);
+
     window.onload = function() {
-        setLanguage('am');
+        renderPosts();
     };
 </script>
 </body>

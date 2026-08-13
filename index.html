@@ -17,17 +17,30 @@
             --primary-btn: #2563eb;
         }
 
+        /* Prevent Text Selection Across Whole Site */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
+            user-select: none;        /* Standard */
+        }
+
+        /* Allow Input fields to be selected for typing */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
         }
 
         /* Header Navigation */
@@ -638,6 +651,18 @@
     let currentCategory = 'news';
     let currentLang = 'am';
 
+    // Disable Right Click across page
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    // Prevent Copy Shortcuts (Ctrl+C, Ctrl+A, Ctrl+U, Ctrl+S)
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'a')) {
+            e.preventDefault();
+        }
+    });
+
     // Initial Data Posts
     let posts = JSON.parse(localStorage.getItem('sami_posts')) || [
         {
@@ -736,7 +761,6 @@
         closeAdminModal();
         document.getElementById('adminForm').reset();
 
-        // Switch to the updated category and view
         const targetMenu = document.querySelector(`.menu-list a[onclick*="${cat}"]`);
         filterCategory(cat, targetMenu);
     }
@@ -762,7 +786,6 @@
         renderPosts();
     }
 
-    // Hero Slider
     let currentSlide = 0;
     const slides = document.querySelectorAll('.hero-slider .slide');
     setInterval(() => {

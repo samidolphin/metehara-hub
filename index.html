@@ -15,6 +15,8 @@
             --text-color: #f3f4f6;
             --text-secondary: #9ca3af;
             --primary-btn: #2563eb;
+            --danger-btn: #ef4444;
+            --edit-btn: #10b981;
         }
 
         /* Prevent Text Selection Across Whole Site */
@@ -22,14 +24,14 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none;    /* Firefox */
-            -ms-user-select: none;     /* IE/Edge */
-            user-select: none;        /* Standard */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* Allow Input fields to be selected for typing */
-        input, textarea {
+        input, textarea, select {
             -webkit-user-select: text;
             -moz-user-select: text;
             -ms-user-select: text;
@@ -113,6 +115,20 @@
         }
 
         .admin-btn:hover { background: #1d4ed8; }
+
+        .logout-btn {
+            background: var(--danger-btn);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
 
         /* Language Switcher */
         .lang-switch {
@@ -329,6 +345,47 @@
             margin-bottom: 15px;
         }
 
+        /* Admin Controls on Cards */
+        .admin-controls {
+            display: none;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #1f2937;
+        }
+
+        .edit-btn-card {
+            background: var(--edit-btn);
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .delete-btn-card {
+            background: var(--danger-btn);
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
         .no-posts-msg {
             color: var(--text-secondary);
             font-style: italic;
@@ -399,7 +456,7 @@
             gap: 8px;
         }
 
-        /* Admin Dashboard Modal */
+        /* Admin Dashboard Modals */
         .admin-modal {
             display: none;
             position: fixed;
@@ -530,7 +587,8 @@
             </div>
         </div>
         <div class="nav-right-controls">
-            <button class="admin-btn" onclick="openAdminModal()"><i class="fas fa-user-shield"></i> Admin</button>
+            <button class="admin-btn" id="adminMainBtn" onclick="openAdminModal()"><i class="fas fa-user-shield"></i> Admin</button>
+            <button class="logout-btn" id="logoutBtn" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Exit Admin</button>
             <div class="lang-switch">
                 <button class="lang-btn active" onclick="setLanguage('am', event)">
                     <img src="https://flagcdn.com/w40/et.png" alt="Ethiopia Flag" class="flag-icon"> AM
@@ -587,11 +645,11 @@
     </section>
 </main>
 
-<!-- Admin Dashboard Modal -->
+<!-- Add Post Modal -->
 <div id="adminModal" class="admin-modal">
     <div class="admin-content">
         <span class="close-modal" onclick="closeAdminModal()">&times;</span>
-        <h3><i class="fas fa-edit"></i> ፖስት ማድረጊያ ማዕከል</h3>
+        <h3><i class="fas fa-edit"></i> አዲስ ፖስት ማድረጊያ</h3>
         <form id="adminForm" onsubmit="publishPost(event)">
             <div class="form-group">
                 <label>የፖስቱ አይነት (Category Choice)</label>
@@ -618,6 +676,26 @@
                 <input type="file" id="postImage" accept="image/*,video/*">
             </div>
             <button type="submit" class="publish-btn"><i class="fas fa-paper-plane"></i> ፖስት አድርግ (Publish)</button>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Post Modal -->
+<div id="editModal" class="admin-modal">
+    <div class="admin-content">
+        <span class="close-modal" onclick="closeEditModal()">&times;</span>
+        <h3><i class="fas fa-edit"></i> ፖስት ማስተካከያ (Edit Post)</h3>
+        <form id="editForm" onsubmit="saveEditedPost(event)">
+            <input type="hidden" id="editPostId">
+            <div class="form-group">
+                <label>ርዕስ (Title)</label>
+                <input type="text" id="editPostTitle" required>
+            </div>
+            <div class="form-group">
+                <label>ዝርዝር መረጃ (Content/Description)</label>
+                <textarea id="editPostContent" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="publish-btn" style="background: var(--edit-btn);"><i class="fas fa-save"></i> ለውጦችን አስቀምጥ (Save Changes)</button>
         </form>
     </div>
 </div>
@@ -650,8 +728,9 @@
 <script>
     let currentCategory = 'news';
     let currentLang = 'am';
+    let isAdminLoggedIn = false;
 
-    // Set Admin Password (አዲሱ የይለፍ ቃል)
+    // Set Admin Password
     const ADMIN_PASSWORD = "samron@8080";
 
     // Disable Right Click across page
@@ -659,7 +738,7 @@
         e.preventDefault();
     });
 
-    // Prevent Copy Shortcuts (Ctrl+C, Ctrl+A, Ctrl+U, Ctrl+S)
+    // Prevent Copy Shortcuts
     document.addEventListener('keydown', function(e) {
         if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'a')) {
             e.preventDefault();
@@ -721,6 +800,10 @@
                     <h3>${post.title}</h3>
                     <div class="author-meta"><i class="fas fa-user-edit"></i> ${post.author || 'ሳሚ ዶልፊን'}</div>
                     <p>${post.desc}</p>
+                    <div class="admin-controls" style="display: ${isAdminLoggedIn ? 'flex' : 'none'}">
+                        <button class="edit-btn-card" onclick="openEditModal(${post.id})"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="delete-btn-card" onclick="deletePost(${post.id})"><i class="fas fa-trash-alt"></i> Delete</button>
+                    </div>
                 </div>
             `;
             grid.appendChild(card);
@@ -770,16 +853,74 @@
 
     /* Protected Admin Modal Opening */
     function openAdminModal() {
-        const enteredPassword = prompt("እባክዎን የአድሚን ሚስጥር ቁጥር (Password) ያስገቡ:");
-        if (enteredPassword === ADMIN_PASSWORD) {
+        if (!isAdminLoggedIn) {
+            const enteredPassword = prompt("እባክዎን የአድሚን ሚስጥር ቁጥር (Password) ያስገቡ:");
+            if (enteredPassword === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                document.getElementById('logoutBtn').style.display = 'flex';
+                document.getElementById('adminModal').style.display = 'flex';
+                renderPosts(); // Re-render to show edit/delete controls
+            } else if (enteredPassword !== null) {
+                alert("የተሳሳተ ሚስጥር ቁጥር ነው! መግባት አይችሉም።");
+            }
+        } else {
             document.getElementById('adminModal').style.display = 'flex';
-        } else if (enteredPassword !== null) {
-            alert("የተሳሳተ ሚስጥር ቁጥር ነው! መግባት አይችሉም።");
         }
+    }
+
+    function logoutAdmin() {
+        isAdminLoggedIn = false;
+        document.getElementById('logoutBtn').style.display = 'none';
+        alert("ከአድሚን ክፍሉ ወጥተዋል!");
+        renderPosts();
     }
 
     function closeAdminModal() {
         document.getElementById('adminModal').style.display = 'none';
+    }
+
+    /* Edit Post Functions */
+    function openEditModal(id) {
+        const postToEdit = posts.find(p => p.id === id);
+        if (postToEdit) {
+            document.getElementById('editPostId').value = postToEdit.id;
+            document.getElementById('editPostTitle').value = postToEdit.title;
+            document.getElementById('editPostContent').value = postToEdit.desc;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+    }
+
+    function closeEditModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
+
+    function saveEditedPost(e) {
+        e.preventDefault();
+        const id = parseInt(document.getElementById('editPostId').value);
+        const newTitle = document.getElementById('editPostTitle').value;
+        const newDesc = document.getElementById('editPostContent').value;
+
+        posts = posts.map(p => {
+            if (p.id === id) {
+                return { ...p, title: newTitle, desc: newDesc };
+            }
+            return p;
+        });
+
+        localStorage.setItem('sami_posts', JSON.stringify(posts));
+        alert('ፖስቱ በተሳካ ሁኔታ ተስተካክሏል!');
+        closeEditModal();
+        renderPosts();
+    }
+
+    /* Delete Post Function */
+    function deletePost(id) {
+        if (confirm("እርግጠኛ ነዎት ይህንን ፖስት ማጥፋት ይፈልጋሉ?")) {
+            posts = posts.filter(p => p.id !== id);
+            localStorage.setItem('sami_posts', JSON.stringify(posts));
+            alert('ፖስቱ ጠፍቷል!');
+            renderPosts();
+        }
     }
 
     function handleSubscribe(e) {

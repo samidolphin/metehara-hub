@@ -199,10 +199,10 @@
             border-bottom: 2px solid var(--accent-color);
         }
 
-        /* Hero Section Slider */
+        /* Hero Section */
         .hero {
             position: relative;
-            min-height: 380px;
+            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -244,27 +244,25 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(11,15,25,0.75) 0%, rgba(11,15,25,0.95) 100%);
+            background: linear-gradient(180deg, rgba(11,15,25,0.7) 0%, rgba(11,15,25,0.95) 100%);
             z-index: 2;
         }
 
         .hero-content {
             position: relative;
             z-index: 3;
-            max-width: 850px;
+            max-width: 800px;
         }
 
         .hero-content h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-color);
             margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .hero-content p {
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: #e5e7eb;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
         /* Main Content Grid */
@@ -299,7 +297,7 @@
             justify-content: space-between;
         }
 
-        /* Card Motion Slider */
+        /* Card Image Motion Slider */
         .card-slider-container {
             position: relative;
             width: 100%;
@@ -358,44 +356,19 @@
             font-weight: 600;
         }
 
-        .news-snippet {
+        .news-body p {
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 15px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .read-more-btn {
-            background: rgba(255, 152, 0, 0.15);
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.88rem;
-            transition: 0.3s;
-            align-self: flex-start;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 10px;
-        }
-
-        .read-more-btn:hover {
-            background: var(--accent-color);
-            color: #000;
+            white-space: pre-line;
         }
 
         /* Admin Controls */
         .admin-controls {
             display: none;
             gap: 10px;
-            margin-top: 10px;
+            margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid #1f2937;
         }
@@ -488,7 +461,7 @@
             gap: 8px;
         }
 
-        /* Modals */
+        /* Admin Dashboard Modals */
         .admin-modal {
             display: none;
             position: fixed;
@@ -501,17 +474,14 @@
             backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
-            padding: 20px;
         }
 
         .admin-content {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
-            width: 100%;
-            max-width: 600px;
-            max-height: 85vh;
-            overflow-y: auto;
+            width: 90%;
+            max-width: 500px;
             border: 1px solid var(--accent-color);
             position: relative;
         }
@@ -533,14 +503,6 @@
             font-size: 1.4rem;
             border-bottom: 1px solid #374151;
             padding-bottom: 10px;
-        }
-
-        .full-article-text {
-            color: #e5e7eb;
-            font-size: 1rem;
-            line-height: 1.8;
-            white-space: pre-line;
-            margin-top: 15px;
         }
 
         .form-group {
@@ -656,7 +618,7 @@
     </ul>
 </nav>
 
-<!-- Hero Section with Motion Slider -->
+<!-- Hero Section -->
 <section class="hero">
     <div class="hero-slider">
         <div class="slide active" style="background-image: url('sami  (1).png');"></div>
@@ -676,7 +638,7 @@
     <h2 class="section-title" id="secTitle">ወቅታዊ ዜናዎች</h2>
     
     <div class="news-grid" id="newsGrid">
-        <!-- Content rendered dynamically -->
+        <!-- Content will be rendered dynamically -->
     </div>
 
     <!-- Newsletter Subscription Box -->
@@ -689,17 +651,6 @@
         </form>
     </section>
 </main>
-
-<!-- Read More Detail Modal -->
-<div id="readMoreModal" class="admin-modal">
-    <div class="admin-content">
-        <span class="close-modal" onclick="closeReadMoreModal()">&times;</span>
-        <span class="news-tag" id="readMoreTag">ዜና</span>
-        <h3 id="readMoreTitle" style="margin-top:10px; color:#fff;"></h3>
-        <div class="author-meta" id="readMoreAuthor"></div>
-        <div class="full-article-text" id="readMoreContent"></div>
-    </div>
-</div>
 
 <!-- Add Post Modal -->
 <div id="adminModal" class="admin-modal">
@@ -725,7 +676,7 @@
             </div>
             <div class="form-group">
                 <label id="lblContent">ዝርዝር መረጃ (Content/Description)</label>
-                <textarea id="postContent" rows="6" required placeholder="የዜናውን ወይም የፅሁፉን ሙሉ መረጃ እዚህ ይፃፉ..."></textarea>
+                <textarea id="postContent" rows="4" required placeholder="የዜናውን ወይም የፅሁፉን ሙሉ መረጃ እዚህ ይፃፉ..."></textarea>
             </div>
             <button type="submit" class="publish-btn" id="btnPublish"><i class="fas fa-paper-plane"></i> ፖስት አድርግ (Publish)</button>
         </form>
@@ -745,7 +696,7 @@
             </div>
             <div class="form-group">
                 <label id="lblEditContent">ዝርዝር መረጃ (Content/Description)</label>
-                <textarea id="editPostContent" rows="6" required></textarea>
+                <textarea id="editPostContent" rows="4" required></textarea>
             </div>
             <button type="submit" class="publish-btn" style="background: var(--edit-btn);"><i class="fas fa-save"></i> <span id="btnSaveEdit">ለውጦችን አስቀምጥ</span></button>
         </form>
@@ -816,11 +767,11 @@
             subDesc: "አዳዲስ ዜናዎችን፣ የቪዲዮ ስራዎችን እና መረጃዎችን በኢሜይልዎ ለማግኘት የኢሜይል አድራሻዎን እዚህ ያስገቡ።",
             subscriberPlaceholder: "ኢሜይል አድራሻዎን እዚህ ይፃፉ...",
             subBtnText: "ተመዝገብ",
-            readMoreBtnText: "ተጨማሪ ያንብቡ ➔",
             addPostModalTitle: "አዲስ ፖስት ማድረጊያ",
             lblCategory: "የፖስቱ አይነት (Category Choice)",
             lblTitle: "ርዕስ (Title)",
             lblContent: "ዝርዝር መረጃ (Content/Description)",
+            lblMedia: "ፎቶ ወይም ቪዲዮ ይጫኑ (Upload Media)",
             btnPublish: "ፖስት አድርግ (Publish)",
             editPostModalTitle: "ፖስት ማስተካከያ (Edit Post)",
             lblEditTitle: "ርዕስ (Title)",
@@ -851,11 +802,11 @@
             subDesc: "Oduu haaraa, hojiiwwan viidiyoo fi odeeffannoo ergaa teessoo imeeilii keessaniin argachuuf asitti galmeessaa.",
             subscriberPlaceholder: "Teessoo imeeilii keessan asitti barreessaa...",
             subBtnText: "Galmaa'i",
-            readMoreBtnText: "Dubbisi ➔",
             addPostModalTitle: "Postii Haaraa Maxxansuu",
             lblCategory: "Gosa Postii (Category Choice)",
             lblTitle: "Mata duree (Title)",
             lblContent: "Odeeffannoo Bal'aa (Content/Description)",
+            lblMedia: "Suuraa ykn Viidiyoo Olfe'aa (Upload Media)",
             btnPublish: "Maxxansi (Publish)",
             editPostModalTitle: "Postii Sirreessuu (Edit Post)",
             lblEditTitle: "Mata duree (Title)",
@@ -886,11 +837,11 @@
             subDesc: "Enter your email address to receive the latest news updates, videos, and articles directly.",
             subscriberPlaceholder: "Enter your email here...",
             subBtnText: "Subscribe",
-            readMoreBtnText: "Read More ➔",
             addPostModalTitle: "Add New Post",
             lblCategory: "Select Category",
             lblTitle: "Title",
             lblContent: "Detailed Content",
+            lblMedia: "Upload Media (Image/Video)",
             btnPublish: "Publish Post",
             editPostModalTitle: "Edit Post",
             lblEditTitle: "Title",
@@ -904,60 +855,13 @@
         }
     };
 
-    // Images List for Motion Sliders
-    const newsImages = [
-        'sami  (1).png',
-        'sami  (2).png',
-        'sami  (3).png',
-        'sami  (5).png'
-    ];
-
-    // Initial Posts (President Shimelis Abdisa & Mayor Addisu Wako News)
-    const initialPosts = [
-        {
-            id: 1,
-            category: 'news',
-            images: newsImages,
-            am: {
-                title: "የኦሮሚያ ክልል ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ ያደረጉት ታሪካዊ የልማት ስራዎች ጉብኝት",
-                tag: "ከፍተኛ የልማት ጉብኝት",
-                author: "መታሃራ | ሳሚ ዶልፊን",
-                desc: `የኦሮሚያ ክልላዊ መንግስት ፕሬዝዳንት አቶ ሽመልስ አብዲሳ በመታሃራ ከተማ በመገኘት በከተማዋ እየተካሄዱ ያሉትን ዘመናዊ የመሰረተ ልማት፣ የአረንጓዴ ልማት ኮሪዶር እና የኢኮኖሚ እንቅስቃሴዎችን በአካል ተዘዋውረው ጎብኝተዋል።
-
-በጉብኝታቸው ወቅት የከተማዋ አስተዳደርና የከተማዋ ከንቲባ አቶ አዲሱ ዋቆ የተከናወኑ የልማት ስራዎችንና የቀጣይ ትልቅ ራዕይ ያላቸውን ፕሮጀክቶች ገለጻ አድርገውላቸዋል። 
-
-ፕሬዝዳንት ሽመልስ አብዲሳ በመታሃራ ከተማ እየታየ ያለው የፍጥነት ለውጥ እና የህዝቡ ተሳትፎ እጅግ የሚያስመሰግን መሆኑን ገልጸው፣ ክልላዊ መንግስቱ ለከተማዋ የጀመረውን ሁለንተናዊ ድጋፍ አጠናክሮ እንደሚቀጥል አረጋግጠዋል።`
-            },
-            om: {
-                title: "Daawwannoo Seenaqabeessa Pirezidaantii Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Magaalaa Mataaharaatti Taasisan",
-                tag: "Daawwannoo Misoomaa",
-                author: "Mataaharaa | Sami Dolphin",
-                desc: `Pirezidaantiin Mootummaa Naannoo Oromiyaa Obbo Shimallis Abdiisaa Magaalaa Mataaharaatti argamuun hojiiwwan misooma sarara bu'uuraa, kooridarii magariisaa fi sochii diinagdee magaalattii keessatti raawwatamaa jiran qaamaan daawwataniiru.
-
-Daawwannoo kana irratti Bulchiinsi Magaalaa fi Kantibaan Magaalaa Mataaharaa Obbo Addisuu Waqqoo hojiiwwan misoomaa raawwataman fi pirojeektota mul'ata bal'aa qaban irratti ibsa gahaa dhiyeessaniiru.
-
-Pirezidaant Shimallis Abdiisaas jijjiirama ariifachiisaa fi hirmaannaa uummataa Magaalaa Mataaharaa keessatti mul'atu dinqisiifachuun, mootummaan naannichaa deeggarsa magaalattii taasiisaa jiru cimsisee kanitti fufu ta'uu mirkaneessaniiru.`
-            },
-            en: {
-                title: "Oromia Regional President Shimelis Abdisa Makes Historic Development Visit to Mataaharaa Town",
-                tag: "High-Level Visit",
-                author: "Mataaharaa | Sami Dolphin",
-                desc: `The President of Oromia Regional State, Mr. Shimelis Abdisa, conducted an official working visit to Mataaharaa Town to inspect ongoing infrastructure projects, green corridor developments, and local economic initiatives.
-
-During the visit, the Mataaharaa Town Administration, led by Mayor Addisu Wako, presented comprehensive updates on completed urban projects and upcoming strategic development plans.
-
-President Shimelis Abdisa praised the rapid urban transformation and community engagement in Mataaharaa, reaffirming the regional government's continued support for the town's sustainable growth.`
-            }
-        },
-        {
-            id: 2,
-            category: 'news',
-            images: newsImages,
-            am: {
-                title: "🌿መታሃራ፦ ያልታየውን ዕድል በንስር ዓይን ማየት! 🌱",
-                tag: "አረንጓዴ ልማት",
-                author: "መታሃራ | ሳሚ ዶልፊን",
-                desc: `አንዳንድ ጊዜ ከተማን ይበልጥ ለማስዋብ ትልቅ በጀት ብቻ አይበቃም። ያለውን ነገር በሌላ ዓይን ማየት፣ ያልታየውን ዕድል መለየት እና ነገን አስቦ ዛሬ መሥራት የሚችል “የንስር ዓይን” ያስፈልጋል። 🦅
+    // Multi-Language News Data
+    const initialNewsData = {
+        am: {
+            title: "🌿መታሃራ፦ ያልታየውን ዕድል በንስር ዓይን ማየት! 🌱",
+            tag: "አረንጓዴ ልማት",
+            author: "መታሃራ | ሳሚ ዶልፊን",
+            desc: `አንዳንድ ጊዜ ከተማን ይበልጥ ለማስዋብ ትልቅ በጀት ብቻ አይበቃም። ያለውን ነገር በሌላ ዓይን ማየት፣ ያልታየውን ዕድል መለየት እና ነገን አስቦ ዛሬ መሥራት የሚችል “የንስር ዓይን” ያስፈልጋል። 🦅
 
 ይህንን የልማት ራዕይ በተጨባጭ እየገለጠች ካለችው የመታሃራ ከተማ ለውጥ መካከል አንዱ የሚያስደምም ምሳሌ ደግሞ ዛሬ ልናካፍላችሁ የምንፈልገው ይህ ነው። ከመታሃራ ከተማ መሃል እስከ የኢትዮ–ጅቡቲ የምድር ባቡር ጣቢያ የሚያደርሰው ውብ የአስፓልት መንገድ ለዓመታት በመሃሉ ለአበባ፣ ለዛፍና ለችግኝ ተከላ የተዘጋጀ ቦታ ነበረው። ነገር ግን ይህ ዕድል ለረጅም ጊዜ በትኩረት ሳይታይ ቆይቷል። ዛሬ ግን ሁኔታው ተለውጧል። 🌿
 
@@ -976,12 +880,12 @@ President Shimelis Abdisa praised the rapid urban transformation and community e
 መታሃራ እየተለወጠች ነው—እኛም የዚህ ለውጥ ተሳታፊ እንሁን!
 
 #መታሃራ #Matahara #አረንጓዴልማት #GreenCorridor #FutureGeneration #የአረንጓዴአሻራ #SamiDolphin`
-            },
-            om: {
-                title: "🌿Mataaharaa: Carraa Hin Mul’anne Ija Risaa’n Arguu! 🌱",
-                tag: "Misooma Magariisaa",
-                author: "Mataaharaa | Sami Dolphin",
-                desc: `Yeroo tokko tokko magaalaa tokko caalaatti bareechuuf baajata guddaa qofa qabaachuun hin ga’u. Waan jiru karaa addaatiin ilaaluun, carraa hin mul’anne adda baasuun, boru yaadanii har’a hojjechuu danda’uun “ija risaa” barbaada. 🦅
+        },
+        om: {
+            title: "🌿Mataaharaa: Carraa Hin Mul’anne Ija Risaa’n Arguu! 🌱",
+            tag: "Misooma Magariisaa",
+            author: "Mataaharaa | Sami Dolphin",
+            desc: `Yeroo tokko tokko magaalaa tokko caalaatti bareechuuf baajata guddaa qofa qabaachuun hin ga’u. Waan jiru karaa addaatiin ilaaluun, carraa hin mul’anne adda baasuun, boru yaadanii har’a hojjechuu danda’uun “ija risaa” barbaada. 🦅
 
 Mul’ata misoomaa kana hojii qabatamaa keessatti kan mul’isaa jirtu jijjiirama Magaalaa Mataaharaa keessatti mul’achaa jiru keessaa, fakkeenyi ajaa’ibaa tokko har’a isin waliin qooduu barbaannu kunooti.
 
@@ -1002,12 +906,12 @@ Biqiltuun har’a dhaabnu bareedina magaalaa keenyaati. Misoomni magariisaa har�
 Mataaharaan jijjiiramaa jirti—nuus jijjiirama kana keessatti hirmaattota haa taanu!
 
 #Mataaharaa #MisoomaMagariisaa #GreenCorridor #FutureGeneration #AshaaraaMagariisaa #SamiDolphin`
-            },
-            en: {
-                title: "🌿 Mataaharaa: Seeing Unseen Opportunities with an Eagle's Eye! 🌱",
-                tag: "Green Development",
-                author: "Mataaharaa | Sami Dolphin",
-                desc: `Sometimes, transforming a town into a vibrant, beautiful space requires more than just a large budget. It demands an "Eagle's Eye"—the vision to see existing surroundings differently, uncover hidden potential, and act today with tomorrow in mind. 🦅
+        },
+        en: {
+            title: "🌿 Mataaharaa: Seeing Unseen Opportunities with an Eagle's Eye! 🌱",
+            tag: "Green Development",
+            author: "Mataaharaa | Sami Dolphin",
+            desc: `Sometimes, transforming a town into a vibrant, beautiful space requires more than just a large budget. It demands an "Eagle's Eye"—the vision to see existing surroundings differently, uncover hidden potential, and act today with tomorrow in mind. 🦅
 
 A striking example of this practical development vision is currently unfolding in Mataaharaa Town. The scenic asphalt corridor connecting central Mataaharaa to the Ethio-Djibouti Railway Station had long contained a central median reserved for greenery, trees, and landscaping. However, this potential remained untapped for years. Today, that narrative has completely transformed. 🌿
 
@@ -1026,29 +930,46 @@ The trees we plant today shape the beauty of our town tomorrow. The green develo
 Mataaharaa is progressing—let us all be active participants in this change!
 
 #Matahara #GreenDevelopment #GreenCorridor #FutureGeneration #GreenLegacy #SamiDolphin`
-            }
         }
+    };
+
+    // Array of card images for motion slider
+    const newsImages = [
+        'sami  (1).png',
+        'sami  (2).png',
+        'sami  (3).png',
+        'sami  (5).png'
     ];
 
-    // Get Stored Posts from LocalStorage
+    // Initialize Posts Array from LocalStorage or Default Data
     function getStoredPosts() {
-        const stored = localStorage.getItem('sami_hub_posts_v2');
+        const stored = localStorage.getItem('sami_hub_posts');
         if (stored) {
             try { return JSON.parse(stored); } catch(e) { console.error(e); }
         }
-        return initialPosts;
+        return [
+            {
+                id: 1,
+                category: 'news',
+                am: initialNewsData.am,
+                om: initialNewsData.om,
+                en: initialNewsData.en,
+                images: newsImages
+            }
+        ];
     }
 
     let postsData = getStoredPosts();
 
     function savePostsToStorage() {
-        localStorage.setItem('sami_hub_posts_v2', JSON.stringify(postsData));
+        localStorage.setItem('sami_hub_posts', JSON.stringify(postsData));
     }
 
-    // Set Active Language
+    // Language switching functionality
     function setLanguage(lang, event) {
         currentLang = lang;
         
+        // Update language button active classes
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
         if (event && event.currentTarget) {
             event.currentTarget.classList.add('active');
@@ -1056,12 +977,14 @@ Mataaharaa is progressing—let us all be active participants in this change!
 
         const t = siteTranslations[lang];
 
+        // Update Text Elements Across Page
         document.getElementById('docTitle').innerText = t.docTitle;
         document.getElementById('headerTitle').innerText = t.headerTitle;
         document.getElementById('headerSub').innerText = t.headerSub;
         document.getElementById('adminText').innerText = t.adminText;
         document.getElementById('exitAdminText').innerText = t.exitAdminText;
         
+        // Menu Items
         document.querySelector('#m1 span').innerText = t.m1;
         document.querySelector('#m2 span').innerText = t.m2;
         document.querySelector('#m3 span').innerText = t.m3;
@@ -1070,14 +993,17 @@ Mataaharaa is progressing—let us all be active participants in this change!
         document.querySelector('#m6 span').innerText = t.m6;
         document.querySelector('#m7 span').innerText = t.m7;
 
+        // Hero Section
         document.getElementById('heroTitle').innerText = t.heroTitle;
         document.getElementById('heroSub').innerText = t.heroSub;
 
+        // Newsletter Section
         document.getElementById('subTitle').innerHTML = `<i class="fas fa-envelope-open-text"></i> ${t.subTitle}`;
         document.getElementById('subDesc').innerText = t.subDesc;
         document.getElementById('subscriberEmail').placeholder = t.subscriberPlaceholder;
         document.getElementById('subBtnText').innerText = t.subBtnText;
 
+        // Modals
         document.getElementById('addPostModalTitle').innerHTML = `<i class="fas fa-edit"></i> ${t.addPostModalTitle}`;
         document.getElementById('lblCategory').innerText = t.lblCategory;
         document.getElementById('lblTitle').innerText = t.lblTitle;
@@ -1089,10 +1015,12 @@ Mataaharaa is progressing—let us all be active participants in this change!
         document.getElementById('lblEditContent').innerText = t.lblEditContent;
         document.getElementById('btnSaveEdit').innerText = t.btnSaveEdit;
 
+        // Footer
         document.getElementById('fDesc1').innerText = t.fDesc1;
         document.getElementById('fTitle2').innerText = t.fTitle2;
         document.getElementById('fTitle3').innerText = t.fTitle3;
 
+        // Update Section Title & Re-render Grid
         updateSectionTitle();
         renderPosts();
     }
@@ -1111,6 +1039,7 @@ Mataaharaa is progressing—let us all be active participants in this change!
         document.getElementById('secTitle').innerText = categoryMap[currentCategory] || t.m1;
     }
 
+    // Category Filtering
     function filterCategory(cat, element) {
         currentCategory = cat;
         document.querySelectorAll('.menu-list a').forEach(a => a.classList.remove('active'));
@@ -1119,12 +1048,13 @@ Mataaharaa is progressing—let us all be active participants in this change!
         renderPosts();
     }
 
+    // Clear Card Image Motion Intervals
     function clearCardSliderIntervals() {
         cardSliderIntervals.forEach(clearInterval);
         cardSliderIntervals = [];
     }
 
-    // Render All Cards with Motion Slider & Read More Logic
+    // Render Posts in Grid
     function renderPosts() {
         clearCardSliderIntervals();
         const grid = document.getElementById('newsGrid');
@@ -1137,11 +1067,12 @@ Mataaharaa is progressing—let us all be active participants in this change!
             return;
         }
 
-        filtered.forEach((post) => {
+        filtered.forEach((post, index) => {
             const data = post[currentLang] || post['am'] || {};
             const card = document.createElement('div');
             card.className = 'news-card';
 
+            const cardSliderId = `card-slider-${post.id}`;
             const images = post.images && post.images.length > 0 ? post.images : newsImages;
 
             let imageSlidesHtml = images.map((img, idx) => 
@@ -1149,15 +1080,14 @@ Mataaharaa is progressing—let us all be active participants in this change!
             ).join('');
 
             card.innerHTML = `
-                <div class="card-slider-container">
+                <div class="card-slider-container" id="${cardSliderId}">
                     ${imageSlidesHtml}
                 </div>
                 <div class="news-body">
                     <span class="news-tag">${data.tag || 'Mataaharaa'}</span>
                     <h3>${data.title || ''}</h3>
                     <div class="author-meta"><i class="fas fa-user-edit"></i> ${data.author || siteTranslations[currentLang].authorDefault}</div>
-                    <div class="news-snippet">${data.desc || ''}</div>
-                    <button class="read-more-btn" onclick="openReadMoreModal(${post.id})">${siteTranslations[currentLang].readMoreBtnText}</button>
+                    <p>${data.desc || ''}</p>
                     <div class="admin-controls" style="display: ${isAdminLoggedIn ? 'flex' : 'none'};">
                         <button class="edit-btn-card" onclick="openEditModal(${post.id})"><i class="fas fa-edit"></i> Edit</button>
                         <button class="delete-btn-card" onclick="deletePost(${post.id})"><i class="fas fa-trash-alt"></i> Delete</button>
@@ -1167,7 +1097,7 @@ Mataaharaa is progressing—let us all be active participants in this change!
 
             grid.appendChild(card);
 
-            // Card Motion Slider Logic
+            // Initialize Image Motion Slider for Card
             if (images.length > 1) {
                 let currentSlide = 0;
                 const slides = card.querySelectorAll('.card-slide-img');
@@ -1181,10 +1111,9 @@ Mataaharaa is progressing—let us all be active participants in this change!
         });
     }
 
-    // Top Hero Banner Motion Slider Initialization
+    // Hero Slider Animation Logic
     function initHeroSlider() {
         const slides = document.querySelectorAll('.hero-slider .slide');
-        if (slides.length <= 1) return;
         let current = 0;
         setInterval(() => {
             slides[current].classList.remove('active');
@@ -1193,25 +1122,7 @@ Mataaharaa is progressing—let us all be active participants in this change!
         }, 5000);
     }
 
-    // Read More Full Modal
-    function openReadMoreModal(postId) {
-        const post = postsData.find(p => p.id === postId);
-        if (!post) return;
-        const data = post[currentLang] || post['am'];
-
-        document.getElementById('readMoreTag').innerText = data.tag || 'Mataaharaa';
-        document.getElementById('readMoreTitle').innerText = data.title || '';
-        document.getElementById('readMoreAuthor').innerHTML = `<i class="fas fa-user-edit"></i> ${data.author || siteTranslations[currentLang].authorDefault}`;
-        document.getElementById('readMoreContent').innerText = data.desc || '';
-
-        document.getElementById('readMoreModal').style.display = 'flex';
-    }
-
-    function closeReadMoreModal() {
-        document.getElementById('readMoreModal').style.display = 'none';
-    }
-
-    // Admin Auth
+    // Admin Auth & Modal Logic
     function openAdminModal() {
         if (!isAdminLoggedIn) {
             const pwd = prompt("እባክዎን የአድሚን የይለፍ ቃል ያስገቡ (Enter Admin Password):");
@@ -1243,7 +1154,7 @@ Mataaharaa is progressing—let us all be active participants in this change!
         alert("ከአድሚን ሲስተም ወጥተዋል።");
     }
 
-    // Add New Post
+    // Publish New Post
     function publishPost(e) {
         e.preventDefault();
         const category = document.getElementById('postCategory').value;
@@ -1253,7 +1164,6 @@ Mataaharaa is progressing—let us all be active participants in this change!
         const newPost = {
             id: Date.now(),
             category: category,
-            images: newsImages,
             am: {
                 title: title,
                 tag: "አዲስ መረጃ",
@@ -1271,7 +1181,8 @@ Mataaharaa is progressing—let us all be active participants in this change!
                 tag: "Latest Update",
                 author: "Mataaharaa | Sami Dolphin",
                 desc: content
-            }
+            },
+            images: newsImages
         };
 
         postsData.unshift(newPost);
@@ -1279,11 +1190,12 @@ Mataaharaa is progressing—let us all be active participants in this change!
         closeAdminModal();
         document.getElementById('adminForm').reset();
         
+        // Switch view to published category
         filterCategory(category, document.querySelector(`.menu-list a[onclick*="'${category}'"]`));
         alert("ፖስቱ በስኬት ተለጥፏል!");
     }
 
-    // Edit Post
+    // Edit Post Logic
     function openEditModal(postId) {
         const post = postsData.find(p => p.id === postId);
         if (!post) return;
@@ -1321,7 +1233,7 @@ Mataaharaa is progressing—let us all be active participants in this change!
         }
     }
 
-    // Delete Post
+    // Delete Post Logic
     function deletePost(postId) {
         if (confirm("እርግጠኛ ነዎት ይህንን ፖስት ማጥፋት ይፈልጋሉ?")) {
             postsData = postsData.filter(p => p.id !== postId);
@@ -1331,7 +1243,7 @@ Mataaharaa is progressing—let us all be active participants in this change!
         }
     }
 
-    // Newsletter Handler
+    // Handle Newsletter Subscription
     function handleSubscribe(e) {
         e.preventDefault();
         const email = document.getElementById('subscriberEmail').value;
@@ -1341,18 +1253,15 @@ Mataaharaa is progressing—let us all be active participants in this change!
         }
     }
 
-    // Window Click Events for Modals
+    // Close Modals when clicking outside content area
     window.onclick = function(event) {
         const adminModal = document.getElementById('adminModal');
         const editModal = document.getElementById('editModal');
-        const readMoreModal = document.getElementById('readMoreModal');
-
         if (event.target === adminModal) closeAdminModal();
         if (event.target === editModal) closeEditModal();
-        if (event.target === readMoreModal) closeReadMoreModal();
     };
 
-    // Initialize Page
+    // Page Load Initialization
     window.onload = function() {
         initHeroSlider();
         renderPosts();

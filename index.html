@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mataaharaa Town Hub | Sami-Tube Media</title>
+    <title id="docTitle">Mataaharaa Town Hub | Sami-Tube Media</title>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -582,13 +582,13 @@
         <div class="logo-container">
             <div class="logo-badge">SAMI</div>
             <div class="logo-title">
-                <h1>Mataaharaa Town Hub</h1>
-                <p>Sami-Tube Media & Information Center</p>
+                <h1 id="headerTitle">መታሃራ ከተማ መረጃ ማዕከል</h1>
+                <p id="headerSub">ሳሚ-ቱዩብ ሚዲያና መረጃ አገልግሎት</p>
             </div>
         </div>
         <div class="nav-right-controls">
-            <button class="admin-btn" id="adminMainBtn" onclick="openAdminModal()"><i class="fas fa-user-shield"></i> Admin</button>
-            <button class="logout-btn" id="logoutBtn" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Exit Admin</button>
+            <button class="admin-btn" id="adminMainBtn" onclick="openAdminModal()"><i class="fas fa-user-shield"></i> <span id="adminText">አድሚን</span></button>
+            <button class="logout-btn" id="logoutBtn" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> <span id="exitAdminText">ከአድሚን ውጣ</span></button>
             <div class="lang-switch">
                 <button class="lang-btn active" onclick="setLanguage('am', event)">
                     <img src="https://flagcdn.com/w40/et.png" alt="Ethiopia Flag" class="flag-icon"> AM
@@ -603,13 +603,13 @@
 <!-- Navigation Menu -->
 <nav>
     <ul class="menu-list">
-        <li><a onclick="filterCategory('news', this)" class="active" id="m1"><i class="fas fa-newspaper"></i> ወቅታዊ ዜናዎች</a></li>
-        <li><a onclick="filterCategory('video', this)" id="m2"><i class="fas fa-video"></i> ቪዲዮ ጋለሪ</a></li>
-        <li><a onclick="filterCategory('culture', this)" id="m3"><i class="fas fa-landmark"></i> ባህል</a></li>
-        <li><a onclick="filterCategory('tourism', this)" id="m4"><i class="fas fa-mountain"></i> ቱሪዝም</a></li>
-        <li><a onclick="filterCategory('philosophy', this)" id="m5"><i class="fas fa-brain"></i> ፊሎሶፊ</a></li>
-        <li><a onclick="filterCategory('literature', this)" id="m6"><i class="fas fa-book"></i> ስነ-ጽሁፍ</a></li>
-        <li><a onclick="filterCategory('sports', this)" id="m7"><i class="fas fa-football-ball"></i> ስፖርት</a></li>
+        <li><a onclick="filterCategory('news', this)" class="active" id="m1"><i class="fas fa-newspaper"></i> <span>ወቅታዊ ዜናዎች</span></a></li>
+        <li><a onclick="filterCategory('video', this)" id="m2"><i class="fas fa-video"></i> <span>ቪዲዮ ጋለሪ</span></a></li>
+        <li><a onclick="filterCategory('culture', this)" id="m3"><i class="fas fa-landmark"></i> <span>ባህል</span></a></li>
+        <li><a onclick="filterCategory('tourism', this)" id="m4"><i class="fas fa-mountain"></i> <span>ቱሪዝም</span></a></li>
+        <li><a onclick="filterCategory('philosophy', this)" id="m5"><i class="fas fa-brain"></i> <span>ፊሎሶፊ</span></a></li>
+        <li><a onclick="filterCategory('literature', this)" id="m6"><i class="fas fa-book"></i> <span>ስነ-ጽሁፍ</span></a></li>
+        <li><a onclick="filterCategory('sports', this)" id="m7"><i class="fas fa-football-ball"></i> <span>ስፖርት</span></a></li>
     </ul>
 </nav>
 
@@ -640,7 +640,7 @@
         <p id="subDesc">አዳዲስ ዜናዎችን፣ የቪዲዮ ስራዎችን እና መረጃዎችን በኢሜይልዎ ለማግኘት የኢሜይል አድራሻዎን እዚህ ያስገቡ።</p>
         <form class="subscribe-form" onsubmit="handleSubscribe(event)">
             <input type="email" id="subscriberEmail" placeholder="ኢሜይል አድራሻዎን እዚህ ይፃፉ..." required>
-            <button type="submit" class="subscribe-btn" id="subBtn"><i class="fas fa-paper-plane"></i> ተመዝገብ</button>
+            <button type="submit" class="subscribe-btn" id="subBtn"><i class="fas fa-paper-plane"></i> <span id="subBtnText">ተመዝገብ</span></button>
         </form>
     </section>
 </main>
@@ -649,10 +649,10 @@
 <div id="adminModal" class="admin-modal">
     <div class="admin-content">
         <span class="close-modal" onclick="closeAdminModal()">&times;</span>
-        <h3><i class="fas fa-edit"></i> አዲስ ፖስት ማድረጊያ</h3>
+        <h3 id="addPostModalTitle"><i class="fas fa-edit"></i> አዲስ ፖስት ማድረጊያ</h3>
         <form id="adminForm" onsubmit="publishPost(event)">
             <div class="form-group">
-                <label>የፖስቱ አይነት (Category Choice)</label>
+                <label id="lblCategory">የፖስቱ አይነት (Category Choice)</label>
                 <select id="postCategory">
                     <option value="news">ወቅታዊ ዜና (Latest News)</option>
                     <option value="video">ቪዲዮ ጋለሪ (Video Gallery)</option>
@@ -664,18 +664,18 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>ርዕስ (Title)</label>
+                <label id="lblTitle">ርዕስ (Title)</label>
                 <input type="text" id="postTitle" required placeholder="የርዕሱን ስም እዚህ ያስገቡ...">
             </div>
             <div class="form-group">
-                <label>ዝርዝር መረጃ (Content/Description)</label>
+                <label id="lblContent">ዝርዝር መረጃ (Content/Description)</label>
                 <textarea id="postContent" rows="4" required placeholder="የዜናውን ወይም የፅሁፉን ሙሉ መረጃ እዚህ ይፃፉ..."></textarea>
             </div>
             <div class="form-group">
-                <label>ፎቶ ወይም ቪዲዮ ይጫኑ (Upload Media)</label>
+                <label id="lblMedia">ፎቶ ወይም ቪዲዮ ይጫኑ (Upload Media)</label>
                 <input type="file" id="postImage" accept="image/*,video/*">
             </div>
-            <button type="submit" class="publish-btn"><i class="fas fa-paper-plane"></i> ፖስት አድርግ (Publish)</button>
+            <button type="submit" class="publish-btn" id="btnPublish"><i class="fas fa-paper-plane"></i> ፖስት አድርግ (Publish)</button>
         </form>
     </div>
 </div>
@@ -684,18 +684,18 @@
 <div id="editModal" class="admin-modal">
     <div class="admin-content">
         <span class="close-modal" onclick="closeEditModal()">&times;</span>
-        <h3><i class="fas fa-edit"></i> ፖስት ማስተካከያ (Edit Post)</h3>
+        <h3 id="editPostModalTitle"><i class="fas fa-edit"></i> ፖስት ማስተካከያ (Edit Post)</h3>
         <form id="editForm" onsubmit="saveEditedPost(event)">
             <input type="hidden" id="editPostId">
             <div class="form-group">
-                <label>ርዕስ (Title)</label>
+                <label id="lblEditTitle">ርዕስ (Title)</label>
                 <input type="text" id="editPostTitle" required>
             </div>
             <div class="form-group">
-                <label>ዝርዝር መረጃ (Content/Description)</label>
+                <label id="lblEditContent">ዝርዝር መረጃ (Content/Description)</label>
                 <textarea id="editPostContent" rows="4" required></textarea>
             </div>
-            <button type="submit" class="publish-btn" style="background: var(--edit-btn);"><i class="fas fa-save"></i> ለውጦችን አስቀምጥ (Save Changes)</button>
+            <button type="submit" class="publish-btn" style="background: var(--edit-btn);"><i class="fas fa-save"></i> <span id="btnSaveEdit">ለውጦችን አስቀምጥ</span></button>
         </form>
     </div>
 </div>
@@ -704,14 +704,14 @@
 <footer>
     <div class="footer-container">
         <div class="footer-col">
-            <h4>Mataaharaa Town Hub</h4>
+            <h4 id="footerHeader">Mataaharaa Town Hub</h4>
             <p id="fDesc1">የመታሃራ ከተማ እና የአካባቢዋን አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::</p>
         </div>
         <div class="footer-col">
             <h4 id="fTitle2">የመገናኛ አድራሻ</h4>
             <p><i class="fas fa-phone"></i> +251 91 192 66976</p>
             <p><i class="fas fa-envelope"></i> sami2all@gmail.com</p>
-            <p><i class="fas fa-map-marker-alt"></i> Mataaharaa, Oromia, Ethiopia</p>
+            <p><i class="fas fa-map-marker-alt"></i> <span id="fLocation">Mataaharaa, Oromia, Ethiopia</span></p>
         </div>
         <div class="footer-col">
             <h4 id="fTitle3">ማህበራዊ ሚዲያ</h4>
@@ -744,6 +744,115 @@
             e.preventDefault();
         }
     });
+
+    // Full Site Translations Dictionary
+    const siteTranslations = {
+        am: {
+            docTitle: "መታሃራ ከተማ መረጃ ማዕከል | Sami-Tube Media",
+            headerTitle: "መታሃራ ከተማ መረጃ ማዕከል",
+            headerSub: "ሳሚ-ቱዩብ ሚዲያና መረጃ አገልግሎት",
+            adminText: "አድሚን",
+            exitAdminText: "ከአድሚን ውጣ",
+            m1: "ወቅታዊ ዜናዎች",
+            m2: "ቪዲዮ ጋለሪ",
+            m3: "ባህል",
+            m4: "ቱሪዝም",
+            m5: "ፊሎሶፊ",
+            m6: "ስነ-ጽሁፍ",
+            m7: "ስፖርት",
+            heroTitle: "እንኳን ወደ መታሃራ ከተማ የመረጃ ማእከል በደህና መጡ",
+            heroSub: "ሳሚ-ቱዩብ ሚዲያ አዳዲስ መረጃዎችን፣ ባህልን፣ ቱሪዝምን እና እውቀትን ለህዝብ ለማጋራት የተዘጋጀ ማዕከል ነው።",
+            subTitle: "አዳዲስ መረጃዎች እንዲደርስዎ ይመዝገቡ",
+            subDesc: "አዳዲስ ዜናዎችን፣ የቪዲዮ ስራዎችን እና መረጃዎችን በኢሜይልዎ ለማግኘት የኢሜይል አድራሻዎን እዚህ ያስገቡ።",
+            subscriberPlaceholder: "ኢሜይል አድራሻዎን እዚህ ይፃፉ...",
+            subBtnText: "ተመዝገብ",
+            addPostModalTitle: "አዲስ ፖስት ማድረጊያ",
+            lblCategory: "የፖስቱ አይነት (Category Choice)",
+            lblTitle: "ርዕስ (Title)",
+            lblContent: "ዝርዝር መረጃ (Content/Description)",
+            lblMedia: "ፎቶ ወይም ቪዲዮ ይጫኑ (Upload Media)",
+            btnPublish: "ፖስት አድርግ (Publish)",
+            editPostModalTitle: "ፖስት ማስተካከያ (Edit Post)",
+            lblEditTitle: "ርዕስ (Title)",
+            lblEditContent: "ዝርዝር መረጃ (Content/Description)",
+            btnSaveEdit: "ለውጦችን አስቀምጥ",
+            fDesc1: "የመታሃራ ከተማ እና የአካባቢዋን አዳዲስ ዜናዎች፣ ባህልና የቱሪዝም መስህቦች የሚያስተዋውቅ ይፋዊ የመረጃ ፖርታል::",
+            fTitle2: "የመገናኛ አድራሻ",
+            fTitle3: "ማህበራዊ ሚዲያ",
+            noPostMsg: "በዚህ ዘርፍ ስር እስካሁን የተጫነ መረጃ የለም። በአድሚን በኩል ፖስት ማድረግ ይችላሉ።",
+            authorDefault: "መታሃራ | ሳሚ ዶልፊን"
+        },
+        om: {
+            docTitle: "Wiirtuu Odeeffannoo Magaalaa Mataaharaa | Sami-Tube Media",
+            headerTitle: "Wiirtuu Odeeffannoo Magaalaa Mataaharaa",
+            headerSub: "Tajaajila Oduu fi Odeeffannoo Sami-Tube",
+            adminText: "Admiinii",
+            exitAdminText: "Admiinii keessaa ba'i",
+            m1: "Oduu Haaraa",
+            m2: "Gaalerii Viidiyoo",
+            m3: "Aadaa",
+            m4: "Turizimii",
+            m5: "Filosoochii",
+            m6: "Og-barruu",
+            m7: "Ispoortii",
+            heroTitle: "Baga gara Wiirtuu Odeeffannoo Magaalaa Mataaharaatti Dhuftan",
+            heroSub: "Sami-Tube Miidiyaan odeeffannoo haaraa, aadaa, turizimii fi beekumsa uummataaf qooduuf kan qophaa'edha.",
+            subTitle: "Odeeffannoo Haaraa Argachuuf Galmaa'aa",
+            subDesc: "Oduu haaraa, hojiiwwan viidiyoo fi odeeffannoo ergaa teessoo imeeilii keessaniin argachuuf asitti galmeessaa.",
+            subscriberPlaceholder: "Teessoo imeeilii keessan asitti barreessaa...",
+            subBtnText: "Galmaa'i",
+            addPostModalTitle: "Postii Haaraa Maxxansuu",
+            lblCategory: "Gosa Postii (Category Choice)",
+            lblTitle: "Mata duree (Title)",
+            lblContent: "Odeeffannoo Bal'aa (Content/Description)",
+            lblMedia: "Suuraa ykn Viidiyoo Olfe'aa (Upload Media)",
+            btnPublish: "Maxxansi (Publish)",
+            editPostModalTitle: "Postii Sirreessuu (Edit Post)",
+            lblEditTitle: "Mata duree (Title)",
+            lblEditContent: "Odeeffannoo Bal'aa (Content/Description)",
+            btnSaveEdit: "Jijjiama Olka'i",
+            fDesc1: "Portal odeeffannoo uummata magaalaa Mataaharaa fi naannoo ishee, aadaa fi hawata turizimii beeksisuudha.",
+            fTitle2: "Teessoo Quqnnamtii",
+            fTitle3: "Miidiyaa Hawaasaa",
+            noPostMsg: "Kutaa kana jalatti hamma yoonaatti odeeffannoon maxxansame hin jiru.",
+            authorDefault: "Mataaharaa | Sami Dolphin"
+        },
+        en: {
+            docTitle: "Mataaharaa Town Information Hub | Sami-Tube Media",
+            headerTitle: "Mataaharaa Town Info Hub",
+            headerSub: "Sami-Tube Media & Information Service",
+            adminText: "Admin",
+            exitAdminText: "Exit Admin",
+            m1: "Latest News",
+            m2: "Video Gallery",
+            m3: "Culture",
+            m4: "Tourism",
+            m5: "Philosophy",
+            m6: "Literature",
+            m7: "Sports",
+            heroTitle: "Welcome to Mataaharaa Town Information Hub",
+            heroSub: "Sami-Tube Media is dedicated to sharing verified news, local culture, tourism opportunities, and insights.",
+            subTitle: "Subscribe for Updates",
+            subDesc: "Enter your email address to receive the latest news updates, videos, and articles directly.",
+            subscriberPlaceholder: "Enter your email here...",
+            subBtnText: "Subscribe",
+            addPostModalTitle: "Add New Post",
+            lblCategory: "Select Category",
+            lblTitle: "Title",
+            lblContent: "Detailed Content",
+            lblMedia: "Upload Media (Image/Video)",
+            btnPublish: "Publish Post",
+            editPostModalTitle: "Edit Post",
+            lblEditTitle: "Title",
+            lblEditContent: "Detailed Content",
+            btnSaveEdit: "Save Changes",
+            fDesc1: "Official portal showcasing news, culture, and tourism potential of Mataaharaa Town and surrounding areas.",
+            fTitle2: "Contact Info",
+            fTitle3: "Social Media",
+            noPostMsg: "No articles published in this category yet.",
+            authorDefault: "Mataaharaa | Sami Dolphin"
+        }
+    };
 
     // Initial Data Posts
     let posts = JSON.parse(localStorage.getItem('sami_posts')) || [
@@ -786,7 +895,7 @@
         document.getElementById('secTitle').innerText = categoryTitles[currentCategory][currentLang];
 
         if (filtered.length === 0) {
-            grid.innerHTML = `<div class="no-posts-msg">በዚህ ዘርፍ ስር እስካሁን የተጫነ መረጃ የለም። በአድሚን በኩል ፖስት ማድረግ ይችላሉ።</div>`;
+            grid.innerHTML = `<div class="no-posts-msg">${siteTranslations[currentLang].noPostMsg}</div>`;
             return;
         }
 
@@ -796,9 +905,9 @@
             card.innerHTML = `
                 ${post.image ? `<img src="${post.image}" class="news-img" alt="Post Image">` : ''}
                 <div class="news-body">
-                    <span class="news-tag">${post.tag || 'መረጃ'}</span>
+                    <span class="news-tag">${post.tag || categoryTitles[post.category][currentLang]}</span>
                     <h3>${post.title}</h3>
-                    <div class="author-meta"><i class="fas fa-user-edit"></i> ${post.author || 'ሳሚ ዶልፊን'}</div>
+                    <div class="author-meta"><i class="fas fa-user-edit"></i> ${post.author || siteTranslations[currentLang].authorDefault}</div>
                     <p>${post.desc}</p>
                     <div class="admin-controls" style="display: ${isAdminLoggedIn ? 'flex' : 'none'}">
                         <button class="edit-btn-card" onclick="openEditModal(${post.id})"><i class="fas fa-edit"></i> Edit</button>
@@ -834,8 +943,8 @@
             id: Date.now(),
             category: cat,
             title: title,
-            author: 'መታሃራ | ሳሚ ዶልፊን',
-            tag: categoryTitles[cat]['am'],
+            author: siteTranslations[currentLang].authorDefault,
+            tag: categoryTitles[cat][currentLang],
             desc: desc,
             image: imageSrc
         };
@@ -859,7 +968,7 @@
                 isAdminLoggedIn = true;
                 document.getElementById('logoutBtn').style.display = 'flex';
                 document.getElementById('adminModal').style.display = 'flex';
-                renderPosts(); // Re-render to show edit/delete controls
+                renderPosts();
             } else if (enteredPassword !== null) {
                 alert("የተሳሳተ ሚስጥር ቁጥር ነው! መግባት አይችሉም።");
             }
@@ -929,10 +1038,61 @@
         document.getElementById('subscriberEmail').value = '';
     }
 
+    /* Full Language Switcher Function */
     function setLanguage(lang, event) {
         currentLang = lang;
+        const t = siteTranslations[lang];
+
+        // Active Button Toggle
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
         if (event && event.currentTarget) event.currentTarget.classList.add('active');
+
+        // Document Title & Headers
+        document.getElementById('docTitle').innerText = t.docTitle;
+        document.getElementById('headerTitle').innerText = t.headerTitle;
+        document.getElementById('headerSub').innerText = t.headerSub;
+        document.getElementById('adminText').innerText = t.adminText;
+        document.getElementById('exitAdminText').innerText = t.exitAdminText;
+
+        // Navigation Links
+        document.querySelector('#m1 span').innerText = t.m1;
+        document.querySelector('#m2 span').innerText = t.m2;
+        document.querySelector('#m3 span').innerText = t.m3;
+        document.querySelector('#m4 span').innerText = t.m4;
+        document.querySelector('#m5 span').innerText = t.m5;
+        document.querySelector('#m6 span').innerText = t.m6;
+        document.querySelector('#m7 span').innerText = t.m7;
+
+        // Hero Section
+        document.getElementById('heroTitle').innerText = t.heroTitle;
+        document.getElementById('heroSub').innerText = t.heroSub;
+
+        // Subscription Box
+        document.getElementById('subTitle').innerHTML = `<i class="fas fa-envelope-open-text"></i> ${t.subTitle}`;
+        document.getElementById('subDesc').innerText = t.subDesc;
+        document.getElementById('subscriberEmail').placeholder = t.subscriberPlaceholder;
+        document.getElementById('subBtnText').innerText = t.subBtnText;
+
+        // Admin Modal Labels
+        document.getElementById('addPostModalTitle').innerHTML = `<i class="fas fa-edit"></i> ${t.addPostModalTitle}`;
+        document.getElementById('lblCategory').innerText = t.lblCategory;
+        document.getElementById('lblTitle').innerText = t.lblTitle;
+        document.getElementById('lblContent').innerText = t.lblContent;
+        document.getElementById('lblMedia').innerText = t.lblMedia;
+        document.getElementById('btnPublish').innerHTML = `<i class="fas fa-paper-plane"></i> ${t.btnPublish}`;
+
+        // Edit Modal Labels
+        document.getElementById('editPostModalTitle').innerHTML = `<i class="fas fa-edit"></i> ${t.editPostModalTitle}`;
+        document.getElementById('lblEditTitle').innerText = t.lblEditTitle;
+        document.getElementById('lblEditContent').innerText = t.lblEditContent;
+        document.getElementById('btnSaveEdit').innerText = t.btnSaveEdit;
+
+        // Footer Section
+        document.getElementById('fDesc1').innerText = t.fDesc1;
+        document.getElementById('fTitle2').innerText = t.fTitle2;
+        document.getElementById('fTitle3').innerText = t.fTitle3;
+
+        // Render Cards in new language
         renderPosts();
     }
 
